@@ -164,7 +164,7 @@ class Usuario_Model{
 			return 'ERROR: Fallo en la consulta sobre la base de datos'; 
 		}else return $result;
 	}
-	
+
 	function GET_DEPORTISTA(){
 		$sql = "SELECT login FROM usuario WHERE(
 						(`rol` = `DEPORTISTA`)"
@@ -231,3 +231,4 @@ class Usuario_Model{
 
 
 }
+?>
