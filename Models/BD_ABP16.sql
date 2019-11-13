@@ -1,6 +1,7 @@
 --
 -- Base de datos: `PadelAbp`
 --
+DROP DATABASE IF EXISTS `PadelABP`;
 CREATE DATABASE IF NOT EXISTS `PadelABP` DEFAULT CHARACTER SET latin1 COLLATE latin1_spanish_ci;
 USE `PadelABP`;
 
@@ -17,6 +18,7 @@ CREATE TABLE IF NOT EXISTS `USUARIO` (
   `rol` enum('Deportista','Administrador','Entrenador') COLLATE latin1_spanish_ci DEFAULT NULL,
   `socio` enum('Activo','Inactivo') COLLATE latin1_spanish_ci DEFAULT NULL,
   `foto` varchar(500) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `borrado` BIT DEFAULT 0,
 
   PRIMARY KEY (login)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
@@ -87,6 +89,7 @@ CREATE TABLE IF NOT EXISTS `pareja` (
     `idPareja2` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `fecha` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `resultado` varchar(25) COLLATE latin1_spanish_ci DEFAULT NULL,
+    `idPista` varchar(25) COLLATE latin1_spanish_ci DEFAULT NULL,
 
     PRIMARY KEY (idPartido,idPareja1,idPareja2),
     FOREIGN KEY (idPista) REFERENCES pista (idPista)
@@ -143,13 +146,14 @@ CREATE TABLE IF NOT EXISTS `pareja` (
   ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
  CREATE TABLE IF NOT EXISTS `estadistica` (
-    `idUsuario` varchar(25) COLLATE latin1_spanish_ci NOT NULL UNIQUE,
+    `idUsuario` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `partidosGanados` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `puntosPorPartido` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `partidosPerdidos` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
 
     PRIMARY KEY (idUsuario),
-    FOREIGN KEY (idUsuario) REFERENCES USUARIO(idUsuario0)
+    FOREIGN KEY (idUsuario) REFERENCES usuario (login)
+    
   )ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
   
   CREATE TABLE IF NOT EXISTS `ligaRegular` (

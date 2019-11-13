@@ -26,6 +26,7 @@ class Usuario_Model{
 	var $rol;
 	var $socio;
 	var $foto;
+	var $borrado;
 
 	var $mysqli;
 
@@ -66,7 +67,7 @@ class Usuario_Model{
 		}
 	}
 
-	function Register(){
+/*	function Register(){
 		$sql = "SELECT * FROM USUARIO
 				WHERE `LOGIN` = '".$this->login."'";
 
@@ -77,6 +78,7 @@ class Usuario_Model{
 		}else
 			return true;
 	}
+*/
 
 	function ADD(){
 		$sql = "INSERT INTO USUARIO (
@@ -90,7 +92,8 @@ class Usuario_Model{
 					`telefono`,
 					`rol`,
 					`socio`,
-					`foto`)
+					`foto`,
+					`borrado`)
 						VALUES (
 							'$this->login',
 							'$this->password',
@@ -102,7 +105,8 @@ class Usuario_Model{
 							'$this->telefono',
 							'$this->rol',
 							'NO',
-							'$this->foto'
+							'$this->foto',
+							'NO'
 						)";
 
 		if(!$resultado = $this->mysqli->query($sql))
@@ -117,9 +121,6 @@ class Usuario_Model{
 
 
 	function SEARCH(){
-		$sql;
-		$result;
-
 		$sql = "SELECT * FROM `usuario` WHERE(
 				(`login` LIKE '%$this->login%') AND
 				(`nombre` LIKE '%$this->nombre%') AND
@@ -128,7 +129,8 @@ class Usuario_Model{
 				(`email` LIKE '%$this->email%')AND
 				(`telefono` LIKE '%$this->telefono%')AND
 				(`rol` LIKE '%$this->rol%')AND
-				(`socio` LIKE '%$this->socio%')
+				(`socio` LIKE '%$this->socio%') AND
+				(`borrado` = 'NO')
 			)";
 
 		if(!($result = $this->mysqli->query($sql))){
@@ -139,7 +141,7 @@ class Usuario_Model{
 	}
 
 	function GET_ROL(){
-		$sql = "SELECT * FROM usuario WHERE (`login`= '$this->login')";
+		$sql = "SELECT * FROM usuario WHERE (`login`= '$this->login' AND `borrado` = 'NO')";
 
 		if (!($resultado = $this->mysqli->query($sql))){ // si se produce un error en la busqueda 
 			return 'ERROR: Fallo en la consulta sobre la base de datos';  //devuelve un mensaje de error que se env�a al MESSAGE_Controller el cual crea la vista MESSAGE con dicho mensaje
@@ -151,7 +153,7 @@ class Usuario_Model{
 
 	function GET_ENTRENADORES(){
 		$sql = "SELECT login FROM usuario WHERE(
-						(`rol` = `ENTRENADOR`)"
+						(`rol` = `ENTRENADOR` AND `borrado` = 'NO')"
 		if (!($result = $this->mysqli->query($sql))){ // si se produce un error en la busqueda 
 			return 'ERROR: Fallo en la consulta sobre la base de datos'; 
 		}else return $result;
@@ -159,7 +161,7 @@ class Usuario_Model{
 
 	function GET_ADMINISTRADORES(){
 		$sql = "SELECT login FROM usuario WHERE(
-						(`rol` = `ADMINISTRADOR`)"
+						(`rol` = `ADMINISTRADOR` AND `borrado` = 'NO')"
 		if (!($result = $this->mysqli->query($sql))){ // si se produce un error en la busqueda 
 			return 'ERROR: Fallo en la consulta sobre la base de datos'; 
 		}else return $result;
@@ -167,14 +169,14 @@ class Usuario_Model{
 
 	function GET_DEPORTISTA(){
 		$sql = "SELECT login FROM usuario WHERE(
-						(`rol` = `DEPORTISTA`)"
+						(`rol` = `DEPORTISTA` AND `borrado` = 'NO')"
 		if (!($result = $this->mysqli->query($sql))){ // si se produce un error en la busqueda 
 			return 'ERROR: Fallo en la consulta sobre la base de datos'; 
 		}else return $result;
 	}
 
 	function SHOWALL(){
-		$sql = "SELECT * FROM usuario";
+		$sql = "SELECT * FROM usuario WHERE(`borrado` = 'No')";
 
 		if(!$result= $this->mysqli->query($sql)){
 			return 'ERROR: Fallo en la colsulta a la bd';
@@ -183,7 +185,7 @@ class Usuario_Model{
 
 	function EDIT(){
 		if($this->login <> ''){
-			$sql = "SELECT * FROM usuario WHERE (`login` = '$this->login')";
+			$sql = "SELECT * FROM usuario WHERE (`login` = '$this->login' AND `borrado` = 'NO')";
 
 			$result = $this->mysqli->query($sql);
 			$num_rows = mysqli_num_rows($result);
@@ -200,7 +202,8 @@ class Usuario_Model{
 						`telefono` = '$this->telefono',
 						`rol` = '$this->rol',
 						`socio` = '$this->socio',
-						`foto` = '$this->foto'
+						`foto` = '$this->foto',
+						`borrado` = 'NO'
 					WHERE (`login` = '$this->login')";
 
 				if(!($result = $this->mysqli->query($sql))){
@@ -211,12 +214,13 @@ class Usuario_Model{
 	}
 
 	function DELETE(){
-		$sql = "SELECT * FROM usuario WHERE (`login` = '$this->login')";
+		$sql = "SELECT * FROM usuario WHERE (`login` = '$this->login' AND `borrado` = 'NO')";
 
 		$result = $this->mysqli->query($sql);
 
 		if($result->num_rows == 1){
-			$sql = "DELETE FROM usuario WHERE(`login` = '$this->login')";
+			$sql = "UPDATE usuario SET `borrado` = 'SI' WHERE (`login` = '$this->login')";
+			return 'Borrado con éxito.';
 		}else return 'ERROR: No existe ningún usuario con ese login.';
 	}
 
