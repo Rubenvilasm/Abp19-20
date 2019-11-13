@@ -1,5 +1,17 @@
 <?php
 
+/**
+ * *Este model de la clase Usuario contiene las herramientas para:
+ * *1.Loguearse.
+ * *2.Registrarse.
+ * *3.Añadir, editar, buscar y eliminar Usuario.
+ * ? Deberíamos añadir un atributo eliminado para eliminar lógicamente 
+ * ? y así mantenerlo en la base de datos por si quisiera volver a darse de alta?
+ * *4. Rellenar datos para tablas.
+ * *5.Recuperar el rol del usuario.
+ * *6.Buscar por Entrenadores, Administradores y Deportistas.
+ */
+
 
 class Usuario_Model{
 
@@ -37,16 +49,16 @@ class Usuario_Model{
 		$this->mysqli = ConnectDB();
 	}
 
-	function login(){
-		$sql = "SELECT * FROM USUARIO 
+	function Login(){
+		$sql = "SELECT * FROM usuario 
 				WHERE (
 						`login` = '$this->login'
 						)";
-		$resultado = $this->mysqli->query($sql);
-		if($resultado->num_rows == 0){
+		$result = $this->mysqli->query($sql);
+		if($result->num_rows == 0){
 			return 'ERROR: El login no existe';
 		}else{
-			$tupla = $resultado->fetch_array();
+			$tupla = $result->fetch_array();
 			if($tupla['PASSWORD'] == $this->password){
 				return true;
 			}else
@@ -54,7 +66,7 @@ class Usuario_Model{
 		}
 	}
 
-	function register(){
+	function Register(){
 		$sql = "SELECT * FROM USUARIO
 				WHERE `LOGIN` = '".$this->login."'";
 
@@ -65,18 +77,6 @@ class Usuario_Model{
 		}else
 			return true;
 	}
-	ar $login;
-	var $password;
-	var $nombre;
-	var $apellidos;
-	var $dni;
-	var $fechaNac;
-	var $email;
-	var $telefono;
-	var $rol;
-	var $socio;
-	var $foto;
-
 
 	function ADD(){
 		$sql = "INSERT INTO USUARIO (
@@ -131,10 +131,103 @@ class Usuario_Model{
 				(`socio` LIKE '%$this->socio%')
 			)";
 
-if(!($result = $this->mysqli->query($sql))){
-	return 'ERROR: Fallo en la consulta sobre la base de datos';
-}else{
-	return $result;
-}
+		if(!($result = $this->mysqli->query($sql))){
+			return 'ERROR: Fallo en la consulta sobre la base de datos';
+		}else{
+			return $result;
+		}
 	}
+
+	function GET_ROL(){
+		$sql = "SELECT * FROM usuario WHERE (`login`= '$this->login')";
+
+		if (!($resultado = $this->mysqli->query($sql))){ // si se produce un error en la busqueda 
+			return 'ERROR: Fallo en la consulta sobre la base de datos';  //devuelve un mensaje de error que se env�a al MESSAGE_Controller el cual crea la vista MESSAGE con dicho mensaje
+		}else{
+			$row = mysqli_fetch_array($resultado);
+			return $row['rol'];
+		}
+	}
+
+	function GET_ENTRENADORES(){
+		$sql = "SELECT login FROM usuario WHERE(
+						(`rol` = `ENTRENADOR`)"
+		if (!($result = $this->mysqli->query($sql))){ // si se produce un error en la busqueda 
+			return 'ERROR: Fallo en la consulta sobre la base de datos'; 
+		}else return $result;
+	}
+
+	function GET_ADMINISTRADORES(){
+		$sql = "SELECT login FROM usuario WHERE(
+						(`rol` = `ADMINISTRADOR`)"
+		if (!($result = $this->mysqli->query($sql))){ // si se produce un error en la busqueda 
+			return 'ERROR: Fallo en la consulta sobre la base de datos'; 
+		}else return $result;
+	}
+	
+	function GET_DEPORTISTA(){
+		$sql = "SELECT login FROM usuario WHERE(
+						(`rol` = `DEPORTISTA`)"
+		if (!($result = $this->mysqli->query($sql))){ // si se produce un error en la busqueda 
+			return 'ERROR: Fallo en la consulta sobre la base de datos'; 
+		}else return $result;
+	}
+
+	function SHOWALL(){
+		$sql = "SELECT * FROM usuario";
+
+		if(!$result= $this->mysqli->query($sql)){
+			return 'ERROR: Fallo en la colsulta a la bd';
+		}else return $result;
+	}
+
+	function EDIT(){
+		if($this->login <> ''){
+			$sql = "SELECT * FROM usuario WHERE (`login` = '$this->login')";
+
+			$result = $this->mysqli->query($sql);
+			$num_rows = mysqli_num_rows($result);
+
+			if($num_rows == 1){
+				$sql = "UPDATE usuario SET
+						`login` = '$this->login',
+						`password` = '$this->password',
+						`nombre` = '$this->nombre',
+						`apellidos` = '$this->apellidos',
+						`dni` = '$this->dni',
+						`fechaNac` = '$this->fechaNac',
+						`email` = '$this->email',
+						`telefono` = '$this->telefono',
+						`rol` = '$this->rol',
+						`socio` = '$this->socio',
+						`foto` = '$this->foto'
+					WHERE (`login` = '$this->login')";
+
+				if(!($result = $this->mysqli->query($sql))){
+					return 'ERROR: Fallo en la consulta sobre la base de datos.';
+				}else return 'El usuario ha sido modificado correctamente.';
+			}else return 'ERROR: El login introducido no existe en la base de datos.';
+		}else return 'ERROR: El atributo clave está vacio.';
+	}
+
+	function DELETE(){
+		$sql = "SELECT * FROM usuario WHERE (`login` = '$this->login')";
+
+		$result = $this->mysqli->query($sql);
+
+		if($result->num_rows == 1){
+			$sql = "DELETE FROM usuario WHERE(`login` = '$this->login')";
+		}else return 'ERROR: No existe ningún usuario con ese login.';
+	}
+
+	function rellenarDatos(){
+		$sql = "SELECT * FROM usuario WHERE (`login` = '$this->login')";
+
+		if(!($result= $this->mysqli->query($sql))){
+			return 'ERROR: No existe en la base de datos.';
+		}else return $result;
+	}
+
+
+
 }
