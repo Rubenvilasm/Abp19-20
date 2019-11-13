@@ -1,7 +1,6 @@
 --
 -- Base de datos: `PadelAbp`
 --
-DROP DATABASE IF EXISTS `PadelABP`;
 CREATE DATABASE IF NOT EXISTS `PadelABP` DEFAULT CHARACTER SET latin1 COLLATE latin1_spanish_ci;
 USE `PadelABP`;
 
@@ -12,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `USUARIO` (
   `nombre` varchar(25) COLLATE latin1_spanish_ci DEFAULT NULL,
   `apellidos` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
   `dni` varchar(10) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `fechaNacimiento` date DEFAULT NULL,
+  `fechaNacimiento` date NOT NULL,
   `email` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
   `telefono` int(15) DEFAULT NULL,
   `rol` enum('Deportista','Administrador','Entrenador') COLLATE latin1_spanish_ci DEFAULT NULL,
@@ -43,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `pareja` (
     `idReserva` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `idPista` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `idUsuario` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
-    `fecha` varchar(25) COLLATE latin1_spanish_ci DEFAULT NULL,
+    `fecha` date NOT NULL,
 
     PRIMARY KEY (idReserva,idPista),
     FOREIGN KEY (idPista) REFERENCES pista(idPista)
@@ -53,8 +52,8 @@ CREATE TABLE IF NOT EXISTS `pareja` (
 
   CREATE TABLE IF NOT EXISTS `campeonato` (
     `idCampeonato` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
-    `fechaInicio` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
-    `fechaFin` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+    `fechaInicio` date NOT NULL,
+    `fechaFin` date NOT NULL,
     `numParticipantes` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `premios` varchar(125) COLLATE latin1_spanish_ci DEFAULT NULL,
     `normativa` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
@@ -73,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `pareja` (
   CREATE TABLE IF NOT EXISTS `partidoPromocionado` (
     `idPartidoPromocionado` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `nombre` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
-    `fecha` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+    `fecha` date NOT NULL,
     `idParticipante1` varchar(25) COLLATE latin1_spanish_ci DEFAULT NULL,
     `idParticipante2` varchar(25) COLLATE latin1_spanish_ci DEFAULT NULL,
     `idParticipante3` varchar(25) COLLATE latin1_spanish_ci DEFAULT NULL,
@@ -87,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `pareja` (
     `idPartido` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `idPareja1` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `idPareja2` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
-    `fecha` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+    `fecha` date NOT NULL,
     `resultado` varchar(25) COLLATE latin1_spanish_ci DEFAULT NULL,
     `idPista` varchar(25) COLLATE latin1_spanish_ci DEFAULT NULL,
 
@@ -100,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `pareja` (
     `idPartido` varchar(25) COLLATE latin1_spanish_ci DEFAULT NULL,
     `idPartidoPromocionado` varchar(25) COLLATE latin1_spanish_ci DEFAULT NULL,
     `nombre` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
-    `fecha` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+    `fecha` date NOT NULL,
     `idCampeonato` varchar(25) COLLATE latin1_spanish_ci DEFAULT NULL,
 
     PRIMARY KEY (idReserva, idPartido),
@@ -141,6 +140,7 @@ CREATE TABLE IF NOT EXISTS `pareja` (
   `Nombre` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
   `Descripcion` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
   `idAutor` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+  `fecha` date NOT NULL,
 
   PRIMARY KEY (idNoticia)
   ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
@@ -161,8 +161,10 @@ CREATE TABLE IF NOT EXISTS `pareja` (
     `idGrupo` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `IdPartido` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `puntuacion` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+    `fechaInicio` date NOT NULL,
+    `fechaFin` date NOT NULL,
 
-    PRIMARY KEY (idLiga),
+    PRIMARY KEY (idLiga,idGrupo),
     FOREIGN KEY (idGrupo) REFERENCES GRUPO(idGrupo),
     FOREIGN KEY (idPartido) REFERENCES partido(idPartido)
   ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
