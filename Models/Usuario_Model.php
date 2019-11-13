@@ -8,31 +8,29 @@ class Usuario_Model{
 	var $nombre;
 	var $apellidos;
 	var $dni;
+	var $fechaNac;
 	var $email;
 	var $telefono;
-	var $avatar;
-	var $aceptado;
 	var $rol;
-	var $borrado;
-	var $sexo;
+	var $socio;
+	var $foto;
 
 	var $mysqli;
 
 
-	function __construct($login,$password,$nombre,$apellidos,$dni,$email,$telefono,$avatar,$aceptado,$rol,$borrado,$sexo){
+	function __construct($login,$password,$nombre,$apellidos,$dni,$fechaNac,$email,$telefono,$rol,$socio,$foto){
 
 		$this->login = $login;
 		$this->password = $password;
 		$this->nombre = $nombre;
 		$this->apellidos = $apellidos;
 		$this->dni = $dni;
+		$this->fechaNac = $fechaNac;
 		$this->email = $email;
 		$this->telefono = $telefono;
-		$this->avatar = $avatar;
-		$this->aceptado = $aceptado;
 		$this->rol = $rol;
-		$this->borrado = $borrado;
-		$this->sexo = $sexo;
+		$this->socio = $socio;
+		$this->foto = $foto;
 
 
 		include_once '../Models/Access_DB.php';
@@ -42,8 +40,7 @@ class Usuario_Model{
 	function login(){
 		$sql = "SELECT * FROM USUARIO 
 				WHERE (
-						`LOGIN` = '$this->login' &&
-						`BORRADO` = 'NO'
+						`login` = '$this->login'
 						)";
 		$resultado = $this->mysqli->query($sql);
 		if($resultado->num_rows == 0){
@@ -68,38 +65,45 @@ class Usuario_Model{
 		}else
 			return true;
 	}
+	ar $login;
+	var $password;
+	var $nombre;
+	var $apellidos;
+	var $dni;
+	var $fechaNac;
+	var $email;
+	var $telefono;
+	var $rol;
+	var $socio;
+	var $foto;
 
 
 	function ADD(){
 		$sql = "INSERT INTO USUARIO (
-					LOGIN,
-					PASSWORD,
-					NOMBRE,
-					APELLIDOS,
-					DNI,
-					EMAIL,
-					TELEFONO,
-					AVATAR,
-					ACEPTADO,
-					ROL,
-					BORRADO,
-					SEXO)
+					`login`,
+					`password`,
+					`nombre`,
+					`apellido`,
+					`dni`,
+					`fechaNac`,
+					`email`,
+					`telefono`,
+					`rol`,
+					`socio`,
+					`foto`)
 						VALUES (
 							'$this->login',
 							'$this->password',
 							'$this->nombre',
 							'$this->apellidos',
-							'$this->DNI',
+							'$this->dni',
+							'$this->fechaNac',
 							'$this->email',
 							'$this->telefono',
-							'$this->avatar',
-							'NO',
 							'$this->rol',
 							'NO',
-							'$this->sexo'
+							'$this->foto'
 						)";
-
-
 
 		if(!$resultado = $this->mysqli->query($sql))
 			return 'Error en la insercion';
@@ -112,4 +116,25 @@ class Usuario_Model{
 	}
 
 
+	function SEARCH(){
+		$sql;
+		$result;
+
+		$sql = "SELECT * FROM `usuario` WHERE(
+				(`login` LIKE '%$this->login%') AND
+				(`nombre` LIKE '%$this->nombre%') AND
+				(`apellidos` LIKE '%$this->apellidos%')'AND
+				(`dni` LIKE '%$this->dni%')AND
+				(`email` LIKE '%$this->email%')AND
+				(`telefono` LIKE '%$this->telefono%')AND
+				(`rol` LIKE '%$this->rol%')AND
+				(`socio` LIKE '%$this->socio%')
+			)";
+
+if(!($result = $this->mysqli->query($sql))){
+	return 'ERROR: Fallo en la consulta sobre la base de datos';
+}else{
+	return $result;
+}
+	}
 }
