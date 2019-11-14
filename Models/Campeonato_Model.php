@@ -111,13 +111,13 @@ class Campeonato_Model{
     }
 
     function rellenarDatos(){
-        $sql = "SELECT * FROM campeonato WHERE(`idCampeonato` = '$this->campeonato')";
+        $sql = "SELECT * FROM campeonato WHERE(`idCampeonato` = '$this->idCampeonato')";
 
         if(!($result = $this->mysqli->query($sql))){
             return 'ERROR: No existe ese campeonato en la base de datos.';
         }else return $result;
     }
 
-    
+
 }
 ?>

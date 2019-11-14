@@ -134,23 +134,21 @@ CREATE TABLE IF NOT EXISTS `pareja` (
     `numParticipantes` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `idGrupo` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `idGanador` varchar(25) COLLATE latin1_spanish_ci NULL,
-    `idPareja1` varchar(25),
-    `idPareja2` varchar(25),
-    `idPareja3` varchar(25),
-    `idPareja4` varchar(25),
-    `idPareja5` varchar(25),
-    `idPareja6` varchar(25),
-    `idPareja7` varchar(25),
-    `idPareja8` varchar(25),
-    `idPareja9` varchar(25),
-    `idPareja10` varchar(25),
-    `idPareja11` varchar(25),
-    `idPareja12` varchar(25),
+    `idPareja` varchar(25),
+    `idCampeonato` varchar(25),
 
-    PRIMARY KEY (idGrupo)
+    PRIMARY KEY (idGrupo,idCampeonato)
 
   ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci; 
   
+  CREATE TABLE IF NOT EXISTS `claseParticular`(
+    `idClaseParticular` varchar(25),
+    `nombre` varchar(25),
+    `idEntrenador` varchar(25),
+    `idUsuario` varchar(25),
+
+    PRIMARY KEY (idClaseParticular,idEntrenador)
+  ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci; 
 
   
   CREATE TABLE IF NOT EXISTS `playOff` (
@@ -174,6 +172,7 @@ CREATE TABLE IF NOT EXISTS `pareja` (
   `Descripcion` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
   `idAutor` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
   `fecha` date NOT NULL,
+  `borrado` BIT DEFAULT 0,
 
   PRIMARY KEY (idNoticia)
   ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;

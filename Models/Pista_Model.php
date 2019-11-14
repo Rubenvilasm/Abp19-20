@@ -68,8 +68,14 @@ class Pista_Model{
 
         if($result->num_rows == 1){
             $sql = "DELETE FROM pista WHERE `idPista`='%this->idPista'";
+
+            if(!($result = $this->mysqli->query($sql))){
+                return 'ERROR: Fallo en la consulta sobre la base de datos.';
+            }else return 'La pista ha sido eliminada con exito.';
+
         }else return 'ERROR: No existe la pista que desea borrar.';
 
+    }
     function SEARCH(){
         $sql = "SELECT `idPista`,
                         `nombre`,
