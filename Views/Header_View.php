@@ -34,7 +34,7 @@ Contiene el código html de la cabecera de las vistas
 		<script src="../Views/js/jquery-ui.js"></script>
 		<script src="../Views/js/datepicker.js"></script>
 
-    	<title> <?=$strings['Top Padel']?></title>
+    	<title> Top Padel</title>
     	<link rel="icon" href="#" type="image/png">
 	</head>
 

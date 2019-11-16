@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS `pareja` (
   `idDeportista1` varchar(128) COLLATE latin1_spanish_ci NOT NULL,
   `idDeportista2` varchar(128) COLLATE latin1_spanish_ci NOT NULL,
 
+
   PRIMARY KEY (idPareja)
   ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
@@ -86,6 +87,7 @@ CREATE TABLE IF NOT EXISTS `pareja` (
     `idPareja1` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `idPareja2` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `fecha` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+    `idPista` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `resultado` varchar(25) COLLATE latin1_spanish_ci DEFAULT NULL,
 
     PRIMARY KEY (idPartido,idPareja1,idPareja2),
@@ -149,7 +151,7 @@ CREATE TABLE IF NOT EXISTS `pareja` (
     `partidosPerdidos` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
 
     PRIMARY KEY (idUsuario),
-    FOREIGN KEY (idUsuario) REFERENCES USUARIO(idUsuario0)
+    FOREIGN KEY (idUsuario) REFERENCES USUARIO(login)
   )ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
   
   CREATE TABLE IF NOT EXISTS `ligaRegular` (
