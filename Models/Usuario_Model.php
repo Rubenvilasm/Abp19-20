@@ -63,22 +63,20 @@ class Usuario_Model{
 			if($tupla['PASSWORD'] == $this->password){
 				return true;
 			}else
-				return 'ERROR: La contraseña para ese usuario no es correcta.'
+				return 'ERROR: La contraseña para ese usuario no es correcta.';
 		}
 	}
 
-/*	function Register(){
-		$sql = "SELECT * FROM USUARIO
+	function Register(){
+		$sql = "SELECT * FROM `USUARIO`
 				WHERE `LOGIN` = '".$this->login."'";
-
 		$resultado = $this->mysqli->query($sql);
-
 		if($resultado->num_rows == 1){
-			return 'ERROR: El usuario ya existe.'
+			return 'ERROR: El usuario ya existe.';
 		}else
 			return true;
 	}
-*/
+
 
 	function ADD(){
 		$sql = "INSERT INTO USUARIO (
@@ -110,12 +108,13 @@ class Usuario_Model{
 						)";
 
 		if(!$resultado = $this->mysqli->query($sql))
+
 			return 'Error en la insercion';
 		else{
 			$login_actual = $this->mysqli->query("SELECT @@identity AS LOGIN");
 			$row = mysqli_fetch_array($login_actual);
 			$this->login = $row[0];
-			if(count($this->))
+			//if(count($this->))
 		}
 	}
 
@@ -153,7 +152,7 @@ class Usuario_Model{
 
 	function GET_ENTRENADORES(){
 		$sql = "SELECT login FROM usuario WHERE(
-						(`rol` = `ENTRENADOR` AND `borrado` = 'NO')"
+						(`rol` = `ENTRENADOR` AND `borrado` = 'NO')";
 		if (!($result = $this->mysqli->query($sql))){ // si se produce un error en la busqueda 
 			return 'ERROR: Fallo en la consulta sobre la base de datos'; 
 		}else return $result;
@@ -161,7 +160,7 @@ class Usuario_Model{
 
 	function GET_ADMINISTRADORES(){
 		$sql = "SELECT login FROM usuario WHERE(
-						(`rol` = `ADMINISTRADOR` AND `borrado` = 'NO')"
+						(`rol` = `ADMINISTRADOR` AND `borrado` = 'NO')";
 		if (!($result = $this->mysqli->query($sql))){ // si se produce un error en la busqueda 
 			return 'ERROR: Fallo en la consulta sobre la base de datos'; 
 		}else return $result;
@@ -169,7 +168,7 @@ class Usuario_Model{
 
 	function GET_DEPORTISTA(){
 		$sql = "SELECT login FROM usuario WHERE(
-						(`rol` = `DEPORTISTA` AND `borrado` = 'NO')"
+						(`rol` = `DEPORTISTA` AND `borrado` = 'NO')";
 		if (!($result = $this->mysqli->query($sql))){ // si se produce un error en la busqueda 
 			return 'ERROR: Fallo en la consulta sobre la base de datos'; 
 		}else return $result;

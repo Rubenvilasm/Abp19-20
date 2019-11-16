@@ -21,13 +21,13 @@ else{
 											$local_image = "../Files/Attached_files/";
 											move_uploaded_file($tmp_name, $local_image.$name_file);
 									}
-	$usuario = new USUARIO_Model($_POST['user'],$_POST['nombre'],$_POST['apellidos'],$_POST['telefono'],$_POST['email'],$_POST['password'],
-	$_POST['dni'],$_POST['fecha_nac'],$_POST['cuenta'],$_POST['direccion'],$_POST['comentarios'],$_POST['estado'],$_FILES['foto']['name']);
+	$usuario = new USUARIO_Model($_POST['login'],$_POST['password'],$_POST['nombre'],$_POST['apellidos'],$_POST['dni'],$_POST['fechaNac'],
+	$_POST['email'],$_POST['telefono'],'Deportista','No',$_FILES['foto']['name'],'No');
 
 	$respuesta = $usuario->Register();
 	if ($respuesta == 'true'){
 
-		$respuesta = $usuario->registrar();
+		$respuesta = $usuario->ADD();
 
 		Include '../Views/MESSAGE.php';
 		new MESSAGE($respuesta, './Login_Controller.php');

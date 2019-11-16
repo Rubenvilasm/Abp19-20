@@ -58,7 +58,7 @@
 					</div>
 					<div class="campo">
 						<label><?php echo $strings['Fecha de nacimiento']?> :</label>
-						<input type = 'date' name = 'fecha_nac' onkeydown="return false"><br>
+						<input type = 'date' name = 'fechaNac' onkeydown="return false"><br>
 					</div>				
 					<div class="campo">
 			<label><?php echo $strings['Foto']?></label>

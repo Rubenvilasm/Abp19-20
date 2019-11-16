@@ -15,7 +15,7 @@ Script que se encarga de realizar la conexión a la BAse de datos con los datos 
 /*Funcion para conectarse a la BD*/
 function ConnectDB()
 {
-    $mysqli = new mysqli("localhost", 'iu2018', 'pass2018' , 'IU2018');
+    $mysqli = new mysqli("localhost", 'padelabpdba', 'padelpass' , 'padelabp');
     	
 	if ($mysqli->connect_errno) { //si la conexión no fue correcta
 		include './MESSAGE_View.php';
