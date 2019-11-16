@@ -10,8 +10,6 @@
             include '../Views/Header_View.php';
             include '../Views/Header_View.php';
 
-            ?>
-            
-            
+                ?>
         }
     }

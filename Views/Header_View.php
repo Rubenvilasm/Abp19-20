@@ -21,7 +21,7 @@ Contiene el código html de la cabecera de las vistas
 <html>
 	<head>
 		<meta charset="utf-8">
-		<link href="../Views/css/estiloET2.css" rel="stylesheet" type="text/css">
+		<link href="../Views/css/estilos.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css">
 		<link href="../Views/css/jquery-ui.css" rel="stylesheet" type="text/css">

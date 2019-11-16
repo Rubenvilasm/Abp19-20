@@ -11,12 +11,13 @@ CREATE TABLE IF NOT EXISTS `USUARIO` (
   `nombre` varchar(25) COLLATE latin1_spanish_ci DEFAULT NULL,
   `apellidos` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
   `dni` varchar(10) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `fechaNacimiento` date DEFAULT NULL,
+  `fechaNacimiento` date NOT NULL,
   `email` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
   `telefono` int(15) DEFAULT NULL,
   `rol` enum('Deportista','Administrador','Entrenador') COLLATE latin1_spanish_ci DEFAULT NULL,
   `socio` enum('Activo','Inactivo') COLLATE latin1_spanish_ci DEFAULT NULL,
   `foto` varchar(500) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `borrado` BIT DEFAULT 0,
 
   PRIMARY KEY (login)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
@@ -42,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `pareja` (
     `idReserva` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `idPista` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `idUsuario` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
-    `fecha` varchar(25) COLLATE latin1_spanish_ci DEFAULT NULL,
+    `fecha` date NOT NULL,
 
     PRIMARY KEY (idReserva,idPista),
     FOREIGN KEY (idPista) REFERENCES pista(idPista)
@@ -52,27 +53,30 @@ CREATE TABLE IF NOT EXISTS `pareja` (
 
   CREATE TABLE IF NOT EXISTS `campeonato` (
     `idCampeonato` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
-    `fechaInicio` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
-    `fechaFin` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+    `fechaInicio` date NOT NULL,
+    `fechaFin` date NOT NULL,
     `numParticipantes` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `premios` varchar(125) COLLATE latin1_spanish_ci DEFAULT NULL,
     `normativa` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+    `borrado` BIT DEFAULT 0,
 
     PRIMARY KEY (idCampeonato)
   ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
   CREATE TABLE IF NOT EXISTS `categoria` (
     `idCategoria` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
-    `nombre` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
-    `nivel` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+    `nombre` enum('MASC','FEM','MIXTO') COLLATE latin1_spanish_ci NOT NULL,
+    `nivel` enum(`UNO`,`DOS`,`TRES`) COLLATE latin1_spanish_ci NOT NULL,
+    `idCampeonato` varchar(25) COLLATE latin_spanish_ci NOT NULL,
   
-    PRIMARY KEY (idCategoria)
+    PRIMARY KEY (idCategoria),
+    FOREIGN KEY (idCampeonato) REFERENCES campeonato(idCampeonato)
   ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
   CREATE TABLE IF NOT EXISTS `partidoPromocionado` (
     `idPartidoPromocionado` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `nombre` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
-    `fecha` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+    `fecha` date NOT NULL,
     `idParticipante1` varchar(25) COLLATE latin1_spanish_ci DEFAULT NULL,
     `idParticipante2` varchar(25) COLLATE latin1_spanish_ci DEFAULT NULL,
     `idParticipante3` varchar(25) COLLATE latin1_spanish_ci DEFAULT NULL,
@@ -81,14 +85,36 @@ CREATE TABLE IF NOT EXISTS `pareja` (
 
     PRIMARY KEY (idPartidoPromocionado)
   ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+  CREATE TABLE IF NOT EXISTS `enfrentamiento`(
+    `idEnfrentamiento` varchar(25),
+    `idPareja1` varchar(25),
+    `idPareja2` varchar(25),
+    `idHorario` varchar(25),
+    `resultado` varchar(25),
+    `idPista` varchar(25),
+    `idGanador` varchar(25),
+    `idCampeonato` varchar(25),
+    `idCategoria` varchar(25),
+    `idGrupo` varchar(25),
+
+    PRIMARY KEY (idEnfrentamiento),
+    FOREIGN KEY (idCampeonato) REFERENCES campeonato(idCampeonato),
+    FOREIGN KEY (idPista) REFERENCES pista(idPista)
+  )
   
   CREATE TABLE IF NOT EXISTS `partido` (
     `idPartido` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `idPareja1` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `idPareja2` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+<<<<<<< HEAD
     `fecha` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `idPista` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+=======
+    `fecha` date NOT NULL,
+>>>>>>> master
     `resultado` varchar(25) COLLATE latin1_spanish_ci DEFAULT NULL,
+    `idPista` varchar(25) COLLATE latin1_spanish_ci DEFAULT NULL,
 
     PRIMARY KEY (idPartido,idPareja1,idPareja2),
     FOREIGN KEY (idPista) REFERENCES pista (idPista)
@@ -99,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `pareja` (
     `idPartido` varchar(25) COLLATE latin1_spanish_ci DEFAULT NULL,
     `idPartidoPromocionado` varchar(25) COLLATE latin1_spanish_ci DEFAULT NULL,
     `nombre` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
-    `fecha` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+    `fecha` date NOT NULL,
     `idCampeonato` varchar(25) COLLATE latin1_spanish_ci DEFAULT NULL,
 
     PRIMARY KEY (idReserva, idPartido),
@@ -113,12 +139,22 @@ CREATE TABLE IF NOT EXISTS `pareja` (
   CREATE TABLE IF NOT EXISTS `grupo` (
     `numParticipantes` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `idGrupo` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
-    `idGanador` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+    `idGanador` varchar(25) COLLATE latin1_spanish_ci NULL,
+    `idPareja` varchar(25),
+    `idCampeonato` varchar(25),
 
-    PRIMARY KEY (idGrupo)
+    PRIMARY KEY (idGrupo,idCampeonato)
 
   ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci; 
   
+  CREATE TABLE IF NOT EXISTS `claseParticular`(
+    `idClaseParticular` varchar(25),
+    `nombre` varchar(25),
+    `idEntrenador` varchar(25),
+    `idUsuario` varchar(25),
+
+    PRIMARY KEY (idClaseParticular,idEntrenador)
+  ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci; 
 
   
   CREATE TABLE IF NOT EXISTS `playOff` (
@@ -126,6 +162,7 @@ CREATE TABLE IF NOT EXISTS `pareja` (
     `idGrupo` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `eliminado` BIT DEFAULT 0,
     `idPareja` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+    ``
 
     PRIMARY KEY (idPlayOff),
     FOREIGN KEY (idPareja) REFERENCES pareja(idPareja),
@@ -140,18 +177,25 @@ CREATE TABLE IF NOT EXISTS `pareja` (
   `Nombre` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
   `Descripcion` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
   `idAutor` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+  `fecha` date NOT NULL,
+  `borrado` BIT DEFAULT 0,
 
   PRIMARY KEY (idNoticia)
   ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
  CREATE TABLE IF NOT EXISTS `estadistica` (
-    `idUsuario` varchar(25) COLLATE latin1_spanish_ci NOT NULL UNIQUE,
+    `idUsuario` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `partidosGanados` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `puntosPorPartido` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `partidosPerdidos` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
 
     PRIMARY KEY (idUsuario),
+<<<<<<< HEAD
     FOREIGN KEY (idUsuario) REFERENCES USUARIO(login)
+=======
+    FOREIGN KEY (idUsuario) REFERENCES usuario (login)
+    
+>>>>>>> master
   )ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
   
   CREATE TABLE IF NOT EXISTS `ligaRegular` (
@@ -159,10 +203,77 @@ CREATE TABLE IF NOT EXISTS `pareja` (
     `idGrupo` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `IdPartido` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `puntuacion` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+    `fechaInicio` date NOT NULL,
+    `fechaFin` date NOT NULL,
 
-    PRIMARY KEY (idLiga),
+    PRIMARY KEY (idLiga,idGrupo),
     FOREIGN KEY (idGrupo) REFERENCES GRUPO(idGrupo),
     FOREIGN KEY (idPartido) REFERENCES partido(idPartido)
   ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
   
 
+INSERT INTO `usuario` (`login`, `password`, `nombre`, `apellidos`, `dni`, `fechaNacimiento`, `email`, `telefono`, `rol`, `socio`, 'foto','borrado' ) VALUES
+('admin', 'admin', 'admin', 'el administrador', '95875625X', '2019-11-14', 'admin@padel.es', '677777777', 'ADMIN', 'SI','../Files/man-1.png','NO'),
+('entrenador', 'entrenador', 'Pepe', 'el entrenador', '59117771C', '2019-11-15', 'entrenador@padel.es', '657555555', 'ENTRENADOR', 'SI','../Files/man-2.png','NO'),
+('deportista1', 'deportista', 'Ruben', 'el deportista', '74291751A', '2001-11-11', 'deportista1@padel.es', '611111111', 'DEPORTISTA', 'NO','../Files/deportista-1.png','NO'),
+('deportista2', 'deportista2', 'Carlos', 'el deportista2', '33653901W', '2002-1-2', 'deportista2@padel.es', '622222222', 'DEPORTISTA', 'SI','../Files/deportista-2.png','NO'),
+('deportista3', 'deportista3', 'Lorenzo', 'el deportista3', '95119250J', '2003-1-3', 'deportista3@padel.es', '633333333', 'DEPORTISTA', 'SI','../Files/deportista-2.png','NO'),
+('deportista4', 'deportista4', 'Victor', 'el deportista4', '43339819E', '2004-1-4', 'deportista4@padel.es', '644444444', 'DEPORTISTA', 'SI','../Files/deportista-2.png','NO'),
+('deportista5', 'deportista5', 'Juan', 'el deportista5', '33484025G', '2005-1-5', 'deportista5@padel.es', '655555555', 'DEPORTISTA', 'SI','../Files/deportista-2.png','NO'),
+('deportista6', 'deportista6', 'Alvaro', 'el deportista6', '93009004V', '2006-1-6', 'deportista6@padel.es', '666666666', 'DEPORTISTA', 'SI','../Files/deportista-2.png','NO'),
+('deportista7', 'deportista7', 'Alberto', 'el deportista7', '81504224K', '2007-1-7', 'deportista7@padel.es', '677777777', 'DEPORTISTA', 'SI','../Files/deportista-2.png','NO'),
+('deportista8', 'deportista8', 'Joao', 'el deportista8', '17320774A', '2008-1-8', 'deportista8@padel.es', '688888888', 'DEPORTISTA', 'SI','../Files/deportista-2.png','NO'),
+('deportista9', 'deportista9', 'Martin', 'el deportista9', '89924446N', '2009-1-9', 'deportista9@padel.es', '699999999', 'DEPORTISTA', 'SI','../Files/deportista-2.png','NO'),
+('deportista10', 'deportista10', 'Fernando', 'el deportista10', '87394928B', '2010-1-10', 'deportista10@padel.es', '610101010', 'DEPORTISTA', 'SI','../Files/deportista-2.png','NO'),
+('deportista11', 'deportista11', 'Ivan', 'el deportista11', '84798134D', '2011-1-11', 'deportista11@padel.es', '711111111', 'DEPORTISTA', 'SI','../Files/deportista-2.png','NO'),
+('deportista12', 'deportista12', 'Santi', 'el deportista12', '46768798T', '2012-1-12', 'deportista12@padel.es', '612121212', 'DEPORTISTA', 'SI','../Files/deportista-2.png','NO'),
+('deportista13', 'deportista13', 'Carliños', 'el deportista13', '62181635P', '2013-1-13', 'deportista13@padel.es', '613131313', 'DEPORTISTA', 'SI','../Files/deportista-2.png','NO'),
+('deportista14', 'deportista14', 'Adrian', 'el deportista14', '07226831R', '2014-1-14', 'deportista14@padel.es', '614141414', 'DEPORTISTA', 'SI','../Files/deportista-2.png','NO');
+
+
+INSERT INTO `pareja` (`idPareja`,'idDeportista1',`idDeportista2`) VALUES (
+('pareja1','deportista1','deportista2'),
+('pareja2','deportista3','deportista4'),
+('pareja3','deportista5','deportista6'),
+('pareja4','deportista7','deportista8'),
+('pareja5','deportista9','deportista10'),
+('pareja6','deportista11','deportista12'),
+('pareja7','deportista13','deportista14'));
+
+INSERT INTO `pista` (`idPista`,`nombre`,`especificaciones`) VALUES (
+  ('1','Pista01','Cesped con pared de cristal.'),
+  ('2','Pista02','Cemento con pared de cristal.'),
+  ('3','Pista03','Cemento con pared de Cemento.'),
+  ('4','Pista04','Cemento con pared de cristal.'),
+  ('5','Pista05','Parquet con pared de cristal.'),
+  ('6','Pista06','Parquet con pared de cristal.'),
+  ('7','Pista07','Parquet con pared de cristal.'));
+
+INSERT INTO `reserva` (`idReserva`,`idPista`,`idUsuario`,`fecha`) VALUES (
+  ('1','1','deportista1','2019-11-17'),
+  ('2','2','deportista1','2019-11-17'),
+  ('2','1','deportista1','2019-11-18'),
+  ('2','1','deportista1','2019-11-18'));
+
+INSERT INTO `campeonato` (`idCampeonato`,`fechaInicio`,`fechaFin`,`numParticipantes`,`premios`,`normativa`,`borrado`) VALUES (
+  ('1','2019-10-10','2019-10-20','50','300000','../Files/normativa.pdf','NO'),
+  ('2','2019-10-1','2019-10-8','10','200','../Files/normativa.pdf','NO'),
+  ('3','2019-10-10','2019-10-20','50','300000','../Files/normativa.pdf','SI'));
+
+INSERT INTO `categoria` (`idCategoria`,`nombre`,`nivel`) VALUES(
+  ('1','MAC','UNO'),
+  ('2','FEM','DOS'),
+  ('3','MIXTO','TRES'),
+  ('4','MAC','UNO'));
+
+INSERT INTO `partidoPromocionado`(`ìdPartidoPromocionado`,`nombre`,`fecha`,`idParticipante1`,`idParticipante2`,`idParticipante3`,`idParticipante4`) VALUES (
+  ('1','Promocion1','2019-9-9','deportista1','deportista2','deportista3','deportista4'),
+  ('2','Promocion2','2019-9-10','deportista5','deportista6','deportista7','deportista8')
+);
+
+INSERT INTO `enfrentamiento`(`idEnfrentamiento`,`idPareja1`,`idPareja2`,`idHorario`,`resultado`,`idPista`,`idGanador`,`idCampeonato`) VALUES (
+  ('1','pareja1','pareja2','idHorario','')
+)
+
+INSERT INTO `grupo`
+  ('8','1','','pareja1','pareja2','pareja3','pareja4','pareja5','pareja6','pareja7','pareja8')
