@@ -60,7 +60,7 @@ class Usuario_Model{
 			return 'ERROR: El login no existe';
 		}else{
 			$tupla = $result->fetch_array();
-			if($tupla['PASSWORD'] == $this->password){
+			if($tupla['password'] == $this->password){
 				return true;
 			}else
 				return 'ERROR: La contraseña para ese usuario no es correcta.';
@@ -83,9 +83,9 @@ class Usuario_Model{
 					`login`,
 					`password`,
 					`nombre`,
-					`apellido`,
+					`apellidos`,
 					`dni`,
-					`fechaNac`,
+					`fechaNacimiento`,
 					`email`,
 					`telefono`,
 					`rol`,
@@ -114,6 +114,7 @@ class Usuario_Model{
 			$login_actual = $this->mysqli->query("SELECT @@identity AS LOGIN");
 			$row = mysqli_fetch_array($login_actual);
 			$this->login = $row[0];
+			return 'Insercion realizada con exito';
 			//if(count($this->))
 		}
 	}

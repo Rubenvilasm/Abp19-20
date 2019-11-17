@@ -44,7 +44,7 @@ Vista para que el usuario se loguee en el sistema
 						<span class="ocultoOK" id="passwordOk" style="display:none" ></span>
 						<BR><div class="oculto" id="passwordVal" style="display:none" ></div>
 						<div class="secIconos Login">
-							<input type="button" value="&#xf090" class="fa fa-input" title="<?=$strings['Identificarse']?>"  onclick="validarLOGIN('loginUser')"> 
+							<button class="buttoncustom" type='submit' name='action' value='Login'><i class="fas fa-sign-in-alt"></i></button> 
 						</div>
 					</fieldset>
 				</form>

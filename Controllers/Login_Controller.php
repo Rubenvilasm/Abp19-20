@@ -1,6 +1,6 @@
 <?php 
 
-session_start();
+
 
 if(!isset($_REQUEST['login']) && !(isset($_REQUEST['password']))){
 	include '../Views/Login_View.php';
@@ -12,16 +12,15 @@ if(!isset($_REQUEST['login']) && !(isset($_REQUEST['password']))){
 	$usuario = new Usuario_Model($_REQUEST['login'],$_REQUEST['password'],'','','','','','','','','','');
 
 	$mensaje = $usuario->login();
-
-	if($mensaje == 'true'){
+	if ($mensaje == 'true'){
+		session_start();
 		$_SESSION['login'] = $_REQUEST['login'];
 		$_SESSION['rol'] = $usuario->GET_ROL();
 
-		include_once '../Models/PRELIMINAR_VIEW.php';
-		new PRELIMINAR_Model();
-
 		header('Location:../index.php');
-	}else{
-		header('Location: ../Controllers/Message_Controller.php?mensaje='.$mensaje.'$origen=./Login_Controller.php');
+	}
+	else{
+		include '../Views/MESSAGE.php';
+		new MESSAGE($mensaje, './Login_Controller.php');
 	}
 }

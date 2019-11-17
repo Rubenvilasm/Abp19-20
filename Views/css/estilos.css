@@ -1,1 +1,768 @@
+/*Fichero .css que contiene los estilos de la interfaz y sus elementos
+/*Creado por alias:
+/*17-06-2019
+*/
+body{
+    font-family: 'Roboto', sans-serif;
+    margin: 12px;
+    background-color: rgb(189, 189, 189);
+    align-items: center;
+}
+header{
+    min-height: 120px;
+    height:10%;
+    background-color: #ffffff;
+    color: rgb(53, 53, 53);
+    font-weight: bold;
+    padding-bottom: 30px;
+    padding-left: 23px;
+    padding-right: 23px;
+    border: 2px solid rgb(53, 53, 53);
+    border-radius: 5px;
+    box-shadow: 3px 3px rgb(121, 121, 121);
+}
+.row{
+align-items: flex-start;
 
+}
+
+.idioma{
+    margin: 0;
+    display: inline-flex;
+}
+.titulo{
+    font-family: 'Acme', sans-serif;
+    margin-left: 15px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+footer{
+    padding-right: 10px;
+    height:20ox;
+    position: initial;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    color: rgb(53, 53, 53);
+    background-color: white;
+    border: 2px solid rgb(53, 53, 53);
+    border-radius: 5px;
+    font-weight: bold;
+    box-shadow: 3px 3px rgb(121, 121, 121);
+}
+.contenido{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: white;
+    color: rgb(53, 53, 53);
+    border: 2px solid rgb(53, 53, 53);
+    border-radius: 5px;
+    font-size: 18px;
+
+    max-width: 80%;
+}
+
+.bloque{
+    display: block;
+    padding-left: 0;
+    border-bottom: 1px solid white;
+    margin-bottom: 20px;
+}
+
+
+input{
+    background-color: #c2c2c2;
+    padding-left: 6px;
+    border-radius: 5px;
+    color: rgb(53, 53, 53);
+}
+
+input:hover{
+    background-color: rgb(226, 72, 0);
+    transition-duration: 0.4s;
+    color: white;
+}
+input:focus{
+    background-color: white;
+    color: rgb(226, 72, 0);
+}
+
+.btn-info{
+    padding-top: 0;
+    font-weight: bold;
+    background-color:#ec6d33;
+
+}
+.btn:hover{
+    background-color:#f7aa10;
+    transition-duration: 0.4s;
+    outline: 1px solid white;
+    -moz-outline-radius: 5px;
+}
+
+.fas{
+    margin-left: 5px;
+    font-size: 30px;
+    color: rgb(153, 153, 153);
+    text-shadow: 2px 2px rgb(121, 121, 121);
+}
+
+.fa-language{
+   color: none;
+   text-shadow: none;
+}
+
+.fas:hover{
+    color: #f7aa10;
+    transition-duration: 0.4s;
+}
+.fas:active{
+    transform: translate(1px, 1px);
+    text-shadow: none;
+}
+
+.invalid{
+    font-size: 18px;
+    font-weight: bold;
+    color: #fa5324;
+    display: none;
+}
+
+a{
+    color:rgb(53, 53, 53);
+}
+a:hover{
+    color:rgb(226, 72, 0);
+}
+.menu{
+    border: 2px solid rgb(53, 53, 53);
+    border-radius: 5px;
+    background-color: white;
+    padding-left: 0;
+    margin-top: 5px;
+    box-shadow: 3px 3px rgb(121, 121, 121);
+
+}
+
+.menu a{
+    padding-left: 30px;
+    color: rgb(53, 53, 53);
+    font-weight: bold;
+    margin-top: 0px;
+    align-self: baseline;
+}
+.menu a:hover{
+    color: white;
+    background-color: rgb(226, 72, 0);
+    transition-duration: 0.4s;
+    text-decoration: none;
+}
+.menu li{
+    color: rgba(204, 32, 32, 0.76);
+}
+
+.articulo{
+    margin-left: 0px;
+    width:100px;
+    box-shadow: 2px 2px rgb(121, 121, 121);
+}
+.articulo .intropic{
+    border-radius: 15px;
+    border: 2px solid white;
+    float: left;
+     margin: 20px;
+     margin-left: 0;
+     margin-top: 5px;
+     box-shadow: 8px 8px 8px 0px rgba(0,0,0,0.9);
+     height:270px;
+
+ }
+
+
+.dropdown-menu{
+    background-color: white;
+    border: 2px solid rgb(53, 53, 53);
+    min-width: 0px !important;
+    box-shadow: 3px 3px rgba(0, 0, 0, 0.26);
+
+}
+
+.dropdown-item:hover{
+    background-color: #f7aa10;
+}
+
+#search .bloque{
+    display: flex;
+}
+#search input{
+    border:none;
+    border-bottom: 2px solid #f16943;
+}
+#search input:hover{
+    background-image: linear-gradient(to bottom , rgba(0,0,0,0), rgba(0,0,0,0), rgba(0,0,0,0),rgba(0,0,0,0),rgba(0,0,0,0),rgba(0,0,0,0),rgba(0,0,0,0), rgba(0,0,0,0), rgba(0,0,0,0), rgba(0,0,0,0),#f1694363,#f16943bb,#f16943);
+}
+#search input:focus{
+    background-color: #ffc8ae;
+}
+#search input,label{
+    display: block;
+    margin-right: 20px;
+}
+#search .container-btn{
+    margin-right: 65px;
+}
+#search .container-btn i{
+    margin-top: 20px;
+    font-size: 50px;
+}
+#search .container-btn i:active{
+    text-shadow: none;
+}
+
+#edit .container-btn{
+    margin-right: 65px;
+}
+#edit .container-btn i{
+    margin-top: 20px;
+    font-size: 50px;
+}
+#edit .container-btn i:active{
+    text-shadow: none;
+}
+#add .container-btn{
+    margin-right: 65px;
+}
+#add .container-btn i{
+    margin-top: 20px;
+    font-size: 50px;
+}
+#add .container-btn i:active{
+    text-shadow: none;
+}
+.form-btn{
+    border: none;
+    background-color: rgba(0,0,0,0);
+}
+
+.form-btn .fas{
+    margin-left: 5px;
+    font-size: 30px;
+    color: rgb(153, 153, 153);
+    text-shadow: 2px 2px rgb(121, 121, 121);
+}
+
+.form-btn:hover .fas{
+    color: rgb(226, 72, 0);
+    transition-duration: 0.4s;
+    transform: translate3d(2px, 2px, 2px);
+    text-shadow: none;
+}
+
+
+#add input,label{
+    display: block;
+    margin-right: 20px;
+}
+#add .check{
+    margin-top: 5px;
+    display: flex;
+}
+
+table{
+    width: 100%;
+    margin-top: 10px;
+    color: rgb(53, 53, 53);
+}
+
+tr{
+    border: 2px solid white;
+}
+
+tr:hover td{
+    border-top: 3px solid rgb(226, 72, 0);
+    border-bottom: 3px solid rgb(226, 72, 0);
+    transition-duration: 0.2s;
+}
+
+td{
+    font-weight: bold;
+    border: 1px solid white;
+    padding-left: 10px;
+    padding-right:10px;
+    background-color: rgb(156, 156, 156);
+}
+
+
+th{
+    color: white;
+    font-size: 18px;
+    border: 1px solid white;
+    padding-left: 10px;
+    padding-right:10px;
+    background-color: rgb(90, 90, 90);
+}
+
+.tb-btn{
+    border: none;
+    padding:0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+table tbody tr:last-child td:first-child {
+    border-radius: 0 0 0 10px;
+}
+table tbody tr:last-child td:last-child {
+    border-radius: 0 0 10px 0;
+}
+
+.editbtn{
+    border: none;
+    background-color: rgba(0,0,0,0);
+    padding: 2px;
+    padding-right: 5px;
+}
+
+.editbtn:hover{
+    transform: translate3d(1px,1px,1px);
+}
+
+.editbtn:hover .fas{
+    color: rgb(255, 255, 255);
+    transition-duration: 0.4s;
+    text-shadow: none;
+}
+
+.editbtn .fas{
+    font-size: 22px;
+    color: rgb(70, 70, 70);
+    text-shadow: 2px 2px rgb(121, 121, 121);
+}
+
+.container-showall-btn .form-btn .fas{
+    font-size: 40px;
+}
+
+.backbtn{
+    border: none;
+    background-color: rgba(0,0,0,0);
+}
+
+.backbtn .fas{
+    font-size: 65px;
+}
+.backbtn:hover{
+    transform: translate3d(1px,1px,1px);
+}
+
+.backbtn:hover .fas{
+    color: rgb(226, 72, 0);
+    text-shadow: none;
+}.showtable{
+    margin-bottom: 20px;
+}
+
+
+.showtable th{
+    border-right: 2px solid white;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.showtable td{
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.sc .form-btn .fas{
+    font-size: 60px;
+}
+.showtable thead th{
+    border-bottom: 2px solid white;
+    background-color: #cc5017;
+}
+
+.delete th{
+    border-right: 2px solid red;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.delete thead th{
+    border-bottom: 2px solid red;
+    background-color: #cc5017;
+}
+
+.delete {
+    border-top: 3px solid red;
+    border-left: 3px solid red;
+    border-bottom: 3px solid rgb(199, 3, 3);
+    border-right: 3px solid rgb(199, 3, 3);
+}
+
+.delete td{
+    border: 1px solid red;
+}
+
+.delete th{
+    border: 1px solid red;
+}
+#search .bloque{
+    border:none;
+}
+
+
+
+  select{
+    background-color: #c2c2c2;
+      border-radius: 5px;
+      color: rgb(53, 53, 53);
+      border:none;
+      padding: 3px 10px;
+      width: 170px;
+
+
+  }
+
+  select:hover{
+    background-color: rgb(226, 72, 0);
+    color: white;
+}
+
+.linkfoto{
+    color: white;
+}
+.linkfoto:hover{
+    color: #fa5324;
+}
+.profilepic{
+    border-top: 5px solid #fa5324;
+    border-left: 5px solid #fa5324;
+    border-bottom: 5px solid #c23711;
+    border-right: 5px solid #c23711;
+    border-radius: 100px;
+}
+#search select{
+    margin-right: 20px;
+    padding-bottom: 0;
+}
+
+#search select:hover{
+    background-image: linear-gradient(to bottom , rgba(0,0,0,0), rgba(0,0,0,0), rgba(0,0,0,0),rgba(0,0,0,0),rgba(0,0,0,0),rgba(0,0,0,0),rgba(0,0,0,0), rgba(0,0,0,0), rgba(0,0,0,0), rgba(0,0,0,0),#f1694363,#f16943bb,#f16943);
+    transition-duration: 0.4s;
+}
+legend{
+    border-bottom: 1px solid white;
+}
+
+#search .container-btn{
+    padding-top: 20px;
+    border-top: 1px solid white;
+}
+
+#showall .container-btn{
+    padding-top: 20px;
+    border-top: 1px solid white;
+}
+
+#showall .container-btn .fas{
+    font-size:60px;
+}
+
+
+table{
+    margin-bottom: 20px;
+}
+table thead th:first-child {
+    border-radius: 10px 0 0 0;
+}
+table thead th:last-child {
+    border-radius: 0 10px 0 0;
+}
+.langbtn{
+    background-color: rgba(0,0,0,0);
+    border: none;
+    max-width: 30px;
+    margin-right: 10px;
+}
+.container-lang{
+    margin-right: 5px;
+    border-radius: 10px;
+    border-top: 2px solid rgb(82, 82, 82);
+    border-left: 2px solid rgb(82, 82, 82);
+    border-bottom: 2px solid rgb(119, 119, 119);
+    border-right: 2px solid rgb(119, 119, 119);
+    background-color: rgb(139, 139, 139);
+    padding-right: 20px;
+}
+
+.btnintro{
+    background-color: rgba(0,0,0,0);
+    border:none;
+}
+
+.btnintro :hover{
+    background-color: rgba(0,0,0,0);
+    border:none;
+}
+.btnintro .fas{
+    font-size: 60px;
+
+}
+.btnintro .fas:hover{
+color: rgb(226, 72, 0);
+border: none;
+}
+.buttoncustom{
+    background-color: rgba(0,0,0,0);
+    border: none;
+}
+
+.buttoncustom .fas{
+    font-size: 50px;
+    text-shadow: 2px 2px #464646;
+}
+.buttoncustom:hover .fas{
+    color: rgb(226, 72, 0);
+    text-shadow: none;
+    transform: translate3d(2px,2px,2px);
+    transition-duration: 0.2s;
+}
+.hdr .fas{
+    text-shadow: 1px 1px #5d5d5d;
+    font-size: 30px;
+}
+.fa-sign-out-alt:hover{
+    color: rgb(226, 72, 0);
+    text-shadow: none;
+    transform: translate3d(2px,2px,2px);
+    transition-duration: 0.2s
+}
+
+.color{
+    padding: 0;
+    height: 40px;
+    width: 80px;
+}
+.disable:hover{
+    background-color: rgb(156, 156, 156);
+}
+.disable:hover .fas{
+    color: rgb(53, 53, 53);
+}
+
+.mini{
+    margin-bottom: 20px;
+}
+
+.selectcont{
+    margin-right: 30%;
+    font-size: 14px;
+    margin-top: 10px;
+    border-radius: 10px;
+    padding-top: 8px;
+    margin-left: -1px;
+    border-top: 1px dashed #5d5d5d;
+    border-left: 1px dashed #5d5d5d;
+    border-bottom: 1px dashed #5d5d5d;
+    border-right: 1px dashed #5d5d5d;
+}
+.colselectcont1{
+    padding-right: 0px;;
+}
+
+.colselectcont2{
+    padding-left: 0px;;
+}
+
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    border-radius: 8px;
+    box-shadow:2px 2px #464646;
+  }
+
+  .btn {
+    border: 2px solid gray;
+    color: gray;
+    background-color: white;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+  }
+
+  .upload-btn-wrapper:hover .btn{
+    border: 2px solid black;
+    color: rgb(226, 72, 0);
+    transform: translate(2px, 2px);
+    transition-duration: 0.4s;
+  }
+
+  .upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+  }
+
+  .activo{
+      color: #f1a27d;
+  }
+  body,html{
+height: 100%;
+}
+
+/* remove outer padding */
+.main .row{
+padding: 0px;
+margin: 0px;
+}
+
+/*Remove rounded coners*/
+
+nav.sidebar.navbar {
+border-radius: 0px;
+}
+
+nav.sidebar, .main{
+-webkit-transition: margin 200ms ease-out;
+  -moz-transition: margin 200ms ease-out;
+  -o-transition: margin 200ms ease-out;
+  transition: margin 200ms ease-out;
+}
+
+/* Add gap to nav and right windows.*/
+.main{
+padding: 10px 10px 0 10px;
+}
+
+/* .....NavBar: Icon only with coloring/layout.....*/
+
+/*small/medium side display*/
+@media (min-width: 768px) {
+
+/*Allow main to be next to Nav*/
+.main{
+  position: absolute;
+  width: calc(100% - 40px); /*keeps 100% minus nav size*/
+  margin-left: 40px;
+  float: right;
+}
+
+/*lets nav bar to be showed on mouseover*/
+nav.sidebar:hover + .main{
+  margin-left: 200px;
+}
+
+/*Center Brand*/
+nav.sidebar.navbar.sidebar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
+  margin-left: 0px;
+}
+/*Center Brand*/
+nav.sidebar .navbar-brand, nav.sidebar .navbar-header{
+  text-align: center;
+  width: 100%;
+  margin-left: 0px;
+}
+
+/*Center Icons*/
+nav.sidebar a{
+  padding-right: 13px;
+}
+
+/*adds border top to first nav box */
+nav.sidebar .navbar-nav > li:first-child{
+  border-top: 1px #e5e5e5 solid;
+}
+
+/*adds border to bottom nav boxes*/
+nav.sidebar .navbar-nav > li{
+  border-bottom: 1px #e5e5e5 solid;
+}
+
+/* Colors/style dropdown box*/
+nav.sidebar .navbar-nav .open .dropdown-menu {
+  position: static;
+  float: none;
+  width: auto;
+  margin-top: 0;
+  background-color: transparent;
+  border: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+/*allows nav box to use 100% width*/
+nav.sidebar .navbar-collapse, nav.sidebar .container-fluid{
+  padding: 0 0px 0 0px;
+}
+
+/*colors dropdown box text */
+.navbar-inverse .navbar-nav .open .dropdown-menu>li>a {
+  color: #777;
+}
+
+/*gives sidebar width/height*/
+nav.sidebar{
+  width: 200px;
+  height: 100%;
+  margin-left: -160px;
+  float: left;
+  z-index: 8000;
+  margin-bottom: 0px;
+}
+
+/*give sidebar 100% width;*/
+nav.sidebar li {
+  width: 100%;
+}
+
+/* Move nav to full on mouse over*/
+nav.sidebar:hover{
+  margin-left: 0px;
+}
+/*for hiden things when navbar hidden*/
+.forAnimate{
+  opacity: 0;
+}
+}
+
+/* .....NavBar: Fully showing nav bar..... */
+
+@media (min-width: 1330px) {
+
+/*Allow main to be next to Nav*/
+.main{
+  width: calc(100% - 200px); /*keeps 100% minus nav size*/
+  margin-left: 200px;
+}
+
+/*Show all nav*/
+nav.sidebar{
+  margin-left: 0px;
+  float: left;
+}
+/*Show hidden items on nav*/
+nav.sidebar .forAnimate{
+  opacity: 1;
+}
+}
+
+nav.sidebar .navbar-nav .open .dropdown-menu>li>a:hover, nav.sidebar .navbar-nav .open .dropdown-menu>li>a:focus {
+color: #CCC;
+background-color: transparent;
+}
+
+nav:hover .forAnimate{
+opacity: 1;
+}
+section{
+padding-left: 15px;
+}

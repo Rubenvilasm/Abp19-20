@@ -78,7 +78,7 @@
 			</div>
 		</div>
 		<?php
-			include '../Views/Footer.php';
+			include '../Views/Footer_View.php';
 		} //fin metodo render
 
 	} //fin REGISTER

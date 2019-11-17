@@ -45,7 +45,19 @@ array(
 	'Debe rellenar todos los campos'=>'Debe rellenar todos los campos',
 	'Letras y números'=>'Letras y números',
 	'Mostrar contraseña'=>'Mostrar contraseña',
-	'Sólo letras'=>'Sólo letras'
+	'Sólo letras'=>'Sólo letras',
+	'Error en la insercion'=>'Error en la insercion',
+	'ERROR: El usuario ya existe.'=>'ERROR: El usuario ya existe.',
+	'Insercion realizada con exito'=>'Insercion realizada con exito',
+	'Fecha de creacion'=>'Fecha de creacion',
+	'ERROR: La contraseña para ese usuario no es correcta.'=>'ERROR: La contraseña para ese usuario no es correcta.',
+	'ERROR: El login no existe'=>'ERROR: El login no existe',
+	'Usuario no autenticado'=>'Usuario no autenticado',
+	'Reservar Pista'=>'Reservar Pista',
+	'Calendario'=>'Calendario',
+	'Partidos Promocionados'=>'Partidos Promocionados',
+	'Campeonatos'=>'Campeonatos'
+
 
 
 
