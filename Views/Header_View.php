@@ -103,12 +103,16 @@ Contiene el código html de la cabecera de las vistas
 				<div class="col-md-4">
 					<?php
 		echo $strings['Usuario no autenticado'];
-		/*echo 	'<form name=\'registerForm\' action=\'../Controller/Register_Controller.php\' method=\'post\'>
-					<input type=\'submit\' name=\'action\' value=\'REGISTER\'>
-				</form>';*/
+	
 ?>
 
 					<button class="buttoncustom hdr" onclick="window.location='../Controllers/Registro_Controller.php'"><i class="fas fa-user-plus"></i></button>
+				</div>
+				<div class="col-md-4">
+					<?php
+		echo $strings['Entrar'];		
+?>
+					<button class="buttoncustom hdr" onclick="window.location='../Controllers/Login_Controller.php'"><i class="fas fa-sign-in-alt"></i></button>
 				</div>
 				<?php
 	}

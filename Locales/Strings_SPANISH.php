@@ -56,7 +56,8 @@ array(
 	'Reservar Pista'=>'Reservar Pista',
 	'Calendario'=>'Calendario',
 	'Partidos Promocionados'=>'Partidos Promocionados',
-	'Campeonatos'=>'Campeonatos'
+	'Campeonatos'=>'Campeonatos',
+	'Entrar'=>'Entrar'
 
 
 
