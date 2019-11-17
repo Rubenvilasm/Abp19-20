@@ -16,6 +16,7 @@ if(!isset($_REQUEST['login']) && !(isset($_REQUEST['password']))){
 		session_start();
 		$_SESSION['login'] = $_REQUEST['login'];
 		$_SESSION['rol'] = $usuario->GET_ROL();
+		
 
 		header('Location:../index.php');
 	}

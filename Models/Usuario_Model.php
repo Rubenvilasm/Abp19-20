@@ -141,7 +141,7 @@ class Usuario_Model{
 	}
 
 	function GET_ROL(){
-		$sql = "SELECT * FROM usuario WHERE (`login`= '$this->login' AND `borrado` = 'NO')";
+		$sql = "SELECT * FROM usuario WHERE (`login`= '$this->login')";
 
 		if (!($resultado = $this->mysqli->query($sql))){ // si se produce un error en la busqueda 
 			return 'ERROR: Fallo en la consulta sobre la base de datos';  //devuelve un mensaje de error que se env�a al MESSAGE_Controller el cual crea la vista MESSAGE con dicho mensaje
@@ -175,13 +175,11 @@ class Usuario_Model{
 		}else return $result;
 	}
 
-	function SHOWALL(){
-		$sql = "SELECT * FROM usuario WHERE(`borrado` = 'No')";
 
-		if(!$result= $this->mysqli->query($sql)){
-			return 'ERROR: Fallo en la colsulta a la bd';
-		}else return $result;
-	}
+		function SHOWALL(){
+			$result = $this->mysqli->query("SELECT * FROM usuario ORDER BY usuario.login DESC, usuario.nombre");
+		return mysqli_fetch_all($result, MYSQLI_ASSOC);
+		} 
 
 	function EDIT(){
 		if($this->login <> ''){

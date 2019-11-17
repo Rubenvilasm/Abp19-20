@@ -57,7 +57,16 @@ array(
 	'Calendario'=>'Calendario',
 	'Partidos Promocionados'=>'Partidos Promocionados',
 	'Campeonatos'=>'Campeonatos',
-	'Entrar'=>'Entrar'
+	'Entrar'=>'Entrar',
+	'Gestionar Clases'=>'Gestionar Clases',
+	'Gestionar Usuarios'=>'Gestionar Usuarios',
+	'Gestionar Campeonatos'=>'Gestionar Campeonatos',
+	'Promocionar Partidos'=>'Promocionar Partidos',
+	'Gestionar Pistas'=>'Gestionar Pistas',
+	'Borrado'=>'Borrado',
+	'Acción' =>'Acción',
+	'Usuarios'=>'Usuarios',
+	'Búsqueda de usuarios'=>'Búsqueda de usuarios'
 
 
 

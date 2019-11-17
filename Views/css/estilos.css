@@ -54,15 +54,15 @@ footer{
 .contenido{
     margin-top: 15px;
     margin-bottom: 15px;
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 2%;
+    margin-right: 2%;
     background-color: white;
-    color: rgb(53, 53, 53);
-    border: 2px solid rgb(53, 53, 53);
+    color: rgb(28, 145, 5);
+    border: 2px solid rgb(2, 41, 11);
     border-radius: 5px;
-    font-size: 18px;
+    font-size: 10px;
 
-    max-width: 80%;
+    max-width:80%;
 }
 
 .bloque{
@@ -156,12 +156,12 @@ a:hover{
 }
 .menu a:hover{
     color: white;
-    background-color: rgb(226, 72, 0);
+   
     transition-duration: 0.4s;
     text-decoration: none;
 }
-.menu li{
-    color: rgba(204, 32, 32, 0.76);
+.menu li:hover{
+    background-color: rgb(8, 138, 15);
 }
 
 .articulo{
@@ -288,6 +288,7 @@ tr:hover td{
 }
 
 td{
+    font-size: 10px;
     font-weight: bold;
     border: 1px solid white;
     padding-left: 10px;
@@ -298,7 +299,7 @@ td{
 
 th{
     color: white;
-    font-size: 18px;
+    font-size: 12px;
     border: 1px solid white;
     padding-left: 10px;
     padding-right:10px;
@@ -337,7 +338,7 @@ table tbody tr:last-child td:last-child {
 }
 
 .editbtn .fas{
-    font-size: 22px;
+    font-size: 10px;
     color: rgb(70, 70, 70);
     text-shadow: 2px 2px rgb(121, 121, 121);
 }
@@ -470,7 +471,7 @@ legend{
 }
 
 #showall .container-btn .fas{
-    font-size:60px;
+    font-size:30px;
 }
 
 

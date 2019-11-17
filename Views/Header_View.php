@@ -87,6 +87,7 @@ Contiene el código html de la cabecera de las vistas
 					<h4>
 						<?php
 		echo  $_SESSION['login'] . '<br>';
+		echo $_SESSION['rol'];
 ?>
 					</h4>
 				</div>
