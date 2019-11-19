@@ -69,7 +69,7 @@ Contiene el código html de la cabecera de las vistas
 			</div>
 			<div class="p-2 flex-grow-1">
 			
-			<h1><?=$strings['Top padel']?></h1>
+			<h1><a href="../Controllers/Index_Controller.php"><?=$strings['Top padel']?></a> </h1>
 		</div>
 			
 

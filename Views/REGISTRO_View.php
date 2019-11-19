@@ -37,7 +37,7 @@
 					</div>
 					<div class="campo">
 						<label>Password : </label>
-						<input type = 'password' name = 'password' id = 'password' placeholder = '<?php echo $strings['Letras y números']?>' size = '100' value = '' onblur="return comprobarAlfanum(this,128)" ><br>
+						<input type = 'password' name = 'password' id = 'password' placeholder = '<?php echo $strings['Letras y números']?>' size = '50' value = '' onblur="return comprobarAlfanum(this,128)" ><br>
 						<input name="show" type="checkbox" onclick="mostrarContraseña()"><small><?php echo '   ' .  $strings['Mostrar contraseña'];?></small>
 						<p class="invalid" id="invalidpassword"><?php echo $strings['Formato no válido'];?></p>
 					</div>
