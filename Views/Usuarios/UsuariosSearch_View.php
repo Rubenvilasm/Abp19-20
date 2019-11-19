@@ -21,7 +21,7 @@
 					<div class="bloque">
 						<div class="campo">
 							<label><?php echo $strings['Login']?> : </label>
-							<input type = 'text' name = 'user' id = 'user' placeholder = '<?php echo $strings['Sólo letras']?>' size = '25' value = ''><br>
+							<input type = 'text' name = 'login' id = 'login' placeholder = '<?php echo $strings['Sólo letras']?>' size = '25' value = ''><br>
 							<p class="invalid" id="invalidnombre"><?php echo $strings['Formato no válido']?></p>
 						</div>
 						</div >
@@ -38,15 +38,7 @@
 							<input type = 'text' name = 'email' id = 'email' size = '50' value = ''  ><br>
 							<p class="invalid" id="invalidemail"><?php echo $strings['E-mail incorrecto'];?></p>
 						</div>
-						</div >
-							<div class="bloque">
-						<div class="campo">
-							<label>Password : </label>
-							<input type = 'password' name = 'password' id = 'password' placeholder = '<?php echo $strings['Letras y números']?>' size = '100' value = '' ><br>
-							<input name="show" type="checkbox" onclick="mostrarContraseña()"><small><?php echo '   ' .  $strings['Mostrar contraseña'];?></small>
-							<p class="invalid" id="invalidpassword"><?php echo $strings['Formato no válido'];?></p>
-						</div>
-						</div >
+						</div >							
 							<div class="bloque">
 						<div class="campo">
 							<label><?php echo $strings['Nombre']?> : </label>
@@ -76,35 +68,26 @@
 						</div >
 						<div class="bloque">
 						<div class="campo">
-							<label><?php echo $strings['Cuenta']?> : </label>
-							<input type = 'text' name = 'cuenta' id = 'cuenta' placeholder = '' size = '60' value = ''  ><br>
-							<p class="invalid" id="invalidnombre"><?php echo $strings['Formato no válido']?></p>
+							<label><?php echo $strings['Rol']?> : </label>
+							<select name="rol" id="rol">
+				<option value=""></option>
+				<option value="Entrenador"><?php echo $strings['Entrenador']; ?></option>
+				<option value="Administrador"><?php echo $strings['Administrador']; ?></option>
+				<option value="Deportista"><?php echo $strings['Deportista']; ?></option>
+				</select>
 						</div>
 						</div >
 							<div class="bloque">
 						<div class="campo">
-							<label><?php echo $strings['Direccion']?> : </label>
-							<input type = 'text' name = 'direccion' id = 'direccion' placeholder = '' size = '80' value = ''  ><br>
-							<p class="invalid" id="invalidnombre"><?php echo $strings['Formato no válido']?></p>
-						</div>
-						</div >
-							<div class="bloque">
-						<div class="campo">
-							<label><?php echo $strings['Comentarios']?> : </label>
-							<input type = 'text' name = 'comentarios' id = 'comentarios' placeholder = '' size = '100' value = ''  ><br>
-							<p class="invalid" id="invalidnombre"><?php echo $strings['Formato no válido']?></p>
-						</div>
-						</div >
-							<div class="bloque">
-						<div class="campo">
-		<label><?php echo $strings['Estado']?> : </label>
-		<select name="estado" id="estado">
-		<option value=""></option>
-		<option value="Activo"><?php echo $strings['Activo']; ?></option>
-		<option value="Inactivo"><?php echo $strings['Inactivo']; ?></option>
-		</select>
-		</div>
-		</div >
+							<label><?php echo $strings['Socio']?> : </label>
+							<select name="socio" id="socio">
+				<option value=""></option>
+				<option value="Activo"><?php echo $strings['Activo']; ?></option>
+				<option value="Inactivo"><?php echo $strings['Inactivo']; ?></option>
+				</select>
+				</div>
+				</div>
+											
 
 
 

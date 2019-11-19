@@ -30,7 +30,7 @@ $accion='';*/
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Menu</a>
+			<a class="navbar-brand" href="./Index_Controller.php">Menu</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
 			<ul class="nav navbar-nav">

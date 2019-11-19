@@ -66,7 +66,23 @@ array(
 	'Borrado'=>'Borrado',
 	'Acción' =>'Acción',
 	'Usuarios'=>'Usuarios',
-	'Búsqueda de usuarios'=>'Búsqueda de usuarios'
+	'Búsqueda de usuarios'=>'Búsqueda de usuarios',
+	'Activo'=>'Activo',
+	'Inactivo'=>'Inactivo',
+	'Entrenador'=>'Entrenador',
+	'Deportista'=>'Deportista',
+	'Administrador'=>'Administrador',
+	'ERROR: Fallo en la consulta sobre la base de datos'=>'ERROR: Fallo en la consulta sobre la base de datos',
+	'No se han encontrado coincidencias'=>'No se han encontrado coincidencias',
+	'Añadir usuario'=>'Añadir usuario',
+	'Atributo'=>'Atributo',
+	'Valor'=>'Valor',
+	'Datos de usuario'=>'Datos de usuario',
+	'¿Confirma el borrado de este usuario?'=>'¿Confirma el borrado de este usuario?',
+	'Confirmación de borrado'=>'Confirmación de borrado',
+	'Error en el borrado'=>'Error en el borrado',
+	'Borrado realizado con éxito'=>'Borrado realizado con éxito',
+	'Edición de usuario'=>'Edición de usuario'
 
 
 

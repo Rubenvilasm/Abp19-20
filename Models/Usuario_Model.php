@@ -121,24 +121,37 @@ class Usuario_Model{
 
 
 	function SEARCH(){
-		$sql = "SELECT * FROM `usuario` WHERE(
-				(`login` LIKE '%$this->login%') AND
-				(`nombre` LIKE '%$this->nombre%') AND
-				(`apellidos` LIKE '%$this->apellidos%')'AND
-				(`dni` LIKE '%$this->dni%')AND
-				(`email` LIKE '%$this->email%')AND
-				(`telefono` LIKE '%$this->telefono%')AND
-				(`rol` LIKE '%$this->rol%')AND
-				(`socio` LIKE '%$this->socio%') AND
-				(`borrado` = 'NO')
-			)";
+		$sql = "SELECT * FROM `usuario` WHERE
+				`login` LIKE '%$this->login%' AND
+				`nombre` LIKE '%$this->nombre%' AND
+				`apellidos` LIKE '%$this->apellidos%' AND
+				`dni` LIKE '%$this->dni%' AND
+				`email` LIKE '%$this->email%' AND
+				`telefono` LIKE '%$this->telefono%' AND
+				`rol` LIKE '%$this->rol%' AND
+				`socio` LIKE '%$this->socio%' AND
+				`fechaNacimiento` LIKE '%$this->fechaNac%'
+			";
 
-		if(!($result = $this->mysqli->query($sql))){
-			return 'ERROR: Fallo en la consulta sobre la base de datos';
+if($sql == "SELECT * FROM USUARIO"){
+	return $this->SHOWALL();
+}else{
+//Si no hay coincidencias devuelve un mensaje
+	if(mysqli_num_rows(mysqli_query($this->mysqli, $sql)) ==0)
+	{
+		return "No se han encontrado coincidencias";
+	}else{
+		if(mysqli_num_rows(mysqli_query($this->mysqli, $sql)) ==1)
+		{
+			$result = $this->mysqli->query($sql);
+			return mysqli_fetch_assoc($result);
 		}else{
-			return $result;
+			$result = $this->mysqli->query($sql);
+			return mysqli_fetch_all($result, MYSQLI_ASSOC);
 		}
 	}
+}
+}
 
 	function GET_ROL(){
 		$sql = "SELECT * FROM usuario WHERE (`login`= '$this->login')";
@@ -183,7 +196,7 @@ class Usuario_Model{
 
 	function EDIT(){
 		if($this->login <> ''){
-			$sql = "SELECT * FROM usuario WHERE (`login` = '$this->login' AND `borrado` = 'NO')";
+			$sql = "SELECT * FROM usuario WHERE (`login` = '$this->login')";
 
 			$result = $this->mysqli->query($sql);
 			$num_rows = mysqli_num_rows($result);
@@ -195,13 +208,12 @@ class Usuario_Model{
 						`nombre` = '$this->nombre',
 						`apellidos` = '$this->apellidos',
 						`dni` = '$this->dni',
-						`fechaNac` = '$this->fechaNac',
+						`fechaNacimiento` = '$this->fechaNac',
 						`email` = '$this->email',
 						`telefono` = '$this->telefono',
 						`rol` = '$this->rol',
 						`socio` = '$this->socio',
-						`foto` = '$this->foto',
-						`borrado` = 'NO'
+						`foto` = '$this->foto'
 					WHERE (`login` = '$this->login')";
 
 				if(!($result = $this->mysqli->query($sql))){
@@ -210,16 +222,29 @@ class Usuario_Model{
 			}else return 'ERROR: El login introducido no existe en la base de datos.';
 		}else return 'ERROR: El atributo clave está vacio.';
 	}
+function GET_FOTO(){
+	$sql = "SELECT `foto` FROM usuario WHERE `login` = '$this->login' ";
+	$result = $this->mysqli->query($sql);
+	return $result;
 
+}
 	function DELETE(){
-		$sql = "SELECT * FROM usuario WHERE (`login` = '$this->login' AND `borrado` = 'NO')";
+		$sql = "DELETE  FROM usuario WHERE `login` = '$this->login' ";
 
-		$result = $this->mysqli->query($sql);
 
-		if($result->num_rows == 1){
+		//$result = $this->mysqli->query($sql);
+
+		if(!$this->mysqli->query($sql)){
+			return 'Error en el borrado';
+		}
+		else{
+			return 'Borrado realizado con éxito';
+		}
+
+		/* if($result->num_rows == 1){
 			$sql = "UPDATE usuario SET `borrado` = 'SI' WHERE (`login` = '$this->login')";
 			return 'Borrado con éxito.';
-		}else return 'ERROR: No existe ningún usuario con ese login.';
+		}else return 'ERROR: No existe ningún usuario con ese login.'; */
 	}
 
 	function rellenarDatos(){
