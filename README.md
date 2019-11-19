@@ -27,3 +27,12 @@ code --install-extension ritwickdey.LiveServer
 code --install-extension streetsidesoftware.code-spell-checker
 code --install-extension vscode-icons-team.vscode-icons
 code --install-extension Zignd.html-css-class-completion
+
+
+TODO:
+
+-Crear partido promocionado
+-Inscribirse partido promocionado
+-crear campeonato
+-inscribirse en campeonato
+-Gestionar liga regular
