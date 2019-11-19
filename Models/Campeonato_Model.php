@@ -13,7 +13,7 @@ class Campeonato_Model{
 
     var $mysqli;
 
-    function __construct($idCampeonato,$nombreCampeonato,$fechaInicio,$fechaFin,$premios,$normativa,$numParticipantes){
+    function __construct($idCampeonato,$nombreCampeonato,$fechaInicio,$fechaFin,$premios,$normativa,$numParticipantes,$borrado){
         $this->idCampeonato = $idCampeonato;
         $this->nombreCampeonato = $nombreCampeonato;
         $this->fechaInicio = $fechaInicio;
@@ -21,44 +21,49 @@ class Campeonato_Model{
         $this->premios = $premios;
         $this->normativa = $normativa;
         $this->numParticipantes = $numParticipantes;
+        $this->borrado = $borrado;
 
         include_once '../Models/Access_DB.php';
         $this->mysqli = ConnectDB();
     }
+    
+    function Register() {
+        $sql = "SELECT * FROM `campeonato`
+                WHERE `idCampeonato` = '".$this->idCampeonato."'";
+        $resultado = $this->mysqli->query($sql);
+        if($resultado->num_rows == 1){
+            return 'ERROR: El campeonato ya existe.';
+        }else
+            return true;
+    }
 
     function ADD(){
-        if($this->idCampeonato <> ''){
-            $sql = "SELECT * FROM campeonato WHERE(
-                (`idCampeonato` = '$this->idCampeonato')";
 
-            if(!($result = $this->mysqli->query($sql))){
-                return 'ERROR: No es posible acceder a la base de datos.';
-            }else{
-                if($result->num_rows == 0){
-                    $sql = "INSERT INTO campeonato (
-                        idCampeonato,
-                        nombreCampeonato,
-                        fechaInicio,
-                        fechaFin,
-                        premios,
-                        normativa,
-                        numParticipantes)
-                                VALUES(
-                                    '$this->idCampeonato',
-                                    '$this->nombreCampeonato',
-                                    '$this->fechaInicio',
-                                    '$this->fechaFin',
-                                    '$this->premios',
-                                    '$this->normativa',
-                                    '$this->numParticipantes')";
-                    
-                    if(!($this->mysqli->query($sql))){
-                        return 'ERROR: Error en la inserción.';
-                    }else return 'Insercción completada con éxito.';
-                }else return 'ERROR: Ya hay un campeonato con ese Id.';
-            }
-        }else return 'ERROR: El atributo clave idcampeonato está vacío.';
-    }
+            $sql = "INSERT INTO campeonato (
+                idCampeonato,
+                nombreCampeonato,
+                fechaInicio,
+                fechaFin,
+                premios,
+                normativa,
+                numParticipantes
+                )
+                        VALUES(
+                            '$this->idCampeonato',
+                            '$this->nombreCampeonato',
+                            '$this->fechaInicio',
+                            '$this->fechaFin',
+                            '$this->premios',
+                            '$this->normativa',
+                            '$this->numParticipantes')";
+            
+            echo $sql;
+            if(!($this->mysqli->query($sql))){
+                return 'ERROR: Error en la inserción.';
+            }else return 'Insercción completada con éxito.';
+        }
+    
+    
 
     function DELETE(){
         $sql = "SELECT * FROM campeonato WHERE (`idCampeonato` = '$this->idCampeonato' AND `borrado` = 'NO'))";
@@ -77,14 +82,13 @@ class Campeonato_Model{
     function SEARCH(){
         $sql  = "SELECT * FROM campeonato WHERE (
                 (`idCampeonato` LIKE '%$this->idCampeonato%')AND
+                (`nombreCampeonato` LIKE '%$this->nombreCampeonato%')AND
                 (`fechaInicio` LIKE '%$this->fechaInicio%')AND
                 (`fechaFin` LIKE '%$this->fechaFin%')AND
                 (`premios` LIKE '%$this->premios%')AND
                 (`normativa` LIKE '%$this->normativa%')AND
                 (`numParticipantes` LIKE '%$this->numParticipantes%')AND
-                (`borrado` LIKE '%$this->borrado%'))
-                )";
-
+                (`borrado` LIKE 'NO'))";
         
         if(!($result = $this->mysqli->query($sql))){
             return 'ERROR: Fallo en la consulta sobre la base de datos.';
@@ -115,6 +119,23 @@ class Campeonato_Model{
 
         if(!($result = $this->mysqli->query($sql))){
             return 'ERROR: No existe ese campeonato en la base de datos.';
+        }else return $result;
+    }
+
+    function SHOWCURRENT(){
+        $sql = "SELECT * FROM campeonato WHERE (`idCampeonato` = '$this->Campeonato')";
+
+        if(!($result = $this->mysqli->query($sql))){
+            return 'ERROR: Fallo en la consulta sobre la base de datos.';
+        }else return $result;
+    }
+
+
+    function SHOWALL(){
+        $sql = "SELECT * FROM campeonato WHERE (`borrado` = 'NO') ";
+
+        if(!($result = $this->mysqli->query($sql))){
+            return 'ERROR: Fallo en la consulta sobre la base de datos.';
         }else return $result;
     }
 

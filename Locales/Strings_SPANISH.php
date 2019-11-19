@@ -105,7 +105,23 @@ array(
 	'¿Confirma el borrado de este Partido Promocionado?' => ' ¿Confirma el borrado de este Partido Promocionado?',
 	'ERROR: No es posible acceder a la base de datos.'=> 'ERROR: No es posible acceder a la base de datos.',
 	'ERROR: El atributo clave idcampeonato está vacío.' => 'ERROR: El atributo clave idcampeonato está vacío.',
-	'Insercción completada con éxito.' => 'Insercción completada con éxito.'
+	'Insercción completada con éxito.' => 'Insercción completada con éxito.',
+	'nombreCampeonato' => 'Nombre del Campeonato',
+	'fecha de inicio' => 'Fecha de Inicio',
+	'fecha final' => 'Fecha Final',
+	'premios' => 'Premios',
+	'normativa' => 'Normativa',
+	'numero de participantes' => 'Numero de participantes',
+	'Añadir Campeonato' => 'Añadir Campeonato',
+	'idCampeonato' => 'ID',
+	'fechaInicio' => 'Fecha de Inicio',
+	'fechaFin' => 'Fecha Final',
+	'borrado' => 'Borrado',
+	'Búsqueda de Campeonatos' => 'Búsqueda de Campeonatos',
+	'nombre del campeonato' => 'nombre del campeonato',
+	'FechaInicio' => 'Fecha de Inicio',
+	'FechaFin' => 'FechaFin'
+
 
 
  

@@ -1,6 +1,7 @@
 --
 -- Base de datos: `PadelAbp`
 --
+DROP DATABASE IF EXISTS `PadelABP`;
 CREATE DATABASE IF NOT EXISTS `PadelABP` DEFAULT CHARACTER SET latin1 COLLATE latin1_spanish_ci;
 USE `PadelABP`;
 -- DAMOS PERMISO USO Y BORRAMOS EL USUARIO QUE QUEREMOS CREAR POR SI EXISTE
@@ -62,12 +63,13 @@ CREATE TABLE IF NOT EXISTS `pareja` (
 
   CREATE TABLE IF NOT EXISTS `campeonato` (
     `idCampeonato` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+    `nombreCampeonato` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `fechaInicio` date NOT NULL,
     `fechaFin` date NOT NULL,
     `numParticipantes` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `premios` varchar(125) COLLATE latin1_spanish_ci DEFAULT NULL,
     `normativa` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
-    `borrado` BIT DEFAULT 0,
+    `borrado` enum('SI','NO') DEFAULT 'NO',
 
     PRIMARY KEY (idCampeonato)
   ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
@@ -254,10 +256,10 @@ INSERT INTO `reserva` (`idReserva`,`idPista`,`idUsuario`,`fecha`) VALUES
   ('3','1','deportista1','2019-11-18'),
   ('4','1','deportista1','2019-11-18');
 
-INSERT INTO `campeonato` (`idCampeonato`,`fechaInicio`,`fechaFin`,`numParticipantes`,`premios`,`normativa`,`borrado`) VALUES 
-  ('1','2019-10-10','2019-10-20','50','300000','../Files/normativa.pdf','NO'),
-  ('2','2019-10-1','2019-10-8','10','200','../Files/normativa.pdf','NO'),
-  ('3','2019-10-10','2019-10-20','50','300000','../Files/normativa.pdf','SI');
+INSERT INTO `campeonato` (`idCampeonato`,`nombreCampeonato`,`fechaInicio`,`fechaFin`,`numParticipantes`,`premios`,`normativa`,`borrado`) VALUES 
+  ('1','uno','2019-10-10','2019-10-20','50','300000','../Files/normativa.pdf','NO'),
+  ('2','dos','2019-10-1','2019-10-8','10','200','../Files/normativa.pdf','NO'),
+  ('3','tres','2019-10-10','2019-10-20','50','300000','../Files/normativa.pdf','NO');
 
 INSERT INTO `categoria` (`idCategoria`,`nombre`,`nivel`,`idCampeonato`) VALUES
   ('1','MAC','UNO','1'),

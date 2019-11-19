@@ -65,7 +65,7 @@ class PPromocionado_Model{
             }
         
         
-
+ 
         function DELETE(){
             $sql = "SELECT * FROM `partidoPromocionado` WHERE (`partidoPromocionado` = '$this->partidoPromocionado')";
 
