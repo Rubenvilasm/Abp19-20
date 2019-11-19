@@ -83,7 +83,7 @@
     <h2>Partidos promocionados</h2>
     <p><ul>Inscribite</ul>
    <ul>Conoce gente</ul> </p>
-    <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+    <p><a class="btn btn-secondary" href="../Controllers/PPromocionado_Controller.php?accion=SHOWALL" role="button">View details &raquo;</a></p>
   </div><!-- /.col-lg-4 -->
 </div><!-- /.row -->
 

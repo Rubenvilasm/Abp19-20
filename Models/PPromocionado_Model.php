@@ -1,6 +1,6 @@
 <?php
 
-class Publicacion_Model{
+class PPromocionado_Model{
 
     var $idPartidoPromocionado;
     var $nombre;
@@ -24,18 +24,21 @@ class Publicacion_Model{
         $this->numParticipantes = $numParticipantes;
 
         include_once '../Models/Access_DB.php';
-        $this->mysqli = Connect_DB();
+        $this->mysqli = ConnectDB();
     }
 
+    function Register(){
+        $sql = "SELECT * FROM `partidoPromocionado`
+                WHERE `idPartidoPromocionado` = '".$this->idPartidoPromocionado."'";
+        $resultado = $this->mysqli->query($sql);
+        if($resultado->num_rows == 1){
+            return 'ERROR: El partido ya existe.';
+        }else
+            return true;
+    }
     function ADD(){
         if($this->idPartidoPromocionado <>''){
-            $sql = "SELECT * FROM partidoPromocionado WHERE(
-                    (`idPartidoPromocionado` = '$this->idPartidoPromocionado')";
             
-            if(!($result = $this->mysqli->query($sql))){
-                return 'ERROR: No es posible acceder a la base de datos.';
-            }else{
-                if($result->num_rows == 0){
                     $sql = "INSERT INTO partidoPromocionado (
                         idPartidoPromocionado,
                         nombre,
@@ -58,10 +61,10 @@ class Publicacion_Model{
                     if(!($this->mysqli->query($sql))){
                         return 'ERROR: Error en la inserción.';
                     }else return 'Insercción completada con éxito.';
-                }else return 'ERROR: Ya hay un campeonato con ese Id.';
+                }else return 'ERROR: El atributo clave idcampeonato está vacío.';
             }
-        }else return 'ERROR: El atributo clave idcampeonato está vacío.';
-        }
+        
+        
 
         function DELETE(){
             $sql = "SELECT * FROM `partidoPromocionado` WHERE (`partidoPromocionado` = '$this->partidoPromocionado')";
@@ -87,9 +90,8 @@ class Publicacion_Model{
                     (`idParticipante2` LIKE '%$this->idParticipante2%')AND
                     (`idParticipante3` LIKE '%$this->idParticipante3%')AND
                     (`idParticipante4` LIKE '%$this->idParticipante4%')AND
-                    (`numParticipantes` LIKE '%$this->numParticipantes%'))
-                    )";
-    
+                    (`numParticipantes` LIKE '%$this->numParticipantes%'))";
+        
             
             if(!($result = $this->mysqli->query($sql))){
                 return 'ERROR: Fallo en la consulta sobre la base de datos.';
@@ -100,6 +102,23 @@ class Publicacion_Model{
             $sql = "SELECT numParticipantes FROM partidoPromocionado WHERE(
                     (`idPartidoPromocionado` = '$this->idPartidoPromocionado'))";
 
+            if(!($result = $this->mysqli->query($sql))){
+                return 'ERROR: Fallo en la consulta sobre la base de datos.';
+            }else return $result;
+        }
+
+        function SHOWCURRENT(){
+            $sql = "SELECT * FROM partidoPromocionado WHERE (`idPartidoPromocionado` = '$this->idPartidoPromocionado')";
+    
+            if(!($result = $this->mysqli->query($sql))){
+                return 'ERROR: Fallo en la consulta sobre la base de datos.';
+            }else return $result;
+        }
+
+
+        function SHOWALL(){
+            $sql = "SELECT * FROM partidoPromocionado";
+    
             if(!($result = $this->mysqli->query($sql))){
                 return 'ERROR: Fallo en la consulta sobre la base de datos.';
             }else return $result;

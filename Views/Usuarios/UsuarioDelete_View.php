@@ -78,6 +78,7 @@
                 <form id="delete"action='./Usuarios_Controller.php?accion=delete&param=<?php echo $datos['login'];?>' method='post'>
                 <button name="submit" class="form-btn" type="submit"><i class="fas fa-check"></i></button>
                 <button class="form-btn" type="button" role="link" onclick="window.location='./Usuarios_Controller.php?accion=SHOWALL'"><i class="fas fa-times"></i></button>
+                </form>
             </div>
         </fieldset>
 </div>

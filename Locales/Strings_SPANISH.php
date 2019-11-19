@@ -82,7 +82,33 @@ array(
 	'Confirmación de borrado'=>'Confirmación de borrado',
 	'Error en el borrado'=>'Error en el borrado',
 	'Borrado realizado con éxito'=>'Borrado realizado con éxito',
-	'Edición de usuario'=>'Edición de usuario'
+	'Edición de usuario'=>'Edición de usuario',
+	'Partido Promocionado' => 'Partido Promocionado',
+	'Fecha' => 'Fecha',
+	'Participante' => 'Participante',
+	'Numero de Participantes' => 'Número de Participantes',
+	'ID' => 'ID',
+	'idPartidoPromocionado' => 'ID Partido Promocionado',
+	'nombre' => 'Nombre',
+	'fecha' => 'fecha',
+	'Fecha' => 'Fecha',
+	'idParticipante1' => 'Participante 1',
+	'idParticipante2' => 'Participante 2',
+	'idParticipante3' => 'Participante 3',
+	'idParticipante4' => 'Participante 4',
+	'numParticipantes' => 'Numero de Participantes',
+	'Añadir PartidoPromocionado' => 'Añadir Partido Promocionado',
+	'Búsqueda de Partidos Promocionados' => 'Búsqueda de Partidos Promocionados',
+	'Fallo en la consulta sobre la base de datos.' => 'Fallo en la consulta sobre la base de datos.',
+	'Datos del Partido Promocionado' => 'Datos del Partido Promocionado',
+	'ERROR: Fallo en la consulta sobre la base de datos.' => 'ERROR: Fallo en la consulta sobre la base de datos.',
+	'¿Confirma el borrado de este Partido Promocionado?' => ' ¿Confirma el borrado de este Partido Promocionado?',
+	'ERROR: No es posible acceder a la base de datos.'=> 'ERROR: No es posible acceder a la base de datos.',
+	'ERROR: El atributo clave idcampeonato está vacío.' => 'ERROR: El atributo clave idcampeonato está vacío.',
+	'Insercción completada con éxito.' => 'Insercción completada con éxito.'
+
+
+ 
 
 
 

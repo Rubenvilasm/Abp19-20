@@ -31,7 +31,7 @@ code --install-extension Zignd.html-css-class-completion
 
 TODO:
 
--Crear partido promocionado
+-Crear partido promocionado Hecho
 -Inscribirse partido promocionado
 -crear campeonato
 -inscribirse en campeonato
