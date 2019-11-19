@@ -33,6 +33,6 @@ TODO:
 
 -Crear partido promocionado Hecho
 -Inscribirse partido promocionado
--crear campeonato
+-crear campeonato Empezando
 -inscribirse en campeonato
 -Gestionar liga regular
