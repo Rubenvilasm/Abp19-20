@@ -57,7 +57,7 @@ class Campeonato_Model{
                     }else return 'Insercción completada con éxito.';
                 }else return 'ERROR: Ya hay un campeonato con ese Id.';
             }
-        }else return 'ERROR: El atributo clave idcampeonato está vacío.'
+        }else return 'ERROR: El atributo clave idcampeonato está vacío.';
     }
 
     function DELETE(){
@@ -71,7 +71,7 @@ class Campeonato_Model{
             if(!($result = $this->mysqli->query($sql))){
                 return 'ERROR: Fallo en la consulta sobre la base de datos.';
             }else return 'El Campeonato ha sido eliminado con exito.';
-        }else return 'ERROR: No hay ningún campeonato con esa id.'
+        }else return 'ERROR: No hay ningún campeonato con esa id.';
     }
 
     function SEARCH(){
@@ -96,7 +96,7 @@ class Campeonato_Model{
         $sql = "SELECT nombre FROM campeonato WHERE(`borrado` = 'NO')";
 
         if(!($result = $this->mysqli->query($sql))){
-            return 'ERROR: Fallo en la consulta sobre la base de datos.'
+            return 'ERROR: Fallo en la consulta sobre la base de datos.';
         }else return $result;
     }
 
@@ -106,7 +106,7 @@ class Campeonato_Model{
 
 
         if(!($result = $this->mysqli->query($sql))){
-            return 'ERROR: Fallo en la consulta sobre la base de datos.'
+            return 'ERROR: Fallo en la consulta sobre la base de datos.';
         }else return $result;
     }
 

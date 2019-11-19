@@ -94,7 +94,7 @@ class ClaseParticular_Model{
             return $result;
         }
     }
-
+    }
 
 }
 ?>

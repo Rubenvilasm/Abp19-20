@@ -89,9 +89,9 @@
 				</div>
 		</div>
 				</div >
-							<p class="invalid" id="invalidform"><?php echo $strings['Debe rellenar todos los campos'];?></p>
-								<button name="submit" value="upload" class="form-btn" type="submit"><i class="fas fa-check"></i></button>
-								<button class="form-btn" type="button" role="link" onclick="window.location='../Controllers/Usuarios_Controller?accion=SHOWALL.php';" ><i class="fas fa-times"></i></button>
+					<p class="invalid" id="invalidform"><?php echo $strings['Debe rellenar todos los campos'];?></p>
+					<button name="submit" value="upload" class="form-btn" type="submit"><i class="fas fa-check"></i></button>
+					<button class="form-btn" type="button" role="link" onclick="window.location='../Controllers/Usuarios_Controller?accion=SHOWALL.php';" ><i class="fas fa-times"></i></button>
 						</form>
 						</div>
 					</div>

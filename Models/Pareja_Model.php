@@ -81,7 +81,7 @@ class Pareja_Model{
                     
                     if(!$this->mysqli->query($sql)){
                         return 'ERROR: Error en la inserción.';
-                    }else return 'Inserción completada con éxito.'
+                    }else return 'Inserción completada con éxito.';
                 }else return 'ERROR: Ya hay una pareja con esos integrantes.';
             }
         }else return 'ERROR: Uno o más atributos clave idDeportista1 o idDeportista2  vacios.';
@@ -113,7 +113,7 @@ class Pareja_Model{
         $sql = "SELECT * FROM pareja WHERE( `idPareja` = '$this->idPareja')";
 
         if(!($result = $this->mysqli->query($sql))){
-            return 'ERROR: No existe esa pareja en la base de datos.'
+            return 'ERROR: No existe esa pareja en la base de datos.';
         }else return $result;
     }
 }

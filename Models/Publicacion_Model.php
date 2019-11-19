@@ -52,7 +52,7 @@ class Publicacion_Model{
                     }else return 'Insercción completada con éxito.';
                 }else return 'ERROR: Ya hay un campeonato con ese Id.';
             }
-        }else return 'ERROR: El atributo clave idcampeonato está vacío.'
+        }else return 'ERROR: El atributo clave idcampeonato está vacío.';
     }
 
     function DELETE(){
@@ -66,7 +66,7 @@ class Publicacion_Model{
             if(!($result = $this->mysqli->query($sql))){
                 return 'ERROR: Fallo en la consulta sobre la base de datos.';
             }else return 'La publicacion ha sido eliminada con exito.';
-        }else return 'ERROR: No hay ningún campeonato con esa id.'
+        }else return 'ERROR: No hay ningún campeonato con esa id.';
     }
 
     function SEARCH(){
@@ -89,7 +89,7 @@ class Publicacion_Model{
         $sql = "SELECT * FROM publicacion WHERE(`nombreAutor` = '$this->nombreAutor' AND `borrado` = 'NO')";
 
         if(!($result = $this->mysqli->query($sql))){
-            return 'ERROR: Fallo en la consulta sobre la base de datos.'
+            return 'ERROR: Fallo en la consulta sobre la base de datos.';
         }else return $result;
     }
 

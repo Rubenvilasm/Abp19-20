@@ -78,7 +78,7 @@ class Notification_Model{
 				AND    (NU.LOGIN_USUARIO = '$this->login_usuario')";
 
 		if(!$resultado = $this->mysqli->query($sql)){
-			return 'ERROR: Fallo en la consulta sobre la base de datos.'
+			return 'ERROR: Fallo en la consulta sobre la base de datos.';
 		}else{
 			$this->NOTIFICATION_LEIDA();
 			return $resultado;
@@ -91,7 +91,7 @@ class Notification_Model{
 				AND   ( LOGIN_USUARIO = '$this->login_usuario')";
 
 		if(!$resultado = $this->mysqli->query($sql)){
-			return 'ERROR:Fallo en la consulta sobre la base de datos.'
+			return 'ERROR:Fallo en la consulta sobre la base de datos.';
 		}
 		$this->UPDATE();
 		return 0;
