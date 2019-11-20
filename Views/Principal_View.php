@@ -67,7 +67,7 @@
     <h2>Clases particulares</h2>
     <p><ul>loren ipsu</ul>
        </p>
-    <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+    <p><a class="btn btn-secondary" href="../Controllers/ReservarPista_Controller.php?accion=SHOWALL" role="button">View details &raquo;</a></p>
   </div><!-- /.col-lg-4 -->
   <div class="col-lg-4">
     <img class="rounded-circle" src="../Views/img/intro/img2.jpg" alt="Generic placeholder image" width="130" height="130">

@@ -120,8 +120,15 @@ array(
 	'Búsqueda de Campeonatos' => 'Búsqueda de Campeonatos',
 	'nombre del campeonato' => 'nombre del campeonato',
 	'FechaInicio' => 'Fecha de Inicio',
-	'FechaFin' => 'FechaFin'
-
+	'FechaFin' => 'FechaFin',
+	'idPista' => 'ID Pista',
+	'idUsuario' => 'Usuario',
+	'precio' => 'Precio',
+	'ID' => 'ID',
+	'Reservas de Pista' => 'Reservas de Pista',
+	'Búsqueda de Reservas' => 'Búsqueda de Reservas',
+	'idReserva' => 'idReserva',
+	'Datos de la reserva' => 'Datos de la reserva'
 
 
  

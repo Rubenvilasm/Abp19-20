@@ -28,7 +28,6 @@ code --install-extension streetsidesoftware.code-spell-checker
 code --install-extension vscode-icons-team.vscode-icons
 code --install-extension Zignd.html-css-class-completion
 
-
 TODO:
 
 -Crear partido promocionado Hecho
