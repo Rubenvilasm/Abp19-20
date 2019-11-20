@@ -52,7 +52,7 @@
                 </table>
             <div class="container-showall-btn">
                 <p><?php echo $strings['¿Confirma el borrado de este Partido Promocionado?'];?><p>
-                <form id="delete" action='./ReservarPista_Controller.php?accion=delete&param=<?php echo $datos['idReserva'];?>' method='post'>
+                <form id="delete" action='./ReservarPista_Controller.php?accion=DELETE&param=<?php echo $datos['idReserva'];?>' method='post'>
                 <button name="submit" class="form-btn" type="submit"><i class="fas fa-check"></i></button>
                 <button class="form-btn" type="button" role="link" onclick="window.location='./ReservarPista_Controller.php?accion=SHOWALL'"><i class="fas fa-times"></i></button>
                 </form>

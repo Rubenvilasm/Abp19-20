@@ -48,9 +48,9 @@
                     <td><?php echo $datos['fecha']."\n"; ?></td>
                     <td><?php echo $datos['precio']."\n"; ?></td>
 
-                    <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/PPromocionado_Controller.php?accion=DELETE&param=<?php echo $datos['idPartidoPromocionado']?>';"><i class="fas fa-trash-alt"></i></button></td>
+                    <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/ReservarPista_Controller.php?accion=DELETE&param=<?php echo $datos['idReserva']?>';"><i class="fas fa-trash-alt"></i></button></td>
                  
-                    <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/PPromocionado_Controller.php?accion=SHOWCURRENT&param=<?php echo $datos['idPartidoPromocionado']?>';"><i class="fas fa-eye"></i></button></td>
+                    <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/ReservarPista_Controller.php?accion=SHOWCURRENT&param=<?php echo $datos['idReserva']?>';"><i class="fas fa-eye"></i></button></td>
             </tr>
             <?php endforeach;}else{?>
 							
@@ -65,11 +65,11 @@
 
                
 
-                <td class="tb-btn disable"><button class="editbtn disable" role="link" onclick="window.location='../Controllers/PPromocionado_Controller.php?accion=DELETE&param=<?php echo $datos['email_usr']?>';"><i class="fas fa-trash-alt"></i></button></td>
+                <td class="tb-btn disable"><button class="editbtn disable" role="link" onclick="window.location='../Controllers/ReservarPista_Controller.php?accion=DELETE&param=<?php echo $datos['idReserva']?>';"><i class="fas fa-trash-alt"></i></button></td>
                 
-                <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/PPromocionado_Controller.php?accion=DELETE&param=<?php echo $datos['email_usr']?>';"><i class="fas fa-trash-alt"></i></button></td>
+                <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/ReservarPista_Controller.php?accion=DELETE&param=<?php echo $datos['idReserva']?>';"><i class="fas fa-trash-alt"></i></button></td>
                
-                <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/PPromocionado_Controller.php?accion=SHOWCURRENT&param=<?php echo $datos['email_usr']?>';"><i class="fas fa-eye"></i></button></td>
+                <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/ReservarPista_Controller.php?accion=SHOWCURRENT&param=<?php echo $datos['idReserva']?>';"><i class="fas fa-eye"></i></button></td>
             <?php };?>
             </table>
 

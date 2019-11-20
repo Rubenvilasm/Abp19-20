@@ -56,7 +56,7 @@ $accion='';*/
 		
 		if( $_SESSION['rol'] == "Administrador") {
 		?>
-				<li class="<?php echo $accion ;?> " ><a href="../Controllers/Rol_Controller.php?accion=SHOWALL"><?php echo $strings['Gestionar Campeonatos']; ?><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-tower"></span></a></li>
+				<li class="<?php echo $accion ;?> " ><a href="../Controllers/Campeonato_Controller.php?accion=SHOWALL"><?php echo $strings['Gestionar Campeonatos']; ?><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-tower"></span></a></li>
 	<?php
 		}
 	?>
@@ -72,7 +72,7 @@ $accion='';*/
 		
 		if( $_SESSION['rol'] == "Administrador" ){
 		?>
-				<li class="<?php echo $accion ;?> " ><a href="../Controllers/Rol_Controller.php?accion=SHOWALL"><?php echo $strings['Promocionar Partidos']; ?><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-bullhorn"></span></a></li>
+				<li class="<?php echo $accion ;?> " ><a href="../Controllers/PPromocionado_Controller.php?accion=SHOWALL"><?php echo $strings['Promocionar Partidos']; ?><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-bullhorn"></span></a></li>
 	<?php
 		}
 	?>
@@ -82,7 +82,7 @@ $accion='';*/
 
 				<li class="<?php echo $accion ;?> " ><a href="../Controllers/Rol_Controller.php?accion=SHOWALL"><?php echo $strings['Calendario']; ?><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-calendar "></span></a></li>
 				<li class="<?php echo $rolusuario ;?> " ><a href="../Controllers/PPromocionado_Controller.php?accion=ADD"><?php echo $strings['Partidos Promocionados']; ?><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-sort"></span></a></li>
-				<li class="<?php echo $accion ;?> " ><a href="../Controllers/Accion_Controller.php?accion=SHOWALL"><?php echo $strings['Campeonatos']; ?><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-play-circle"></span></a></li>
+				<li class="<?php echo $accion ;?> " ><a href="../Controllers/Campeonato_Controller.php?accion=SHOWALL"><?php echo $strings['Campeonatos']; ?><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-play-circle"></span></a></li>
 				
 
 			</ul>
