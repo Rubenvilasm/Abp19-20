@@ -133,7 +133,11 @@ array(
 	'ID Campeonato' => 'ID Campeonato',
 	'Nombre del Campeonato' => 'Nombre del Campeonato',
 	'Fecha de Inicio' => 'Fecha de Inicio',
-	'Fecha Final' => 'Fecha Final'
+	'Fecha Final' => 'Fecha Final',
+	'Participante 1' => 'Participante 1',
+	'Participante 2' => 'Participante 2',
+	'Participante 3' => 'Participante 3',
+	'Participante 4' => 'Participante 4'
 
 
  
