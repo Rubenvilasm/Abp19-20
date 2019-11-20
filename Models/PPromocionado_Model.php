@@ -82,20 +82,35 @@ class PPromocionado_Model{
         }
 
         function SEARCH(){
-            $sql  = "SELECT * FROM partidoPromocionado WHERE (
-                    (`idPartidoPromocionado` LIKE '%$this->idPartidoPromocionado%')AND
-                    (`nombre` LIKE '%$this->nombre%')AND
-                    (`fecha` LIKE '%$this->fecha%')AND
-                    (`idParticipante1` LIKE '%$this->idParticipante1%')AND
-                    (`idParticipante2` LIKE '%$this->idParticipante2%')AND
-                    (`idParticipante3` LIKE '%$this->idParticipante3%')AND
-                    (`idParticipante4` LIKE '%$this->idParticipante4%')AND
-                    (`numParticipantes` LIKE '%$this->numParticipantes%'))";
+            $sql  = "SELECT * FROM partidoPromocionado WHERE 
+                    `idPartidoPromocionado` LIKE '%$this->idPartidoPromocionado%'AND
+                    `nombre` LIKE '%$this->nombre%'AND
+                    `fecha` LIKE '%$this->fecha%'AND
+                    `idParticipante1` LIKE '%$this->idParticipante1%'AND
+                    `idParticipante2` LIKE '%$this->idParticipante2%'AND
+                    `idParticipante3` LIKE '%$this->idParticipante3%'AND
+                    `idParticipante4` LIKE '%$this->idParticipante4%'AND
+                    `numParticipantes` LIKE '%$this->numParticipantes%'";
         
             
-            if(!($result = $this->mysqli->query($sql))){
-                return 'ERROR: Fallo en la consulta sobre la base de datos.';
-            }else return $result;
+        if($sql == "SELECT * FROM partidoPromocionado"){
+            return $this->SHOWALL();
+        }else{
+        //Si no hay coincidencias devuelve un mensaje
+            if(mysqli_num_rows(mysqli_query($this->mysqli, $sql)) ==0)
+            {
+                return "No se han encontrado coincidencias";
+            }else{
+                if(mysqli_num_rows(mysqli_query($this->mysqli, $sql)) ==1)
+                {
+                    $result = $this->mysqli->query($sql);
+                    return mysqli_fetch_assoc($result);
+                }else{
+                    $result = $this->mysqli->query($sql);
+                    return mysqli_fetch_all($result, MYSQLI_ASSOC);
+                }
+            }
+        }
         }
 
         function getNumParticipantes(){
@@ -121,7 +136,7 @@ class PPromocionado_Model{
     
             if(!($result = $this->mysqli->query($sql))){
                 return 'ERROR: Fallo en la consulta sobre la base de datos.';
-            }else return $result;
+            }else return mysqli_fetch_all($result, MYSQLI_ASSOC);
         }
 
         

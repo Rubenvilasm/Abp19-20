@@ -78,7 +78,8 @@ session_start();
             if(!isset($_POST['submit']))
             {
                 $datos = $PPromocionado->SEARCH();
-                include '../Views/PPromocionado/PPromocionadoDelete_View.php';						
+                include '../Views/PPromocionado/PPromocionadoDelete_View.php';
+                print_r($datos);						
                 new PPromocionado_DELETE($datos);
     
             }else{
