@@ -32,7 +32,6 @@ class ReservarPista_Model{
             return true;
     }
     function ADD(){
-        if($this->id_reserva <>''){
             
                     $sql = "INSERT INTO reserva (                        
                         idPista,
@@ -40,16 +39,15 @@ class ReservarPista_Model{
                         fecha,
                         precio)
                                 VALUES(
-                                    '$this->idPista',
+                                    '2',
                                     '$this->idUsuario',
                                     '$this->fecha',
-                                    '$this->precio'
+                                    '10'
                                     )";
                     if(!($this->mysqli->query($sql))){
                         return 'ERROR: Error en la inserción.';
                     }else return 'Insercción completada con éxito.';
-                }else return 'ERROR: El atributo clave idcampeonato está vacío.';
-            }
+                }            
         
         
  

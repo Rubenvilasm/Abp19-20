@@ -36,12 +36,6 @@
                         <label><?php echo $strings['fechaFin']?> : </label>
 						<input type = 'date' name = 'fechaFin' id = 'fechaFin' onkeydown="return false"><br>
 					</div>
-				    
-					<div class="campo">
-						<label><?php echo $strings['numParticipantes']?> : </label>
-						<input type = 'number' name = 'numParticipantes' id = 'numParticipantes' placeholder = '<?php echo $strings['numParticipantes']?>' size = '25' value = '' onblur="return comprobarAlfanum(this,25)" ><br>
-						<p class="invalid" id="invalidNumber"><?php echo $strings['Formato no válido'];?></p>
-					</div>
 					<div class="campo">
 						<label><?php echo $strings['premios']?> : </label>
 						<input type = 'number' name = 'premios' id = 'premios' placeholder = '<?php echo $strings['premios']?>' size = '25' value = '' onblur="return comprobarAlfanum(this,25)" ><br>
@@ -49,14 +43,10 @@
 					</div>
 					<div class="campo">
 						<label><?php echo $strings['normativa']?> : </label>
-						<input type = 'number' name = 'normativa' id = 'normativa' placeholder = '<?php echo $strings['premios']?>' size = '25' value = '' onblur="return comprobarAlfanum(this,25)" ><br>
+						<input type = 'text' name = 'normativa' id = 'normativa' placeholder = '<?php echo $strings['premios']?>' size = '25' value = '' onblur="return comprobarAlfanum(this,25)" ><br>
 						<p class="invalid" id="invalidPremio"><?php echo $strings['Formato no válido'];?></p>
 					</div>
-					<div class="campo">
-						<label><?php echo $strings['borrado']?> : </label>
-						<input type = 'text' name = 'borrado' id = 'borrado' placeholder = '<?php echo $strings['borrado']?>' size = '25' value = '' onblur="return comprobarAlfanum(this,25)" ><br>
-						<p class="invalid" id="invaliBoolean"><?php echo $strings['Formato no válido'];?></p>
-					</div>
+					
 
                     <p class="invalid" id="invalidform"><?php echo $strings['Debe rellenar todos los campos'];?></p>
                     <button name="submit" value="upload" class="form-btn" type="submit"><i class="fas fa-check"></i></button>

@@ -35,7 +35,7 @@ session_start();
             }else{
                 include '../Models/ReservarPista_Model.php';
                             
-                $ReservarPista = new ReservarPista_Model($_POST['idReserva'],$_POST['idPista'],$_POST['idUsuario'],$_POST['fecha'],$_POST['precio']);
+                $ReservarPista = new ReservarPista_Model('','',$_POST['idUsuario'],$_POST['fecha'],'');
         
                 $respuesta = $ReservarPista->Register();
                 if($respuesta === true)

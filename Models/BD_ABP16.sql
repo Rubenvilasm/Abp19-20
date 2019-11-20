@@ -219,7 +219,7 @@ CREATE TABLE IF NOT EXISTS `participa` (
   
 
 INSERT INTO `usuario` (`login`, `password`, `nombre`, `apellidos`, `dni`, `fechaNacimiento`, `email`, `telefono`, `rol`, `socio`, `foto`,`borrado` ) VALUES
-('admin', 'admin', 'admin', 'el administrador', '95875625X', '2019-11-14', 'admin@padel.es', '677777777', 'ADMIN', 'SI','../Files/man-1.png','NO'),
+('admin', 'admin', 'admin', 'el administrador', '95875625X', '2019-11-14', 'admin@padel.es', '677777777', 'ADMINISTRADOR', 'SI','../Files/man-1.png','NO'),
 ('entrenador', 'entrenador', 'Pepe', 'el entrenador', '59117771C', '2019-11-15', 'entrenador@padel.es', '657555555', 'ENTRENADOR', 'SI','../Files/man-2.png','NO'),
 ('deportista1', 'deportista', 'Ruben', 'el deportista', '74291751A', '2001-11-11', 'deportista1@padel.es', '611111111', 'DEPORTISTA', 'NO','../Files/deportista-1.png','NO'),
 ('deportista2', 'deportista2', 'Carlos', 'el deportista2', '33653901W', '2002-1-2', 'deportista2@padel.es', '622222222', 'DEPORTISTA', 'SI','../Files/deportista-2.png','NO'),
@@ -273,7 +273,7 @@ INSERT INTO `categoria` (`idCategoria`,`nombre`,`nivel`,`idCampeonato`) VALUES
   ('4','MAC','UNO','2');
 
 INSERT INTO `partidoPromocionado` (`idPartidoPromocionado`,`nombre`,`fecha`,`idParticipante1`,`idParticipante2`,`idParticipante3`,`idParticipante4`,`numParticipantes`) VALUES 
-  ('1','Promocion1','2019-9-9','deportista1','deportista2','deportista3','deportista4','4'),
+  ('1','Promocion1','2019-9-9','deportista1','deportista2','deportista3','','3'),
   ('2','Promocion2','2019-9-10','deportista5','deportista6','deportista7','deportista8','4');
 
 INSERT INTO `enfrentamiento` (`idEnfrentamiento`,`idPareja1`,`idPareja2`,`idHorario`,`resultado`,`idPista`,`idGanador`,`idCampeonato`) VALUES 

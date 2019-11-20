@@ -18,16 +18,6 @@
                 <h1><?php echo $strings['Reservar Pista']; ?></h1>
                 <form name = 'Form' enctype="multipart/form-data" action='../Controllers/ReservarPista_Controller.php?accion=ADD' method='post' onsubmit="return comprobarRegistro(this)">
 				<div class="bloque">
-					<div class="campo">
-						<label><?php echo $strings['idReserva']?> : </label>
-						<input type = 'text' name = 'idReserva' id = 'idReserva' size = '25' value = '' onblur="comprobarAlfabetico(this,25)" ><br>
-						<p class="invalid" id="invalidnombre"><?php echo $strings['Formato no válido']?></p>
-					</div>
-					<div class="campo">
-						<label><?php echo $strings['idPista']?> : </label>
-						<input type = 'text' name = 'idPista' id = 'idPista' placeholder = '<?php echo $strings['Nombre']?>' size = '25' value = '' onblur="comprobarAlfabetico(this,25)" ><br>
-						<p class="invalid" id="invalidnombre"><?php echo $strings['Formato no válido']?></p>
-					</div>
                     <div class="campo">
 						<label><?php echo $strings['idUsuario']?> : </label>
 						<input type = 'text' name = 'idUsuario' id = 'idUsuario' placeholder = '<?php echo $strings['Nombre']?>' size = '25' value = '' onblur="comprobarAlfabetico(this,25)" ><br>
@@ -36,11 +26,6 @@
 				    <div class="campo">
 						<label><?php echo $strings['fecha']?> : </label>
 						<input type = 'date' name = 'fecha' id = 'fecha' onkeydown="return false"><br>
-					</div>
-					<div class="campo">
-						<label><?php echo $strings['precio']?> : </label>
-						<input type = 'text' name = 'precio' id = 'precio' placeholder = '<?php echo $strings['Participante 1']?>' size = '25' value = '' onblur="return comprobarAlfanum(this,25)" ><br>
-						<p class="invalid" id="invalidParticipante"><?php echo $strings['Formato no válido'];?></p>
 					</div>
 					
 

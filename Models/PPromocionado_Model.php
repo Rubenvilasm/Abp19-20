@@ -165,7 +165,7 @@ class PPromocionado_Model{
                 `idparticipante4` = '$login', `numParticipantes` ='4' WHERE (`idPartidoPromocionado` = '$this->idPartidoPromocionado')";
                 $temp2=$this->getFecha();
                 $fecha=$temp2['fecha'];
-                $sql="INSERT INTO reserva (
+                $sql2="INSERT INTO reserva (
                     idPista,
                     idUsuario,
                     fecha)
@@ -174,7 +174,8 @@ class PPromocionado_Model{
                                 'Partido Promocionado',
                                 '$fecha'
                                 )";
-                               $insercion=$this->mysqli->query($sql);
+                               $insercion=$this->mysqli->query($sql2);
+                              
             }else return 'Partido lleno';
     
             if(!($result = $this->mysqli->query($sql))){
