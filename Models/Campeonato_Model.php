@@ -37,6 +37,25 @@ class Campeonato_Model{
             return true;
     }
 
+    function addCategoria($idCategoria,$idCampeonato, $nivel){
+        $sql = "INSERT INTO categoria (
+                idCategoria,
+                nivel,
+                idCampeonato
+                ) VALUES (
+                    '".$idCategoria."',
+					'".$nivel."',
+					'".$idCampeonato."'
+                        )";
+
+        if (!$this->bd->query($sql)) { 
+            return 'Error en la inserción';
+        }
+        else{ 
+            return 'Inserción realizada con éxito'; 
+        }
+    }
+
     function ADD(){
 
             $sql = "INSERT INTO campeonato (
