@@ -36,8 +36,8 @@ session_start();
             }else{
                 include '../Models/Campeonato_Model.php';
                             
-                $Campeonato = new Campeonato_Model($_POST['idCampeonato'],$_POST['nombreCampeonato'],$_POST['fechaInicio'],$_POST['fechaFin'],$_POST['numParticipantes'],
-                $_POST['premios'],$_POST['normativa'],$_POST['borrado']);
+                $Campeonato = new Campeonato_Model($_POST['idCampeonato'],$_POST['nombreCampeonato'],$_POST['fechaInicio'],$_POST['fechaFin'],$_POST['premios'],$_POST['normativa'],'',
+                ,'');
         
                 $respuesta = $Campeonato->Register();
                 if($respuesta === true){

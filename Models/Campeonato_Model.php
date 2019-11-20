@@ -76,7 +76,6 @@ class Campeonato_Model{
                             '$this->normativa',
                             '$this->numParticipantes')";
             
-            echo $sql;
             if(!($this->mysqli->query($sql))){
                 return 'ERROR: Error en la inserción.';
             }else return 'Insercción completada con éxito.';
