@@ -17,9 +17,9 @@ session_start();
         //Conectamos a la BBDD
         include '../Models/Access_DB.php';
             //variable para el método
-            if(isset($_GET["accion"])){
-                    $accion = $_GET["accion"];
-            }
+        if(isset($_GET["accion"])){
+                $accion = $_GET["accion"];
+        }
     
     
         //variable para el parámetro
@@ -29,23 +29,20 @@ session_start();
     
         //función que llama a la función add del modelo
         function ADD(){
-            if(!isset($_POST['submit']))
-            {
+            if(!isset($_POST['submit'])){
                 include '../Views/ReservarPista/ReservarPistaAdd_View.php';
                 new ReservarPista_ADD();
-    
             }else{
                 include '../Models/ReservarPista_Model.php';
                             
-                            $ReservarPista = new ReservarPista_Model($_POST['idReserva'],$_POST['idPista'],$_POST['idUsuario'],$_POST['fecha'],$_POST['precio']);
-                    
-                            $respuesta = $ReservarPista->Register();
+                $ReservarPista = new ReservarPista_Model($_POST['idReserva'],$_POST['idPista'],$_POST['idUsuario'],$_POST['fecha'],$_POST['precio']);
+        
+                $respuesta = $ReservarPista->Register();
                 if($respuesta === true)
                 {
                     $respuesta = $ReservarPista->ADD();
                     include '../Views/MESSAGE.php';
                     new MESSAGE($respuesta, './ReservarPista_Controller.php?accion=SHOWALL');
-    
                 }
             }
         }
@@ -81,19 +78,15 @@ session_start();
                 new ReservarPista_DELETE($datos);
     
             }else{
-    
-    
-                $respuesta = $ReservarPista->DELETE($clave);						
-                            
+                $respuesta = $ReservarPista->DELETE($clave);       
                     include '../Views/MESSAGE.php';
                     new MESSAGE($respuesta, './ReservarPista_Controller.php?accion=SHOWALL');
-    
             }
         }
 
         function SHOWCURRENT($clave){
             include '../Models/ReservarPista_Model.php';
-						$ReservarPista = new ReservarPista_Model($clave,'','','','');
+            $ReservarPista = new ReservarPista_Model($clave,'','','','');
             $datos = $ReservarPista->SEARCH();
             include '../Views/ReservarPista/ReservarPistaShowCurrent_View.php';
             new ReservarPista_SHOWCURRENT($datos);
@@ -101,7 +94,7 @@ session_start();
 
         function SHOWALL(){
             include '../Models/ReservarPista_Model.php';
-						$ReservarPista = new ReservarPista_Model('','','','','');
+            $ReservarPista = new ReservarPista_Model('','','','','');
             $datos = $ReservarPista->SHOWALL();
           
             if(sizeof($datos) != 0)

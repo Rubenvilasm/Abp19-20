@@ -1,8 +1,8 @@
 <?php
 
 /*
-Creado el : 10-11-2018
-Creado por: Omega
+Creado el : 18-11-2019
+Creado por: Ruben
 
 Controlador que recibe las peticiones del usuario y ejecuta las acciones correspondientes sobre el modelo de datos SUBASTA_Model y las vistas.
 */
@@ -17,9 +17,9 @@ session_start();
         //Conectamos a la BBDD
         include '../Models/Access_DB.php';
             //variable para el método
-            if(isset($_GET["accion"])){
-                    $accion = $_GET["accion"];
-            }
+        if(isset($_GET["accion"])){
+            $accion = $_GET["accion"];
+        }
     
     
         //variable para el parámetro
@@ -29,11 +29,10 @@ session_start();
     
         //función que llama a la función add del modelo
         function ADD(){
-            if(!isset($_POST['submit']))
-            {
+            if(!isset($_POST['submit'])){
                 include '../Views/Campeonato/CampeonatoAdd_View.php';
                 new Campeonato_ADD();
-    
+
             }else{
                 include '../Models/Campeonato_Model.php';
                             
@@ -41,12 +40,10 @@ session_start();
                 $_POST['premios'],$_POST['normativa'],$_POST['borrado']);
         
                 $respuesta = $Campeonato->Register();
-                if($respuesta === true)
-                {
+                if($respuesta === true){
                     $respuesta = $Campeonato->ADD();
                     include '../Views/MESSAGE.php';
                     new MESSAGE($respuesta, './Campeonato_Controller.php?accion=SHOWALL');
-    
                 }
             }
         }
@@ -74,30 +71,23 @@ session_start();
 
         function DELETE($clave){
             include '../Models/Campeonato_Model.php';
-                    $Campeonato = new Campeonato_Model($clave,'','','','','',
-                    '','');
+            $Campeonato = new Campeonato_Model($clave,'','','','','','','');
     
-            if(!isset($_POST['submit']))
-            {
+            if(!isset($_POST['submit'])){
                 $datos = $Campeonato->rellenarDatos();
                 include '../Views/Campeonato/CampeonatoDelete_View.php';						
                 new Campeonato_DELETE($datos);
-    
             }else{
-    
-    
                 $respuesta = $Campeonato->DELETE($clave);						
                             
-                    include '../Views/MESSAGE.php';
-                    new MESSAGE($respuesta, './Campeonato_Controller.php?accion=SHOWALL');
-    
+                include '../Views/MESSAGE.php';
+                new MESSAGE($respuesta, './Campeonato_Controller.php?accion=SHOWALL');
             }
         }
 
         function SHOWCURRENT($clave){
             include '../Models/Campeonato_Model.php';
-						$Campeonato = new Campeonato_Model($clave,'','','','','',
-						'','');
+            $Campeonato = new Campeonato_Model($clave,'','','','','','','');
             $datos = $Campeonato->rellenarDatos();
             include '../Views/Campeonato/CampeonatoShowCurrent_View.php';
             new Campeonato_SHOWCURRENT($datos);
@@ -105,12 +95,10 @@ session_start();
 
         function SHOWALL(){
             include '../Models/Campeonato_Model.php';
-						$Campeonato = new Campeonato_Model('','','','','','',
-                        '','');
+            $Campeonato = new Campeonato_Model('','','','','','','','');
             $datos = $Campeonato->SHOWALL();
           
-            if(sizeof($datos) != 0)
-            {
+            if(sizeof($datos) != 0){
                 include '../Views/Campeonato/CampeonatoShowall_View.php';
                 new  Campeonato_SHOWALL($datos);
             }else{

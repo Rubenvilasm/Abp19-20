@@ -24,7 +24,6 @@ Contiene el código html de la cabecera de las vistas
 		<link href="../Views/css/estilos.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css">
-		<link href="../Views/css/jquery-ui.css" rel="stylesheet" type="text/css">
 <!-- BOOTSTRAP link -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	 crossorigin="anonymous">
@@ -34,19 +33,13 @@ Contiene el código html de la cabecera de las vistas
 	 crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
 	 crossorigin="anonymous"></script>
-	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="../Views/css/style.css" />
 
 	<!-- font Awesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
 	 crossorigin="anonymous">
-		<script src="../Views/js/jquery.js"></script>
 		<script src="../Views/js/main.js"></script>
 		<script src="../Views/js/md5.js"></script>
 		<script src="../Views/js/validaciones.js"></script>
-		
-		<script src="../Views/js/jquery-ui.js"></script>
-		<script src="../Views/js/datepicker.js"></script>
 
     	<title> Top Padel</title>
     	<link rel="icon" href="#" type="image/png">
