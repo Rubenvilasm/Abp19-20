@@ -15,10 +15,10 @@ if (!IsAuthenticated()){
 else{
     //Conectamos a la BBDD
     include '../Models/Access_DB.php';
-		//variable para el método
-		if(isset($_GET["accion"])){
-                $accion = $_GET["accion"];
-		}
+    //variable para el método
+    if(isset($_GET["accion"])){
+            $accion = $_GET["accion"];
+    }
 
 
     //variable para el parámetro
@@ -28,26 +28,22 @@ else{
 
     //función que llama a la función add del modelo
     function ADD(){
-        if(!isset($_POST['submit']))
-        {
+        if(!isset($_POST['submit'])){
             include '../Views/Usuarios/UsuarioAdd_View.php';
             new Usuario_ADD();
-
         }else{
             include '../Models/USUARIO_Model.php';
-						if(isset($_FILES['foto']))
-														{
-																$name_file = $_FILES['foto']['name'];
-																$tmp_name = $_FILES['foto']['tmp_name'];
-																$local_image = "../Files/Attached_files/";
-																move_uploaded_file($tmp_name, $local_image.$name_file);
-														}
-						$usuario = new USUARIO_Model($_POST['login'],$_POST['password'],$_POST['nombre'],$_POST['apellidos'],$_POST['dni'],$_POST['fechaNac'],
-						$_POST['email'],$_POST['telefono'],$_POST['rol'],$_POST['socio'],$_FILES['foto']['name'],'');
+            if(isset($_FILES['foto'])){
+                $name_file = $_FILES['foto']['name'];
+                $tmp_name = $_FILES['foto']['tmp_name'];
+                $local_image = "../Files/Attached_files/";
+                move_uploaded_file($tmp_name, $local_image.$name_file);
+            }
+            $usuario = new USUARIO_Model($_POST['login'],$_POST['password'],$_POST['nombre'],$_POST['apellidos'],$_POST['dni'],$_POST['fechaNac'],
+            $_POST['email'],$_POST['telefono'],$_POST['rol'],$_POST['socio'],$_FILES['foto']['name'],'');
 
-						$respuesta = $usuario->Register();
-            if($respuesta === true)
-            {
+            $respuesta = $usuario->Register();
+            if($respuesta === true){
                 $respuesta = $usuario->ADD();
                 include '../Views/MESSAGE.php';
                 new MESSAGE($respuesta, './Usuarios_Controller.php?accion=SHOWALL');
@@ -59,15 +55,13 @@ else{
 
     //método que llama a la función SEARCH del modelo
     function SEARCH(){
-        if(!isset($_POST['submit']))
-        {
+        if(!isset($_POST['submit'])){
             include '../Views/Usuarios/UsuariosSearch_View.php';
             new Usuario_SEARCH();
-
         }else{
             include '../Models/USUARIO_Model.php';
-						$usuario = new USUARIO_Model($_POST['login'],'',$_POST['nombre'],$_POST['apellidos'],$_POST['dni'],$_POST['fecha_nac'],
-						$_POST['email'],$_POST['telefono'],$_POST['rol'],$_POST['socio'],'','');
+            $usuario = new USUARIO_Model($_POST['login'],'',$_POST['nombre'],$_POST['apellidos'],$_POST['dni'],$_POST['fecha_nac'],
+            $_POST['email'],$_POST['telefono'],$_POST['rol'],$_POST['socio'],'','');
             $datos = $usuario->SEARCH();
             if(!is_string($datos)){
                 include '../Views/Usuarios/UsuariosShowAll_View.php';
@@ -83,8 +77,8 @@ else{
      //$clave: PK de la tupla
      function DELETE($clave){
         include '../Models/USUARIO_Model.php';
-				$usuario = new USUARIO_Model($clave,'','','','','',
-				'','','','','','');
+        $usuario = new USUARIO_Model($clave,'','','','','',
+        '','','','','','');
 
         if(!isset($_POST['submit']))
         {
@@ -93,13 +87,9 @@ else{
             new Usuario_DELETE($datos);
 
         }else{
-
-
-            $respuesta = $usuario->DELETE($clave);						
-						
-                include '../Views/MESSAGE.php';
-                new MESSAGE($respuesta, './Usuarios_Controller.php?accion=SHOWALL');
-
+            $respuesta = $usuario->DELETE($clave);						            
+            include '../Views/MESSAGE.php';
+            new MESSAGE($respuesta, './Usuarios_Controller.php?accion=SHOWALL');
         }
     }
 
@@ -110,9 +100,8 @@ else{
         if(!isset($_POST['submit']))
         {
             include '../Models/USUARIO_Model.php';
-						$usuario = new USUARIO_Model($clave,'','','','','',
-                        '','','','','','');
-                        $foto=$usuario->GET_FOTO();
+            $usuario = new USUARIO_Model($clave,'','','','','','','','','','','');
+            $foto=$usuario->GET_FOTO();
             $datos = $usuario->SEARCH();
             include '../Views/Usuarios/UsuarioEdit_View.php';
             new Usuario_EDIT($datos);
@@ -120,38 +109,33 @@ else{
         }else{
             include '../Models/USUARIO_Model.php';
 
-            if(isset($_FILES['foto']) && $_FILES['foto']!='')
-            {
-                    $name_file = $_FILES['foto']['name'];
-                    $tmp_name = $_FILES['foto']['tmp_name'];
-                    $local_image = "../Files/Attached_files/";
-                    move_uploaded_file($tmp_name, $local_image.$name_file);
-                    $usuario = new USUARIO_Model($_POST['login'],$_POST['password'],$_POST['nombre'],$_POST['apellidos'],$_POST['dni'],$_POST['fecha_nac'],
-                        $_POST['email'],$_POST['telefono'],$_POST['rol'],$_POST['socio'],$_FILES['foto']['name'],'');
-                        $respuesta = $usuario->Edit($clave);
-																		include '../Views/MESSAGE.php';
-																		new MESSAGE($respuesta, './Usuarios_Controller.php?accion=SHOWALL');
+            if(isset($_FILES['foto']) && $_FILES['foto']!=''){
+                $name_file = $_FILES['foto']['name'];
+                $tmp_name = $_FILES['foto']['tmp_name'];
+                $local_image = "../Files/Attached_files/";
+                move_uploaded_file($tmp_name, $local_image.$name_file);
+                $usuario = new USUARIO_Model($_POST['login'],$_POST['password'],$_POST['nombre'],$_POST['apellidos'],$_POST['dni'],$_POST['fecha_nac'],
+                $_POST['email'],$_POST['telefono'],$_POST['rol'],$_POST['socio'],$_FILES['foto']['name'],'');
+                $respuesta = $usuario->Edit($clave);
+                include '../Views/MESSAGE.php';
+                new MESSAGE($respuesta, './Usuarios_Controller.php?accion=SHOWALL');
             }else{
-            $usuario = new USUARIO_Model($_POST['login'],$_POST['password'],$_POST['nombre'],$_POST['apellidos'],$_POST['dni'],$_POST['fecha_nac'],
-            $_POST['email'],$_POST['telefono'],$_POST['rol'],$_POST['socio'],$foto,'');
-																$respuesta = $usuario->Edit($clave);
-																		include '../Views/MESSAGE.php';
-																		new MESSAGE($respuesta, './Usuarios_Controller.php?accion=SHOWALL');}
-														}
+                $usuario = new USUARIO_Model($_POST['login'],$_POST['password'],$_POST['nombre'],$_POST['apellidos'],$_POST['dni'],$_POST['fecha_nac'],
+                $_POST['email'],$_POST['telefono'],$_POST['rol'],$_POST['socio'],$foto,'');
+                $respuesta = $usuario->Edit($clave);
 
-
-
-
-
-        
+                include '../Views/MESSAGE.php';
+                new MESSAGE($respuesta, './Usuarios_Controller.php?accion=SHOWALL');
+            }
+		}
     }
 
      //método muestra la información de una tupla
      //$clave: PK de la tupla
      function SHOWCURRENT($clave){
             include '../Models/USUARIO_Model.php';
-						$usuario = new USUARIO_Model($clave,'','','','','',
-						'','','','','','','');
+            $usuario = new USUARIO_Model($clave,'','','','','',
+            '','','','','','','');
             $datos = $usuario->SEARCH();
             include '../Views/Usuarios/UsuarioShowCurrent_View.php';
             new Usuario_SHOWCURRENT($datos);
@@ -161,12 +145,11 @@ else{
     function SHOWALL(){
 
             include '../Models/Usuario_Model.php';
-						$usuario = new Usuario_Model('','','','','','',
-                        '','','','','','');
+            $usuario = new Usuario_Model('','','','','','',
+            '','','','','','');
             $datos = $usuario->SHOWALL();
           
-            if(sizeof($datos) != 0)
-            {
+            if(sizeof($datos) != 0){
                 include '../Views/Usuarios/UsuariosShowall_View.php';
                 new  USUARIO_SHOWALL($datos);
             }else{
@@ -178,8 +161,7 @@ else{
 
     }
     //ejecutamos el método correspondiente
-    if(!isset($param))
-    {
+    if(!isset($param)){
         $accion();
     }else{
         $accion($param);

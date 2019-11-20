@@ -25,7 +25,7 @@
 
 		<div class="upload-btn-wrapper">
 			<button class="btn"><?php echo $strings['Seleccionar archivo'];?></button>
-			<input type="hidden" name="foto" value="<?php echo $datos['foto'];?>">
+			<input type="hidden" name="fotoNueva" id="fotoNueva" value="<?php echo $datos['foto'];?>">
 			<input type="file" name="foto" />
 </div>
 </div>

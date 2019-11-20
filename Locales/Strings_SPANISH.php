@@ -138,6 +138,10 @@ array(
 	'Inscrito correctamente'=>'Inscrito correctamente',
 	'Partido lleno'=>'Partido lleno',
 	'Partido ya completo'=>'Partido ya completo'
+	'Participante 1' => 'Participante 1',
+	'Participante 2' => 'Participante 2',
+	'Participante 3' => 'Participante 3',
+	'Participante 4' => 'Participante 4'
 
 
  

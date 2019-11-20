@@ -16,10 +16,10 @@ session_start();
     }else{
         //Conectamos a la BBDD
         include '../Models/Access_DB.php';
-            //variable para el método
-            if(isset($_GET["accion"])){
-                    $accion = $_GET["accion"];
-            }
+        //variable para el método
+        if(isset($_GET["accion"])){
+                $accion = $_GET["accion"];
+        }
     
     
         //variable para el parámetro
@@ -29,20 +29,17 @@ session_start();
     
         //función que llama a la función add del modelo
         function ADD(){
-            if(!isset($_POST['submit']))
-            {
+            if(!isset($_POST['submit'])){
                 include '../Views/PPromocionado/PPromocionadoAdd_View.php';
                 new PPromocionado_ADD();
-    
             }else{
                 include '../Models/PPromocionado_Model.php';
                             
-                            $PPromocionado = new PPromocionado_Model($_POST['idPartidoPromocionado'],$_POST['nombre'],$_POST['fecha'],$_POST['idParticipante1'],
-                            $_POST['idParticipante2'],$_POST['idParticipante3'],$_POST['idParticipante4'],$_POST['numParticipantes']);
-                    
-                            $respuesta = $PPromocionado->Register();
-                if($respuesta === true)
-                {
+                $PPromocionado = new PPromocionado_Model($_POST['idPartidoPromocionado'],$_POST['nombre'],$_POST['fecha'],$_POST['idParticipante1'],
+                $_POST['idParticipante2'],$_POST['idParticipante3'],$_POST['idParticipante4'],$_POST['numParticipantes']);
+        
+                $respuesta = $PPromocionado->Register();
+                if($respuesta === true){
                     $respuesta = $PPromocionado->ADD();
                     include '../Views/MESSAGE.php';
                     new MESSAGE($respuesta, './PPromocionado_Controller.php?accion=SHOWALL');
@@ -55,7 +52,6 @@ session_start();
             if(!isset($_POST['submit'])){
                 include '../Views/PPromocionado/PPromocionadoSearch_View.php';
                 new PPromocionado_SEARCH();
-    
             }else{
                 include '../Models/PPromocionado_Model.php';
                 $PPromocionado = new PPromocionado_Model($_POST['idPartidoPromocionado'],$_POST['nombre'],$_POST['fecha'],$_POST['idParticipante1'],$_POST['idParticipante2'],$_POST['idParticipante3'],$_POST['idParticipante4'],'');
@@ -72,30 +68,23 @@ session_start();
 
         function DELETE($clave){
             include '../Models/PPromocionado_Model.php';
-                    $PPromocionado = new PPromocionado_Model($clave,'','','','','',
-                    '','');
+            $PPromocionado = new PPromocionado_Model($clave,'','','','','',
+            '','');
     
-            if(!isset($_POST['submit']))
-            {
+            if(!isset($_POST['submit'])){
                 $datos = $PPromocionado->RellenaDatos();
                 include '../Views/PPromocionado/PPromocionadoDelete_View.php';						
                 new PPromocionado_DELETE($datos);
-    
             }else{
-    
-                
-                $respuesta = $PPromocionado->DELETE($clave);						
-                            
-                    include '../Views/MESSAGE.php';
-                    new MESSAGE($respuesta, './PPromocionado_Controller.php?accion=SHOWALL');
-    
+                $respuesta = $PPromocionado->DELETE($clave);						         
+                include '../Views/MESSAGE.php';
+                new MESSAGE($respuesta, './PPromocionado_Controller.php?accion=SHOWALL');
             }
         }
 
         function SHOWCURRENT($clave){
             include '../Models/PPromocionado_Model.php';
-						$PPromocionado = new PPromocionado_Model($clave,'','','','','',
-						'','');
+            $PPromocionado = new PPromocionado_Model($clave,'','','','','','','');
             $datos = $PPromocionado->RellenaDatos();
             include '../Views/PPromocionado/PPromocionadoShowCurrent_View.php';
             new PPromocionado_SHOWCURRENT($datos);
@@ -103,8 +92,8 @@ session_start();
 
         function SHOWALL(){
             include '../Models/PPromocionado_Model.php';
-						$PPromocionado = new PPromocionado_Model('','','','','','',
-                        '','');
+            $PPromocionado = new PPromocionado_Model('','','','','','',
+            '','');
             $datos = $PPromocionado->SHOWALL();
           
             if(sizeof($datos) != 0)

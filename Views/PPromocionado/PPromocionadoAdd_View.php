@@ -54,12 +54,13 @@
 					</div>
 					<div class="campo">
 						<label><?php echo $strings['numParticipantes']?> :</label>
-						<input type = 'number' name = 'numParticipantes'><?php echo $strings['Formato no válido'];?><br>
+						<input type = 'number' name = 'numParticipantes'>
 					</div>
 
                     <p class="invalid" id="invalidform"><?php echo $strings['Debe rellenar todos los campos'];?></p>
                     <button name="submit" value="upload" class="form-btn" type="submit"><i class="fas fa-check"></i></button>
                     <button class="form-btn" type="button" role="link" onclick="window.location='../Controllers/PPromocionado_Controller.php?accion=SHOWALL';" ><i class="fas fa-times"></i></button>
+				</div>
                 </form>
             </div>
 <?php

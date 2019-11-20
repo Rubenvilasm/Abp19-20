@@ -35,7 +35,7 @@ $accion='';*/
 		<div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 
-				<li class="<?php echo $usuario ;?> " ><a href="../Controllers/Usuario_Controller.php?accion=SHOWALL"><?php echo $strings['Reservar Pista']; ?><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-floppy-saved"></span></a></li>
+				<li class="<?php echo $usuario ;?> " ><a href="../Controllers/ReservarPista_Controller.php?accion=SHOWALL"><?php echo $strings['Reservar Pista']; ?><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-floppy-saved"></span></a></li>
 				<?php
 		
 		if( ($_SESSION['rol'] == "Administrador") ||  ($_SESSION['rol'] == "Entrenador") ){
@@ -46,7 +46,7 @@ $accion='';*/
 	?>
 				<?php
 		
-		if ($_SESSION['rol'] == "Administrador") {
+		if ($_SESSION['rol']== 'Administrador') {
 		?>
 				<li class="<?php echo $accion ;?> " ><a href="../Controllers/Usuarios_Controller.php?accion=SHOWALL"><?php echo $strings['Gestionar Usuarios']; ?><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a></li>
 	<?php
