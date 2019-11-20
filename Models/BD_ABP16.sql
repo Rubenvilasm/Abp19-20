@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `USUARIO` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 CREATE TABLE IF NOT EXISTS `pareja` (
-  `idPareja` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+  `idPareja` int AUTO_INCREMENT COLLATE latin1_spanish_ci NOT NULL,
   `idDeportista1` varchar(128) COLLATE latin1_spanish_ci NOT NULL,
   `idDeportista2` varchar(128) COLLATE latin1_spanish_ci NOT NULL,
 
@@ -100,8 +100,8 @@ CREATE TABLE IF NOT EXISTS `pareja` (
 
   CREATE TABLE IF NOT EXISTS `enfrentamiento`(
     `idEnfrentamiento` varchar(25),
-    `idPareja1` varchar(25),
-    `idPareja2` varchar(25),
+    `idPareja1` int,
+    `idPareja2` int,
     `idHorario` varchar(25),
     `resultado` varchar(25),
     `idPista` varchar(25),
@@ -117,8 +117,8 @@ CREATE TABLE IF NOT EXISTS `pareja` (
   
   CREATE TABLE IF NOT EXISTS `partido` (
     `idPartido` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
-    `idPareja1` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
-    `idPareja2` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+    `idPareja1` int COLLATE latin1_spanish_ci NOT NULL,
+    `idPareja2` int COLLATE latin1_spanish_ci NOT NULL,
     `fecha` date NOT NULL,
     `resultado` varchar(25) COLLATE latin1_spanish_ci DEFAULT NULL,
     `idPista` varchar(25) COLLATE latin1_spanish_ci DEFAULT NULL,
@@ -147,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `pareja` (
     `numParticipantes` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `idGrupo` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `idGanador` varchar(25) COLLATE latin1_spanish_ci NULL,
-    `idPareja` varchar(25),
+    `idPareja` int,
     `idCampeonato` varchar(25),
 
     PRIMARY KEY (idGrupo,idCampeonato)
@@ -168,13 +168,17 @@ CREATE TABLE IF NOT EXISTS `pareja` (
     `idPlayOff` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `idGrupo` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `eliminado` BIT DEFAULT 0,
-    `idPareja` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+    `idPareja` int COLLATE latin1_spanish_ci NOT NULL,
 
     PRIMARY KEY (idPlayOff),
     FOREIGN KEY (idPareja) REFERENCES pareja(idPareja),
     FOREIGN KEY (idGrupo) REFERENCES grupo (idGrupo)
   )ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
+CREATE TABLE IF NOT EXISTS `participa` (
+  `idPareja` int(11) NOT NULL,
+  `idCampeonato` varchar(50) COLLATE latin1_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
    
 
 
@@ -233,14 +237,14 @@ INSERT INTO `usuario` (`login`, `password`, `nombre`, `apellidos`, `dni`, `fecha
 ('deportista14', 'deportista14', 'Adrian', 'el deportista14', '07226831R', '2014-1-14', 'deportista14@padel.es', '614141414', 'DEPORTISTA', 'SI','../Files/deportista-2.png','NO');
 
 
-INSERT INTO `pareja` (`idPareja`,`idDeportista1`,`idDeportista2`) VALUES 
-('pareja1','deportista1','deportista2'),
-('pareja2','deportista3','deportista4'),
-('pareja3','deportista5','deportista6'),
-('pareja4','deportista7','deportista8'),
-('pareja5','deportista9','deportista10'),
-('pareja6','deportista11','deportista12'),
-('pareja7','deportista13','deportista14');
+INSERT INTO `pareja` (`idDeportista1`,`idDeportista2`) VALUES 
+('deportista1','deportista2'),
+('deportista3','deportista4'),
+('deportista5','deportista6'),
+('deportista7','deportista8'),
+('deportista9','deportista10'),
+('deportista11','deportista12'),
+('deportista13','deportista14');
 
 INSERT INTO `pista` (`idPista`,`nombre`,`especificaciones`) VALUES 
   ('1','Pista01','Cesped con pared de cristal.'),
@@ -273,7 +277,7 @@ INSERT INTO `partidoPromocionado` (`idPartidoPromocionado`,`nombre`,`fecha`,`idP
   ('2','Promocion2','2019-9-10','deportista5','deportista6','deportista7','deportista8','4');
 
 INSERT INTO `enfrentamiento` (`idEnfrentamiento`,`idPareja1`,`idPareja2`,`idHorario`,`resultado`,`idPista`,`idGanador`,`idCampeonato`) VALUES 
-  ('1','pareja1','pareja2','idHorario','','1','pareja1','1');
+  ('1','1','1','idHorario','','1','pareja1','1');
 
 
 /*INSERT INTO `grupo` VALUES

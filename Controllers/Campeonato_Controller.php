@@ -107,6 +107,59 @@ session_start();
                 new MESSAGE($mens, '../Controllers/Index_Controller.php');
             }
        }
+       function INSCRIBIRSE($clave){
+        include '../Models/Campeonato_Model.php';
+        $Campeonato = new Campeonato_Model($clave,'','','','','',
+        '','');
+         $participantes = $Campeonato->getNumParticipantes($clave);
+       
+         if($participantes['numParticipantes']<4)
+         {
+             $datos=$Campeonato->INSCRIBIRSE($_SESSION['login']);
+             include '../Views/MESSAGE.php';
+             new MESSAGE($datos, '../Controllers/Index_Controller.php');
+            
+         }else{
+             $mens = "Partido ya completo";
+             include '../Views/MESSAGE.php';
+             new MESSAGE($mens, '../Controllers/Index_Controller.php');
+         }
+    }
+    function PAREJA($clave){
+        if(!isset($_POST['submit'])){
+            include '../Views/Campeonato/CampeonatoPareja_View.php';
+            new Campeonato_PAREJA($clave);
+
+        }else{
+            include '../Models/Pareja_Model.php';
+            include '../Models/Participa_Model.php';
+            $Pareja = new Pareja_Model('',$_POST['participante2'],$_POST['participante1']);
+            $respPareja=$Pareja->ADD();
+            $idPareja=$Pareja->Get_ID();
+            $Participa= new Participa_Model($idPareja,$clave);
+            $respParticipa=$Participa->ADD();    
+            
+                include '../Views/MESSAGE.php';
+                new MESSAGE($respParticipa, './Campeonato_Controller.php?accion=SHOWALL');
+            
+        }
+    }
+    function VERINSCRIPCIONES(){
+     include '../Models/Campeonato_Model.php';
+                  $Campeonato = new Campeonato_Model('','','','','','',
+                  '','');
+      $datos = $Campeonato->SHOWALL();
+    
+      if(sizeof($datos) != 0)
+      {
+          include '../Views/Campeonato/CampeonatoVerInscripciones_View.php';
+          new  Campeonato_VERINSCRIPCIONES($datos);
+      }else{
+          $mens = "No hay partidos promocionados registrados";
+          include '../Views/MESSAGE.php';
+          new MESSAGE($mens, '../Controllers/Index_Controller.php');
+      }
+ }
 
        if(!isset($param)){
             $accion();

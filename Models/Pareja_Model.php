@@ -33,6 +33,19 @@ class Pareja_Model{
             return 'ERROR: Fallo en la consulta sobre la base de datos.';
         }else return $result;
     }
+    function Get_ID(){
+        $sql = "SELECT idPareja FROM pareja WHERE((`idDeportista1`= '$this->idDeportista1') AND
+        (`idDeportista2`= '$this->idDeportista2') OR
+        (`idDeportista1`= '$this->idDeportista2') AND
+        (`idDeportista2`= '$this->idDeportista1'))";
+
+        if(!($result = $this->mysqli->query($sql))){
+            return 'ERROR: Fallo en la consulta sobre la base de datos.';
+        }else{
+           $datos= mysqli_fetch_assoc($result);
+        } return $datos['idPareja'];
+    }
+
 
     function GET_CAPITAN(){
         $sql = "SELECT idDeportista1 FROM pareja WHERE(`idPareja` = '$this->idPareja')";
@@ -71,11 +84,9 @@ class Pareja_Model{
             }else{
                 if($result->num_rows == 0){
                     $sql = "INSERT INTO pareja (
-                        idPareja,
                         idDeportista1,
                         idDeportista2)
                             VALUES(
-                                '$this->idPareja',
                                 '$this->idDeportista1',
                                 '$this->idDeportista2')";
                     

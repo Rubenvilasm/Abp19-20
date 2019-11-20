@@ -114,7 +114,6 @@ session_start();
           
             if($participantes['numParticipantes']<4)
             {
-                echo $_SESSION['login'];
                 $datos=$PPromocionado->INSCRIBIRSE($_SESSION['login']);
                 include '../Views/MESSAGE.php';
                 new MESSAGE($datos, '../Controllers/Index_Controller.php');
