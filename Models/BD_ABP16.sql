@@ -376,12 +376,11 @@ IF NOT EXISTS `ligaRegular`
   ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 
-INSERT INTO `usuario` (`
-login`,
+INSERT INTO `usuario` (
+`login`,
 `password`,
 `nombre`,
-`apellidos
-`, `dni`, `fechaNacimiento`, `email`, `telefono`, `rol`, `socio`, `foto`,`borrado` ) VALUES
+`apellidos`, `dni`, `fechaNacimiento`, `email`, `telefono`, `rol`, `socio`, `foto`,`borrado` ) VALUES
 ('admin', 'admin', 'admin', 'el administrador', '95875625X', '2019-11-14', 'admin@padel.es', '677777777', 'ADMIN', 'SI','../Files/man-1.png','NO'),
 ('entrenador', 'entrenador', 'Pepe', 'el entrenador', '59117771C', '2019-11-15', 'entrenador@padel.es', '657555555', 'ENTRENADOR', 'SI','../Files/man-2.png','NO'),
 ('deportista1', 'deportista', 'Ruben', 'el deportista', '74291751A', '2001-11-11', 'deportista1@padel.es', '611111111', 'DEPORTISTA', 'NO','../Files/deportista-1.png','NO'),
@@ -400,9 +399,7 @@ login`,
 ('deportista14', 'deportista14', 'Adrian', 'el deportista14', '07226831R', '2014-1-14', 'deportista14@padel.es', '614141414', 'DEPORTISTA', 'SI','../Files/deportista-2.png','NO');
 
 
-INSERT INTO `pareja` (`
-idPareja`,`idDeportista1
-`,`idDeportista2`) VALUES
+INSERT INTO `pareja` (`idPareja`,`idDeportista1`,`idDeportista2`) VALUES
 ('pareja1','deportista1','deportista2'),
 ('pareja2','deportista3','deportista4'),
 ('pareja3','deportista5','deportista6'),
@@ -411,9 +408,7 @@ idPareja`,`idDeportista1
 ('pareja6','deportista11','deportista12'),
 ('pareja7','deportista13','deportista14');
 
-INSERT INTO `pista` (`
-idPista`,`nombre
-`,`especificaciones`) VALUES
+INSERT INTO `pista` (`idPista`,`nombre`,`especificaciones`) VALUES
 ('1','Pista01','Cesped con pared de cristal.'),
 ('2','Pista02','Cemento con pared de cristal.'),
 ('3','Pista03','Cemento con pared de Cemento.'),
@@ -422,38 +417,28 @@ idPista`,`nombre
 ('6','Pista06','Parquet con pared de cristal.'),
 ('7','Pista07','Parquet con pared de cristal.');
 
-INSERT INTO `reserva` (`
-idReserva`,`idPista
-`,`idUsuario`,`fecha`) VALUES
+INSERT INTO `reserva` (`idReserva`,`idPista`,`idUsuario`,`fecha`) VALUES
 ('1','1','deportista1','2019-11-17'),
 ('2','2','deportista1','2019-11-17'),
 ('3','1','deportista1','2019-11-18'),
 ('4','1','deportista1','2019-11-18');
 
-INSERT INTO `campeonato` (`
-idCampeonato`,`nombreCampeonato
-`,`fechaInicio`,`fechaFin`,`numParticipantes`,`premios`,`normativa`,`borrado`) VALUES
+INSERT INTO `campeonato` (`idCampeonato`,`nombreCampeonato`,`fechaInicio`,`fechaFin`,`numParticipantes`,`premios`,`normativa`,`borrado`) VALUES
 ('1','uno','2019-10-10','2019-10-20','50','300000','../Files/normativa.pdf','NO'),
 ('2','dos','2019-10-1','2019-10-8','10','200','../Files/normativa.pdf','NO'),
 ('3','tres','2019-10-10','2019-10-20','50','300000','../Files/normativa.pdf','NO');
 
-INSERT INTO `categoria` (`
-idCategoria`,`nombre
-`,`nivel`,`idCampeonato`) VALUES
+INSERT INTO `categoria` (`idCategoria`,`nombre`,`nivel`,`idCampeonato`) VALUES
 ('1','MAC','UNO','1'),
 ('2','FEM','DOS','1'),
 ('3','MIXTO','TRES','1'),
 ('4','MAC','UNO','2');
 
-INSERT INTO `partidoPromocionado` (`
-idPartidoPromocionado`,`nombre
-`,`fecha`,`idParticipante1`,`idParticipante2`,`idParticipante3`,`idParticipante4`) VALUES
+INSERT INTO `partidoPromocionado` (`idPartidoPromocionado`,`nombre`,`fecha`,`idParticipante1`,`idParticipante2`,`idParticipante3`,`idParticipante4`) VALUES
 ('1','Promocion1','2019-9-9','deportista1','deportista2','deportista3','deportista4'),
 ('2','Promocion2','2019-9-10','deportista5','deportista6','deportista7','deportista8');
 
-INSERT INTO `enfrentamiento` (`
-idEnfrentamiento`,`idPareja1
-`,`idPareja2`,`idHorario`,`resultado`,`idPista`,`idGanador`,`idCampeonato`) VALUES
+INSERT INTO `enfrentamiento` (`idEnfrentamiento`,`idPareja1`,`idPareja2`,`idHorario`,`resultado`,`idPista`,`idGanador`,`idCampeonato`) VALUES
 ('1','pareja1','pareja2','idHorario','','1','pareja1','1');
 
 

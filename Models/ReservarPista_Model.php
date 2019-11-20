@@ -56,17 +56,20 @@ class ReservarPista_Model{
         
  
         function DELETE(){
-            $sql = "SELECT * FROM `reserva` WHERE ((`idReserva` = '$this->idReserva') AND (id_pista = '$this->id_pista') )";
+            $sql = "SELECT * FROM `reserva` WHERE `idReserva` = '$this->idReserva' AND idPista = '$this->idPista' ";
 
             $result = $this->mysqli->query($sql);
             $num_rows = mysqli_num_rows($result);
+            print_r($result) ;
+            echo $num_rows;
 
-            if($result->num_rows == 1){
-                $sql = "DELETE FROM reserva WHERE (`idReserva` = '$this->idReserva')";
+            if($num_rows == 1){
+                $sql = "DELETE FROM reserva WHERE `idReserva` = '$this->idReserva'";
 
                 if(!($result = $this->mysqli->query($sql))){
                     return 'ERROR: Fallo en la consulta sobre la base de datos.';
-                }else return 'La clase particular ha sido eliminada con exito.';
+                }
+                 return 'La clase particular ha sido eliminada con exito.';
             }else return 'ERROR: No existe la pista que desea borrar.';
         }
 
@@ -78,10 +81,25 @@ class ReservarPista_Model{
                     (`fecha` LIKE '%$this->fecha%')AND
                     (`precio` LIKE '%$this->precio%'))";
         
+        if($sql == "SELECT * FROM reserva"){
+            return $this->SHOWALL();
+        }else{
+        //Si no hay coincidencias devuelve un mensaje
+            if(mysqli_num_rows(mysqli_query($this->mysqli, $sql)) ==0)
+            {
+                return "No se han encontrado coincidencias";
+            }else{
+                if(mysqli_num_rows(mysqli_query($this->mysqli, $sql)) ==1)
+                {
+                    $result = $this->mysqli->query($sql);
+                    return mysqli_fetch_assoc($result);
+                }else{
+                    $result = $this->mysqli->query($sql);
+                    return mysqli_fetch_all($result, MYSQLI_ASSOC);
+                }
+            }
+        }
             
-            if(!($result = $this->mysqli->query($sql))){
-                return 'ERROR: Fallo en la consulta sobre la base de datos.';
-            }else return $result;
         }
 
         function SHOWCURRENT(){
@@ -98,7 +116,7 @@ class ReservarPista_Model{
     
             if(!($result = $this->mysqli->query($sql))){
                 return 'ERROR: Fallo en la consulta sobre la base de datos.';
-            }else return $result;
+            }else return mysqli_fetch_all($result, MYSQLI_ASSOC);
         }
 
         

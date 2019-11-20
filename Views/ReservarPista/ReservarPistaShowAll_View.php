@@ -42,7 +42,7 @@
             <?php if(count($datos, COUNT_RECURSIVE)!= 5){
                     foreach($datos as $datos) :
                     ?>
-                    <td><?php echo $datos['ID'];?></td>
+                    <td><?php echo $datos['idReserva'];?></td>
                     <td><?php echo $datos['idPista'];?></td>
                     <td><?php echo $datos['idUsuario'];?></td>
                     <td><?php echo $datos['fecha'];?></td>
