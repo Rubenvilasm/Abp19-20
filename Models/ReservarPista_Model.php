@@ -56,12 +56,12 @@ class ReservarPista_Model{
         
  
         function DELETE(){
-            $sql = "SELECT * FROM `reserva` WHERE `idReserva` = '$this->idReserva' AND idPista = '$this->idPista' ";
+            $sql = "SELECT * FROM `reserva` WHERE `idReserva` = '$this->idReserva'";
 
             $result = $this->mysqli->query($sql);
             $num_rows = mysqli_num_rows($result);
-            print_r($result) ;
-            echo $num_rows;
+            
+            echo $this->idPista;
 
             if($num_rows == 1){
                 $sql = "DELETE FROM reserva WHERE `idReserva` = '$this->idReserva'";
@@ -69,8 +69,8 @@ class ReservarPista_Model{
                 if(!($result = $this->mysqli->query($sql))){
                     return 'ERROR: Fallo en la consulta sobre la base de datos.';
                 }
-                 return 'La clase particular ha sido eliminada con exito.';
-            }else return 'ERROR: No existe la pista que desea borrar.';
+                 return 'La reserva ha sido eliminada con exito.';
+            }else return 'ERROR: No existe la reserva que desea borrar.';
         }
 
         function SEARCH(){

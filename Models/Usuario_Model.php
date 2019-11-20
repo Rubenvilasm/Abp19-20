@@ -182,7 +182,7 @@ if($sql == "SELECT * FROM USUARIO"){
 
 	function GET_DEPORTISTA(){
 		$sql = "SELECT login FROM usuario WHERE(
-						(`rol` = `DEPORTISTA` AND `borrado` = 'NO')";
+						(`rol` = `DEPORTISTA` AND `borrado` = '0')";
 		if (!($result = $this->mysqli->query($sql))){ // si se produce un error en la busqueda 
 			return 'ERROR: Fallo en la consulta sobre la base de datos'; 
 		}else return $result;
