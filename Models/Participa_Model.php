@@ -10,7 +10,7 @@ class Participa_Model{
 
     function __construct($idPareja,$idCampeonato){
         include_once '../Models/Access_DB.php';
-        $this->mysqli = Connect_DB();
+        $this->mysqli = ConnectDB();
         $this->idPareja = $idPareja;
         $this->idCampeonato = $idCampeonato;
 
@@ -19,8 +19,8 @@ class Participa_Model{
 
     function ADD(){
             $sql = "SELECT * FROM participa WHERE(
-                (`idCampeonato` = '$this->idCampeonato' AND
-                (`idPareja`) = '$this->idPareja')";
+                `idCampeonato` = '$this->idCampeonato' AND
+                `idPareja` = '$this->idPareja')";
 
             if(!($result = $this->mysqli->query($sql))){
                 return 'ERROR: No es posible acceder a la base de datos.';
@@ -35,13 +35,18 @@ class Participa_Model{
                     
                     if(!($this->mysqli->query($sql))){
                         return 'ERROR: Error en la inserción.';
-                    }else return 'Inscrito correctamente';
+                    }else{
+                       $sql= "UPDATE campeonato SET
+						`numParticipantes` = numParticipantes+1
+                    WHERE (`idCampeonato` = '$this->idCampeonato')";
+                    $participantes=$this->mysqli->query($sql);
+                    } return 'Inscrito correctamente';
                 }else return 'ERROR: la pareja ya esta inscrita';
             }
         
     }
 
-    function DELETE(){
+    /* function DELETE(){
         $sql = "SELECT * FROM categoria WHERE (`idCategoria` = '$this->idCategoria')";
 
         $result = $this->mysqli->query($sql);
@@ -90,7 +95,7 @@ class Participa_Model{
         if(!($result = $this->mysqli->query($sql))){
             return 'ERROR: Fallo en la consulta sobre la base de datos.';
         }else return $result;
-    }
+    } */
 }
 
 ?>

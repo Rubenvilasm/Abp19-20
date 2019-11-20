@@ -143,7 +143,8 @@ array(
 	'Participante 3' => 'Participante 3',
 	'Participante 4' => 'Participante 4',
 	'Id del campeonato'=>'Id del campeonato',
-	'Inscribir Pareja'=> 'Inscribir Pareja'
+	'Inscribir Pareja'=> 'Inscribir Pareja',
+	'ERROR: la pareja ya esta inscrita'=>'ERROR: la pareja ya esta inscrita'
 
 
  

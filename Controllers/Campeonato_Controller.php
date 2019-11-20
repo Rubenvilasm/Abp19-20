@@ -140,7 +140,7 @@ session_start();
             $respParticipa=$Participa->ADD();    
             
                 include '../Views/MESSAGE.php';
-                new MESSAGE($respParticipa, './Campeonato_Controller.php?accion=SHOWALL');
+                new MESSAGE($respParticipa, './Campeonato_Controller.php?accion=VERINSCRIPCIONES');
             
         }
     }
