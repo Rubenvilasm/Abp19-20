@@ -119,7 +119,15 @@ class PPromocionado_Model{
 
             if(!($result = $this->mysqli->query($sql))){
                 return 'ERROR: Fallo en la consulta sobre la base de datos.';
-            }else return $result;
+            }else return mysqli_fetch_assoc($result);
+        }
+        function getFecha(){
+            $sql = "SELECT fecha FROM partidoPromocionado WHERE(
+                    (`idPartidoPromocionado` = '$this->idPartidoPromocionado'))";
+
+            if(!($result = $this->mysqli->query($sql))){
+                return 'ERROR: Fallo en la consulta sobre la base de datos.';
+            }else return mysqli_fetch_assoc($result);
         }
 
         function SHOWCURRENT(){
@@ -137,6 +145,41 @@ class PPromocionado_Model{
             if(!($result = $this->mysqli->query($sql))){
                 return 'ERROR: Fallo en la consulta sobre la base de datos.';
             }else return mysqli_fetch_all($result, MYSQLI_ASSOC);
+        }
+        function INSCRIBIRSE($login){
+            $sql;
+            $temp = $this->getNumParticipantes();
+            $numPart= $temp['numParticipantes'];
+            
+            if($numPart==0){
+                $sql="UPDATE partidoPromocionado SET
+                `idparticipante1` = '$login' , `numParticipantes` ='1' WHERE (`idPartidoPromocionado` = '$this->idPartidoPromocionado')";
+            }else if($numPart==1){
+                $sql="UPDATE partidoPromocionado SET
+                `idparticipante2` = '$login' , `numParticipantes` ='2' WHERE (`idPartidoPromocionado` = '$this->idPartidoPromocionado')";
+            }else if($numPart==2){
+                $sql="UPDATE partidoPromocionado SET
+                `idparticipante3` = '$login' , `numParticipantes` ='3' WHERE (`idPartidoPromocionado` = '$this->idPartidoPromocionado')";
+            }else if($numPart==3){
+                $sql="UPDATE partidoPromocionado SET
+                `idparticipante4` = '$login', `numParticipantes` ='4' WHERE (`idPartidoPromocionado` = '$this->idPartidoPromocionado')";
+                $temp2=$this->getFecha();
+                $fecha=$temp2['fecha'];
+                $sql="INSERT INTO reserva (
+                    idPista,
+                    idUsuario,
+                    fecha)
+                            VALUES(
+                                '1',
+                                'Partido Promocionado',
+                                '$fecha'
+                                )";
+                               $insercion=$this->mysqli->query($sql);
+            }else return 'Partido lleno';
+    
+            if(!($result = $this->mysqli->query($sql))){
+                return 'ERROR: Fallo en la consulta sobre la base de datos.';
+            }else return 'Inscrito correctamente';
         }
 
         function RellenaDatos(){	

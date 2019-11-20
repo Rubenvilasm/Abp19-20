@@ -34,14 +34,12 @@ class ReservarPista_Model{
     function ADD(){
         if($this->id_reserva <>''){
             
-                    $sql = "INSERT INTO reserva (
-                        idReserva,
+                    $sql = "INSERT INTO reserva (                        
                         idPista,
                         idUsuario,
                         fecha,
                         precio)
                                 VALUES(
-                                    '$this->idReserva',
                                     '$this->idPista',
                                     '$this->idUsuario',
                                     '$this->fecha',

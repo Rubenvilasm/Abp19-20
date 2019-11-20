@@ -133,7 +133,11 @@ array(
 	'ID Campeonato' => 'ID Campeonato',
 	'Nombre del Campeonato' => 'Nombre del Campeonato',
 	'Fecha de Inicio' => 'Fecha de Inicio',
-	'Fecha Final' => 'Fecha Final'
+	'Fecha Final' => 'Fecha Final',
+	'Inscribirse'=>'Inscribirse',
+	'Inscrito correctamente'=>'Inscrito correctamente',
+	'Partido lleno'=>'Partido lleno',
+	'Partido ya completo'=>'Partido ya completo'
 
 
  

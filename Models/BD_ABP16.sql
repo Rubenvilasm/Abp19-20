@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `pareja` (
   ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci; 
 
   CREATE TABLE IF NOT EXISTS `reserva` (        
-    `idReserva` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+    `idReserva` int AUTO_INCREMENT COLLATE latin1_spanish_ci NOT NULL,
     `idPista` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `idUsuario` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `fecha` date NOT NULL,
@@ -128,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `pareja` (
   ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
   CREATE TABLE IF NOT EXISTS `calendario` (
-    `idReserva` varchar(25) COLLATE latin1_spanish_ci DEFAULT NULL,
+    `idReserva` int COLLATE latin1_spanish_ci DEFAULT NULL,
     `idPartido` varchar(25) COLLATE latin1_spanish_ci DEFAULT NULL,
     `idPartidoPromocionado` varchar(25) COLLATE latin1_spanish_ci DEFAULT NULL,
     `nombre` varchar(25) COLLATE latin1_spanish_ci NOT NULL,

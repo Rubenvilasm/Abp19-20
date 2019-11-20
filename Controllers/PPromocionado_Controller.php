@@ -117,8 +117,44 @@ session_start();
                 new MESSAGE($mens, '../Controllers/Index_Controller.php');
             }
        }
+       function INSCRIBIRSE($clave){
+           include '../Models/PPromocionado_Model.php';
+           $PPromocionado = new PPromocionado_Model($clave,'','','','','',
+           '','');
+            $participantes = $PPromocionado->getNumParticipantes($clave);
+          
+            if($participantes['numParticipantes']<4)
+            {
+                echo $_SESSION['login'];
+                $datos=$PPromocionado->INSCRIBIRSE($_SESSION['login']);
+                include '../Views/MESSAGE.php';
+                new MESSAGE($datos, '../Controllers/Index_Controller.php');
+               
+            }else{
+                $mens = "Partido ya completo";
+                include '../Views/MESSAGE.php';
+                new MESSAGE($mens, '../Controllers/Index_Controller.php');
+            }
+       }
+       function VERINSCRIPCIONES(){
+        include '../Models/PPromocionado_Model.php';
+                     $PPromocionado = new PPromocionado_Model('','','','','','',
+                     '','');
+         $datos = $PPromocionado->SHOWALL();
+       
+         if(sizeof($datos) != 0)
+         {
+             include '../Views/PPromocionado/PPromocionadoVerInscripciones_View.php';
+             new  PPromocionado_VERINSCRIPCIONES($datos);
+         }else{
+             $mens = "No hay partidos promocionados registrados";
+             include '../Views/MESSAGE.php';
+             new MESSAGE($mens, '../Controllers/Index_Controller.php');
+         }
+    }
+  
 
-       if(!isset($param)){
+       if(!isset($param) ){
             $accion();
         }else{
             $accion($param);
