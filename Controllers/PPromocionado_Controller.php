@@ -77,13 +77,13 @@ session_start();
     
             if(!isset($_POST['submit']))
             {
-                $datos = $PPromocionado->SEARCH();
+                $datos = $PPromocionado->RellenaDatos();
                 include '../Views/PPromocionado/PPromocionadoDelete_View.php';						
                 new PPromocionado_DELETE($datos);
     
             }else{
     
-    
+                
                 $respuesta = $PPromocionado->DELETE($clave);						
                             
                     include '../Views/MESSAGE.php';
@@ -96,7 +96,7 @@ session_start();
             include '../Models/PPromocionado_Model.php';
 						$PPromocionado = new PPromocionado_Model($clave,'','','','','',
 						'','');
-            $datos = $PPromocionado->SEARCH();
+            $datos = $PPromocionado->RellenaDatos();
             include '../Views/PPromocionado/PPromocionadoShowCurrent_View.php';
             new PPromocionado_SHOWCURRENT($datos);
         }   

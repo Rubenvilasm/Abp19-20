@@ -43,6 +43,10 @@
                         <td><?php echo $datos['fechaFin']; ?></td>
                     </tr>
                     <tr>
+                        <th><?php echo $strings['numParticipantes'];?> 4: </th>
+                        <td><?php echo $datos['numParticipantes']; ?></td>
+                    </tr>
+                    <tr>
                         <th><?php echo $strings['premios'];?> 2: </th>
                         <td><?php echo $datos['premios']; ?></td>
                     </tr>
@@ -50,10 +54,7 @@
                         <th><?php echo $strings['normativa'];?> 3: </th>
                         <td><?php echo $datos['normativa']; ?></td>
                     </tr>
-                    <tr>
-                        <th><?php echo $strings['numParticipantes'];?> 4: </th>
-                        <td><?php echo $datos['numParticipantes']; ?></td>
-                    </tr>
+                   
                     <tr>
                         <th><?php echo $strings['borrado'];?>: </th>
                         <td><?php echo $datos['borrado']; ?></td>

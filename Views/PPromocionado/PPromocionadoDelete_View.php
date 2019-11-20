@@ -8,7 +8,7 @@
 
 
 		function __construct($datos){
-						$datos = $datos;
+			$datos = $datos;
 			$this->render($datos);
 		}
 

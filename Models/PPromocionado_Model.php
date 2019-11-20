@@ -124,6 +124,18 @@ class PPromocionado_Model{
             }else return $result;
         }
 
+        function RellenaDatos(){	
+		    $sql = "SELECT * FROM partidoPromocionado  WHERE (`idPartidoPromocionado` = '$this->idPartidoPromocionado')";
+		    // Si la busqueda no da resultados, se devuelve el mensaje de que no existe
+		    if (!($resultado = $this->mysqli->query($sql))){
+				return 'No existe en la base de datos'; // 
+			}
+		    else{ // si existe se devuelve la tupla resultado
+				$result = $resultado->fetch_array();
+				return $result;
+			}
+		}
+
         
     }
 ?>
