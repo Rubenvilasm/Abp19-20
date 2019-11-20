@@ -130,7 +130,10 @@ array(
 	'idReserva' => 'idReserva',
 	'Datos de la reserva' => 'Datos de la reserva',
 	'Datos del Campeonato' => 'Datos del Campeonato',
-	'ID Campeonato' => 'ID Campeonato'
+	'ID Campeonato' => 'ID Campeonato',
+	'Nombre del Campeonato' => 'Nombre del Campeonato',
+	'Fecha de Inicio' => 'Fecha de Inicio',
+	'Fecha Final' => 'Fecha Final'
 
 
  

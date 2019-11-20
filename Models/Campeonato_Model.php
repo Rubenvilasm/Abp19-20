@@ -134,15 +134,19 @@ class Campeonato_Model{
     }
 
     function rellenarDatos(){
-        $sql = "SELECT * FROM campeonato WHERE(`idCampeonato` = '$this->idCampeonato')";
-        echo $sql;
-        if(!($result = $this->mysqli->query($sql))){
-            return 'ERROR: No existe ese campeonato en la base de datos.';
-        }else return $result;
+        $sql = "SELECT * FROM campeonato  WHERE (`idCampeonato` = '$this->idCampeonato')";
+		    // Si la busqueda no da resultados, se devuelve el mensaje de que no existe
+		    if (!($resultado = $this->mysqli->query($sql))){
+				return 'No existe en la base de datos'; // 
+			}
+		    else{ // si existe se devuelve la tupla resultado
+				$result = $resultado->fetch_array();
+				return $result;
+			}
     }
 
     function SHOWCURRENT(){
-        $sql = "SELECT * FROM campeonato WHERE (`idCampeonato` = '$this->Campeonato')";
+        $sql = "SELECT * FROM campeonato WHERE (`idCampeonato` = '$this->Campeonato'AND `borrado` ='NO')";
 
         if(!($result = $this->mysqli->query($sql))){
             return 'ERROR: Fallo en la consulta sobre la base de datos.';

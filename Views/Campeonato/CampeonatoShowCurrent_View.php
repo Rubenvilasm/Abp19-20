@@ -12,10 +12,10 @@
 		}
 
 		function render($datos){
-            include '../Views/Header_View.php';?>
-            <div class="col-md-3"></div>
-            <div class="col-md-5 table-responsive contenido">
-            <fieldset class="sc">
+        include '../Views/Header_View.php';?>
+        <div class="col-md-3"></div>
+        <div class="col-md-5 table-responsive contenido">
+        <fieldset class="sc">
         <legend><?php echo $strings['Datos del Campeonato'];?></legend>
             <!-- Foto de perfil -->
             <!--Contenedor con botones de adición y búsqueda  -->
@@ -39,11 +39,11 @@
                         <td><?php echo $datos['fechaInicio']; ?></td>
                     </tr>
                     <tr>
-                        <th><?php echo $strings['Fecha Final'];?> 1: </th>
+                        <th><?php echo $strings['Fecha Final'];?>: </th>
                         <td><?php echo $datos['fechaFin']; ?></td>
                     </tr>
                     <tr>
-                        <th><?php echo $strings['numParticipantes'];?> 4: </th>
+                        <th><?php echo $strings['numParticipantes'];?>: </th>
                         <td><?php echo $datos['numParticipantes']; ?></td>
                     </tr>
                     <tr>

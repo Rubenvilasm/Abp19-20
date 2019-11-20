@@ -66,7 +66,7 @@ class PPromocionado_Model{
         
         
  
-        function DELETE(){
+        function DELETE(){ 
             $sql = "SELECT * FROM `partidoPromocionado` WHERE (`partidoPromocionado` = '$this->partidoPromocionado')";
 
             $result = $this->mysqli->query($sql);
