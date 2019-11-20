@@ -268,9 +268,9 @@ INSERT INTO `categoria` (`idCategoria`,`nombre`,`nivel`,`idCampeonato`) VALUES
   ('3','MIXTO','TRES','1'),
   ('4','MAC','UNO','2');
 
-INSERT INTO `partidoPromocionado` (`idPartidoPromocionado`,`nombre`,`fecha`,`idParticipante1`,`idParticipante2`,`idParticipante3`,`idParticipante4`) VALUES 
-  ('1','Promocion1','2019-9-9','deportista1','deportista2','deportista3','deportista4'),
-  ('2','Promocion2','2019-9-10','deportista5','deportista6','deportista7','deportista8');
+INSERT INTO `partidoPromocionado` (`idPartidoPromocionado`,`nombre`,`fecha`,`idParticipante1`,`idParticipante2`,`idParticipante3`,`idParticipante4`,`numParticipantes`) VALUES 
+  ('1','Promocion1','2019-9-9','deportista1','deportista2','deportista3','deportista4','4'),
+  ('2','Promocion2','2019-9-10','deportista5','deportista6','deportista7','deportista8','4');
 
 INSERT INTO `enfrentamiento` (`idEnfrentamiento`,`idPareja1`,`idPareja2`,`idHorario`,`resultado`,`idPista`,`idGanador`,`idCampeonato`) VALUES 
   ('1','pareja1','pareja2','idHorario','','1','pareja1','1');

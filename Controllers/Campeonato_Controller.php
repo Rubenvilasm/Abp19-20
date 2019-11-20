@@ -37,10 +37,10 @@ session_start();
             }else{
                 include '../Models/Campeonato_Model.php';
                             
-                            $Campeonato = new Campeonato_Model($_POST['idCampeonato'],$_POST['nombreCampeonato'],$_POST['fechaInicio'],$_POST['fechaFin'],$_POST['numParticipantes'],
-                            $_POST['premios'],$_POST['normativa'],$_POST['borrado']);
-                    
-                            $respuesta = $Campeonato->Register();
+                $Campeonato = new Campeonato_Model($_POST['idCampeonato'],$_POST['nombreCampeonato'],$_POST['fechaInicio'],$_POST['fechaFin'],$_POST['numParticipantes'],
+                $_POST['premios'],$_POST['normativa'],$_POST['borrado']);
+        
+                $respuesta = $Campeonato->Register();
                 if($respuesta === true)
                 {
                     $respuesta = $Campeonato->ADD();
@@ -79,7 +79,7 @@ session_start();
     
             if(!isset($_POST['submit']))
             {
-                $datos = $Campeonato->SEARCH();
+                $datos = $Campeonato->rellenarDatos();
                 include '../Views/Campeonato/CampeonatoDelete_View.php';						
                 new Campeonato_DELETE($datos);
     
@@ -98,7 +98,7 @@ session_start();
             include '../Models/Campeonato_Model.php';
 						$Campeonato = new Campeonato_Model($clave,'','','','','',
 						'','');
-            $datos = $Campeonato->SEARCH();
+            $datos = $Campeonato->rellenarDatos();
             include '../Views/Campeonato/CampeonatoShowCurrent_View.php';
             new Campeonato_SHOWCURRENT($datos);
         }   

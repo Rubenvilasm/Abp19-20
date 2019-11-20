@@ -4,11 +4,11 @@
  *	autor: Carlos Mato Rodriguez
  *	15-06-2019
  */
-	class PPromocionado_DELETE{
+	class Campeonato_DELETE{
 
 
 		function __construct($datos){
-						$datos = $datos;
+			$datos = $datos;
 			$this->render($datos);
 		}
 
@@ -30,11 +30,11 @@
 					
                     <tr>
                         <th><?php echo $strings['ID Campeonato'];?>: </th>
-                        <td><?php echo $datos['idPartidoPromocionado']; ?></td>
+                        <td><?php echo $datos['idCampeonato']; ?></td>
                     </tr>
                     <tr>
                         <th><?php echo $strings['Nombre del Campeonato'];?>: </th>
-                        <td><?php echo $datos['nombre']; ?></td>
+                        <td><?php echo $datos['nombreCampeonato']; ?></td>
                     </tr>
                     <tr>
                         <th><?php echo $strings['FechaInicio'];?>: </th>

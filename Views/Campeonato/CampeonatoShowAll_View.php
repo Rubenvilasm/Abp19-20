@@ -51,9 +51,9 @@
 								<td><?php echo $datos['premios']."\n"; ?></td>
 								<td><?php echo $datos['normativa']."\n"; ?></td>
 								<td><?php echo $datos['numParticipantes']."\n"; ?></td>
-                    <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/Campeonato_Controller.php?accion=DELETE&param=<?php echo $datos['idPartidoPromocionado']?>';"><i class="fas fa-trash-alt"></i></button></td>
+                    <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/Campeonato_Controller.php?accion=DELETE&param=<?php echo $datos['idCampeonato']?>';"><i class="fas fa-trash-alt"></i></button></td>
                  
-                    <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/Campeonato_Controller.php?accion=SHOWCURRENT&param=<?php echo $datos['idPartidoPromocionado']?>';"><i class="fas fa-eye"></i></button></td>
+                    <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/Campeonato_Controller.php?accion=SHOWCURRENT&param=<?php echo $datos['idCampeonato']?>';"><i class="fas fa-eye"></i></button></td>
             </tr>
             <?php endforeach;}else{?>
 							

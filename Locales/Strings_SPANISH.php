@@ -128,7 +128,9 @@ array(
 	'Reservas de Pista' => 'Reservas de Pista',
 	'Búsqueda de Reservas' => 'Búsqueda de Reservas',
 	'idReserva' => 'idReserva',
-	'Datos de la reserva' => 'Datos de la reserva'
+	'Datos de la reserva' => 'Datos de la reserva',
+	'Datos del Campeonato' => 'Datos del Campeonato',
+	'ID Campeonato' => 'ID Campeonato'
 
 
  
