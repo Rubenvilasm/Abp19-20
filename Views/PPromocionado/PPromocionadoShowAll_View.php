@@ -1,4 +1,4 @@
-<?php
+<?php 
 /**
  * Clase para realizar el SHOWALL en Usuario, recibe una o varias tuplas para mostrar
  *	autor: Carlos Mato Rodriguez
@@ -45,14 +45,14 @@
             <?php if(count($datos, COUNT_RECURSIVE)!= 8){
                     foreach($datos as $datos) :
                     ?>
-                                <td><?php echo $datos['idPartidoPromocionado']."\n"; ?></td>
-                                <td><?php echo $datos['nombre']."\n"; ?></td>
-								<td><?php echo $datos['fecha']."\n"; ?></td>
-								<td><?php echo $datos['idParticipante1']."\n"; ?></td>
-								<td><?php echo $datos['idParticipante2']."\n"; ?></td>
-								<td><?php echo $datos['idParticipante3']."\n"; ?></td>
-								<td><?php echo $datos['idParticipante4']."\n"; ?></td>
-								<td><?php echo $datos['numParticipantes']."\n"; ?></td>
+                    <td><?php echo $datos['idPartidoPromocionado']."\n"; ?></td>
+                    <td><?php echo $datos['nombre']."\n"; ?></td>
+                    <td><?php echo $datos['fecha']."\n"; ?></td>
+                    <td><?php echo $datos['idParticipante1']."\n"; ?></td>
+                    <td><?php echo $datos['idParticipante2']."\n"; ?></td>
+                    <td><?php echo $datos['idParticipante3']."\n"; ?></td>
+                    <td><?php echo $datos['idParticipante4']."\n"; ?></td>
+                    <td><?php echo $datos['numParticipantes']."\n"; ?></td>
                     <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/PPromocionado_Controller.php?accion=DELETE&param=<?php echo $datos['idPartidoPromocionado']?>';"><i class="fas fa-trash-alt"></i></button></td>
                  
                     <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/PPromocionado_Controller.php?accion=SHOWCURRENT&param=<?php echo $datos['idPartidoPromocionado']?>';"><i class="fas fa-eye"></i></button></td>

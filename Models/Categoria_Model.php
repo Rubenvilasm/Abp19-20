@@ -3,14 +3,13 @@
 class Categoria_Model{
 
     var $idCategoria;
-    var $nombre;
     var $nivel;
     var $idCampeonato;
     
 
     var $mysqli;
 
-    function __construct($idCategoria,$nombre,$nivel,$idCampeonato){
+    function __construct($idCategoria,$nivel,$idCampeonato){
         $this->idCategoria = $idCategoria;
         $this->nombre = $nombre;
         $this->nivel = $nivel;
@@ -31,18 +30,16 @@ class Categoria_Model{
                 if($result->num_rows == 0){
                     $sql = "INSERT INTO categoria (
                         idCategoria,
-                        nombre,
                         nivel,
                         idCampeonato)
                                 VALUES(
                                     '$this->idCategoria',
-                                    '$this->nombre',
                                     '$this->nivel',
                                     '$this->idCampeonato')";
                     
                     if(!($this->mysqli->query($sql))){
                         return 'ERROR: Error en la inserción.';
-                    }else return 'Insercción completada con éxito.';
+                    }else return 'Inserción completada con éxito.';
                 }else return 'ERROR: Ya hay un campeonato con ese Id.';
             }
         }else return 'ERROR: El atributo clave idcampeonato está vacío.';
@@ -64,7 +61,6 @@ class Categoria_Model{
     function SEARCH(){
         $sql  = "SELECT * FROM categoria WHERE (
                 (`idCategoria` LIKE '%$this->idCategoria%')AND
-                (`nombre` LIKE '%$this->nombre%')AND
                 (`nivel` LIKE '%$this->nivel%')AND
                 (`idCampeonato` LIKE '%$this->idCampeonato%'))";
 

@@ -1,4 +1,4 @@
-<?php
+<?php 
 /**
  * Clase para realizar el SHOWALL en Usuario, recibe una o varias tuplas para mostrar
  *	autor: Carlos Mato Rodriguez
@@ -18,7 +18,7 @@
 <div class="col-md-2"></div>
 <div class=" table-responsive contenido">
     <fieldset id="showall">
-        <legend><?php echo $strings['Reservas de Pista'];?></legend>
+        <legend><?php echo $strings['Reservar Pista'];?></legend>
 
         <!--Contenedor con botones de adición y búsqueda  -->
         <div class="container-showall-btn">
@@ -39,25 +39,26 @@
             </thead>
             
             <tr>
-            <?php if(count($datos, COUNT_RECURSIVE)!= 5){
+            <?php if(count($datos, COUNT_RECURSIVE)!= 8){
                     foreach($datos as $datos) :
                     ?>
-                    <td><?php echo $datos['idReserva'];?></td>
-                    <td><?php echo $datos['idPista'];?></td>
-                    <td><?php echo $datos['idUsuario'];?></td>
-                    <td><?php echo $datos['fecha'];?></td>
-                    <td><?php echo $datos['precio'];?></td>
-                    <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/ReservarPista_Controller.php?accion=DELETE&param=<?php echo $datos['idReserva']?>';"><i class="fas fa-trash-alt"></i></button></td>
+                    <td><?php echo $datos['idReserva']."\n"; ?></td>
+                    <td><?php echo $datos['idPista']."\n"; ?></td>
+                    <td><?php echo $datos['idUsuario']."\n"; ?></td>
+                    <td><?php echo $datos['fecha']."\n"; ?></td>
+                    <td><?php echo $datos['precio']."\n"; ?></td>
+
+                    <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/PPromocionado_Controller.php?accion=DELETE&param=<?php echo $datos['idPartidoPromocionado']?>';"><i class="fas fa-trash-alt"></i></button></td>
                  
-                    <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/ReservarPista_Controller.php?accion=SHOWCURRENT&param=<?php echo $datos['idReserva']?>';"><i class="fas fa-eye"></i></button></td>
+                    <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/PPromocionado_Controller.php?accion=SHOWCURRENT&param=<?php echo $datos['idPartidoPromocionado']?>';"><i class="fas fa-eye"></i></button></td>
             </tr>
             <?php endforeach;}else{?>
 							
-                    <td><?php echo $datos['ID'];?></td>
-                    <td><?php echo $datos['idPista'];?></td>
-                    <td><?php echo $datos['idUsuario'];?></td>
-                    <td><?php echo $datos['fecha'];?></td>
-                    <td><?php echo $datos['precio'];?></td>
+                    <td><?php echo $datos['idReserva']."\n"; ?></td>
+                    <td><?php echo $datos['idPista']."\n"; ?></td>
+					<td><?php echo $datos['idUsuario']."\n"; ?></td>
+					<td><?php echo $datos['fecha']."\n"; ?></td>
+					<td><?php echo $datos['precio']."\n"; ?></td>
 
 
 
@@ -66,9 +67,9 @@
 
                 <td class="tb-btn disable"><button class="editbtn disable" role="link" onclick="window.location='../Controllers/PPromocionado_Controller.php?accion=DELETE&param=<?php echo $datos['email_usr']?>';"><i class="fas fa-trash-alt"></i></button></td>
                 
-                <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/ReservarPista_Controller.php?accion=DELETE&param=<?php echo $datos['idReserva']?>';"><i class="fas fa-trash-alt"></i></button></td>
+                <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/PPromocionado_Controller.php?accion=DELETE&param=<?php echo $datos['email_usr']?>';"><i class="fas fa-trash-alt"></i></button></td>
                
-                <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/ReservarPista_Controller.php?accion=SHOWCURRENT&param=<?php echo $datos['idReserva']?>';"><i class="fas fa-eye"></i></button></td>
+                <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/PPromocionado_Controller.php?accion=SHOWCURRENT&param=<?php echo $datos['email_usr']?>';"><i class="fas fa-eye"></i></button></td>
             <?php };?>
             </table>
 
