@@ -144,7 +144,14 @@ array(
 	'Participante 4' => 'Participante 4',
 	'Id del campeonato'=>'Id del campeonato',
 	'Inscribir Pareja'=> 'Inscribir Pareja',
-	'ERROR: la pareja ya esta inscrita'=>'ERROR: la pareja ya esta inscrita'
+	'ERROR: la pareja ya esta inscrita'=>'ERROR: la pareja ya esta inscrita',
+	'Pistas' => 'Pistas',
+	'especificaciones' => 'Especificaciones',
+	'ubicacion' => 'Ubicación',
+	'Búsqueda de Pista' => 'Búsqueda de Pista',
+	'Añadir Pista' => 'Añadir Pista',
+	'Pista' => 'Pista',
+	'Datos de la Pista' => 'Datos de la Pista'
 
 
  

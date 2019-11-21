@@ -45,6 +45,8 @@ CREATE TABLE IF NOT EXISTS `pareja` (
     `idPista` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `nombre` varchar(25) COLLATE latin1_spanish_ci DEFAULT NULL,
     `especificaciones` varchar(25) COLLATE latin1_spanish_ci DEFAULT NULL,
+    `ubicacion` varchar(128) COLLATE latin1_spanish_ci DEFAULT NULL,
+    `borrado` enum('SI','NO') DEFAULT 'NO',
     
     PRIMARY KEY (idPista)
   ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci; 
@@ -246,14 +248,14 @@ INSERT INTO `pareja` (`idDeportista1`,`idDeportista2`) VALUES
 ('deportista11','deportista12'),
 ('deportista13','deportista14');
 
-INSERT INTO `pista` (`idPista`,`nombre`,`especificaciones`) VALUES 
-  ('1','Pista01','Cesped con pared de cristal.'),
-  ('2','Pista02','Cemento con pared de cristal.'),
-  ('3','Pista03','Cemento con pared de Cemento.'),
-  ('4','Pista04','Cemento con pared de cristal.'),
-  ('5','Pista05','Parquet con pared de cristal.'),
-  ('6','Pista06','Parquet con pared de cristal.'),
-  ('7','Pista07','Parquet con pared de cristal.');
+INSERT INTO `pista` (`idPista`,`nombre`,`especificaciones`,`ubicacion`,`borrado`) VALUES 
+  ('1','Pista01','Cesped con pared de cristal.','allí','NO'),
+  ('2','Pista02','Cemento con pared de cristal.','allí','NO'),
+  ('3','Pista03','Cemento con pared de Cemento.','allí','NO'),
+  ('4','Pista04','Cemento con pared de cristal.','allí','NO'),
+  ('5','Pista05','Parquet con pared de cristal.','allí','NO'),
+  ('6','Pista06','Parquet con pared de cristal.','allí','NO'),
+  ('7','Pista07','Parquet con pared de cristal.','allí','NO');
 
 INSERT INTO `reserva` (`idReserva`,`idPista`,`idUsuario`,`fecha`,`precio`) VALUES 
   ('1','1','deportista1','2019-11-17','10'),

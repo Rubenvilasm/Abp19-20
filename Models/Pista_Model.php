@@ -14,14 +14,15 @@ class Pista_Model{
     var $idpista;
     var $nombre;
     var $especificaciones;
-    var $reservada;
+    var $ubicacion;
 
     var $mysqli;
 
-    function __construct($idpista,$nombre,$especificaciones){
+    function __construct($idpista,$nombre,$especificaciones,$ubicacion){
         $this->idpista = $idpista;
         $this->nombre = $nombre;
         $this->especificaciones = $especificaciones;
+        $this->ubicacion = $ubicacion;
 
         include_once '../Models/Access_DB.php';
         $this->mysqli = ConnectDB();
@@ -52,7 +53,9 @@ class Pista_Model{
         $sql = "INSERT INTO `pista` (
             `idPista`,
             `nombre`,
-            `especificaciones`)
+            `especificaciones`,
+            `ubicacion`,
+            `borrada`)
             VALUES (
                 '$this->idPista',
                 '$this->nombre',
@@ -67,7 +70,7 @@ class Pista_Model{
         $num_rows = mysqli_num_rows($result);
 
         if($result->num_rows == 1){
-            $sql = "DELETE FROM pista WHERE `idPista`='%this->idPista'";
+            $sql = "DELETE FROM pista WHERE `idPista`='$this->idPista'";
 
             if(!($result = $this->mysqli->query($sql))){
                 return 'ERROR: Fallo en la consulta sobre la base de datos.';
@@ -89,6 +92,23 @@ class Pista_Model{
         }else{
             return $result;
         }
+    }
+
+    function SHOWCURRENT(){
+        $sql = "SELECT * FROM pista WHERE (`idPista` = '$this->idPista')";
+
+        if(!($result = $this->mysqli->query($sql))){
+            return 'ERROR: Fallo en la consulta sobre la base de datos.';
+        }else return $result;
+    }
+
+
+    function SHOWALL(){
+        $sql = "SELECT * FROM pista";
+
+        if(!($result = $this->mysqli->query($sql))){
+            return 'ERROR: Fallo en la consulta sobre la base de datos.';
+        }else return $result;
     }
 }
 ?>

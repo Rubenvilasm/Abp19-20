@@ -64,7 +64,7 @@ $accion='';*/
 		
 		if( $_SESSION['rol'] == "Administrador" ){
 		?>
-				<li class="<?php echo $accion ;?> " ><a href="../Controllers/Rol_Controller.php?accion=SHOWALL"><?php echo $strings['Gestionar Pistas']; ?><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-indent-left"></span></a></li>
+				<li class="<?php echo $accion ;?> " ><a href="../Controllers/Pista_Controller.php?accion=SHOWALL"><?php echo $strings['Gestionar Pistas']; ?><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-indent-left"></span></a></li>
 	<?php
 		}
 	?>
