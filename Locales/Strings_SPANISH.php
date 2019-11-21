@@ -151,8 +151,14 @@ array(
 	'Búsqueda de Pista' => 'Búsqueda de Pista',
 	'Añadir Pista' => 'Añadir Pista',
 	'Pista' => 'Pista',
-	'Datos de la Pista' => 'Datos de la Pista'
-
+	'Datos de la Pista' => 'Datos de la Pista',
+	'ClaseParticular' => 'Clases Particulares',
+	'idEntrenador' => 'Entrenador',
+	'Búsqueda de Clase Particular' => 'Búsqueda de Clase Particular',
+	'idClaseParticular' => 'ID',
+	'Añadir Clase Particular' => 'Añadir Clase Particular',
+	'¿Confirma el borrado de esta Clase Particular ?' => '¿Confirma el borrado de esta Clase Particular ?',
+	'Datos de la Clase particular' => 'Datos de la clase particular'	
 
  
 
