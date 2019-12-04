@@ -144,7 +144,12 @@ array(
 	'Participante 4' => 'Participante 4',
 	'Id del campeonato'=>'Id del campeonato',
 	'Inscribir Pareja'=> 'Inscribir Pareja',
-	'ERROR: la pareja ya esta inscrita'=>'ERROR: la pareja ya esta inscrita'
+	'ERROR: la pareja ya esta inscrita'=>'ERROR: la pareja ya esta inscrita',
+	'¿Confirma el borrado de este Campeonato ?' => '¿Confirma el borrado de este Campeonato ? ',
+	'El Campeonato ha sido eliminado con exito.' => 'El Campeonato ha sido eliminado con exito.',
+	'ERROR: No hay ningún campeonato con esa id.' => 'ERROR: No hay ningún campeonato con esa id.',
+	'Miembro 1 pareja' => 'Miembro 1 de la pareja',
+	'Miembro 2 pareja' => 'Miembro 2 de la pareja'
 
 
  

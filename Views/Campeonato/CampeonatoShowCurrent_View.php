@@ -63,6 +63,8 @@
                 </table>
             <div class="container-showall-btn">
                 <button class="form-btn" type="button" role="link" onclick="window.location='./Campeonato_Controller.php?accion=SHOWALL'"><i class="fas fa-arrow-left"></i>
+                <button class="form-btn" type="button" role="link" onclick="window.location='./Campeonato_Controller.php?accion=PARTICIPANTES&param=<?php echo $datos['idCampeonato']; ?>'"><i class="fas fa-search-plus"></i>
+
             </div>
         </fieldset>
 </div>

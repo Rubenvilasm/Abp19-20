@@ -84,8 +84,7 @@ class Campeonato_Model{
     
 
     function DELETE(){
-        $sql = "SELECT * FROM campeonato WHERE (`idCampeonato` = '$this->idCampeonato' AND `borrado` = 'NO'))";
-
+        $sql = "SELECT * FROM campeonato WHERE (`idCampeonato` = '$this->idCampeonato' AND `borrado` = 'NO')";
         $result = $this->mysqli->query($sql);
 
         if($result->num_rows == 1){
@@ -145,7 +144,7 @@ class Campeonato_Model{
     }
 
     function SHOWCURRENT(){
-        $sql = "SELECT * FROM campeonato WHERE (`idCampeonato` = '$this->Campeonato'AND `borrado` ='NO')";
+        $sql = "SELECT * FROM campeonato WHERE (`idCampeonato` = '$this->idCampeonato'AND `borrado` ='NO')";
 
         if(!($result = $this->mysqli->query($sql))){
             return 'ERROR: Fallo en la consulta sobre la base de datos.';
@@ -155,6 +154,13 @@ class Campeonato_Model{
 
     function SHOWALL(){
         $sql = "SELECT * FROM campeonato WHERE (`borrado` = 'NO') ";
+
+        if(!($result = $this->mysqli->query($sql))){
+            return 'ERROR: Fallo en la consulta sobre la base de datos.';
+        }else return mysqli_fetch_all($result, MYSQLI_ASSOC);
+    }
+    function PARTICIPANTES(){
+        $sql = "SELECT * FROM participa, pareja WHERE  `idCampeonato`='$this->idCampeonato' ";
 
         if(!($result = $this->mysqli->query($sql))){
             return 'ERROR: Fallo en la consulta sobre la base de datos.';

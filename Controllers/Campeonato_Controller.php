@@ -36,7 +36,7 @@ session_start();
             }else{
                 include '../Models/Campeonato_Model.php';
                             
-                $Campeonato = new Campeonato_Model($_POST['idCampeonato'],$_POST['nombreCampeonato'],$_POST['fechaInicio'],$_POST['fechaFin'],$_POST['premios'],$_POST['normativa'],'',
+                $Campeonato = new Campeonato_Model($_POST['idCampeonato'],$_POST['nombreCampeonato'],$_POST['fechaInicio'],$_POST['fechaFin'],$_POST['premios'],$_POST['normativa'],''
                 ,'');
         
                 $respuesta = $Campeonato->Register();
@@ -144,6 +144,25 @@ session_start();
             
         }
     }
+    function PAREJA($clave){
+        if(!isset($_POST['submit'])){
+            include '../Views/Campeonato/CampeonatoPareja_View.php';
+            new Campeonato_PAREJA($clave);
+
+        }else{
+            include '../Models/Pareja_Model.php';
+            include '../Models/Participa_Model.php';
+            $Pareja = new Pareja_Model('',$_POST['participante2'],$_POST['participante1']);
+            $respPareja=$Pareja->ADD();
+            $idPareja=$Pareja->Get_ID();
+            $Participa= new Participa_Model($idPareja,$clave);
+            $respParticipa=$Participa->ADD();    
+            
+                include '../Views/MESSAGE.php';
+                new MESSAGE($respParticipa, './Campeonato_Controller.php?accion=VERINSCRIPCIONES');
+            
+        }
+    }
     function VERINSCRIPCIONES(){
      include '../Models/Campeonato_Model.php';
                   $Campeonato = new Campeonato_Model('','','','','','',
@@ -155,11 +174,27 @@ session_start();
           include '../Views/Campeonato/CampeonatoVerInscripciones_View.php';
           new  Campeonato_VERINSCRIPCIONES($datos);
       }else{
-          $mens = "No hay partidos promocionados registrados";
+          $mens = "No hay campeonatos disponibles";
           include '../Views/MESSAGE.php';
           new MESSAGE($mens, '../Controllers/Index_Controller.php');
       }
  }
+ function PARTICIPANTES($idCampeonato){
+    include '../Models/Campeonato_Model.php';
+                 $Campeonato = new Campeonato_Model($idCampeonato,'','','','','',
+                 '','');
+     $datos = $Campeonato->PARTICIPANTES();
+   
+     if(sizeof($datos) != 0)
+     {
+         include '../Views/Campeonato/CampeonatoParticipantes_View.php';
+         new  Campeonato_PARTICIPANTES($datos);
+     }else{
+         $mens = "No hay participantes inscritos";
+         include '../Views/MESSAGE.php';
+         new MESSAGE($mens, '../Controllers/Index_Controller.php');
+     }
+}
 
        if(!isset($param)){
             $accion();
