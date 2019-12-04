@@ -25,7 +25,7 @@
                     <button class="form-btn" role="link" onclick="window.location='../Controllers/PPromocionado_Controller.php?accion=SEARCH'"><i class="fas fa-search"></i>
                     <button class="form-btn" role="link" onclick="window.location='../Controllers/PPromocionado_Controller.php?accion=ADD'"><i class="fas fa-plus"></i>
                 </div>
-                <table>
+                <table class="table table-hover">
                     <thead>
                         <tr>
                         <!-- Títulos de tabla -->

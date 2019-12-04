@@ -149,8 +149,21 @@ array(
 	'El Campeonato ha sido eliminado con exito.' => 'El Campeonato ha sido eliminado con exito.',
 	'ERROR: No hay ningún campeonato con esa id.' => 'ERROR: No hay ningún campeonato con esa id.',
 	'Miembro 1 pareja' => 'Miembro 1 de la pareja',
-	'Miembro 2 pareja' => 'Miembro 2 de la pareja'
-
+	'Miembro 2 pareja' => 'Miembro 2 de la pareja',
+	'Pistas' => 'Pistas',
+	'especificaciones' => 'Especificaciones',
+	'ubicacion' => 'Ubicación',
+	'Búsqueda de Pista' => 'Búsqueda de Pista',
+	'Añadir Pista' => 'Añadir Pista',
+	'Pista' => 'Pista',
+	'Datos de la Pista' => 'Datos de la Pista',
+	'ClaseParticular' => 'Clases Particulares',
+	'idEntrenador' => 'Entrenador',
+	'Búsqueda de Clase Particular' => 'Búsqueda de Clase Particular',
+	'idClaseParticular' => 'ID',
+	'Añadir Clase Particular' => 'Añadir Clase Particular',
+	'¿Confirma el borrado de esta Clase Particular ?' => '¿Confirma el borrado de esta Clase Particular ?',
+	'Datos de la Clase particular' => 'Datos de la clase particular'	
 
  
 

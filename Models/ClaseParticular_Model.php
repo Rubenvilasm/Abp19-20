@@ -6,6 +6,7 @@ class ClaseParticular_Model{
     var $nombre;
     var $idEntrenador;
     var $idUsuario;
+    //var $precio;
     var $borrado;
 
     var $mysqli;
@@ -63,7 +64,7 @@ class ClaseParticular_Model{
                 return 'ERROR: Fallo en la consulta sobre la base de datos.';
             }else return 'La clase particular ha sido eliminada con exito.';
         }else return 'ERROR: No existe la pista que desea borrar.';
-
+    }
     function SEARCH(){
         $sql = "SELECT `idClaseParticular`,
                         `nombre`,
@@ -94,7 +95,21 @@ class ClaseParticular_Model{
             return $result;
         }
     }
+
+    function SHOWALL(){
+        $sql = "SELECT * FROM claseParticular";
+
+        if(!($result = $this->mysqli->query($sql))){
+            return 'ERROR: Fallo en la consulta sobre la base de datos.';
+        }else return $result;
     }
 
+    function SHOWCURRENT(){
+        $sql = "SELECT * FROM claseParticular WHERE (`idClaseParticular` = '$this->idClaseParticular')";
+
+        if(!($result = $this->mysqli->query($sql))){
+            return 'ERROR: Fallo en la consulta sobre la base de datos.';
+        }else return $result;
+    }
 }
 ?>
