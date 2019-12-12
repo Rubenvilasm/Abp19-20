@@ -3,20 +3,22 @@
 
 class ClaseParticular_Model{
     var $idClaseParticular;
-    var $nombre;
+    var $pista;
     var $idEntrenador;
     var $idUsuario;
+    var $nivel;
     //var $precio;
     var $borrado;
 
     var $mysqli;
 
-    function __construct($idClaseParticular,$nombre,$idEntrenador,$idUsuario,$borrado){
+    function __construct($idClaseParticular,$pista,$idEntrenador,$idUsuario,$borrado,$nivel){
         $this->idClaseParticular = $idClaseParticular;
-        $this->nombre = $nombre;
+        $this->pista = $pista;
         $this->idEntrenador = $idEntrenador;
         $this->idUsuario = $idUsuario;
         $this->borrado = $borrado;
+        $this->nivel = $nivel;
 
         include_once '../Models/Access_DB.php';
         $this->mysqli = ConnectDB();
@@ -38,15 +40,17 @@ class ClaseParticular_Model{
     function ADD(){
         $sql = "INSERT INTO `claseParticular` (
             `idClaseParticular`,
-            `nombre`,
+            `pista`,
             `idEntrenador`,
             `idUsuario`,
+            `nivel`,
             `borrado`)
             VALUES (
                 '$this->idClaseParticular',
-                '$this->nombre',
+                '$this->pista',
                 '$this->idEntrenador',
-                '$this->'idUsuario',
+                '$this->idUsuario',
+                '$this->nivel',
                 'NO'
             )";
     }
@@ -67,13 +71,15 @@ class ClaseParticular_Model{
     }
     function SEARCH(){
         $sql = "SELECT `idClaseParticular`,
-                        `nombre`,
+                        `pista`,
                         `idEntrenador`,
                         `idUsuario`,
+                        `nivel`,
                 FROM claseParticular WHERE(
                         (`idClaseParticular` LIKE '%this->idClaseParticular') &&
-                        (`nombre` LIKE '%this->nombre') &&
+                        (`pista` LIKE '%this->pista') &&
                         (`idEntrenador` LIKE '%this->idEntrenador') &&
+                        (`nivel` LIKE '%this->nivel') &&
                         (`idUsuario` LIKE '%this->idUsuario'))
                         ";
 
@@ -110,6 +116,14 @@ class ClaseParticular_Model{
         if(!($result = $this->mysqli->query($sql))){
             return 'ERROR: Fallo en la consulta sobre la base de datos.';
         }else return $result;
+    }
+
+    function rellenarDatos(){
+        $sql = "SELECT * FROM claseParticular WHERE (idClaseParticular = '$this->idClaseParticular')";
+
+        if(!($result = $this->mysqli->query($sql)))
+            return 'No existe en la base de datos';
+        else return $result->fetch_array();
     }
 }
 ?>
