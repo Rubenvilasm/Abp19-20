@@ -37,14 +37,12 @@ class Campeonato_Model{
             return true;
     }
 
-    function addCategoria($idCategoria,$idCampeonato, $nivel){
+    function addCategoria($idCategoria,$idCampeonato){
         $sql = "INSERT INTO categoria (
                 idCategoria,
-                nivel,
                 idCampeonato
                 ) VALUES (
                     '".$idCategoria."',
-					'".$nivel."',
 					'".$idCampeonato."'
                         )";
 
@@ -54,6 +52,20 @@ class Campeonato_Model{
         else{ 
             return 'Inserción realizada con éxito'; 
         }
+    }
+
+    function addNivel(){
+        $sql ="INSERT INTO nivel(
+                `idNivel`,
+                `idCategoria`,
+                `idCampeonato`
+                ) VALUES (
+                    '$this->idNivel',
+                    '$this->idCategoria',
+                    '$this->idCampeonato')";
+        if(!$this->mysqli->query($sql))
+            return 'ERROR: Error en la consulta.';
+        else return 'Inserción realizada con exito.';
     }
 
     function ADD(){
@@ -160,6 +172,8 @@ class Campeonato_Model{
             return 'ERROR: Fallo en la consulta sobre la base de datos.';
         }else return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
+
+    
 
 
 }
