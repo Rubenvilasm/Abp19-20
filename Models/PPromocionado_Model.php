@@ -38,31 +38,30 @@ class PPromocionado_Model{
     }
     function ADD(){
         if($this->idPartidoPromocionado <>''){
-            
-                    $sql = "INSERT INTO partidoPromocionado (
-                        idPartidoPromocionado,
-                        nombre,
-                        fecha,
-                        idParticipante1,
-                        idParticipante2,
-                        idParticipante3,
-                        idParticipante4,
-                        numParticipantes)
-                                VALUES(
-                                    '$this->idPartidoPromocionado',
-                                    '$this->nombre',
-                                    '$this->fecha',
-                                    '$this->idParticipante1',
-                                    '$this->idParticipante2',
-                                    '$this->idParticipante3',
-                                    '$this->idParticipante4',
-                                    '$this->numParticipantes'
-                                    )";
-                    if(!($this->mysqli->query($sql))){
-                        return 'ERROR: Error en la inserción.';
-                    }else return 'Insercción completada con éxito.';
-                }else return 'ERROR: El atributo clave idcampeonato está vacío.';
-            }
+            $sql = "INSERT INTO partidoPromocionado (
+                idPartidoPromocionado,
+                nombre,
+                fecha,
+                idParticipante1,
+                idParticipante2,
+                idParticipante3,
+                idParticipante4,
+                numParticipantes)
+                        VALUES(
+                            '$this->idPartidoPromocionado',
+                            '$this->nombre',
+                            '$this->fecha',
+                            '$this->idParticipante1',
+                            '$this->idParticipante2',
+                            '$this->idParticipante3',
+                            '$this->idParticipante4',
+                            '$this->numParticipantes'
+                            )";
+            if(!($this->mysqli->query($sql))){
+                return 'ERROR: Error en la inserción.';
+            }else return 'Insercción completada con éxito.';
+        }else return 'ERROR: El atributo clave idcampeonato está vacío.';
+    }
         
         
  
@@ -77,8 +76,8 @@ class PPromocionado_Model{
 
                 if(!($result = $this->mysqli->query($sql))){
                     return 'ERROR: Fallo en la consulta sobre la base de datos.';
-                }else return 'La clase particular ha sido eliminada con exito.';
-            }else return 'ERROR: No existe la pista que desea borrar.';
+                }else return 'El Partido Promocionado ha sido eliminada con exito.';
+            }else return 'ERROR: No existe el partido promocionado que desea borrar.';
         }
 
         function SEARCH(){
