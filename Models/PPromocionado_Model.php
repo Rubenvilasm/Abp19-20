@@ -82,7 +82,7 @@ class PPromocionado_Model{
         }
 
         function SEARCH(){
-            $sql  = "SELECT * FROM partidoPromocionado WHERE 
+            $sql  = "SELECT * FROM partidoPromocionado WHERE (
                     `idPartidoPromocionado` LIKE '%$this->idPartidoPromocionado%'AND
                     `nombre` LIKE '%$this->nombre%'AND
                     `fecha` LIKE '%$this->fecha%'AND
@@ -90,7 +90,7 @@ class PPromocionado_Model{
                     `idParticipante2` LIKE '%$this->idParticipante2%'AND
                     `idParticipante3` LIKE '%$this->idParticipante3%'AND
                     `idParticipante4` LIKE '%$this->idParticipante4%'AND
-                    `numParticipantes` LIKE '%$this->numParticipantes%'";
+                    `numParticipantes` LIKE '%$this->numParticipantes%')";
         
             
         if($sql == "SELECT * FROM partidoPromocionado"){

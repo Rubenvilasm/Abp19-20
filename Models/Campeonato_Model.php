@@ -27,7 +27,7 @@ class Campeonato_Model{
         $this->mysqli = ConnectDB();
     }
     
-    function Register() {
+    function isRegistred() {
         $sql = "SELECT * FROM `campeonato`
                 WHERE `idCampeonato` = '".$this->idCampeonato."'";
         $resultado = $this->mysqli->query($sql);
