@@ -10,10 +10,10 @@ class Enfrentamiento_Model{
     var $idGrupo;
     var $numSetsPareja1;
     var $numSetsPareja2;
-
+    var $idPista;
     var $mysqli;
 
-    function __construct($idEnfrentamiento,$idCampeonato,$idPareja1,$idPareja2,$fecha,$hora,$grupo,$numSetsPareja1,$numSetsPareja2){
+    function __construct($idEnfrentamiento,$idCampeonato,$idPareja1,$idPareja2,$fecha,$hora,$grupo,$numSetsPareja1,$numSetsPareja2,$idPista){
         $this->idEnfrentamiento = $idEnfrentamiento;
         $this->idCampeonato = $idCampeonato;
         $this->idPareja1 = $idPareja1;
@@ -23,6 +23,7 @@ class Enfrentamiento_Model{
         $this->idGrupo = $idGrupo;
         $this->numSetsPareja1 = $numSetsPareja1;
         $this->numSetsPareja2 = $numSetsPareja2;
+        $this->idPista = $idPista;
 
         include_once '../Models/Access_DB.php';
         $this->mysqli = ConnectDB();
@@ -46,7 +47,8 @@ class Enfrentamiento_Model{
                 `hora`,
                 `idGrupo`,
                 `numSetsPareja1`,
-                `numSetsPareja2`
+                `numSetsPareja2`,
+                `idPista`
                 ) VALUES (
                     '$this->idEnfrentamiento',
                     '$this->idCampeonato',
@@ -56,7 +58,9 @@ class Enfrentamiento_Model{
                     '$this->hora',
                     '$this->idGrupo',
                     '$this->numSetsPareja1',
-                    '$this->numSetsPareja2')";
+                    '$this->numSetsPareja2',
+                    '$this->idPista',
+                    )";
             if(!($this->mysqli->query($sql)))
                 return 'ERROR: Error en la inserción.';
             else return 'Insercción completada con éxito.';
@@ -85,6 +89,7 @@ class Enfrentamiento_Model{
             `idPareja2` LIKE '%$this->idPareja2%'AND
             `fecha` LIKE '%$this->fecha%'AND
             `hora` LIKE '%$this->hora%'AND
+            `idPista` LIKE '%$this->idPista%'AND
             `idGrupo` LIKE '%$this->idGrupo%')";
 
         if(!($result = $this->mysqli->query($sql)))
@@ -100,7 +105,7 @@ class Enfrentamiento_Model{
 			$num_rows = mysqli_num_rows($result);
 
 			if($num_rows == 1){
-				$sql = "UPDATE usuario SET
+				$sql = "UPDATE enfrentamiento SET
 						`idEnfrentamiento` = '$this->idEnfrentamiento',
 						`idCampeonato` = '$this->idCampeonato',
 						`idPareja1` = '$this->idPareja1',
@@ -109,8 +114,10 @@ class Enfrentamiento_Model{
 						`hora` = '$this->hora',
 						`idGrupo` = '$this->idGrupo',
 						`numSetsPareja1` = '$this->numSetsPareja1',
-						`numSetsPareja2` = '$this->numSetsPareja2'
-					WHERE (`login` = '$this->login')";
+						`numSetsPareja2` = '$this->numSetsPareja2',
+						`idPista` = '$this->idPista'
+
+					WHERE (`idEnfrentamiento` = '$this->idEnfrentamiento')";
 
 				if(!($result = $this->mysqli->query($sql))){
 					return 'ERROR: Fallo en la consulta sobre la base de datos.';
