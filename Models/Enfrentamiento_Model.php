@@ -116,7 +116,6 @@ class Enfrentamiento_Model{
 						`numSetsPareja1` = '$this->numSetsPareja1',
 						`numSetsPareja2` = '$this->numSetsPareja2',
 						`idPista` = '$this->idPista'
-
 					WHERE (`idEnfrentamiento` = '$this->idEnfrentamiento')";
 
 				if(!($result = $this->mysqli->query($sql))){
@@ -125,7 +124,5 @@ class Enfrentamiento_Model{
 			}else return 'ERROR: El enfrentamiento introducido no existe en la base de datos.';
 		}else return 'ERROR: El atributo clave está vacio.';
 	}
-        
-
 }
 ?>
