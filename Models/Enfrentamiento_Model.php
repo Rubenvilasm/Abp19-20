@@ -6,20 +6,18 @@ class Enfrentamiento_Model{
     var $idPareja1;
     var $idPareja2;
     var $fecha;
-    var $hora;
     var $idGrupo;
     var $numSetsPareja1;
     var $numSetsPareja2;
     var $idPista;
     var $mysqli;
 
-    function __construct($idEnfrentamiento,$idCampeonato,$idPareja1,$idPareja2,$fecha,$hora,$grupo,$numSetsPareja1,$numSetsPareja2,$idPista){
+    function __construct($idEnfrentamiento,$idCampeonato,$idPareja1,$idPareja2,$fecha,$grupo,$numSetsPareja1,$numSetsPareja2,$idPista){
         $this->idEnfrentamiento = $idEnfrentamiento;
         $this->idCampeonato = $idCampeonato;
         $this->idPareja1 = $idPareja1;
         $this->idPareja2 = $idPareja2;
         $this->fecha = $fecha;
-        $this->hora = $hora;
         $this->idGrupo = $idGrupo;
         $this->numSetsPareja1 = $numSetsPareja1;
         $this->numSetsPareja2 = $numSetsPareja2;
@@ -44,7 +42,6 @@ class Enfrentamiento_Model{
                 `idPareja1`,
                 `idPareja2`,
                 `fecha`,
-                `hora`,
                 `idGrupo`,
                 `numSetsPareja1`,
                 `numSetsPareja2`,
@@ -55,7 +52,6 @@ class Enfrentamiento_Model{
                     '$this->idPareja1',
                     '$this->idPareja2',
                     '$this->fecha',
-                    '$this->hora',
                     '$this->idGrupo',
                     '$this->numSetsPareja1',
                     '$this->numSetsPareja2',
@@ -88,7 +84,6 @@ class Enfrentamiento_Model{
             `idPareja1` LIKE '%$this->idPareja1%'AND
             `idPareja2` LIKE '%$this->idPareja2%'AND
             `fecha` LIKE '%$this->fecha%'AND
-            `hora` LIKE '%$this->hora%'AND
             `idPista` LIKE '%$this->idPista%'AND
             `idGrupo` LIKE '%$this->idGrupo%')";
 
@@ -111,7 +106,6 @@ class Enfrentamiento_Model{
 						`idPareja1` = '$this->idPareja1',
 						`idPareja2` = '$this->idPareja2',
 						`fecha` = '$this->fecha',
-						`hora` = '$this->hora',
 						`idGrupo` = '$this->idGrupo',
 						`numSetsPareja1` = '$this->numSetsPareja1',
 						`numSetsPareja2` = '$this->numSetsPareja2',
