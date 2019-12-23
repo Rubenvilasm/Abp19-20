@@ -120,7 +120,7 @@ session_start();
              new MESSAGE($datos, '../Controllers/Index_Controller.php');
             
          }else{
-             $mens = "Partido ya completo";
+             $mens = "Campeonato ya completo";
              include '../Views/MESSAGE.php';
              new MESSAGE($mens, '../Controllers/Index_Controller.php');
          }

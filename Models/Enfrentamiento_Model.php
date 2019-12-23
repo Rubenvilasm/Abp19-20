@@ -10,6 +10,8 @@ class Enfrentamiento_Model{
     var $numSetsPareja1;
     var $numSetsPareja2;
     var $idPista;
+
+    
     var $mysqli;
 
     function __construct($idEnfrentamiento,$idCampeonato,$idPareja1,$idPareja2,$fecha,$grupo,$numSetsPareja1,$numSetsPareja2,$idPista){

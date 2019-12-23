@@ -7,17 +7,16 @@ class ClaseParticular_Model{
     var $idEntrenador;
     var $idUsuario;
     var $nivel;
+    var $hora;
     //var $precio;
-    var $borrado;
 
     var $mysqli;
 
-    function __construct($idClaseParticular,$pista,$idEntrenador,$idUsuario,$borrado,$nivel){
+    function __construct($idClaseParticular,$pista,$idEntrenador,$idUsuario,$nivel,$hora){
         $this->idClaseParticular = $idClaseParticular;
         $this->pista = $pista;
         $this->idEntrenador = $idEntrenador;
         $this->idUsuario = $idUsuario;
-        $this->borrado = $borrado;
         $this->nivel = $nivel;
 
         include_once '../Models/Access_DB.php';
@@ -44,25 +43,25 @@ class ClaseParticular_Model{
             `idEntrenador`,
             `idUsuario`,
             `nivel`,
-            `borrado`)
+            `hora`)
             VALUES (
                 '$this->idClaseParticular',
                 '$this->pista',
                 '$this->idEntrenador',
                 '$this->idUsuario',
                 '$this->nivel',
-                'NO'
+                '$this->hora'
             )";
     }
 
     function DELETE(){
-        $sql = "SELECT * FROM `claseParticular` WHERE (`idClaseParticular` = '$this->idClaseParticular' AND `borrado` = 'NO')";
+        $sql = "SELECT * FROM `claseParticular` WHERE (`idClaseParticular` = '$this->idClaseParticular')";
 
         $result = $this->mysqli->query($sql);
         $num_rows = mysqli_num_rows($result);
 
         if($result->num_rows == 1){
-            $sql = "UPDATE claseParticular SET `borrado` = 'SI' WHERE (`idClaseParticular` = '$this->idClaseParticular')";
+            $sql = "DELETE FROM claseParticular WHERE (idClaseParticular = '$this->idClaseParticular')";
 
             if(!($result = $this->mysqli->query($sql))){
                 return 'ERROR: Fallo en la consulta sobre la base de datos.';
@@ -74,7 +73,7 @@ class ClaseParticular_Model{
                         `pista`,
                         `idEntrenador`,
                         `idUsuario`,
-                        `nivel`,
+                        `nivel`
                 FROM claseParticular WHERE(
                         (`idClaseParticular` LIKE '%this->idClaseParticular') &&
                         (`pista` LIKE '%this->pista') &&
@@ -91,9 +90,7 @@ class ClaseParticular_Model{
     }
 
     function GET_ALUMNOS(){
-        $sql = "SELECT COUNT(`idUsuario`)
-                FROM claseParticular WHERE(
-                        (`borrado` = 'NO')";
+        $sql = "SELECT COUNT(`idUsuario`) FROM claseParticular WHERE (idClaseParticular = '$this->idClaseParticular')";
 
         if(!($result = $this->mysqli->query($sql))){
             return 'ERROR: Fallo en la consulta sobre la base de datos';

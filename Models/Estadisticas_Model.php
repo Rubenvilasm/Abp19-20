@@ -8,16 +8,20 @@ class Estadisticas_Model{
     var $puntos;
     var $mejorRanking;
     var $torneosJugados;
+    var $victoriasConsecutivas;
+    var $finalesJugadas;
     
     var $mysqli;
 
-    function __construct($idDeportista,$partidosGanados,$partidosJugados,$puntos,$mejorRanking){
+    function __construct($idDeportista,$partidosGanados,$partidosJugados,$puntos,$mejorRanking,$victoriasConsecutivas,$finalesJugadas){
         $this->idDeportista = $idDeportista;
         $this->partidosGanados = $partidosGanados;
         $this->partidosJugados = $partidosJugados;
         $this->puntos = $puntos;
         $this->mejorRanking = $mejorRanking;
         $this->torneosJugados = $torneosJugados;
+        $this->victoriasConsecutivas = $victoriasConsecutivas;
+        $this->finalesJugadas = $finalesJugadas;
 
         include_once '../Models/Access_DB.php';
 
@@ -25,16 +29,20 @@ class Estadisticas_Model{
 
     }
 
-    function ADD($pareja){
+    function ADD(){
         $sql = "INSERT INTO estadisticas (
             `idDeportista`,
             `partidosGanados`,
             `partidosJugados`,
             `puntos`,
             `mejorRanking`,
-            `campeonatosJugados`
+            `campeonatosJugados`,
+            `victoriasConsecutivas`,
+            `finalesJugadas`
             ) VALUES (
                 '".$pareja."',
+                '0',
+                '0',
                 '0',
                 '0',
                 '0',
@@ -58,7 +66,9 @@ class Estadisticas_Model{
                     `partidosGanados` = '$this->partidosGanados',
                     `puntos` = '$this->puntos',
                     `mejorRanking` = '$this->mejorRanking',
-                    `campeonatosJugados` = '$this->campeonatosJugados'
+                    `campeonatosJugados` = '$this->campeonatosJugados',
+                    `victoriasConsecutivas` = '$this->victoriasConsecutivas',
+                    `finalesJugadas` = '$this->finalesJugadas'
                     WHERE (idDeportista = '$this->idDeportista')";
             if (!($this->mysqli->query($sql)))
                 return 'ERROR: Error en la modificación.'; 
