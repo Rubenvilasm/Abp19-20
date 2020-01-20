@@ -127,8 +127,8 @@ session_start();
     }
     function PAREJA($clave){
         if(!isset($_POST['submit'])){
-            include '../Views/Campeonato/CampeonatoPareja_View.php';
-            new Campeonato_PAREJA($clave);
+            include '../Views/Campeonato/CampeonatoInscribirse_View.php';
+            new Campeonato_Inscribirse($clave);
 
         }else{
             include '../Models/Pareja_Model.php';
@@ -136,7 +136,7 @@ session_start();
             $Pareja = new Pareja_Model('',$_POST['participante2'],$_POST['participante1']);
             $respPareja=$Pareja->ADD();
             $idPareja=$Pareja->Get_ID();
-            $Participa= new Participa_Model($idPareja,$clave);
+            $Participa= new Participa_Model($idPareja,$clave,$_POST['categoria'],$_POST['nivel']);
             $respParticipa=$Participa->ADD();    
             
                 include '../Views/MESSAGE.php';
@@ -144,7 +144,7 @@ session_start();
             
         }
     }
-    function PAREJA($clave){
+    function prueba($clave){
         if(!isset($_POST['submit'])){
             include '../Views/Campeonato/CampeonatoPareja_View.php';
             new Campeonato_PAREJA($clave);

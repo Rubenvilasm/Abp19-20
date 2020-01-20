@@ -163,7 +163,13 @@ array(
 	'idClaseParticular' => 'ID',
 	'Añadir Clase Particular' => 'Añadir Clase Particular',
 	'¿Confirma el borrado de esta Clase Particular ?' => '¿Confirma el borrado de esta Clase Particular ?',
-	'Datos de la Clase particular' => 'Datos de la clase particular'	
+	'Datos de la Clase particular' => 'Datos de la clase particular',
+	'Seleccione su pareja la categoria y el nivel al que desea inscribirse'=>'Seleccione su pareja la categoria y el nivel al que desea inscribirse',
+	'Mixta'=>'Mixta',
+	'Masculina'=>'Masculina',
+	'Femenina'=>'Femenina',
+	'Categoria'=>'Categoria',
+	'Nivel'=>'Nivel'
 
  
 

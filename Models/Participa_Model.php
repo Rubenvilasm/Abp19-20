@@ -4,15 +4,19 @@ class Participa_Model{
 
     var $idPareja;
     var $idCampeonato;
+    var $categoria;
+    var $nivel;
     
 
     var $mysqli;
 
-    function __construct($idPareja,$idCampeonato){
+    function __construct($idPareja,$idCampeonato,$categoria,$nivel){
         include_once '../Models/Access_DB.php';
         $this->mysqli = ConnectDB();
         $this->idPareja = $idPareja;
         $this->idCampeonato = $idCampeonato;
+        $this->categoria = $categoria;
+        $this->nivel = $nivel;
 
       
     }
@@ -28,10 +32,14 @@ class Participa_Model{
                 if($result->num_rows == 0){
                     $sql = "INSERT INTO participa (
                         idCampeonato,
-                        idPareja)
+                        idPareja,
+                        nivel,
+                        categoria)
                                 VALUES(
                                     '$this->idCampeonato',
-                                    '$this->idPareja')";
+                                    '$this->idPareja',
+                                    '$this->nivel',
+                                    '$this->categoria')";
                     
                     if(!($this->mysqli->query($sql))){
                         return 'ERROR: Error en la inserción.';

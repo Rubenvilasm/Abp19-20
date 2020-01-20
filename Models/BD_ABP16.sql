@@ -177,9 +177,11 @@ CREATE TABLE IF NOT EXISTS `pareja` (
     FOREIGN KEY (idGrupo) REFERENCES grupo (idGrupo)
   )ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
-CREATE TABLE IF NOT EXISTS `participa` (
+CREATE TABLE `participa` (
   `idPareja` int(11) NOT NULL,
-  `idCampeonato` varchar(50) COLLATE latin1_spanish_ci NOT NULL
+  `idCampeonato` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
+  `nivel` int(11) NOT NULL,
+  `categoria` enum('mixta','masculina','femenina','') COLLATE latin1_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
    
 
