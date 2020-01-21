@@ -10,7 +10,8 @@ class Campeonato_Model{
     var $normativa;
     var $numParticipantes;
     VAR $borrado;
-
+    var $categorias = ['mixta','femenina','masculina'];
+    var $nivel = [1,2,3];
     var $mysqli;
 
     function __construct($idCampeonato,$nombreCampeonato,$fechaInicio,$fechaFin,$premios,$normativa,$numParticipantes,$borrado){
@@ -166,7 +167,95 @@ class Campeonato_Model{
             return 'ERROR: Fallo en la consulta sobre la base de datos.';
         }else return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
+    function crearGrupos(){
+        $sql = "SELECT * FROM participa WHERE  `idCampeonato`='$this->idCampeonato' ";
+        $resultado  = $this->mysqli->query( "SELECT COUNT(*) FROM participa WHERE  `idCampeonato`='$this->idCampeonato' AND `nivel`=1 ");
+        $resultado = mysqli_fetch_all($resultado,MYSQLI_NUM);
+        $this->nivel[0] = $resultado[0][0];
+        $resultado  = $this->mysqli->query( "SELECT COUNT(*) FROM participa WHERE  `idCampeonato`='$this->idCampeonato' AND `nivel`=2 ");
+        $resultado = mysqli_fetch_all($resultado,MYSQLI_NUM);
+        $this->nivel[1] = $resultado[0][0];
+        $resultado  = $this->mysqli->query( "SELECT COUNT(*) FROM participa WHERE  `idCampeonato`='$this->idCampeonato' AND `nivel`=3 ");
+        $resultado = mysqli_fetch_all($resultado,MYSQLI_NUM);
+        $this->nivel[2] = $resultado[0][0];
+        $i = 0;
+        if(!($result = $this->mysqli->query($sql))){
+            return 'ERROR: Fallo en la consulta sobre la base de datos.';
+        }else $sql = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        
+        while ($i<3){
+        if($this->nivel[$i] < 8){
+            $i++;
+        }
+        else{
+            $lvl=$i+1;
+           
+            $resultado = $this->mysqli->query( "SELECT COUNT(*) FROM participa WHERE  `idCampeonato`='$this->idCampeonato' AND `nivel`= '$lvl' AND `categoria`='mixta' ");
+            print_r($resultado);
+            $resultado = mysqli_fetch_all($resultado,MYSQLI_NUM);
+            print_r($resultado);
+            $categorias["mixta"] = $resultado[0][0];
+            echo  $categorias["mixta"];
+            $resultado = $this->mysqli->query( "SELECT COUNT(*) FROM participa WHERE  `idCampeonato`='$this->idCampeonato' AND `nivel`='$lvl' AND `categoria`='femenina'");
+            $resultado = mysqli_fetch_all($resultado,MYSQLI_NUM);
+            $categorias["femenina"] = $resultado[0][0];
+            $resultado= $this->mysqli->query( "SELECT COUNT(*) FROM participa WHERE  `idCampeonato`='$this->idCampeonato' AND `nivel`='$lvl' AND `categoria`='masculina'");
+            $resultado = mysqli_fetch_all($resultado,MYSQLI_NUM);
+            $categorias["masculina"] = $resultado[0][0];
 
-
+           $categoria = 0;
+           echo $this->categorias[$categoria];
+            while($categoria < 3){
+                $participantes=$categorias[$this->categorias[$categoria]];
+                echo $participantes;
+                if($participantes < 8){
+                    $categoria++;
+                }
+                echo $this->categorias[$categoria];
+               return $this->dividirEnGrupos($participantes,$sql,$i+1,$this->categorias[$categoria]);           
+        }
+    
+    }
+        
+    }
 }
+function dividirEnGrupos($participantes,$parejas,$nivel,$categoria){
+    $menor=10000;
+    $gruposDe=0;
+    for($i=12;$i>7;$i--){
+        if($menor>$participantes%$i){
+            $menor = $participantes%$i;
+            $gruposDe = $i;
+        }
+    }
+        $x=1;
+            $grupo = 1;
+            
+            foreach($parejas as $pareja){
+                echo $pareja['idPareja'];
+                echo $grupo;
+                echo $categoria;
+                echo $nivel;
+           if($x==$gruposDe){
+               $grupo ++;
+               $x=1;
+           }
+           if($participantes==$menor){
+               break;
+           }              
+         $this->mysqli->query("UPDATE participa SET `grupo`='$grupo' WHERE (`idCampeonato`= '$this->idCampeonato'
+         AND `categoria` = '$categoria' AND `nivel` = '$nivel' AND `idPareja`='$pareja[idPareja]')");
+         $x++;
+            
+        }
+        return "Se han creado los grupos correctamente";
+    
+        
+}
+
+    }
+        
+
+
+
 ?>

@@ -107,6 +107,14 @@ session_start();
                 new MESSAGE($mens, '../Controllers/Index_Controller.php');
             }
        }
+       function START($clave){
+        include '../Models/Campeonato_Model.php';
+        $Campeonato = new Campeonato_Model($clave,'','','','','','','');
+        $datos = $Campeonato->crearGrupos();
+      
+        include '../Views/MESSAGE.php';
+        new MESSAGE($datos, '../Controllers/Index_Controller.php');
+   }
        function INSCRIBIRSE($clave){
         include '../Models/Campeonato_Model.php';
         $Campeonato = new Campeonato_Model($clave,'','','','','',
