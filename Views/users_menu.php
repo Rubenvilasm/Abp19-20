@@ -68,7 +68,7 @@ $accion='';*/
 	<?php
 		}
 	?>
-					<?php
+		<?php
 		
 		if( $_SESSION['rol'] == "Administrador" ){
 		?>
@@ -76,6 +76,22 @@ $accion='';*/
 	<?php
 		}
 	?>
+
+		<?php
+		if( $_SESSION['rol'] == "Administrador" || $_SESSION['rol'] == "Deportista"){
+		?>
+				<li class="<?php echo $accion ;?> " ><a href="../Controllers/Estadistica_Controller.php?accion=SHOWALL"><?php echo $strings['Estadistica']; ?><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-bullhorn"></span></a></li>
+		<?php
+			}
+		?>
+
+		<?php
+		if( $_SESSION['rol'] == "Administrador" || $_SESSION['rol'] == "Deportista" || $_SESSION['rol'] == "Entrenador"){
+		?>
+				<li class="<?php echo $accion ;?> " ><a href="../Controllers/ClaseParticular_Controller.php?accion=SHOWALL"><?php echo $strings['Clases Particulares']; ?><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-bullhorn"></span></a></li>
+		<?php
+			}
+		?>
 	
 	
 
