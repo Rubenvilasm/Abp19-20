@@ -145,6 +145,11 @@ array(
 	'Id del campeonato'=>'Id del campeonato',
 	'Inscribir Pareja'=> 'Inscribir Pareja',
 	'ERROR: la pareja ya esta inscrita'=>'ERROR: la pareja ya esta inscrita',
+	'¿Confirma el borrado de este Campeonato ?' => '¿Confirma el borrado de este Campeonato ? ',
+	'El Campeonato ha sido eliminado con exito.' => 'El Campeonato ha sido eliminado con exito.',
+	'ERROR: No hay ningún campeonato con esa id.' => 'ERROR: No hay ningún campeonato con esa id.',
+	'Miembro 1 pareja' => 'Miembro 1 de la pareja',
+	'Miembro 2 pareja' => 'Miembro 2 de la pareja',
 	'Pistas' => 'Pistas',
 	'especificaciones' => 'Especificaciones',
 	'ubicacion' => 'Ubicación',
@@ -158,7 +163,19 @@ array(
 	'idClaseParticular' => 'ID',
 	'Añadir Clase Particular' => 'Añadir Clase Particular',
 	'¿Confirma el borrado de esta Clase Particular ?' => '¿Confirma el borrado de esta Clase Particular ?',
-	'Datos de la Clase particular' => 'Datos de la clase particular'	
+	'Datos de la Clase particular' => 'Datos de la clase particular',
+	'Seleccione su pareja la categoria y el nivel al que desea inscribirse'=>'Seleccione su pareja la categoria y el nivel al que desea inscribirse',
+	'Mixta'=>'Mixta',
+	'Masculina'=>'Masculina',
+	'Femenina'=>'Femenina',
+	'Categoria'=>'Categoria',
+	'Nivel'=>'Nivel',
+	'Se han creado los grupos correctamente' => 'Se han creado los grupos correctamente',
+	'ERROR: El campeonato ya esta en curso' => 'ERROR: El campeonato ya esta en curso',
+	'Seleccione su pareja la categoria y el nivel para ver los grupos'=>'Seleccione su pareja la categoria y el nivel para ver los grupos',
+	'grupo'=>'Grupo',
+	'idPareja'=>'Id de la pareja',
+	'No hay grupos en esa categoria y nivel'=>'No hay grupos en esa categoria y nivel'
 
  
 

@@ -10,7 +10,8 @@ class Campeonato_Model{
     var $normativa;
     var $numParticipantes;
     VAR $borrado;
-
+    var $categorias = ['mixta','femenina','masculina'];
+    var $nivel = [1,2,3];
     var $mysqli;
 
     function __construct($idCampeonato,$nombreCampeonato,$fechaInicio,$fechaFin,$premios,$normativa,$numParticipantes,$borrado){
@@ -96,8 +97,7 @@ class Campeonato_Model{
     
 
     function DELETE(){
-        $sql = "SELECT * FROM campeonato WHERE (`idCampeonato` = '$this->idCampeonato' AND `borrado` = 'NO'))";
-
+        $sql = "SELECT * FROM campeonato WHERE (`idCampeonato` = '$this->idCampeonato' AND `borrado` = 'NO')";
         $result = $this->mysqli->query($sql);
 
         if($result->num_rows == 1){
@@ -157,7 +157,7 @@ class Campeonato_Model{
     }
 
     function SHOWCURRENT(){
-        $sql = "SELECT * FROM campeonato WHERE (`idCampeonato` = '$this->Campeonato'AND `borrado` ='NO')";
+        $sql = "SELECT * FROM campeonato WHERE (`idCampeonato` = '$this->idCampeonato'AND `borrado` ='NO')";
 
         if(!($result = $this->mysqli->query($sql))){
             return 'ERROR: Fallo en la consulta sobre la base de datos.';
@@ -172,9 +172,169 @@ class Campeonato_Model{
             return 'ERROR: Fallo en la consulta sobre la base de datos.';
         }else return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
+    function PARTICIPANTES(){
+        $sql = "SELECT * FROM participa, pareja WHERE  `idCampeonato`='$this->idCampeonato' ";
 
+        if(!($result = $this->mysqli->query($sql))){
+            return 'ERROR: Fallo en la consulta sobre la base de datos.';
+        }else return mysqli_fetch_all($result, MYSQLI_ASSOC);
+    }
+    function crearGrupos(){
+        $sql = "SELECT * FROM participa WHERE  `idCampeonato`='$this->idCampeonato'";
+        $resultado  = $this->mysqli->query( "SELECT COUNT(*) FROM participa WHERE  `idCampeonato`='$this->idCampeonato' AND `nivel`=1 ");
+        $resultado = mysqli_fetch_all($resultado,MYSQLI_NUM);
+        $this->nivel[0] = $resultado[0][0];
+        $resultado  = $this->mysqli->query( "SELECT COUNT(*) FROM participa WHERE  `idCampeonato`='$this->idCampeonato' AND `nivel`=2 ");
+        $resultado = mysqli_fetch_all($resultado,MYSQLI_NUM);
+        $this->nivel[1] = $resultado[0][0];
+        $resultado  = $this->mysqli->query( "SELECT COUNT(*) FROM participa WHERE  `idCampeonato`='$this->idCampeonato' AND `nivel`=3 ");
+        $resultado = mysqli_fetch_all($resultado,MYSQLI_NUM);
+        $this->nivel[2] = $resultado[0][0];
+        $i = 0;
+        if(!($result = $this->mysqli->query($sql))){
+            return 'ERROR: Fallo en la consulta sobre la base de datos.';
+        }else $sql = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        
+        while ($i<3){
+        if($this->nivel[$i] >= 8){
+            $lvl=$i+1;
+           
+            $resultado = $this->mysqli->query( "SELECT COUNT(*) FROM participa WHERE  `idCampeonato`='$this->idCampeonato' AND `nivel`= '$lvl' AND `categoria`='mixta' ");
+           // print_r($resultado);
+            $resultado = mysqli_fetch_all($resultado,MYSQLI_NUM);
+            //print_r($resultado);
+            $categorias["mixta"] = $resultado[0][0];
+            //echo  $categorias["mixta"];
+            $resultado = $this->mysqli->query( "SELECT COUNT(*) FROM participa WHERE  `idCampeonato`='$this->idCampeonato' AND `nivel`='$lvl' AND `categoria`='femenina'");
+            $resultado = mysqli_fetch_all($resultado,MYSQLI_NUM);
+            $categorias["femenina"] = $resultado[0][0];
+            $resultado= $this->mysqli->query( "SELECT COUNT(*) FROM participa WHERE  `idCampeonato`='$this->idCampeonato' AND `nivel`='$lvl' AND `categoria`='masculina'");
+            $resultado = mysqli_fetch_all($resultado,MYSQLI_NUM);
+            $categorias["masculina"] = $resultado[0][0];
+
+           $categoria = 0;
+          // echo $this->categorias[$categoria];
+            while($categoria < 3){
+                $temp = $this->categorias[$categoria];                             
+                $participantes=$categorias[$temp];
+                //echo $participantes;
+                if($participantes >= 8){
+                    $sql = "SELECT * FROM participa WHERE  `idCampeonato`='$this->idCampeonato' AND `nivel`='$lvl' AND `categoria` ='$temp'";
+                    if(!($result = $this->mysqli->query($sql))){
+                        return 'ERROR: Fallo en la consulta sobre la base de datos.'; 
+                    }else $sql = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                    $this->dividirEnGrupos($participantes,$sql,$i+1,$temp); 
+                }
+                //echo $this->categorias[$categoria];
+            
+               $categoria++;          
+        }
+        }
+        
+            $i++;
+       
+        
+    }
+    $sql = "UPDATE `campeonato`SET `empezado` ='SI'";
+                    if(!($result = $this->mysqli->query($sql))){
+                        return 'ERROR: Fallo en la consulta sobre la base de datos.'; 
+                    }else  return "Se han creado los grupos correctamente";
+   
+}
+function enCurso(){
+    $sql = "SELECT * FROM campeonato WHERE (`idCampeonato` = '$this->idCampeonato'AND `borrado` ='NO' AND `empezado`='NO')";
+    $result = $this->mysqli->query($sql);
+    if($result->num_rows == 0){
+        return 'ERROR: El campeonato ya esta en curso';
+    }else
+            return true;
+        
+    }
+
+function dividirEnGrupos($participantes,$parejas,$nivel,$categoria){
+    //print_r($parejas);
+   $menor=10000;
+    $gruposDe=0;
+    for($i=12;$i>7;$i--){
+        if($menor>$participantes%$i){
+            $menor = $participantes%$i;
+            $gruposDe = $i;
+        }
+    }
     
+        $x=0;
+            $grupo = 1;
+  
+            foreach($parejas as $pareja){
+                
+           if($x==$gruposDe){
+            $sql = "INSERT INTO grupo (
+                categoria,
+                idCampeonato,
+                idGanador,
+                idGrupo,
+                idPareja,
+                nivel,
+                numParticipantes
+                )
+                        VALUES(
+                            '$categoria',
+                            '$this->idCampeonato',
+                            '',
+                            '$grupo',
+                            '',
+                            '$nivel',
+                            '$gruposDe')";
+            if(!($result = $this->mysqli->query($sql))){
+                return 'ERROR: Fallo en la consulta sobre la base de datos.'; 
+            }else 
+            if($participantes>=$gruposDe){
 
+                $grupo ++;
+                $x=0;
+            }
+               
+           }
+           if($participantes<=$menor && $gruposDe<12){
+            $grupo2=$grupo;
+            $avanza=false;
+            $this->mysqli->query("UPDATE participa SET `grupo`='$grupo2' WHERE (`idCampeonato`= '$this->idCampeonato'
+            AND `categoria` = '$categoria' AND `nivel` = '$nivel' AND `idPareja`='$pareja[idPareja]')");
+            if($grupo2==1 && $grupo2!=$grupo){
+                $avanza = true;
+            }
+            if($grupo2==$grupo && $grupo2!=1){
+                $avanza= false;
+            }
+
+            if(!$avanza){
+                $grupo2--;
+            }else{
+                $gruposDe++;
+                $grupo2++;
+            } 
+           
+            $participantes--; 
+           }else if($participantes<=$menor && $gruposDe==12){
+              
+           break;
+           }
+           else{   
+                
+         $this->mysqli->query("UPDATE participa SET `grupo`='$grupo' WHERE (`idCampeonato`= '$this->idCampeonato'
+         AND `categoria` = '$categoria' AND `nivel` = '$nivel' AND `idPareja`='$pareja[idPareja]')");
+         $participantes--;
+         $x++;
+        }
+         
+        }
+    
+        
+}
 
 }
+        
+
+
+
 ?>

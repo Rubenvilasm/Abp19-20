@@ -107,6 +107,20 @@ session_start();
                 new MESSAGE($mens, '../Controllers/Index_Controller.php');
             }
        }
+       function START($clave){
+        include '../Models/Campeonato_Model.php';
+        $Campeonato = new Campeonato_Model($clave,'','','','','','','');
+        $enCurso = $Campeonato->enCurso();
+        if($enCurso==1){        
+        $datos = $Campeonato->crearGrupos();      
+        include '../Views/MESSAGE.php';
+        new MESSAGE($datos, '../Controllers/Index_Controller.php');
+
+        }else{
+            include '../Views/MESSAGE.php';
+        new MESSAGE($enCurso, '../Controllers/Index_Controller.php');
+        }
+   }
        function INSCRIBIRSE($clave){
         include '../Models/Campeonato_Model.php';
         $Campeonato = new Campeonato_Model($clave,'','','','','',
@@ -126,6 +140,25 @@ session_start();
          }
     }
     function PAREJA($clave){
+        if(!isset($_POST['submit'])){
+            include '../Views/Campeonato/CampeonatoInscribirse_View.php';
+            new Campeonato_Inscribirse($clave);
+
+        }else{
+            include '../Models/Pareja_Model.php';
+            include '../Models/Participa_Model.php';
+            $Pareja = new Pareja_Model('',$_POST['participante2'],$_POST['participante1']);
+            $respPareja=$Pareja->ADD();
+            $idPareja=$Pareja->Get_ID();
+            $Participa= new Participa_Model($idPareja,$clave,$_POST['categoria'],$_POST['nivel']);
+            $respParticipa=$Participa->ADD();    
+            
+                include '../Views/MESSAGE.php';
+                new MESSAGE($respParticipa, './Campeonato_Controller.php?accion=VERINSCRIPCIONES');
+            
+        }
+    }
+    function prueba($clave){
         if(!isset($_POST['submit'])){
             include '../Views/Campeonato/CampeonatoPareja_View.php';
             new Campeonato_PAREJA($clave);
@@ -155,11 +188,48 @@ session_start();
           include '../Views/Campeonato/CampeonatoVerInscripciones_View.php';
           new  Campeonato_VERINSCRIPCIONES($datos);
       }else{
-          $mens = "No hay partidos promocionados registrados";
+          $mens = "No hay campeonatos disponibles";
           include '../Views/MESSAGE.php';
           new MESSAGE($mens, '../Controllers/Index_Controller.php');
       }
  }
+ function PARTICIPANTES($idCampeonato){
+    include '../Models/Campeonato_Model.php';
+                 $Campeonato = new Campeonato_Model($idCampeonato,'','','','','',
+                 '','');
+     $datos = $Campeonato->PARTICIPANTES();
+   
+     if(sizeof($datos) != 0)
+     {
+         include '../Views/Campeonato/CampeonatoParticipantes_View.php';
+         new  Campeonato_PARTICIPANTES($datos);
+     }else{
+         $mens = "No hay participantes inscritos";
+         include '../Views/MESSAGE.php';
+         new MESSAGE($mens, '../Controllers/Index_Controller.php');
+     }
+}
+
+function Seleccionar($clave){
+    if(!isset($_POST['submit'])){
+        include '../Views/Campeonato/CampeonatoSeleccionar_View.php';
+        new Campeonato_Seleccionar($clave);
+
+    }else{
+        include '../Models/Participa_Model.php';
+
+        $Participa= new Participa_Model('','',$_POST['categoria'],$_POST['nivel']);
+        $respParticipa=$Participa->MostrarGrupos();    
+        if(sizeof($respParticipa) != 0){
+            include '../Views/Campeonato/CampeonatoGrupos_View.php';
+            new  Campeonato_GRUPOS($respParticipa);
+        }else{
+            $mens = "No hay grupos en esa categoria y nivel";
+            include '../Views/MESSAGE.php';
+            new MESSAGE($mens, '../Controllers/Index_Controller.php');
+        }        
+    }
+}
 
        if(!isset($param)){
             $accion();
