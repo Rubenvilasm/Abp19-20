@@ -3,16 +3,15 @@
 class Categoria_Model{
 
     var $idCategoria;
-    var $nivel;
+    var $idPareja;
     var $idCampeonato;
     
 
     var $mysqli;
 
-    function __construct($idCategoria,$nivel,$idCampeonato){
+    function __construct($idCategoria,$idPareja,$idCampeonato){
         $this->idCategoria = $idCategoria;
-        $this->nombre = $nombre;
-        $this->nivel = $nivel;
+        $this->idPareja = $idPareja;
         $this->idCampeonato = $idCampeonato;
 
         include_once '../Models/Access_DB.php';
@@ -30,11 +29,11 @@ class Categoria_Model{
                 if($result->num_rows == 0){
                     $sql = "INSERT INTO categoria (
                         idCategoria,
-                        nivel,
+                        idPareja,
                         idCampeonato)
                                 VALUES(
                                     '$this->idCategoria',
-                                    '$this->nivel',
+                                    '$this->idPareja',
                                     '$this->idCampeonato')";
                     
                     if(!($this->mysqli->query($sql))){
@@ -61,7 +60,7 @@ class Categoria_Model{
     function SEARCH(){
         $sql  = "SELECT * FROM categoria WHERE (
                 (`idCategoria` LIKE '%$this->idCategoria%')AND
-                (`nivel` LIKE '%$this->nivel%')AND
+                (`idPareja` LIKE '%$this->idPareja%')AND
                 (`idCampeonato` LIKE '%$this->idCampeonato%'))";
 
         

@@ -133,24 +133,23 @@ class Usuario_Model{
 				`fechaNacimiento` LIKE '%$this->fechaNac%'
 			";
 
-if($sql == "SELECT * FROM USUARIO"){
-	return $this->SHOWALL();
-}else{
-//Si no hay coincidencias devuelve un mensaje
-	if(mysqli_num_rows(mysqli_query($this->mysqli, $sql)) ==0)
-	{
-		return "No se han encontrado coincidencias";
-	}else{
-		if(mysqli_num_rows(mysqli_query($this->mysqli, $sql)) ==1)
-		{
-			$result = $this->mysqli->query($sql);
-			return mysqli_fetch_assoc($result);
+		if($sql == "SELECT * FROM USUARIO"){
+			return $this->SHOWALL();
 		}else{
-			$result = $this->mysqli->query($sql);
-			return mysqli_fetch_all($result, MYSQLI_ASSOC);
+			if(mysqli_num_rows(mysqli_query($this->mysqli, $sql)) ==0)
+			{
+				return "No se han encontrado coincidencias";
+			}else{
+				if(mysqli_num_rows(mysqli_query($this->mysqli, $sql)) ==1)
+				{
+					$result = $this->mysqli->query($sql);
+					return mysqli_fetch_assoc($result);
+				}else{
+					$result = $this->mysqli->query($sql);
+					return mysqli_fetch_all($result, MYSQLI_ASSOC);
+				}
+			}
 		}
-	}
-}
 }
 
 	function GET_ROL(){

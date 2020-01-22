@@ -28,7 +28,7 @@ class Campeonato_Model{
         $this->mysqli = ConnectDB();
     }
     
-    function Register() {
+    function isRegistred() {
         $sql = "SELECT * FROM `campeonato`
                 WHERE `idCampeonato` = '".$this->idCampeonato."'";
         $resultado = $this->mysqli->query($sql);
@@ -38,14 +38,12 @@ class Campeonato_Model{
             return true;
     }
 
-    function addCategoria($idCategoria,$idCampeonato, $nivel){
+    function addCategoria($idCategoria,$idCampeonato){
         $sql = "INSERT INTO categoria (
                 idCategoria,
-                nivel,
                 idCampeonato
                 ) VALUES (
                     '".$idCategoria."',
-					'".$nivel."',
 					'".$idCampeonato."'
                         )";
 
@@ -55,6 +53,20 @@ class Campeonato_Model{
         else{ 
             return 'Inserción realizada con éxito'; 
         }
+    }
+
+    function addNivel(){
+        $sql ="INSERT INTO nivel(
+                `idNivel`,
+                `idCategoria`,
+                `idCampeonato`
+                ) VALUES (
+                    '$this->idNivel',
+                    '$this->idCategoria',
+                    '$this->idCampeonato')";
+        if(!$this->mysqli->query($sql))
+            return 'ERROR: Error en la consulta.';
+        else return 'Inserción realizada con exito.';
     }
 
     function ADD(){

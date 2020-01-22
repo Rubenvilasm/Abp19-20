@@ -6,7 +6,6 @@ class ReservarPista_Model{
     var $idPista;
     var $idUsuario;
     var $fecha;
-    var $reservado;
     var $precio;
 
     var $mysqli;
