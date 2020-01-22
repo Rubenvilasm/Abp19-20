@@ -19,6 +19,7 @@ class Usuario_Model{
 	var $password;
 	var $nombre;
 	var $apellidos;
+	var $genero;
 	var $dni;
 	var $fechaNac;
 	var $email;
@@ -31,12 +32,13 @@ class Usuario_Model{
 	var $mysqli;
 
 
-	function __construct($login,$password,$nombre,$apellidos,$dni,$fechaNac,$email,$telefono,$rol,$socio,$foto){
+	function __construct($login,$password,$nombre,$apellidos,$genero,$dni,$fechaNac,$email,$telefono,$rol,$socio,$foto){
 
 		$this->login = $login;
 		$this->password = $password;
 		$this->nombre = $nombre;
 		$this->apellidos = $apellidos;
+		$this->genero = $genero;
 		$this->dni = $dni;
 		$this->fechaNac = $fechaNac;
 		$this->email = $email;
@@ -84,6 +86,7 @@ class Usuario_Model{
 					`password`,
 					`nombre`,
 					`apellidos`,
+					`genero`,
 					`dni`,
 					`fechaNacimiento`,
 					`email`,
@@ -97,6 +100,7 @@ class Usuario_Model{
 							'$this->password',
 							'$this->nombre',
 							'$this->apellidos',
+							'$this->genero',
 							'$this->dni',
 							'$this->fechaNac',
 							'$this->email',
@@ -125,6 +129,7 @@ class Usuario_Model{
 				`login` LIKE '%$this->login%' AND
 				`nombre` LIKE '%$this->nombre%' AND
 				`apellidos` LIKE '%$this->apellidos%' AND
+				`genero` LIKE '%$this->genero%' AND
 				`dni` LIKE '%$this->dni%' AND
 				`email` LIKE '%$this->email%' AND
 				`telefono` LIKE '%$this->telefono%' AND
@@ -206,6 +211,7 @@ class Usuario_Model{
 						`password` = '$this->password',
 						`nombre` = '$this->nombre',
 						`apellidos` = '$this->apellidos',
+						`genero` = '$this->genero',
 						`dni` = '$this->dni',
 						`fechaNacimiento` = '$this->fechaNac',
 						`email` = '$this->email',
@@ -248,6 +254,14 @@ function GET_FOTO(){
 
 	function rellenarDatos(){
 		$sql = "SELECT * FROM usuario WHERE (`login` = '$this->login')";
+
+		if(!($result= $this->mysqli->query($sql))){
+			return 'ERROR: No existe en la base de datos.';
+		}else return $result;
+	}
+
+	function rellenarDatosByLogin($login){
+		$sql = "SELECT * FROM usuario WHERE ('".$login."' = '$this->login')";
 
 		if(!($result= $this->mysqli->query($sql))){
 			return 'ERROR: No existe en la base de datos.';

@@ -30,6 +30,8 @@ array(
 	'Login' => 'Login',
 	'Nombre' => 'Nombre',
 	'Apellidos' => 'Apellidos',
+	'Genero' => 'Genero',
+	'genero' => 'genero',
 	'DNI' => 'DNI',
 	'fechaNacimiento' => 'Fecha de nacimiento',
 	'Email' => 'Email',

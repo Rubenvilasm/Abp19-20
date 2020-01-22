@@ -39,7 +39,7 @@ else{
                 $local_image = "../Files/Attached_files/";
                 move_uploaded_file($tmp_name, $local_image.$name_file);
             }
-            $usuario = new USUARIO_Model($_POST['login'],$_POST['password'],$_POST['nombre'],$_POST['apellidos'],$_POST['dni'],$_POST['fechaNac'],
+            $usuario = new USUARIO_Model($_POST['login'],$_POST['password'],$_POST['nombre'],$_POST['apellidos'],$_POST['genero'],$_POST['dni'],$_POST['fechaNac'],
             $_POST['email'],$_POST['telefono'],$_POST['rol'],$_POST['socio'],$_FILES['foto']['name'],'');
 
             $respuesta = $usuario->Register();
@@ -60,7 +60,7 @@ else{
             new Usuario_SEARCH();
         }else{
             include '../Models/USUARIO_Model.php';
-            $usuario = new USUARIO_Model($_POST['login'],'',$_POST['nombre'],$_POST['apellidos'],$_POST['dni'],$_POST['fecha_nac'],
+            $usuario = new USUARIO_Model($_POST['login'],'',$_POST['nombre'],$_POST['apellidos'],$_POST['genero'],$_POST['dni'],$_POST['fecha_nac'],
             $_POST['email'],$_POST['telefono'],$_POST['rol'],$_POST['socio'],'','');
             $datos = $usuario->SEARCH();
             if(!is_string($datos)){
@@ -78,7 +78,7 @@ else{
      function DELETE($clave){
         include '../Models/USUARIO_Model.php';
         $usuario = new USUARIO_Model($clave,'','','','','',
-        '','','','','','');
+        '','','','','','','');
 
         if(!isset($_POST['submit']))
         {
@@ -100,7 +100,7 @@ else{
         if(!isset($_POST['submit']))
         {
             include '../Models/USUARIO_Model.php';
-            $usuario = new USUARIO_Model($clave,'','','','','','','','','','','');
+            $usuario = new USUARIO_Model($clave,'','','','','','','','','','','','');
             $foto=$usuario->GET_FOTO();
             $datos = $usuario->SEARCH();
             include '../Views/Usuarios/UsuarioEdit_View.php';
@@ -114,7 +114,7 @@ else{
                 $tmp_name = $_FILES['foto']['tmp_name'];
                 $local_image = "../Files/Attached_files/";
                 move_uploaded_file($tmp_name, $local_image.$name_file);
-                $usuario = new USUARIO_Model($_POST['login'],$_POST['password'],$_POST['nombre'],$_POST['apellidos'],$_POST['dni'],$_POST['fecha_nac'],
+                $usuario = new USUARIO_Model($_POST['login'],$_POST['password'],$_POST['nombre'],$_POST['apellidos'],$_POST['genero'],$_POST['dni'],$_POST['fecha_nac'],
                 $_POST['email'],$_POST['telefono'],$_POST['rol'],$_POST['socio'],$_FILES['foto']['name'],'');
                 $respuesta = $usuario->Edit($clave);
                 include '../Views/MESSAGE.php';
@@ -135,7 +135,7 @@ else{
      function SHOWCURRENT($clave){
             include '../Models/USUARIO_Model.php';
             $usuario = new USUARIO_Model($clave,'','','','','',
-            '','','','','','','');
+            '','','','','','','','');
             $datos = $usuario->SEARCH();
             include '../Views/Usuarios/UsuarioShowCurrent_View.php';
             new Usuario_SHOWCURRENT($datos);
@@ -146,7 +146,7 @@ else{
 
             include '../Models/Usuario_Model.php';
             $usuario = new Usuario_Model('','','','','','',
-            '','','','','','');
+            '','','','','','','');
             $datos = $usuario->SHOWALL();
           
             if(sizeof($datos) != 0){

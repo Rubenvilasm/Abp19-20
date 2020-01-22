@@ -33,6 +33,7 @@
 								<th><?php echo $strings['Login'];?></th>
                 <th><?php echo $strings['Nombre'];?></th>
                 <th><?php echo $strings['Apellidos'];?></th>
+                <th><?php echo $strings['Genero'];?></th>
                 <th><?php echo $strings['DNI'];?></th>
                 <th><?php echo $strings['Email'];?></th>
                 <th><?php echo $strings['Contraseña'];?></th>
@@ -54,6 +55,7 @@
 										<td><?php echo $datos['login']."\n"; ?></td>
 										<td><?php echo $datos['nombre']."\n"; ?></td>
 								<td><?php echo $datos['apellidos']."\n"; ?></td>
+								<td><?php echo $datos['genero']."\n"; ?></td>
 								<td><?php echo $datos['dni']."\n"; ?></td>
 								<td><?php echo $datos['email']."\n"; ?></td>
 								<td><?php echo $datos['password']."\n"; ?></td>

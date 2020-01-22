@@ -52,6 +52,11 @@
 						<p class="invalid" id="invalidapellidos"><?php echo $strings['Formato no válido']?></p>
 					</div>
 					<div class="campo">
+						<label><?php echo $strings['genero']?> : </label>
+						<input type = 'text' name = 'genero' id = 'apellidos' placeholder = '<?php echo $strings['Sólo letras']?>' size = '50' value = '' onblur="comprobarAlfabetico(this,50)" ><br>
+						<p class="invalid" id="invalidGenero"><?php echo $strings['Formato no válido']?></p>
+					</div>
+					<div class="campo">
 						<label><?php echo $strings['Teléfono']?> : </label>
 						<input type = 'text' name = 'telefono' size = '15' value = '' onblur="comprobarTelf(this)" ><br>
 						<p class="invalid" id="invalidtelefono"><?php echo $strings['Teléfono incorrecto'];?></p>

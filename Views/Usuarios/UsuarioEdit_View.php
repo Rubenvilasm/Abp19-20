@@ -44,6 +44,11 @@
 						<input type = 'text' name = 'apellidos' id = 'apellidos' placeholder = '<?php echo $strings['Sólo letras']?>' size = '50' value = '<?php echo $datos['apellidos'];?>' onblur="comprobarAlfabetico(this,50)" ><br>
 						<p class="invalid" id="invalidapellidos"><?php echo $strings['Formato no válido']?></p>
 					</div>
+			<div class="campo">
+				<label><?php echo $strings['Genero']?> : </label>
+				<input type = 'text' name = 'genero' id = 'apellidos' placeholder = '<?php echo $strings['Sólo letras']?>' size = '50' value = '<?php echo $datos['genero'];?>' onblur="comprobarAlfabetico(this,50)" ><br>
+				<p class="invalid" id="invalidGenero"><?php echo $strings['Formato no válido']?></p>
+			</div>
 					<div class="campo">
 						<label>DNI : </label>
 						<input type = 'text' name = 'dni' id = 'dni' placeholder = '<?php echo $strings['Sólo letras']?>' size = '10' value = '<?php echo $datos['dni'];?>' onblur="comprobarDNI(this)" ><br>

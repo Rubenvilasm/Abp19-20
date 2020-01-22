@@ -20,7 +20,7 @@ else{
 		$local_image = "../Files/Attached_files/";
 		move_uploaded_file($tmp_name, $local_image.$name_file);
 	}
-	$usuario = new USUARIO_Model($_POST['login'],$_POST['password'],$_POST['nombre'],$_POST['apellidos'],$_POST['dni'],$_POST['fechaNac'],
+	$usuario = new USUARIO_Model($_POST['login'],$_POST['password'],$_POST['nombre'],$_POST['apellidos'],$_POST['genero'],$_POST['dni'],$_POST['fechaNac'],
 	$_POST['email'],$_POST['telefono'],'Deportista','No',$_FILES['foto']['name'],'NO');
 
 	$respuesta = $usuario->Register();

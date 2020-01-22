@@ -155,6 +155,17 @@ class Campeonato_Model{
 				return $result;
 			}
     }
+    function rellenarDatosById($idCampeonato){
+        $sql = "SELECT * FROM campeonato  WHERE ('".$idCampeonato."' = '$this->idCampeonato')";
+		    // Si la busqueda no da resultados, se devuelve el mensaje de que no existe
+		    if (!($resultado = $this->mysqli->query($sql))){
+				return 'No existe en la base de datos'; // 
+			}
+		    else{ // si existe se devuelve la tupla resultado
+				$result = $resultado->fetch_array();
+				return $result;
+			}
+    }
 
     function SHOWCURRENT(){
         $sql = "SELECT * FROM campeonato WHERE (`idCampeonato` = '$this->idCampeonato'AND `borrado` ='NO')";

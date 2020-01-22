@@ -43,6 +43,10 @@
                         <td><?php echo $datos['apellidos']; ?></td>
                     </tr>
                     <tr>
+                        <th><?php echo $strings['Genero'];?></th>
+                        <td><?php echo $datos['genero']; ?></td>
+                    </tr>
+                    <tr>
                         <th>DNI</th>
                         <td><?php echo $datos['dni']; ?></td>
                     </tr>
