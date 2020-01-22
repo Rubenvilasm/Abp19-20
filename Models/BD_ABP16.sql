@@ -81,19 +81,10 @@ CREATE TABLE IF NOT EXISTS pareja (
     `numParticipantes` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `premios` varchar(125) COLLATE latin1_spanish_ci DEFAULT NULL,
     `normativa` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
-    `borrado` enum('SI','NO') DEFAULT 'NO'
+    `borrado` enum('SI','NO') DEFAULT 'NO',
     `empezado` enum('SI','NO') DEFAULT 'NO',
 
     PRIMARY KEY (idCampeonato)
-  ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
-
-  CREATE TABLE IF NOT EXISTS grupo (
-  idGrupo varchar(25) COLLATE latin1_spanish_ci NOT NULL,
-  idCategoria varchar(25) COLLATE latin1_spanish_ci NOT NULL,
-  idCampeonato varchar(25) COLLATE latin1_spanish_ci NOT NULL,
-  idNivel varchar(25) COLLATE latin1_spanish_ci NOT NULL,
-
-  PRIMARY KEY (idGrupo,idCategoria,idCampeonato,idNivel)
   ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 
@@ -136,6 +127,9 @@ CREATE TABLE IF NOT EXISTS pareja (
     `idCampeonato` varchar(25),
     `categoria` ENUM('mixta','femenina','masculina','') NOT NULL,
     `nivel` INT NOT NULL,
+      
+    PRIMARY KEY (idGrupo)
+  ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 
 
@@ -153,6 +147,7 @@ CREATE TABLE IF NOT EXISTS pareja (
 
 CREATE TABLE `participa` (
   `idPareja` int(11) NOT NULL,
+  `grupo` int(11) NOT NULL,
   `idCampeonato` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
   `nivel` int(11) NOT NULL,
   `categoria` enum('mixta','masculina','femenina','') COLLATE latin1_spanish_ci NOT NULL
@@ -318,8 +313,8 @@ INSERT INTO partido(idPartido,idPista,idPareja1,idPareja2,fecha,resultado) VALUE
   ('2','1','1','2','2018-12-13 18:00:00','2-3'),
   ('3','1','1','2','2018-12-14 18:00:00','3-1');
 
-INSERT INTO grupo(idGrupo,idCategoria,idCampeonato,idNivel) VALUES
-('1','1','1','1');
+INSERT INTO grupo(idGrupo,idGanador,idPareja,idCampeonato,categoria,nivel) VALUES
+('1','1','1','1','1','1');
 
 INSERT INTO categoria(idCategoria,idCampeonato) VALUES
   ('1','1');
