@@ -283,6 +283,25 @@ INSERT INTO `partidoPromocionado` (`idPartidoPromocionado`,`nombre`,`fecha`,`idP
 INSERT INTO `enfrentamiento` (`idEnfrentamiento`,`idPareja1`,`idPareja2`,`idHorario`,`resultado`,`idPista`,`idGanador`,`idCampeonato`) VALUES 
   ('1','1','1','idHorario','','1','pareja1','1');
 
-
+INSERT INTO `participa` (`categoria`,`grupo`,`idCampeonato`,`idPareja`,`nivel`) VALUES 
+('mixta','0','1','78','1'),
+('mixta','0','1','79','1'),
+('mixta','0','1','80','1'),
+('mixta','0','1','81','1'),
+('mixta','0','1','82','1'),
+('mixta','0','1','83','1'),
+('mixta','0','1','84','1'),
+('mixta','0','1','85','1'),
+('mixta','0','1','86','1'),
+('mixta','0','1','87','1'),
+('mixta','0','1','88','1'),
+('mixta','0','1','89','1'),
+('mixta','0','1','90','1'),
+('mixta','0','1','91','1'),
+('mixta','0','1','92','1'),
+('mixta','0','1','93','1'),
+('mixta','0','1','94','1'),
+('mixta','0','1','95','1'),
+('mixta','0','1','96','1');
 /*INSERT INTO `grupo` VALUES
   ('8','1','','pareja1','pareja2','pareja3','pareja4','pareja5','pareja6','pareja7','pareja8');*/

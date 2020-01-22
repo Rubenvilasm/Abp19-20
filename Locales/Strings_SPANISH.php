@@ -169,7 +169,8 @@ array(
 	'Masculina'=>'Masculina',
 	'Femenina'=>'Femenina',
 	'Categoria'=>'Categoria',
-	'Nivel'=>'Nivel'
+	'Nivel'=>'Nivel',
+	'Se han creado los grupos correctamente' => 'Se han creado los grupos correctamente'
 
  
 

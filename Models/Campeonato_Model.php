@@ -168,7 +168,7 @@ class Campeonato_Model{
         }else return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
     function crearGrupos(){
-        $sql = "SELECT * FROM participa WHERE  `idCampeonato`='$this->idCampeonato' ";
+        $sql = "SELECT * FROM participa WHERE  `idCampeonato`='$this->idCampeonato'";
         $resultado  = $this->mysqli->query( "SELECT COUNT(*) FROM participa WHERE  `idCampeonato`='$this->idCampeonato' AND `nivel`=1 ");
         $resultado = mysqli_fetch_all($resultado,MYSQLI_NUM);
         $this->nivel[0] = $resultado[0][0];
@@ -184,18 +184,15 @@ class Campeonato_Model{
         }else $sql = mysqli_fetch_all($result, MYSQLI_ASSOC);
         
         while ($i<3){
-        if($this->nivel[$i] < 8){
-            $i++;
-        }
-        else{
+        if($this->nivel[$i] >= 8){
             $lvl=$i+1;
            
             $resultado = $this->mysqli->query( "SELECT COUNT(*) FROM participa WHERE  `idCampeonato`='$this->idCampeonato' AND `nivel`= '$lvl' AND `categoria`='mixta' ");
-            print_r($resultado);
+           // print_r($resultado);
             $resultado = mysqli_fetch_all($resultado,MYSQLI_NUM);
-            print_r($resultado);
+            //print_r($resultado);
             $categorias["mixta"] = $resultado[0][0];
-            echo  $categorias["mixta"];
+            //echo  $categorias["mixta"];
             $resultado = $this->mysqli->query( "SELECT COUNT(*) FROM participa WHERE  `idCampeonato`='$this->idCampeonato' AND `nivel`='$lvl' AND `categoria`='femenina'");
             $resultado = mysqli_fetch_all($resultado,MYSQLI_NUM);
             $categorias["femenina"] = $resultado[0][0];
@@ -204,23 +201,33 @@ class Campeonato_Model{
             $categorias["masculina"] = $resultado[0][0];
 
            $categoria = 0;
-           echo $this->categorias[$categoria];
+          // echo $this->categorias[$categoria];
             while($categoria < 3){
-                $participantes=$categorias[$this->categorias[$categoria]];
-                echo $participantes;
-                if($participantes < 8){
-                    $categoria++;
+                $temp = $this->categorias[$categoria];                             
+                $participantes=$categorias[$temp];
+                //echo $participantes;
+                if($participantes >= 8){
+                    $sql = "SELECT * FROM participa WHERE  `idCampeonato`='$this->idCampeonato' AND `nivel`='$lvl' AND `categoria` ='$temp'";
+                    if(!($result = $this->mysqli->query($sql))){
+                        return 'ERROR: Fallo en la consulta sobre la base de datos.'; 
+                    }else $sql = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                    $this->dividirEnGrupos($participantes,$sql,$i+1,$temp); 
                 }
-                echo $this->categorias[$categoria];
-               return $this->dividirEnGrupos($participantes,$sql,$i+1,$this->categorias[$categoria]);           
+                //echo $this->categorias[$categoria];
+            
+               $categoria++;          
         }
-    
-    }
+        }
+        
+            $i++;
+       
         
     }
+    return "Se han creado los grupos correctamente";
 }
 function dividirEnGrupos($participantes,$parejas,$nivel,$categoria){
-    $menor=10000;
+    //print_r($parejas);
+   $menor=10000;
     $gruposDe=0;
     for($i=12;$i>7;$i--){
         if($menor>$participantes%$i){
@@ -228,27 +235,29 @@ function dividirEnGrupos($participantes,$parejas,$nivel,$categoria){
             $gruposDe = $i;
         }
     }
-        $x=1;
+    
+        $x=0;
             $grupo = 1;
             
             foreach($parejas as $pareja){
-                echo $pareja['idPareja'];
-                echo $grupo;
-                echo $categoria;
-                echo $nivel;
+              
            if($x==$gruposDe){
                $grupo ++;
-               $x=1;
+               $x=0;
            }
-           if($participantes==$menor){
-               break;
-           }              
+           if($participantes<=$menor){
+            $this->mysqli->query("UPDATE participa SET `grupo`='$grupo' WHERE (`idCampeonato`= '$this->idCampeonato'
+            AND `categoria` = '$categoria' AND `nivel` = '$nivel' AND `idPareja`='$pareja[idPareja]')");
+               
+           }else{   
+                
          $this->mysqli->query("UPDATE participa SET `grupo`='$grupo' WHERE (`idCampeonato`= '$this->idCampeonato'
          AND `categoria` = '$categoria' AND `nivel` = '$nivel' AND `idPareja`='$pareja[idPareja]')");
          $x++;
+        }
             
         }
-        return "Se han creado los grupos correctamente";
+        return "Se han creado $grupos de $gruposDe quedandose fuera un total de $menor jugadores."; 
     
         
 }
