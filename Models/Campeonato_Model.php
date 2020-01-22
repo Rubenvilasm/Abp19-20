@@ -252,19 +252,10 @@ function dividirEnGrupos($participantes,$parejas,$nivel,$categoria){
     
         $x=0;
             $grupo = 1;
-   echo count($parejas,COUNT_RECURSIVE);
+  
             foreach($parejas as $pareja){
                 
            if($x==$gruposDe){
-               echo "entro en sumagrupos";
-               echo "VALUES(
-                '$categoria',
-                '$this->idCampeonato',
-                '',
-                '$grupo',
-                '',
-                '$nivel',
-                '$gruposDe')";
             $sql = "INSERT INTO grupo (
                 categoria,
                 idCampeonato,
@@ -284,16 +275,15 @@ function dividirEnGrupos($participantes,$parejas,$nivel,$categoria){
                             '$gruposDe')";
             if(!($result = $this->mysqli->query($sql))){
                 return 'ERROR: Fallo en la consulta sobre la base de datos.'; 
-            }else echo "consulta correcta";
+            }else 
             if($participantes>=$gruposDe){
-                echo "sumando un grupo";
+
                 $grupo ++;
                 $x=0;
             }
                
            }
            if($participantes<=$menor && $gruposDe<12){
-               echo "entro1";
             $grupo2=$grupo;
             $avanza=false;
             $this->mysqli->query("UPDATE participa SET `grupo`='$grupo2' WHERE (`idCampeonato`= '$this->idCampeonato'
@@ -302,7 +292,6 @@ function dividirEnGrupos($participantes,$parejas,$nivel,$categoria){
                 $avanza = true;
             }
             if($grupo2==$grupo && $grupo2!=1){
-                echo "entro2";
                 $avanza= false;
             }
 
@@ -312,10 +301,10 @@ function dividirEnGrupos($participantes,$parejas,$nivel,$categoria){
                 $gruposDe++;
                 $grupo2++;
             } 
-            echo "resto un participante meh";
+           
             $participantes--; 
            }else if($participantes<=$menor && $gruposDe==12){
-               echo "break";
+              
            break;
            }
            else{   
@@ -323,12 +312,10 @@ function dividirEnGrupos($participantes,$parejas,$nivel,$categoria){
          $this->mysqli->query("UPDATE participa SET `grupo`='$grupo' WHERE (`idCampeonato`= '$this->idCampeonato'
          AND `categoria` = '$categoria' AND `nivel` = '$nivel' AND `idPareja`='$pareja[idPareja]')");
          $participantes--;
-         echo $participantes;
          $x++;
         }
-            echo "          cuentame       ";
+         
         }
-        echo "de $participantes se han creado $grupo de $gruposDe quedandose fuera un total de $menor jugadores."; 
     
         
 }
