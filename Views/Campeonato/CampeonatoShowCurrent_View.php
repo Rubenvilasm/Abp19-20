@@ -64,7 +64,7 @@
             <div class="container-showall-btn">
                 <button class="form-btn" type="button" role="link" onclick="window.location='./Campeonato_Controller.php?accion=SHOWALL'"><i class="fas fa-arrow-left"></i>
                 <button class="form-btn" type="button" role="link" onclick="window.location='./Campeonato_Controller.php?accion=PARTICIPANTES&param=<?php echo $datos['idCampeonato']; ?>'"><i class="fas fa-search-plus"></i>
-
+                <button class="form-btn" type="button" role="link" onclick="window.location='./Campeonato_Controller.php?accion=Seleccionar&param=<?php echo $datos['idCampeonato']; ?>'"><i class="fas fa-users"></i>
             </div>
         </fieldset>
 </div>

@@ -223,8 +223,22 @@ class Campeonato_Model{
        
         
     }
-    return "Se han creado los grupos correctamente";
+    $sql = "UPDATE `campeonato`SET `empezado` ='SI'";
+                    if(!($result = $this->mysqli->query($sql))){
+                        return 'ERROR: Fallo en la consulta sobre la base de datos.'; 
+                    }else  return "Se han creado los grupos correctamente";
+   
 }
+function enCurso(){
+    $sql = "SELECT * FROM campeonato WHERE (`idCampeonato` = '$this->idCampeonato'AND `borrado` ='NO' AND `empezado`='NO')";
+    $result = $this->mysqli->query($sql);
+    if($result->num_rows == 0){
+        return 'ERROR: El campeonato ya esta en curso';
+    }else
+            return true;
+        
+    }
+
 function dividirEnGrupos($participantes,$parejas,$nivel,$categoria){
     //print_r($parejas);
    $menor=10000;
@@ -238,31 +252,88 @@ function dividirEnGrupos($participantes,$parejas,$nivel,$categoria){
     
         $x=0;
             $grupo = 1;
-            
+   echo count($parejas,COUNT_RECURSIVE);
             foreach($parejas as $pareja){
-              
+                
            if($x==$gruposDe){
-               $grupo ++;
-               $x=0;
-           }
-           if($participantes<=$menor){
-            $this->mysqli->query("UPDATE participa SET `grupo`='$grupo' WHERE (`idCampeonato`= '$this->idCampeonato'
-            AND `categoria` = '$categoria' AND `nivel` = '$nivel' AND `idPareja`='$pareja[idPareja]')");
+               echo "entro en sumagrupos";
+               echo "VALUES(
+                '$categoria',
+                '$this->idCampeonato',
+                '',
+                '$grupo',
+                '',
+                '$nivel',
+                '$gruposDe')";
+            $sql = "INSERT INTO grupo (
+                categoria,
+                idCampeonato,
+                idGanador,
+                idGrupo,
+                idPareja,
+                nivel,
+                numParticipantes
+                )
+                        VALUES(
+                            '$categoria',
+                            '$this->idCampeonato',
+                            '',
+                            '$grupo',
+                            '',
+                            '$nivel',
+                            '$gruposDe')";
+            if(!($result = $this->mysqli->query($sql))){
+                return 'ERROR: Fallo en la consulta sobre la base de datos.'; 
+            }else echo "consulta correcta";
+            if($participantes>=$gruposDe){
+                echo "sumando un grupo";
+                $grupo ++;
+                $x=0;
+            }
                
-           }else{   
+           }
+           if($participantes<=$menor && $gruposDe<12){
+               echo "entro1";
+            $grupo2=$grupo;
+            $avanza=false;
+            $this->mysqli->query("UPDATE participa SET `grupo`='$grupo2' WHERE (`idCampeonato`= '$this->idCampeonato'
+            AND `categoria` = '$categoria' AND `nivel` = '$nivel' AND `idPareja`='$pareja[idPareja]')");
+            if($grupo2==1 && $grupo2!=$grupo){
+                $avanza = true;
+            }
+            if($grupo2==$grupo && $grupo2!=1){
+                echo "entro2";
+                $avanza= false;
+            }
+
+            if(!$avanza){
+                $grupo2--;
+            }else{
+                $gruposDe++;
+                $grupo2++;
+            } 
+            echo "resto un participante meh";
+            $participantes--; 
+           }else if($participantes<=$menor && $gruposDe==12){
+               echo "break";
+           break;
+           }
+           else{   
                 
          $this->mysqli->query("UPDATE participa SET `grupo`='$grupo' WHERE (`idCampeonato`= '$this->idCampeonato'
          AND `categoria` = '$categoria' AND `nivel` = '$nivel' AND `idPareja`='$pareja[idPareja]')");
+         $participantes--;
+         echo $participantes;
          $x++;
         }
-            
+            echo "          cuentame       ";
         }
-        return "Se han creado $grupos de $gruposDe quedandose fuera un total de $menor jugadores."; 
+        echo "de $participantes se han creado $grupo de $gruposDe quedandose fuera un total de $menor jugadores."; 
     
         
 }
 
-    }
+}
         
 
 

@@ -4,7 +4,7 @@
  *	autor: Carlos Mato Rodriguez
  *	15-06-2019
  */
-	class Campeonato_PARTICIPANTES{
+	class Campeonato_Grupos{
 
 
 		function __construct($datos){
@@ -31,38 +31,21 @@
                 <!-- Títulos de tabla -->
                 <th><?php echo $strings['Miembro 1 pareja'];?></th>
                 <th><?php echo $strings['Miembro 2 pareja'];?></th>
-                <th colspan="3"><?php echo $strings['Acción'];?></th>
+                <th><?php echo $strings['idPareja'];?></th>
+                <th><?php echo $strings['grupo'];?></th>
+
             </thead>
             
             <tr>
-            <?php if(count($datos, COUNT_RECURSIVE)!= 5){
+            <?php 
                     foreach($datos as $datos) :
                     ?>
                                 <td><?php echo $datos['idDeportista1']."\n"; ?></td>
                                 <td><?php echo $datos['idDeportista2']."\n"; ?></td>
-                                
-                    <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/Campeonato_Controller.php?accion=DELETE&param=<?php echo $datos['idCampeonato']?>';"><i class="fas fa-trash-alt"></i></button></td>
-                 
-                    <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/Campeonato_Controller.php?accion=SHOWCURRENT&param=<?php echo $datos['idCampeonato']?>';"><i class="fas fa-eye"></i></button></td>
+                                <td><?php echo $datos['idPareja']."\n"; ?></td>
+                                <td><?php echo $datos['Grupo']."\n"; ?></td>
             </tr>
-            <?php endforeach;}else{?>
-							
-                <td><?php echo $datos['idDeportista1']."\n"; ?></td>
-                <td><?php echo $datos['idDeportista2']."\n"; ?></td>
-                
-            
-
-
-
-
-               
-
-                <td class="tb-btn disable"><button class="editbtn disable" role="link" onclick="window.location='../Controllers/Campeonato_Controller.php?accion=DELETE&param=<?php echo $datos['idCampeonato']?>';"><i class="fas fa-trash-alt"></i></button></td>
-                
-                <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/Campeonato_Controller.php?accion=DELETE&param=<?php echo $datos['idCampeonato']?>';"><i class="fas fa-trash-alt"></i></button></td>
-               
-                <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/Campeonato_Controller.php?accion=SHOWCURRENT&param=<?php echo $datos['idCampeonato']?>';"><i class="fas fa-eye"></i></button></td>
-            <?php };?>
+            <?php endforeach;?>
             </table>
 
         <!-- Contenedor de los iconos: aceptar, voler y vaciar-->

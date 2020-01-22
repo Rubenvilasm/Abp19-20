@@ -53,6 +53,16 @@ class Participa_Model{
             }
         
     }
+    function MostrarGrupos(){
+        $sql = "SELECT * FROM participa, pareja WHERE `nivel`='$this->nivel' AND `categoria`='$this->categoria' AND participa.idPareja = pareja.idPareja";
+
+        if(!($result = $this->mysqli->query($sql))){
+            return 'ERROR: Fallo en la consulta sobre la base de datos.';
+        }else{
+          $result=  mysqli_fetch_all($result, MYSQLI_ASSOC);
+            return $result; 
+        } 
+    }
 
     /* function DELETE(){
         $sql = "SELECT * FROM categoria WHERE (`idCategoria` = '$this->idCategoria')";
@@ -97,13 +107,7 @@ class Participa_Model{
     }
 
 
-    function SHOWALL(){
-        $sql = "SELECT * FROM categoria";
-
-        if(!($result = $this->mysqli->query($sql))){
-            return 'ERROR: Fallo en la consulta sobre la base de datos.';
-        }else return $result;
-    } */
+     */
 }
 
 ?>

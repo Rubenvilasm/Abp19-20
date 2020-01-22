@@ -72,7 +72,8 @@ CREATE TABLE IF NOT EXISTS `pareja` (
     `numParticipantes` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     `premios` varchar(125) COLLATE latin1_spanish_ci DEFAULT NULL,
     `normativa` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
-    `borrado` enum('SI','NO') DEFAULT 'NO',
+    `borrado` enum('SI','NO') DEFAULT 'NO'
+    `empezado` enum('SI','NO') DEFAULT 'NO',
 
     PRIMARY KEY (idCampeonato)
   ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
@@ -151,6 +152,8 @@ CREATE TABLE IF NOT EXISTS `pareja` (
     `idGanador` varchar(25) COLLATE latin1_spanish_ci NULL,
     `idPareja` int,
     `idCampeonato` varchar(25),
+    `categoria` ENUM('mixta','femenina','masculina','') NOT NULL,
+    `nivel` INT NOT NULL,
 
     PRIMARY KEY (idGrupo,idCampeonato)
 

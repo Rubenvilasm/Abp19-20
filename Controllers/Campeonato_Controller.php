@@ -110,10 +110,16 @@ session_start();
        function START($clave){
         include '../Models/Campeonato_Model.php';
         $Campeonato = new Campeonato_Model($clave,'','','','','','','');
-        $datos = $Campeonato->crearGrupos();
-      
+        $enCurso = $Campeonato->enCurso();
+        if($enCurso==1){        
+        $datos = $Campeonato->crearGrupos();      
         include '../Views/MESSAGE.php';
         new MESSAGE($datos, '../Controllers/Index_Controller.php');
+
+        }else{
+            include '../Views/MESSAGE.php';
+        new MESSAGE($enCurso, '../Controllers/Index_Controller.php');
+        }
    }
        function INSCRIBIRSE($clave){
         include '../Models/Campeonato_Model.php';
@@ -202,6 +208,27 @@ session_start();
          include '../Views/MESSAGE.php';
          new MESSAGE($mens, '../Controllers/Index_Controller.php');
      }
+}
+
+function Seleccionar($clave){
+    if(!isset($_POST['submit'])){
+        include '../Views/Campeonato/CampeonatoSeleccionar_View.php';
+        new Campeonato_Seleccionar($clave);
+
+    }else{
+        include '../Models/Participa_Model.php';
+
+        $Participa= new Participa_Model('','',$_POST['categoria'],$_POST['nivel']);
+        $respParticipa=$Participa->MostrarGrupos();    
+        if(sizeof($respParticipa) != 0){
+            include '../Views/Campeonato/CampeonatoGrupos_View.php';
+            new  Campeonato_GRUPOS($respParticipa);
+        }else{
+            $mens = "No hay grupos en esa categoria y nivel";
+            include '../Views/MESSAGE.php';
+            new MESSAGE($mens, '../Controllers/Index_Controller.php');
+        }        
+    }
 }
 
        if(!isset($param)){

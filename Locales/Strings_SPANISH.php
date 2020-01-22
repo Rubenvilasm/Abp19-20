@@ -170,7 +170,12 @@ array(
 	'Femenina'=>'Femenina',
 	'Categoria'=>'Categoria',
 	'Nivel'=>'Nivel',
-	'Se han creado los grupos correctamente' => 'Se han creado los grupos correctamente'
+	'Se han creado los grupos correctamente' => 'Se han creado los grupos correctamente',
+	'ERROR: El campeonato ya esta en curso' => 'ERROR: El campeonato ya esta en curso',
+	'Seleccione su pareja la categoria y el nivel para ver los grupos'=>'Seleccione su pareja la categoria y el nivel para ver los grupos',
+	'grupo'=>'Grupo',
+	'idPareja'=>'Id de la pareja',
+	'No hay grupos en esa categoria y nivel'=>'No hay grupos en esa categoria y nivel'
 
  
 
