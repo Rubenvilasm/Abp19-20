@@ -211,11 +211,8 @@ class Campeonato_Model{
             $lvl=$i+1;
            
             $resultado = $this->mysqli->query( "SELECT COUNT(*) FROM participa WHERE  `idCampeonato`='$this->idCampeonato' AND `nivel`= '$lvl' AND `categoria`='mixta' ");
-           // print_r($resultado);
             $resultado = mysqli_fetch_all($resultado,MYSQLI_NUM);
-            //print_r($resultado);
             $categorias["mixta"] = $resultado[0][0];
-            //echo  $categorias["mixta"];
             $resultado = $this->mysqli->query( "SELECT COUNT(*) FROM participa WHERE  `idCampeonato`='$this->idCampeonato' AND `nivel`='$lvl' AND `categoria`='femenina'");
             $resultado = mysqli_fetch_all($resultado,MYSQLI_NUM);
             $categorias["femenina"] = $resultado[0][0];
@@ -224,11 +221,9 @@ class Campeonato_Model{
             $categorias["masculina"] = $resultado[0][0];
 
            $categoria = 0;
-          // echo $this->categorias[$categoria];
             while($categoria < 3){
                 $temp = $this->categorias[$categoria];                             
                 $participantes=$categorias[$temp];
-                //echo $participantes;
                 if($participantes >= 8){
                     $sql = "SELECT * FROM participa WHERE  `idCampeonato`='$this->idCampeonato' AND `nivel`='$lvl' AND `categoria` ='$temp'";
                     if(!($result = $this->mysqli->query($sql))){
@@ -236,7 +231,6 @@ class Campeonato_Model{
                     }else $sql = mysqli_fetch_all($result, MYSQLI_ASSOC);
                     $this->dividirEnGrupos($participantes,$sql,$i+1,$temp); 
                 }
-                //echo $this->categorias[$categoria];
             
                $categoria++;          
         }
@@ -300,7 +294,7 @@ function dividirEnGrupos($participantes,$parejas,$nivel,$categoria){
                 return 'ERROR: Fallo en la consulta sobre la base de datos.'; 
             }else 
             if($participantes>=$gruposDe){
-
+                echo "hola";
                 $grupo ++;
                 $x=0;
             }

@@ -255,7 +255,6 @@ function Fecha($idEnfrentamiento){
     if(!isset($_POST['submit'])){
         $enfrentamientos= $enfrentamiento->getFecha();
         include '../Views/Campeonato/CampeonatoFecha_View.php';
-        print_r($enfrentamientos);
         new Campeonato_Fecha($enfrentamientos);
     }else{
         include '../Views/MESSAGE.php';
@@ -306,18 +305,23 @@ function Enfrentamientos($nivel,$idCampeonato,$grupo,$categoria){
 }
 function PLAYOFF($nivel,$idCampeonato,$grupo,$categoria){
     
-    include '../Views/Campeonato/CampeonatoEnfrentamientos_View.php';
+    include '../Views/Campeonato/CampeonatoPlayOff_View.php';
          
         include '../Models/Enfrentamiento_Model.php';
         include '../Models/Pareja_Model.php';
         $pareja= new Pareja_Model('','','');
         $enfrentamiento = new Enfrentamiento_Model('',$idCampeonato,'','','',$grupo,'','','',$categoria,$nivel);
-        $estanCreados= $enfrentamiento->EstanCreados();
-        if($estanCreados){
-            $crearEnfrentamientos= $enfrentamiento->CrearPlayOFFS();
-
+        $estanCreados= $enfrentamiento->EstanCreadosPlayOffs();
+        if(!$estanCreados){
+            include '../Models/Grupo_Model.php';
+            $grupo = new Grupo_Model($grupo,$categoria,$idCampeonato,$nivel);
+            $grupos = $grupo->getGruposByNivel();
+            foreach($grupos as $gr){
+                $crearEnfrentamientos= $enfrentamiento->CrearPlayOFFS($gr['idGrupo']);
+            }
+            
         }
-       /*  $enfrentamientos=$enfrentamiento->getEnfrentamientosPlayOFF();
+        $enfrentamientos=$enfrentamiento->getEnfrentamientosPlayOFF();
         $i=0;
         $parejas[]=array();
         foreach($enfrentamientos as $enfren){
@@ -329,9 +333,9 @@ function PLAYOFF($nivel,$idCampeonato,$grupo,$categoria){
              $temp = $pareja->GET_PAREJA($enfren['idPareja2']);
              $parejas[$i] = $temp[0];
              $i++;
-        } */
+        } 
         
-        //new Campeonato_Enfrentamientos($enfrentamientos,$parejas);
+        new Campeonato_PlayOff($enfrentamientos,$parejas);
    
 }
 
