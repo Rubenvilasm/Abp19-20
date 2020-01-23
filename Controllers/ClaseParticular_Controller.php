@@ -51,7 +51,7 @@ session_start();
     
             }else{
                 include '../Models/ClaseParticular_Model.php';
-                $ClaseParticular = new ClaseParticular_Model($_POST['idClaseParticular'],$_POST['nombre'],$_POST['idEntrenador'],$_POST['idUsuario'],'');
+                $ClaseParticular = new ClaseParticular_Model($_POST['idClaseParticular'],$_POST['idPista'],$_POST['idEntrenador'],$_POST['idUsuario'],'','');
                 
                 $datos = $ClaseParticular->SEARCH();
                 if(!is_string($datos)){
@@ -70,7 +70,7 @@ session_start();
     
             if(!isset($_POST['submit']))
             {
-                $datos = $ClaseParticular->DELETE();
+                $datos = $ClaseParticular->rellenarDatos();
                 include '../Views/ClaseParticular/ClaseParticularDelete_View.php';						
                 new ClaseParticular_DELETE($datos);
     
@@ -84,10 +84,10 @@ session_start();
         function SHOWCURRENT($clave){
             include '../Models/ClaseParticular_Model.php';
             $ClaseParticular = new ClaseParticular_Model($clave,'','','','','');
-            $datos = $ClaseParticular->SHOWCURRENT();
+            $datos = $ClaseParticular->rellenarDatos();
             include '../Views/ClaseParticular/ClaseParticularShowCurrent_View.php';
             new ClaseParticular_SHOWCURRENT($datos);
-        }   
+        }    
 
         function SHOWALL(){
             include '../Models/ClaseParticular_Model.php';

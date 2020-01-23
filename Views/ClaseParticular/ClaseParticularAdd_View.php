@@ -20,22 +20,22 @@
 				<div class="bloque">
 					<div class="campo">
 						<label><?php echo $strings['idClaseParticular']?> : </label>
-						<input type = 'text' name = 'idClaseParticular' id = 'idClaseParticular' size = '25' value = '' onblur="comprobarAlfabetico(this,25)" ><br>
+						<input type = 'text' name = 'idClaseParticular' required="required" id = 'idClaseParticular' size = '25' value = '' onblur="comprobarAlfabetico(this,25)" ><br>
 						<p class="invalid" id="invalidClaseParticular"><?php echo $strings['Formato no válido']?></p>
 					</div>
 					<div class="campo">
 						<label><?php echo $strings['idPista']?> : </label>
-						<input type = 'text' name = 'idPista' id = 'idPista' size = '25' value = '' onblur="comprobarAlfabetico(this,25)" ><br>
+						<input type = 'text' name = 'idPista'required="required"  id = 'idPista' size = '25' value = '' onblur="comprobarAlfabetico(this,25)" ><br>
 						<p class="invalid" id="invalidClaseParticular"><?php echo $strings['Formato no válido']?></p>
 					</div>
 					<div class="campo">
 						<label><?php echo $strings['idEntrenador']?> : </label>
-						<input type = 'text' name = 'idEntrenador' id = 'idEntrenador' placeholder = '<?php echo $strings['premios']?>' size = '25' value = '' onblur="return comprobarAlfanum(this,25)" ><br>
+						<input type = 'text' name = 'idEntrenador' required="required" id = 'idEntrenador' placeholder = '<?php echo $strings['premios']?>' size = '25' value = '' onblur="return comprobarAlfanum(this,25)" ><br>
 						<p class="invalid" id="invalidPremio"><?php echo $strings['Formato no válido'];?></p>
 					</div>
 					<div class="campo">
 						<label><?php echo $strings['idUsuario']?> : </label>
-						<input type = 'text' name = 'idUsuario' id = 'idUsuario' placeholder = '<?php echo $strings['premios']?>' size = '25' value = '' onblur="return comprobarAlfanum(this,25)" ><br>
+						<input type = 'text' name = 'idUsuario' required="required" id = 'idUsuario' placeholder = '<?php echo $strings['premios']?>' size = '25' value = '' onblur="return comprobarAlfanum(this,25)" ><br>
 						<p class="invalid" id="invalidPremio"><?php echo $strings['Formato no válido'];?></p>
 					</div>
 					<div class="campo">

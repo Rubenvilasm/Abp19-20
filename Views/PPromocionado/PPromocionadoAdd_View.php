@@ -20,12 +20,12 @@
 				<div class="bloque">
 					<div class="campo">
 						<label><?php echo $strings['idPartidoPromocionado']?> : </label>
-						<input type = 'text' name = 'idPartidoPromocionado' id = 'idPartidoPromocionado' size = '25' value = '' onblur="comprobarAlfabetico(this,25)" ><br>
+						<input type = 'text' name = 'idPartidoPromocionado' required="required" id = 'idPartidoPromocionado' size = '25' value = '' onblur="comprobarAlfabetico(this,25)" ><br>
 						<p class="invalid" id="invalidnombre"><?php echo $strings['Formato no válido']?></p>
 					</div>
 					<div class="campo">
 						<label><?php echo $strings['nombre']?> : </label>
-						<input type = 'text' name = 'nombre' id = 'nombre' placeholder = '<?php echo $strings['Nombre']?>' size = '25' value = '' onblur="comprobarAlfabetico(this,25)" ><br>
+						<input type = 'text' name = 'nombre' id = 'nombre'required="required" placeholder = '<?php echo $strings['Nombre']?>' size = '25' value = '' onblur="comprobarAlfabetico(this,25)" ><br>
 						<p class="invalid" id="invalidnombre"><?php echo $strings['Formato no válido']?></p>
 					</div>
 				    <div class="campo">

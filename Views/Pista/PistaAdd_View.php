@@ -20,23 +20,23 @@
 				<div class="bloque">
 					<div class="campo">
 						<label><?php echo $strings['idPista']?> : </label>
-						<input type = 'text' name = 'idPista' id = 'idPista' size = '25' onblur="comprobarAlfabetico(this,25)" ><br>
+						<input type = 'text' name = 'idPista' required="required" id = 'idPista' size = '25' onblur="comprobarAlfabetico(this,25)" ><br>
 						<p class="invalid" id="invalidnombre"><?php echo $strings['Formato no válido']?></p>
 					</div>
 					<div class="campo">
 						<label><?php echo $strings['nombre']?> : </label>
-						<input type = 'text' name = 'nombre' id = 'nombre' placeholder = '<?php echo $strings['Nombre']?>' size = '25' value = '' onblur="comprobarAlfabetico(this,25)" ><br>
+						<input type = 'text' name = 'nombre' required="required" id = 'nombre' placeholder = '<?php echo $strings['Nombre']?>' size = '25' value = '' onblur="comprobarAlfabetico(this,25)" ><br>
 						<p class="invalid" id="invalidnombre"><?php echo $strings['Formato no válido']?></p>
 					</div>
 				    
 					<div class="campo">
 						<label><?php echo $strings['especificaciones']?> : </label>
-						<input type = 'text' name = 'especificaciones' id = 'especificaciones' placeholder = '<?php echo $strings['Suelo,pared,etc']?>' size = '25' value = '' onblur="return comprobarAlfanum(this,25)" ><br>
+						<input type = 'text' name = 'especificaciones' required="required" id = 'especificaciones' placeholder = '<?php echo $strings['Suelo,pared,etc']?>' size = '25' value = '' onblur="return comprobarAlfanum(this,25)" ><br>
 						<p class="invalid" id="invalidParticipante"><?php echo $strings['Formato no válido'];?></p>
 					</div>
 					<div class="campo">
 						<label><?php echo $strings['ubicacion']?> : </label>
-						<input type = 'text' name = 'ubicacion' id = 'ubicacion' size = '25' value = '' onblur="return comprobarAlfanum(this,25)" ><br>
+						<input type = 'text' name = 'ubicacion' required="required" d = 'ubicacion' size = '25' value = '' onblur="return comprobarAlfanum(this,25)" ><br>
 						<p class="invalid" id="invalidParticipante"><?php echo $strings['Formato no válido'];?></p>
 					</div>
 

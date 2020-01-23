@@ -81,82 +81,84 @@ class Usuario_Model{
 
 
 	function ADD(){
-		$sql = "INSERT INTO USUARIO (
-					`login`,
-					`password`,
-					`nombre`,
-					`apellidos`,
-					`genero`,
-					`dni`,
-					`fechaNacimiento`,
-					`email`,
-					`telefono`,
-					`rol`,
-					`socio`,
-					`foto`,
-					`borrado`)
-						VALUES (
-							'$this->login',
-							'$this->password',
-							'$this->nombre',
-							'$this->apellidos',
-							'$this->genero',
-							'$this->dni',
-							'$this->fechaNac',
-							'$this->email',
-							'$this->telefono',
-							'$this->rol',
-							'NO',
-							'$this->foto',
-							'NO'
-						)";
+		if('$this->login' <> ''){
+			$sql = "INSERT INTO USUARIO (
+						`login`,
+						`password`,
+						`nombre`,
+						`apellidos`,
+						`genero`,
+						`dni`,
+						`fechaNacimiento`,
+						`email`,
+						`telefono`,
+						`rol`,
+						`socio`,
+						`foto`,
+						`borrado`)
+							VALUES (
+								'$this->login',
+								'$this->password',
+								'$this->nombre',
+								'$this->apellidos',
+								'$this->genero',
+								'$this->dni',
+								'$this->fechaNac',
+								'$this->email',
+								'$this->telefono',
+								'$this->rol',
+								'NO',
+								'$this->foto',
+								'NO'
+							)";
 
-		$sql2 = "INSERT INTO estadistica (
-            `idUsuario`,
-            `partidosGanados`,
-            `partidosJugados`,
-            `puntos`,
-            `puntosAFavor`,
-            `victoriasConsecutivas`,
-            `mejorRanking`,
-            `torneosJugados`,
-            `finalesJugadas`
-            ) VALUES (
-                '$this->login',
-                '0',
-                '0',
-                '0',
-                '0',
-                '0',
-                '0',
-                '0',
-				'0')";
-		if(!$result = $this->mysqli->query($sql) )
-			return 'Error en la insercion';
-		else if (!$result= $this->mysqli->query($sql2))
-			return 'ERROR: Error en la insercion de las estadisticas.';
-		else{
-			$login_actual = $this->mysqli->query("SELECT @@identity AS LOGIN");
-			$row = mysqli_fetch_array($login_actual);
-			$this->login = $row[0];
-			return 'Insercion realizada con exito';
-			//if(count($this->))
-		}
+			$sql2 = "INSERT INTO estadistica (
+				`idUsuario`,
+				`partidosGanados`,
+				`partidosJugados`,
+				`puntos`,
+				`puntosAFavor`,
+				`victoriasConsecutivas`,
+				`mejorRanking`,
+				`torneosJugados`,
+				`finalesJugadas`
+				) VALUES (
+					'$this->login',
+					'0',
+					'0',
+					'0',
+					'0',
+					'0',
+					'0',
+					'0',
+					'0')";
+			if(!$result = $this->mysqli->query($sql) )
+				return 'Error en la insercion';
+			else if (!$result= $this->mysqli->query($sql2))
+				return 'ERROR: Error en la insercion de las estadisticas.';
+			else{
+				$login_actual = $this->mysqli->query("SELECT @@identity AS LOGIN");
+				$row = mysqli_fetch_array($login_actual);
+				$this->login = $row[0];
+				return 'Insercion realizada con exito';
+				//if(count($this->))
+			}
+		}else return 'ERROR: Algun campo está vacio.';
 	}
 
 
 	function SEARCH(){
 		$sql = "SELECT * FROM `usuario` WHERE
-				`login` LIKE '%$this->login%' AND
-				`nombre` LIKE '%$this->nombre%' AND
-				`apellidos` LIKE '%$this->apellidos%' AND
-				`genero` LIKE '%$this->genero%' AND
-				`dni` LIKE '%$this->dni%' AND
-				`email` LIKE '%$this->email%' AND
-				`telefono` LIKE '%$this->telefono%' AND
-				`rol` LIKE '%$this->rol%' AND
-				`socio` LIKE '%$this->socio%' AND
-				`fechaNacimiento` LIKE '%$this->fechaNac%'
+				`login` LIKE '$this->login' OR
+				`nombre` LIKE '$this->nombre' OR
+				`apellidos` LIKE '$this->apellidos' OR
+				`genero` LIKE '$this->genero' OR
+				`dni` LIKE '$this->dni' OR
+				`email` LIKE '$this->email' OR
+				`telefono` LIKE '$this->telefono' OR
+				`rol` LIKE '$this->rol' OR
+				`socio` LIKE '$this->socio' OR
+				`fechaNacimiento` LIKE '$this->fechaNac'
 			";
 
 		if($sql == "SELECT * FROM USUARIO"){
@@ -275,12 +277,16 @@ function GET_FOTO(){
 	}
 
 	function rellenarDatos(){
-		$sql = "SELECT * FROM usuario WHERE (`login` = '$this->login')";
-
-		if(!($result= $this->mysqli->query($sql))){
-			return 'ERROR: No existe en la base de datos.';
-		}else return $result;
-	}
+        $sql = "SELECT * FROM usuario  WHERE (login = '$this->login')";
+        // Si la busqueda no da resultados, se devuelve el mensaje de que no existe
+        if (!($resultado = $this->mysqli->query($sql))){
+            return 'No existe en la base de datos'; // 
+        }
+        else{ // si existe se devuelve la tupla resultado
+            $result = $resultado->fetch_array();
+            return $result;
+        }
+    }
 
 	function rellenarDatosByLogin($login){
 		$sql = "SELECT * FROM usuario WHERE ('".$login."' = '$this->login')";

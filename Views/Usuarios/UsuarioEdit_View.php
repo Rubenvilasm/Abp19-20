@@ -98,7 +98,7 @@
 				</div>
 				</div>
 				                    <!-- Contenedor de los iconos: aceptar, volver-->
-									<div class="container-btn">
+						<div class="container-btn">
                         <button name="submit" class="form-btn" type="submit"><i class="fas fa-check"></i> </button>
 						<button class="form-btn" type="button" role="link" onclick="window.location='../Controllers/Usuarios_Controller.php?accion=SHOWALL'"><i class="fas fa-times"></i></button>
                     </div>

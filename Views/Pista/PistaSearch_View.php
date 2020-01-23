@@ -32,21 +32,6 @@
 						<p class="invalid" id="invalidnombre"><?php echo $strings['Formato no válido']?></p>
 					</div>
 					</div>
-												
-					<div class="bloque">
-					<div class="campo">
-						<label><?php echo $strings['especificaciones']?> : </label>
-						<input type = 'text' name = 'especificaciones' id = 'especificaciones' placeholder = '<?php echo $strings['Sólo letras']?>' size = '25' value = ''><br>
-						<p class="invalid" id="invalidnombre"><?php echo $strings['Formato no válido']?></p>
-					</div>
-					</div>
-					<div class="bloque">
-					<div class="campo">
-						<label><?php echo $strings['ubicacion']?> : </label>
-						<input type = 'text' name = 'ubicacion' id = 'ubicacion' placeholder = '<?php echo $strings['Sólo letras']?>' size = '25' value = ''  ><br>
-						<p class="invalid" id="invalidapellidos"><?php echo $strings['Formato no válido']?></p>
-					</div>
-					</div>
 				
 				<!-- Contenedor de los iconos: aceptar, voler y vaciar-->
 				<div class="container-btn col-md-12">

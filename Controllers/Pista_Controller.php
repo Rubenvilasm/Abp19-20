@@ -87,8 +87,8 @@ session_start();
         function SHOWCURRENT($clave){
             include '../Models/Pista_Model.php';
             $Pista = new Pista_Model($clave,'','','','');
+            $datos = $Pista->SEARCH();
             include '../Views/Pista/PistaShowCurrent_View.php';
-            print_r($datos);
             new Pista_SHOWCURRENT($datos);
         }   
 

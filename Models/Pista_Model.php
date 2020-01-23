@@ -57,7 +57,7 @@ class Pista_Model{
             `ubicacion`,
             `borrada`)
             VALUES (
-                '$this->idPista',
+                '$this->idpista',
                 '$this->nombre',
                 '$this->especificaciones'
             )";
@@ -68,12 +68,11 @@ class Pista_Model{
 
         $result = $this->mysqli->query($sql);
         $num_rows = mysqli_num_rows($result);
-
         if($result->num_rows == 1){
-            $sql = "DELETE FROM pista WHERE `idPista`='$this->idpista'";
-            echo $sql;
+            $sql = "DELETE FROM pista WHERE `idPista`='$this->idpista' ";
+
             if(!($result = $this->mysqli->query($sql))){
-                return 'ERROR: Fallo en la consulta sobre la base de datos.';
+                return 'Eliminar antes las relaciones de las pistas (reservas,partidos,etc)';
             }else return 'La pista ha sido eliminada con exito.';
 
         }else return 'ERROR: No existe la pista que desea borrar.';
@@ -95,20 +94,32 @@ class Pista_Model{
     }
 
     function SHOWCURRENT(){
-        $sql = "SELECT * FROM pista WHERE (`idPista` = '$this->idPista')";
+        $sql = "SELECT * FROM pista WHERE (`idPista` = '$this->idpista')";
 
         if(!($result = $this->mysqli->query($sql))){
             return 'ERROR: Fallo en la consulta sobre la base de datos.';
-        }else return $result;
+        }else return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
 
 
     function SHOWALL(){
         $sql = "SELECT * FROM pista";
-
+        
         if(!($result = $this->mysqli->query($sql))){
             return 'ERROR: Fallo en la consulta sobre la base de datos.';
         }else return mysqli_fetch_all($result, MYSQLI_ASSOC);
+    }
+
+    function rellenarDatos(){
+        $sql = "SELECT * FROM pista  WHERE (idPista = '$this->idpista')";
+        // Si la busqueda no da resultados, se devuelve el mensaje de que no existe
+        if (!($resultado = $this->mysqli->query($sql))){
+            return 'No existe en la base de datos'; // 
+        }
+        else{ // si existe se devuelve la tupla resultado
+            $result = $resultado->fetch_array();
+            return $result;
+        }
     }
 
 }

@@ -12,11 +12,11 @@
 		}
 
 		function render($datos){
-        include '../Views/Header_View.php';?>
-        <div class="col-md-3"></div>
-        <div class="col-md-5 table-responsive contenido">
-        <fieldset class="sc">
-        <legend><?php echo $strings['Datos de la Clase particular'];?></legend>
+            include '../Views/Header_View.php';?>
+            <div class="col-md-3"></div>
+            <div class="col-md-5 table-responsive contenido">
+            <fieldset class="sc">
+        <legend><?php echo $strings['Datos de la Clase Particular'];?></legend>
             <!-- Foto de perfil -->
             <!--Contenedor con botones de adición y búsqueda  -->
                     <table class="tab-twocol shadow showtable">
@@ -27,22 +27,31 @@
                     </tr>
                     </thead>
                     <tr>
-                        <th><?php echo $strings['ID'];?>: </th>
+                        <th><?php echo $strings['idClaseParticular'];?>: </th>
                         <td><?php echo $datos['idClaseParticular']; ?></td>
                     </tr>
                     <tr>
-                        <th><?php echo $strings['Nombre'];?>: </th>
-                        <td><?php echo $datos['nombre']; ?></td>
+                        <th><?php echo $strings['idPista'];?>: </th>
+                        <td><?php echo $datos['idPista']; ?></td>
                     </tr>
                     <tr>
                         <th><?php echo $strings['idEntrenador'];?>: </th>
                         <td><?php echo $datos['idEntrenador']; ?></td>
                     </tr>
                     <tr>
-                        <th><?php echo $strings['idUsuario'];?> 2: </th>
+                        <th><?php echo $strings['idUsuario'];?> 1: </th>
                         <td><?php echo $datos['idUsuario']; ?></td>
                     </tr>
-                    	
+                    <tr>
+                        <th><?php echo $strings['nivel'];?> 2: </th>
+                        <td><?php echo $datos['nivel']; ?></td>
+                    </tr>
+                    <tr>
+                        <th><?php echo $strings['hora'];?> 2: </th>
+                        <td><?php echo $datos['hora']; ?></td>
+                    </tr>
+                
+										
                 </table>
             <div class="container-showall-btn">
                 <button class="form-btn" type="button" role="link" onclick="window.location='./ClaseParticular_Controller.php?accion=SHOWALL'"><i class="fas fa-arrow-left"></i>

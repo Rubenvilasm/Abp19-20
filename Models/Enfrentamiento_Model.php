@@ -96,7 +96,8 @@ class Enfrentamiento_Model{
         $estadistica1 = new Pareja_Model($pareja1['idPareja'],'','');
         $datosEstadistica = $estadistica1->rellenarDatos();
         
-        print_r($datosEstadistica);
+        $sql = "UPDATE estadistica SET partidosJugados = partidosJugados + 1 WHERE (idUsuario = '".$datosEstadistica['idDeportista1']."' OR idUsuario = '".$datosEstadistica['idDeportista2']."'";
+        
 
 
 

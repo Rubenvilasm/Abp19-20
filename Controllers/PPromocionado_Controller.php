@@ -88,7 +88,7 @@ session_start();
             $datos = $PPromocionado->RellenaDatos();
             include '../Views/PPromocionado/PPromocionadoShowCurrent_View.php';
             new PPromocionado_SHOWCURRENT($datos);
-        }   
+        }    
 
         function SHOWALL(){
             include '../Models/PPromocionado_Model.php';

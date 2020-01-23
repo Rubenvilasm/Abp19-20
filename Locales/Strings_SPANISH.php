@@ -212,8 +212,20 @@ array(
 	'PlayOff'=>'PlayOff',
 	'¿Confirma el borrado de esta Pista?'=>'¿Confirma el borrado de esta Pista?',
 	'ERROR: No existe la pista que desea borrar.'=>'ERROR: No existe la pista que desea borrar.',
-	'La pista ha sido eliminada con exito.'=>'La pista ha sido eliminada con exito.'
-
+	'La pista ha sido eliminada con exito.'=>'La pista ha sido eliminada con exito.',
+	'Masculino' => 'Masculino',
+	'Femenino' => 'Femenino',
+	'¿Confirma el borrado de este Usuario?' => '¿Confirma el borrado de este Usuario?',
+	'¿Confirma el borrado de esta Pista?' => '¿Confirma el borrado de esta Pista?',
+	'ERROR: No existe la pista que desea borrar.' => 'ERROR: No existe la pista que desea borrar.',
+	'Eliminar antes las relaciones de las pistas (reservas,partidos,etc)' => 'Eliminar antes las relaciones de las pistas (reservas,partidos,etc)',
+	'ERROR: No existe el partido promocionado que desea borrar.' => 'ERROR: No existe el partido promocionado que desea borrar.',
+	'El Partido Promocionado ha sido eliminada con exito.' => 'El Partido Promocionado ha sido eliminada con exito.',
+	'Estadisticas Personales' => 'Estadisticas Personales',
+	'¿Confirma el borrado de la clase?' => '¿Confirma el borrado de la clase?',
+	'Datos de la Clase Particular' => 'Datos de la Clase Particular',
+	'PlayOff' => 'PlayOff',
+	
  
 
 
