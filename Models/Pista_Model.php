@@ -110,5 +110,6 @@ class Pista_Model{
             return 'ERROR: Fallo en la consulta sobre la base de datos.';
         }else return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
+
 }
 ?>

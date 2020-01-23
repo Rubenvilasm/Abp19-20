@@ -24,6 +24,7 @@
                 <div class="container-showall-btn">
                     <button class="form-btn" role="link" onclick="window.location='../Controllers/ClaseParticular_Controller.php?accion=SEARCH'"><i class="fas fa-search"></i>
                     <button class="form-btn" role="link" onclick="window.location='../Controllers/ClaseParticular_Controller.php?accion=ADD'"><i class="fas fa-plus"></i>
+                    
                 </div>
                 <table class="table table-hover">
                     <thead>
@@ -50,8 +51,9 @@
                         <td><?php echo $datos['nivel']."\n"; ?></td>
                         <td><?php echo $datos['hora']."\n"; ?></td>
                         <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/ClaseParticular_Controller.php?accion=DELETE&param=<?php echo $datos['idUsuario']?>';"><i class="fas fa-trash-alt"></i></button></td>
-                    
+                        <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/ClaseParticular_Controller.php?accion=INSCRIBIRSE&param=<?php echo $datos['idEntrenador']?>';"><i class="fas fa-trash-alt"></i></button></td>
                         <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/ClaseParticular_Controller.php?accion=SHOWCURRENT&param=<?php echo $datos['idUsuario']?>';"><i class="fas fa-eye"></i></button></td>
+                        
                     </tr>
                     <?php endforeach;}?>
                      

@@ -145,7 +145,7 @@ class PPromocionado_Model{
                 return 'ERROR: Fallo en la consulta sobre la base de datos.';
             }else return mysqli_fetch_all($result, MYSQLI_ASSOC);
         }
-        function INSCRIBIRSE($login){
+        function INSCRIBIRSE($login){ 
             $sql;
             $temp = $this->getNumParticipantes();
             $numPart= $temp['numParticipantes'];

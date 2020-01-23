@@ -26,7 +26,7 @@ else{
         $param = $_GET["param"];
     }
 
-    //función que llama a la función add del modelo
+    //función que llama a la funció n add del modelo
     function ADD(){
         if(!isset($_POST['submit'])){
             include '../Views/Usuarios/UsuarioAdd_View.php';

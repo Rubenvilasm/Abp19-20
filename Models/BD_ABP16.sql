@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS pareja (
     fecha datetime(6) NOT NULL,
     precio varchar(25),
 
-    PRIMARY KEY (idReserva,idPista),
+    PRIMARY KEY (idReserva,idPista,fecha),
     FOREIGN KEY (idPista) REFERENCES pista(idPista)
   ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
@@ -240,9 +240,10 @@ CREATE TABLE `participa` (
     idClaseParticular varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     idPista varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     idEntrenador varchar(25) COLLATE latin1_spanish_ci NOT NULL,
-    idUsuario varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+    idUsuario varchar(25) COLLATE latin1_spanish_ci DEFAULT NULL,
     nivel varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     hora datetime(6) COLLATE latin1_spanish_ci NOT NULL,
+    disponible enum('Si','No') DEFAULT 'Si',
 
     PRIMARY KEY (idClaseParticular)
     )ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
@@ -254,6 +255,17 @@ CREATE TABLE `participa` (
     partidosJugados varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     puntos varchar(25) COLLATE latin1_spanish_ci NOT NULL
     )ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+    CREATE TABLE IF NOT EXISTS entrenadorParticular(
+      idEntrenador varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+      activo enum('Si','No') DEFAULT 'Si',
+      nivelEntrenador varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+      descripcionEntrenador varchar(100) COLLATE latin1_spanish_ci NOT NULL,
+      foto varchar(500) COLLATE latin1_spanish_ci,
+
+      PRIMARY KEY (idEntrenador),
+      FOREIGN KEY (idEntrenador) REFERENCES usuario(login)
+    )engine=InnoDB DEFAULT CHARSET latin1 COLLATE=latin1_spanish_ci;
 
 INSERT INTO usuario (login, password, nombre, apellidos,genero, dni, fechaNacimiento, email, telefono, rol, socio, foto,borrado ) VALUES
 ('admin', 'admin', 'admin', 'el administrador','Masculino', '95875625X', '2019-11-14', 'admin@padel.es', '677777777', 'ADMINISTRADOR', 'SI','../Files/man-1.png','NO'),
