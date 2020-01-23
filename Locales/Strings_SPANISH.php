@@ -183,6 +183,16 @@ array(
 	'Posicion'=>'Posicion',
 	'Puntos'=>'Puntos',
 	'Resultado'=>'Resultado'
+	'partidosGanados'=>'partidosGanados',
+	'partidosJugados'=>'partidosJugados',
+	'puntos'=>'puntos',
+	'mejorRanking'=>'mejorRanking',
+	'puntosAFavor'=>'puntosAFavor',
+	'victoriasConsecutivas'=>'victoriasConsecutivas',
+	'torneosJugados'=>'torneosJugados',
+	'finalesJugadas'=>'finalesJugadas',
+	'Estadistica' => 'Estadistica',
+	'Clases Particulares' => 'Clases Particulares'
 
  
 

@@ -3,12 +3,11 @@
 
 class ClaseParticular_Model{
     var $idClaseParticular;
-    var $pista;
+    var $idPista;
     var $idEntrenador;
     var $idUsuario;
     var $nivel;
     var $hora;
-    //var $precio;
 
     var $mysqli;
 
@@ -97,8 +96,7 @@ class ClaseParticular_Model{
         }else{
             return $result;
         }
-    }
-
+    } 
     function SHOWALL(){
         $sql = "SELECT * FROM claseParticular";
 

@@ -1,8 +1,11 @@
 <?php
+/**
+ * Añadir ratio puntos, ratio victorias/part.jugados, ratio torneosJugados/finalesJugadas
+ * clases particulares dadas, clases particulares recibidas.
+*/
+class Estadistica_Model{
 
-class Estadisticas_Model{
-
-    var $idDeportista;
+    var $idUsuario;
     var $partidosGanados;
     var $partidosJugados;
     var $puntos;
@@ -13,34 +16,36 @@ class Estadisticas_Model{
     
     var $mysqli;
 
-    function __construct($idDeportista,$partidosGanados,$partidosJugados,$puntos,$mejorRanking,$victoriasConsecutivas,$finalesJugadas){
-        $this->idDeportista = $idDeportista;
+    function __construct($idUsuario,$partidosGanados,$partidosJugados,$puntos,$puntosAFavor,$mejorRanking,$victoriasConsecutivas,$finalesJugadas,$torneosJugados){
+        $this->idUsuario = $idUsuario;
         $this->partidosGanados = $partidosGanados;
         $this->partidosJugados = $partidosJugados;
         $this->puntos = $puntos;
+        $this->puntosAFavor = $puntosAFavor;
+        $this->victoriasConsecutivas = $victoriasConsecutivas;
         $this->mejorRanking = $mejorRanking;
         $this->torneosJugados = $torneosJugados;
-        $this->victoriasConsecutivas = $victoriasConsecutivas;
         $this->finalesJugadas = $finalesJugadas;
 
         include_once '../Models/Access_DB.php';
-
-        $this->mysqli = ConectarDB();
+		$this->mysqli = ConnectDB();
 
     }
 
     function ADD(){
-        $sql = "INSERT INTO estadisticas (
-            `idDeportista`,
+        $sql = "INSERT INTO estadistica (
+            `idUsuario`,
             `partidosGanados`,
             `partidosJugados`,
             `puntos`,
-            `mejorRanking`,
-            `campeonatosJugados`,
+            `puntosAFavor`,
             `victoriasConsecutivas`,
+            `mejorRanking`,
+            `torneosJugados`,
             `finalesJugadas`
             ) VALUES (
-                '".$pareja."',
+                '$this->idUsuario',
+                '0',
                 '0',
                 '0',
                 '0',
@@ -48,28 +53,29 @@ class Estadisticas_Model{
                 '0',
                 '0',
                 '0')";
-
+        
         if(!$this->mysqli->query($sql)){
             return 'ERROR: Error en la creación de las Estadisticas';
         }else return 'Inserción realizada con exito';
     }
 
     function EDIT(){
-        $sql = "SELECT * FROM estadisticas  WHERE (idDeportista = '$this->idDeportista')";
+        $sql = "SELECT * FROM estadistica  WHERE (idDeportista = '$this->idDeportista')";
     
         $result = $this->mysqli->query($sql);
         
         if ($result->num_rows == 1){	
             $sql = "UPDATE estadisticas  SET 
-                    `idDeportista` = '$this->idDeportista',
-                    `partidosJugados` = '$this->partidosJugados',
+                    `idUsuario` = '$this->idUsuario',
                     `partidosGanados` = '$this->partidosGanados',
+                    `partidosJugados` = '$this->partidosJugados',
                     `puntos` = '$this->puntos',
-                    `mejorRanking` = '$this->mejorRanking',
-                    `campeonatosJugados` = '$this->campeonatosJugados',
+                    `puntosAFavor` = '$this->puntosAFavor',
                     `victoriasConsecutivas` = '$this->victoriasConsecutivas',
+                    `mejorRanking` = '$this->mejorRanking',
+                    `torneosJugados` = '$this->torneosJugados',
                     `finalesJugadas` = '$this->finalesJugadas'
-                    WHERE (idDeportista = '$this->idDeportista')";
+                    WHERE (idUsuario = '$this->idUsuario')";
             if (!($this->mysqli->query($sql)))
                 return 'ERROR: Error en la modificación.'; 
             else return 'Ranking modificado correctamente.';
@@ -77,19 +83,27 @@ class Estadisticas_Model{
     }
 
     function RELLENARDATOS(){
-        $sql = "SELECT * FROM estadisticas WHERE (`idDeportista` = '$this->idDeportista')";
+        $sql = "SELECT * FROM estadistica WHERE (`idUsuario` = '$this->idUsuario')";
 
         if(!($result = $this->mysqli->query($sql)))
             return 'ERROR: Error en la consulta a la Base de Datos';
         else return $result;
     }
 
-    function rellenarById($idDeportista){
-        $sql = "SELECT * FROM estadisticas WHERE(`idDeportista` = '".idDeportista."')";
+    function rellenarById($idUsuario){
+        $sql = "SELECT * FROM estadistica WHERE(`idUsuario` = '".$idUsuario."')";
 
         if(!($result = $this->mysqli->query($sql)))
             return 'ERROR: Error en la consulta a la Base de Datos';
         else return $result;
+    }
+
+    function SHOWALL(){
+        $sql = "SELECT * FROM estadistica";
+
+        if(!($result = $this->mysqli->query($sql))){
+            return 'ERROR: Fallo en la consulta sobre la base de datos.';
+        }else return $result;
     }
 }
 

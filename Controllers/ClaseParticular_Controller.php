@@ -35,7 +35,7 @@ session_start();
             }else{
                 include '../Models/ClaseParticular_Model.php';
                             
-                $ClaseParticular = new ClaseParticular_Model($_POST['idClaseParticular'],'','','','');
+                $ClaseParticular = new ClaseParticular_Model($_POST['idClaseParticular'],'','','','','');
         
                 $respuesta = $ClaseParticular->Register();
                 if($respuesta === true)
@@ -69,7 +69,7 @@ session_start();
 
         function DELETE($clave){
             include '../Models/ClaseParticular_Model.php';
-                    $ClaseParticular = new ClaseParticular_Model($clave,'','','','');
+                    $ClaseParticular = new ClaseParticular_Model($clave,'','','','','');
     
             if(!isset($_POST['submit']))
             {
@@ -82,11 +82,11 @@ session_start();
                     include '../Views/MESSAGE.php';
                     new MESSAGE($respuesta, './ClaseParticular_Controller.php?accion=SHOWALL');
             }
-        }
+        } 
 
         function SHOWCURRENT($clave){
             include '../Models/ClaseParticular_Model.php';
-            $ClaseParticular = new ClaseParticular_Model($clave,'','','','');
+            $ClaseParticular = new ClaseParticular_Model($clave,'','','','','');
             $datos = $ClaseParticular->SEARCH();
             include '../Views/ClaseParticular/ClaseParticularShowCurrent_View.php';
             new ClaseParticular_SHOWCURRENT($datos);
@@ -94,7 +94,7 @@ session_start();
 
         function SHOWALL(){
             include '../Models/ClaseParticular_Model.php';
-            $ClaseParticular = new ClaseParticular_Model('','','','','');
+            $ClaseParticular = new ClaseParticular_Model('','','','','','');
             $datos = $ClaseParticular->SHOWALL();
 
             // ERROR EN WEB: Dice que $datos no es un array ni ningun objeto contable. No se arregla con fetch_array

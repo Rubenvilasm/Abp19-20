@@ -111,9 +111,30 @@ class Usuario_Model{
 							'NO'
 						)";
 
-		if(!$resultado = $this->mysqli->query($sql))
-
+		$sql2 = "INSERT INTO estadistica (
+            `idUsuario`,
+            `partidosGanados`,
+            `partidosJugados`,
+            `puntos`,
+            `puntosAFavor`,
+            `victoriasConsecutivas`,
+            `mejorRanking`,
+            `torneosJugados`,
+            `finalesJugadas`
+            ) VALUES (
+                '$this->login',
+                '0',
+                '0',
+                '0',
+                '0',
+                '0',
+                '0',
+                '0',
+				'0')";
+		if(!$result = $this->mysqli->query($sql) )
 			return 'Error en la insercion';
+		else if (!$result= $this->mysqli->query($sql2))
+			return 'ERROR: Error en la insercion de las estadisticas.';
 		else{
 			$login_actual = $this->mysqli->query("SELECT @@identity AS LOGIN");
 			$row = mysqli_fetch_array($login_actual);
@@ -235,13 +256,14 @@ function GET_FOTO(){
 }
 	function DELETE(){
 		$sql = "DELETE  FROM usuario WHERE `login` = '$this->login' ";
-
+		$sql2= "DELETE FROM estadistica WHERE idUsuario = '$this->login'";
 
 		//$result = $this->mysqli->query($sql);
 
-		if(!$this->mysqli->query($sql)){
+		if(!$this->mysqli->query($sql2)){
 			return 'Error en el borrado';
-		}
+		}else if (!$this->mysqli->query($sql))
+			return 'Error en el borrado';
 		else{
 			return 'Borrado realizado con éxito';
 		}
