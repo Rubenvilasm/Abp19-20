@@ -75,23 +75,18 @@ class ClaseParticular_Model{
         }else return 'ERROR: No existe la pista que desea borrar.';
     }
     function SEARCH(){
-        $sql = "SELECT `idClaseParticular`,
-                        `pista`,
-                        `idEntrenador`,
-                        `idUsuario`,
-                        `nivel`
+        $sql = "SELECT *
                 FROM claseParticular WHERE(
-                        (`idClaseParticular` LIKE '%this->idClaseParticular') &&
-                        (`pista` LIKE '%this->pista') &&
-                        (`idEntrenador` LIKE '%this->idEntrenador') &&
-                        (`nivel` LIKE '%this->nivel') &&
-                        (`idUsuario` LIKE '%this->idUsuario'))
+                        (`idClaseParticular` LIKE '$this->idClaseParticular') ||
+                        (`idPista` LIKE '$this->pista') ||
+                        (`idEntrenador` LIKE '$this->idEntrenador') ||
+                        (`nivel` LIKE '$this->nivel') ||
+                        (`idUsuario` LIKE '$this->idUsuario'))
                         ";
-
         if(!($result = $this->mysqli->query($sql))){
             return 'ERROR: Fallo en la consulta sobre la base de datos';
         }else{
-            return $result;
+             return mysqli_fetch_all($result, MYSQLI_ASSOC);
         }
     }
 

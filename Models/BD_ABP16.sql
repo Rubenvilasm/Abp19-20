@@ -172,8 +172,8 @@ CREATE TABLE `participa` (
   idUsuario varchar(25) COLLATE latin1_spanish_ci UNIQUE,
   partidosGanados varchar(25) COLLATE latin1_spanish_ci NOT NULL,
   partidosJugados varchar(25) COLLATE latin1_spanish_ci NOT NULL,
-  setsAFavor varchar(25) COLLATE latin1_spanish_ci NOT NULL,
-  setsEnContra varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+  puntos varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+  puntosAFavor varchar(25) COLLATE latin1_spanish_ci NOT NULL,
   victoriasConsecutivas varchar(25) COLLATE latin1_spanish_ci NULL,
   mejorRanking varchar(25) COLLATE latin1_spanish_ci NOT NULL,
   torneosJugados varchar(25) COLLATE latin1_spanish_ci NOT NULL,
@@ -271,22 +271,24 @@ CREATE TABLE `participa` (
       PRIMARY KEY (idEntrenador)
     )ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 INSERT INTO usuario (login, password, nombre, apellidos,genero, dni, fechaNacimiento, email, telefono, rol, socio, foto,borrado ) VALUES
-('admin', 'admin', 'admin', 'el administrador','Masculino', '95875625X', '2019-11-14', 'admin@padel.es', '677777777', 'ADMINISTRADOR', 'SI','../Files/man-1.png','NO'),
-('entrenador', 'entrenador', 'Pepe', 'el entrenador', 'Masculino','59117771C', '2019-11-15', 'entrenador@padel.es', '657555555', 'ENTRENADOR', 'SI','../Files/default.png','NO'),
-('deportista1', 'deportista', 'Ruben', 'el deportista','Masculino', '74291751A', '2001-11-11', 'deportista1@padel.es', '611111111', 'DEPORTISTA', 'NO','../Files/default.png','NO'),
-('deportista2', 'deportista2', 'Carlos', 'el deportista2','Masculino', '33653901W', '2002-1-2', 'deportista2@padel.es', '622222222', 'DEPORTISTA', 'SI','../Files/default.png','NO'),
-('deportista3', 'deportista3', 'Lorenzo', 'el deportista3','Masculino', '95119250J', '2003-1-3', 'deportista3@padel.es', '633333333', 'DEPORTISTA', 'SI','../Files/default.png','NO'),
-('deportista4', 'deportista4', 'Victor', 'el deportista4', 'Masculino','43339819E', '2004-1-4', 'deportista4@padel.es', '644444444', 'DEPORTISTA', 'SI','../Files/default.png','NO'),
-('deportista5', 'deportista5', 'Juan', 'el deportista5', 'Masculino','33484025G', '2005-1-5', 'deportista5@padel.es', '655555555', 'DEPORTISTA', 'SI','../Files/default.png','NO'),
-('deportista6', 'deportista6', 'Alvaro', 'el deportista6', 'Masculino','93009004V', '2006-1-6', 'deportista6@padel.es', '666666666', 'DEPORTISTA', 'SI','../Files/default.png','NO'),
-('deportista7', 'deportista7', 'Alberto', 'el deportista7','Masculino','81504224K', '2007-1-7', 'deportista7@padel.es', '677777777', 'DEPORTISTA', 'SI','../Files/default.png','NO'),
-('deportista8', 'deportista8', 'Joao', 'el deportista8','Masculino', '17320774A', '2008-1-8', 'deportista8@padel.es', '688888888', 'DEPORTISTA', 'SI','../Files/default.png','NO'),
-('deportista9', 'deportista9', 'Martin', 'el deportista9', 'Masculino','89924446N', '2009-1-9', 'deportista9@padel.es', '699999999', 'DEPORTISTA', 'SI','../Files/default.png','NO'),
-('deportista10', 'deportista10', 'Fernando', 'el deportista10', 'Masculino','87394928B', '2010-1-10', 'deportista10@padel.es', '610101010', 'DEPORTISTA', 'SI','../Files/default.png','NO'),
-('deportista11', 'deportista11', 'Ivan', 'el deportista11', 'Masculino','84798134D', '2011-1-11', 'deportista11@padel.es', '711111111', 'DEPORTISTA', 'SI','../Files/default.png','NO'),
-('deportista12', 'deportista12', 'Santi', 'el deportista12', 'Masculino','46768798T', '2012-1-12', 'deportista12@padel.es', '612121212', 'DEPORTISTA', 'SI','../Files/default.png','NO'),
-('deportista13', 'deportista13', 'Carliños', 'el deportista13', 'Masculino','62181635P', '2013-1-13', 'deportista13@padel.es', '613131313', 'DEPORTISTA', 'SI','../Files/default.png','NO'),
-('deportista14', 'deportista14', 'Adrian', 'el deportista14','Masculino', '07226831R', '2014-1-14', 'deportista14@padel.es', '614141414', 'DEPORTISTA', 'SI','../Files/default.png','NO');
+('admin', 'admin', 'admin', 'el administrador','Masculino', '95875625X', '2019-11-14', 'admin@padel.es', '677777777', 'ADMINISTRADOR', 'SI','icono.png','NO'),
+('entrenador', 'entrenador', 'Pepe', 'el entrenador', 'Masculino','59117771C', '2019-11-15', 'entrenador@padel.es', '657555555', 'ENTRENADOR', 'SI','icono.png','NO'),
+('deportista1', 'deportista', 'Ruben', 'el deportista','Masculino', '74291751A', '2001-11-11', 'deportista1@padel.es', '611111111', 'DEPORTISTA', 'NO','icono.png','NO'),
+('deportista2', 'deportista2', 'Carlos', 'el deportista2','Masculino', '33653901W', '2002-1-2', 'deportista2@padel.es', '622222222', 'DEPORTISTA', 'SI','icono.png','NO'),
+('deportista3', 'deportista3', 'Lorenzo', 'el deportista3','Masculino', '95119250J', '2003-1-3', 'deportista3@padel.es', '633333333', 'DEPORTISTA', 'SI','icono.png','NO'),
+('deportista4', 'deportista4', 'Victor', 'el deportista4', 'Masculino','43339819E', '2004-1-4', 'deportista4@padel.es', '644444444', 'DEPORTISTA', 'SI','icono.png','NO'),
+('deportista5', 'deportista5', 'Juan', 'el deportista5', 'Masculino','33484025G', '2005-1-5', 'deportista5@padel.es', '655555555', 'DEPORTISTA', 'SI','icono.png','NO'),
+('deportista6', 'deportista6', 'Alvaro', 'el deportista6', 'Masculino','93009004V', '2006-1-6', 'deportista6@padel.es', '666666666', 'DEPORTISTA', 'SI','icono.png','NO'),
+('deportista7', 'deportista7', 'Alberto', 'el deportista7','Masculino','81504224K', '2007-1-7', 'deportista7@padel.es', '677777777', 'DEPORTISTA', 'SI','icono.png','NO'),
+('deportista8', 'deportista8', 'Joao', 'el deportista8','Masculino', '17320774A', '2008-1-8', 'deportista8@padel.es', '688888888', 'DEPORTISTA', 'SI','icono.png','NO'),
+('deportista9', 'deportista9', 'Martin', 'el deportista9', 'Masculino','89924446N', '2009-1-9', 'deportista9@padel.es', '699999999', 'DEPORTISTA', 'SI','icono.png','NO'),
+('deportista10', 'deportista10', 'Fernando', 'el deportista10', 'Masculino','87394928B', '2010-1-10', 'deportista10@padel.es', '610101010', 'DEPORTISTA', 'SI','icono.png','NO'),
+('deportista11', 'deportista11', 'Ivan', 'el deportista11', 'Masculino','84798134D', '2011-1-11', 'deportista11@padel.es', '711111111', 'DEPORTISTA', 'SI','icono.png','NO'),
+('deportista12', 'deportista12', 'Santi', 'el deportista12', 'Masculino','46768798T', '2012-1-12', 'deportista12@padel.es', '612121212', 'DEPORTISTA', 'SI','icono.png','NO'),
+('deportista13', 'deportista13', 'Carliños', 'el deportista13', 'Masculino','62181635P', '2013-1-13', 'deportista13@padel.es', '613131313', 'DEPORTISTA', 'SI','icono.png','NO'),
+('deportista14', 'deportista14', 'Adrian', 'el deportista14','Masculino', '07226831R', '2014-1-14', 'deportista14@padel.es', '614141414', 'DEPORTISTA', 'SI','icono.png','NO'),
+('juanEntrenador', 'juanEntrenador', 'Juan', 'el entrenador','Masculino', '77482984D', '2014-1-13', 'juanEntrenador@padel.es', '614141413', 'ENTRENADOR', 'SI','icono.png','NO');
+
 
 INSERT INTO estadistica (idUsuario,partidosGanados,partidosJugados,puntos,puntosAFavor,victoriasConsecutivas,mejorRanking,torneosJugados,finalesJugadas) VALUES
 ('admin','0','0','0','0','0','0','0','0'),
@@ -387,5 +389,8 @@ INSERT INTO partidoPromocionado (idPartidoPromocionado,nombre,fecha,idParticipan
   ('2','Promocion2','2019-9-10','deportista5','deportista6','deportista7','deportista8','4');
 
 
-INSERT INTO `usuario` (`login`, `password`, `nombre`, `apellidos`, `genero`, `dni`, `fechaNacimiento`, `email`, `telefono`, `rol`, `socio`, `foto`, `borrado`) VALUES 
-('entrenador1', 'entrenador', 'ruben', 'Martinez', 'Masculino', '77482984D', '2020-01-16 00:00:00.000000', 'rubenvilasm@gmail.com', '673027066', 'Entrenador', NULL, 'favico.ico', 'NO');
+INSERT INTO `claseparticular` (`idClaseParticular`, `idPista`, `idEntrenador`, `idUsuario`, `nivel`, `hora`) VALUES 
+('1', '2', 'juanEntrenador', 'deportista1', '3', '2020-01-23 18:30:00.000000'),
+('2', '3', 'juanEntrenador', 'deportista2', '3', '2020-01-27 18:00:00.000000'),
+('3', '4', 'juanEntrenador', 'deportista7', '3', '2020-01-30 12:00:00.000000')
+;

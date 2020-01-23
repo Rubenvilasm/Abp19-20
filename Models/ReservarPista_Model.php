@@ -56,7 +56,6 @@ class ReservarPista_Model{
             $result = $this->mysqli->query($sql);
             $num_rows = mysqli_num_rows($result);
             
-            echo $this->idPista;
 
             if($num_rows == 1){
                 $sql = "DELETE FROM reserva WHERE `idReserva` = '$this->idReserva'";
@@ -107,7 +106,7 @@ class ReservarPista_Model{
 
 
         function SHOWALL(){
-            $sql = "SELECT * FROM reserva";
+            $sql = "SELECT * FROM reserva ORDER BY idReserva";
     
             if(!($result = $this->mysqli->query($sql))){
                 return 'ERROR: Fallo en la consulta sobre la base de datos.';

@@ -66,14 +66,14 @@ class PPromocionado_Model{
         
  
         function DELETE(){ 
-            $sql = "SELECT * FROM `partidoPromocionado` WHERE (`partidoPromocionado` = '$this->partidoPromocionado')";
+            $sql = "SELECT * FROM `partidoPromocionado` WHERE (`idPartidoPromocionado` = '$this->idPartidoPromocionado')";
 
             $result = $this->mysqli->query($sql);
-            $num_rows = mysqli_num_rows($result);
-
+            
             if($result->num_rows == 1){
-                $sql = "DELETE FROM partidoPromocionado WHERE (`idPartidoPromocionado` = '$this->idPartidoPromocionado')";
 
+                $sql = "DELETE FROM partidoPromocionado WHERE (`idPartidoPromocionado` = '$this->idPartidoPromocionado')";
+                
                 if(!($result = $this->mysqli->query($sql))){
                     return 'ERROR: Fallo en la consulta sobre la base de datos.';
                 }else return 'El Partido Promocionado ha sido eliminada con exito.';

@@ -81,7 +81,7 @@ class Usuario_Model{
 
 
 	function ADD(){
-		if('$this->login' <> '' ){
+		if('$this->login' <> ''){
 			$sql = "INSERT INTO USUARIO (
 						`login`,
 						`password`,
@@ -149,16 +149,16 @@ class Usuario_Model{
 
 	function SEARCH(){
 		$sql = "SELECT * FROM `usuario` WHERE
-				`login` LIKE '%$this->login%' AND
-				`nombre` LIKE '%$this->nombre%' AND
-				`apellidos` LIKE '%$this->apellidos%' AND
-				`genero` LIKE '%$this->genero%' AND
-				`dni` LIKE '%$this->dni%' AND
-				`email` LIKE '%$this->email%' AND
-				`telefono` LIKE '%$this->telefono%' AND
-				`rol` LIKE '%$this->rol%' AND
-				`socio` LIKE '%$this->socio%' AND
-				`fechaNacimiento` LIKE '%$this->fechaNac%'
+				`login` LIKE '$this->login' OR
+				`nombre` LIKE '$this->nombre' OR
+				`apellidos` LIKE '$this->apellidos' OR
+				`genero` LIKE '$this->genero' OR
+				`dni` LIKE '$this->dni' OR
+				`email` LIKE '$this->email' OR
+				`telefono` LIKE '$this->telefono' OR
+				`rol` LIKE '$this->rol' OR
+				`socio` LIKE '$this->socio' OR
+				`fechaNacimiento` LIKE '$this->fechaNac'
 			";
 
 		if($sql == "SELECT * FROM USUARIO"){

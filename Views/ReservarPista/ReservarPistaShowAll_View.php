@@ -39,7 +39,7 @@
             </thead>
             
             <tr>
-            <?php if(count($datos, COUNT_RECURSIVE)!= 8){
+            <?php if(count($datos, COUNT_RECURSIVE)!= 5){
                     foreach($datos as $datos) :
                     ?>
                     <td><?php echo $datos['idReserva']."\n"; ?></td>

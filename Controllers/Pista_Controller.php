@@ -54,7 +54,7 @@ session_start();
     
             }else{
                 include '../Models/Pista_Model.php';
-                $Pista = new Pista_Model($_POST['idReserva'],$_POST['idPista'],$_POST['idUsuario'],$_POST['fecha'],$_POST['precio']);
+                $Pista = new Pista_Model($_POST['idPista'],$_POST['nombre'],'','','');
                 
                 $datos = $Pista->SEARCH();
                 if(!is_string($datos)){

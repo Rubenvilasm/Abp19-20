@@ -52,12 +52,14 @@
 							<input type = 'text' name = 'apellidos' id = 'apellidos' placeholder = '<?php echo $strings['Sólo letras']?>' size = '50' value = ''  ><br>
 							<p class="invalid" id="invalidapellidos"><?php echo $strings['Formato no válido']?></p>
 						</div>
+						</div>
+						<div class="bloque">
 						<div class="campo">
 							<label><?php echo $strings['Genero']?> : </label>
 							<input type = 'text' name = 'genero' id = 'apellidos' placeholder = '<?php echo $strings['Sólo letras']?>' size = '50' value = ''  ><br>
 							<p class="invalid" id="invalidGenero"><?php echo $strings['Formato no válido']?></p>
 						</div>
-						</div >
+						</div>
 							<div class="bloque">
 						<div class="campo">
 							<label><?php echo $strings['Teléfono']?> : </label>

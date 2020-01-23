@@ -57,49 +57,46 @@ class Pista_Model{
             `ubicacion`,
             `borrada`)
             VALUES (
-                '$this->idPista',
+                '$this->idpista',
                 '$this->nombre',
                 '$this->especificaciones'
             )";
     }
 
     function DELETE(){
-        $sql = "SELECT * FROM `pista` WHERE (`idPista` = '$this->idPista')";
+        $sql = "SELECT * FROM `pista` WHERE (`idPista` = '$this->idpista')";
 
         $result = $this->mysqli->query($sql);
         $num_rows = mysqli_num_rows($result);
-
         if($result->num_rows == 1){
-            $sql = "DELETE FROM pista WHERE `idPista`='$this->idPista'";
+            $sql = "DELETE FROM pista WHERE `idPista`='$this->idpista' ";
 
             if(!($result = $this->mysqli->query($sql))){
-                return 'ERROR: Fallo en la consulta sobre la base de datos.';
+                return 'Eliminar antes las relaciones de las pistas (reservas,partidos,etc)';
             }else return 'La pista ha sido eliminada con exito.';
 
         }else return 'ERROR: No existe la pista que desea borrar.';
 
     }
     function SEARCH(){
-        $sql = "SELECT `idPista`,
-                        `nombre`,
-                        `especificaciones`
+        $sql = "SELECT *
                 FROM pista WHERE(
-                        (`idPista` LIKE '%this->idPista') &&
-                        (`nombre` LIKE '%this->nombre')";
+                        (`idPista` LIKE '%$this->idpista') ||
+                        (`nombre` LIKE '%$this->nombre'))";
 
         if(!($result = $this->mysqli->query($sql))){
             return 'ERROR: Fallo en la consulta sobre la base de datos';
         }else{
-            return $result;
+            return mysqli_fetch_all($result, MYSQLI_ASSOC);
         }
     }
 
     function SHOWCURRENT(){
-        $sql = "SELECT * FROM pista WHERE (`idPista` = '$this->idPista')";
+        $sql = "SELECT * FROM pista WHERE (`idPista` = '$this->idpista')";
 
         if(!($result = $this->mysqli->query($sql))){
             return 'ERROR: Fallo en la consulta sobre la base de datos.';
-        }else return $result;
+        }else return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
 
 
