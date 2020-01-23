@@ -6,17 +6,21 @@ class Participa_Model{
     var $idCampeonato;
     var $categoria;
     var $nivel;
+    var $puntuacion;
+    var $grupo; 
     
 
     var $mysqli;
 
-    function __construct($idPareja,$idCampeonato,$categoria,$nivel){
+    function __construct($idPareja,$idCampeonato,$categoria,$nivel,$puntuacion,$grupo){
         include_once '../Models/Access_DB.php';
         $this->mysqli = ConnectDB();
         $this->idPareja = $idPareja;
         $this->idCampeonato = $idCampeonato;
         $this->categoria = $categoria;
         $this->nivel = $nivel;
+        $this->puntuacion=$puntuacion;
+        $this->grupo=$grupo;
 
       
     }
@@ -53,8 +57,9 @@ class Participa_Model{
             }
         
     }
-    function MostrarGrupos(){
-        $sql = "SELECT * FROM participa, pareja WHERE `nivel`='$this->nivel' AND `categoria`='$this->categoria' AND participa.idPareja = pareja.idPareja";
+    function Clasificacion(){
+        $sql = "SELECT * FROM participa, pareja WHERE `nivel`='$this->nivel' AND `categoria`='$this->categoria' AND
+        `idCampeonato`=$this->idCampeonato AND `Grupo`=$this->grupo AND participa.idPareja=pareja.idPareja ORDER BY puntuacion DESC";
 
         if(!($result = $this->mysqli->query($sql))){
             return 'ERROR: Fallo en la consulta sobre la base de datos.';

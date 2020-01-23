@@ -151,7 +151,8 @@ CREATE TABLE `participa` (
   `grupo` int(11) NOT NULL,
   `idCampeonato` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
   `nivel` int(11) NOT NULL,
-  `categoria` enum('mixta','masculina','femenina','') COLLATE latin1_spanish_ci NOT NULL
+  `categoria` enum('mixta','masculina','femenina','') COLLATE latin1_spanish_ci NOT NULL,
+  `puntuacion` INT NOT NULL 
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
    
 
@@ -185,7 +186,7 @@ CREATE TABLE `participa` (
 
 
   CREATE TABLE IF NOT EXISTS enfrentamiento (
-    idEnfrentamiento varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+    idEnfrentamiento INT(25) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
     idCampeonato varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     idPareja1 varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     idPareja2 varchar(25) COLLATE latin1_spanish_ci NOT NULL,
@@ -194,6 +195,9 @@ CREATE TABLE `participa` (
     numSetsPareja1 varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     numSetsPareja2 varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     idPista varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+    nivel INT NOT NULL,
+    idCategoria enum('mixta','masculina','femenina','') COLLATE latin1_spanish_ci NOT NULL,
+    
 
     PRIMARY KEY (idEnfrentamiento,idCampeonato),
     FOREIGN KEY (idCampeonato) REFERENCES campeonato(idCampeonato)
@@ -255,6 +259,14 @@ CREATE TABLE `participa` (
     partidosJugados varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     puntos varchar(25) COLLATE latin1_spanish_ci NOT NULL
     )ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+    INSERT INTO pareja(idDeportista1,idDeportista2,idPareja) VALUES (Deportista178,deportista278,78),
+     (Deportista179,deportista279,79), (Deportista180,deportista280,80), (Deportista181,deportista281,81), 
+     (Deportista182,deportista282,82), (Deportista183,deportista283,83), (Deportista184,deportista284,84),
+     (Deportista185,deportista285,85), (Deportista186,deportista286,86), (Deportista187,deportista287,87),
+     (Deportista188,deportista288,88), (Deportista189,deportista289,89), (Deportista190,deportista290,90),
+     (Deportista191,deportista291,91), (Deportista192,deportista292,92), (Deportista193,deportista293,93),
+     (Deportista194,deportista294,94), (Deportista195,deportista295,95), (Deportista196,deportista296,96),
+     (Deportista197,deportista297,97), (Deportista198,deportista298,98), (Deportista199,deportista299,99); 
 
 INSERT INTO usuario (login, password, nombre, apellidos,genero, dni, fechaNacimiento, email, telefono, rol, socio, foto,borrado ) VALUES
 ('admin', 'admin', 'admin', 'el administrador','Masculino', '95875625X', '2019-11-14', 'admin@padel.es', '677777777', 'ADMINISTRADOR', 'SI','../Files/man-1.png','NO'),
@@ -275,14 +287,19 @@ INSERT INTO usuario (login, password, nombre, apellidos,genero, dni, fechaNacimi
 ('deportista14', 'deportista14', 'Adrian', 'el deportista14','Masculino', '07226831R', '2014-1-14', 'deportista14@padel.es', '614141414', 'DEPORTISTA', 'SI','../Files/deportista-2.png','NO');
 
 
-INSERT INTO pareja (idPareja,idDeportista1,idDeportista2) VALUES 
-('1','deportista1','deportista2'),
-('2','deportista3','deportista4'),
-('3','deportista5','deportista6'),
-('4','deportista7','deportista8'),
-('5','deportista9','deportista10'),
-('6','deportista11','deportista12'),
-('7','deportista13','deportista14');
+INSERT INTO `pareja` (`idPareja`, `idDeportista1`, `idDeportista2`)
+ VALUES
+('78','Deportista178','Deportista278'), ('79','Deportista179','Deportista279'),
+('80','Deportista180','Deportista280'), ('81','Deportista181','Deportista281'),
+('82','Deportista182','Deportista282'), ('83','Deportista183','Deportista283'),
+('84','Deportista184','Deportista284'), ('85','Deportista185','Deportista285'),
+('86','Deportista186','Deportista286'), ('87','Deportista187','Deportista287'),
+('88','Deportista188','Deportista288'), ('89','Deportista189','Deportista289'),
+('90','Deportista190','Deportista290'), ('91','Deportista191','Deportista291'),
+('92','Deportista192','Deportista292'), ('93','Deportista193','Deportista293'),
+('94','Deportista194','Deportista294'), ('95','Deportista195','Deportista295'),
+('96','Deportista196','Deportista296'), ('97','Deportista197','Deportista297'),
+('98','Deportista198','Deportista298'), ('99','Deportista199','Deportista299');
 
 INSERT INTO pista (idPista,nombre,especificaciones,ubicacion,borrado) VALUES 
   ('1','Pista01','Cesped con pared de cristal.','allí','NO'),

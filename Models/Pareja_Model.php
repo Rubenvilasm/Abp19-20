@@ -26,12 +26,12 @@ class Pareja_Model{
         $this->mysqli = ConnectDB();
     }
 
-    function GET_PAREJA(){
-        $sql = "SELECT idDeportista1, idDeportista2 FROM pareja WHERE(`idPareja` = '$this->idPareja')";
+    function GET_PAREJA($id){
+        $sql = "SELECT idDeportista1, idDeportista2 FROM pareja WHERE(`idPareja` = '$id')";
 
         if(!($result = $this->mysqli->query($sql))){
             return 'ERROR: Fallo en la consulta sobre la base de datos.';
-        }else return $result;
+        }else return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
     function Get_ID(){
         $sql = "SELECT idPareja FROM pareja WHERE((`idDeportista1`= '$this->idDeportista1') AND

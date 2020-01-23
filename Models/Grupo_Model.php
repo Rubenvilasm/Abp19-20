@@ -52,6 +52,16 @@ class Grupo_Model{
             return true;
         else return false;
     }
+    function getNumParticipantes(){
+        $sql = "SELECT numParticipantes FROM grupo WHERE (`idGrupo` = '$this->idGrupo' AND `categoria` = '$this->idCategoria' AND `nivel` = '$this->idNivel' AND `idCampeonato` = '$this->idCampeonato')";
+        echo $sql;
+        $resultado= $this->mysqli->query($sql);
+        $resultado = mysqli_fetch_all($resultado,MYSQLI_NUM);
+        $resultado = $resultado[0][0];
+        if(!($result = $this->mysqli->query($sql))){
+            return 'ERROR: Fallo en la consulta sobre la base de datos.';
+        }else return $resultado;
+    }
 
     function SHOWCURRENT(){
         $sql = "SELECT * FROM grupo WHERE (`idGrupo` = '$this->idGrupo' AND `idCategoria` = '$this->idCategoria' AND `idNivel` = '$this->idNivel' AND `idCampeonato` = '$this->idCampeonato')";
@@ -74,24 +84,28 @@ class Grupo_Model{
 
         if(!($result = $this->mysqli->query($sql))){
             return 'ERROR: Fallo en la consulta sobre la base de datos.';
-        }else return $result;
+        }else return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
+    
 
     function getGruposByCategoria(){
         $sql = "SELECT * FROM grupo WHERE (`idCampeonato` = '$this->idCampeonato' AND `idCategoria`= '$this->idCategoria')";
 
         if(!($result = $this->mysqli->query($sql))){
             return 'ERROR: Fallo en la consulta sobre la base de datos.';
-        }else return $result;
+        }else return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
+    
 
     function getGruposByNivel(){
-        $sql = "SELECT * FROM grupo WHERE (`idCampeonato` = '$this->idCampeonato' AND `idCategoria`= '$this->idCategoria' AND `idNivel`= '$this->idNivel')";
+        $sql = "SELECT * FROM grupo WHERE (`idCampeonato` = '$this->idCampeonato' AND `categoria`= '$this->idCategoria' AND `nivel`= '$this->idNivel')";
 
         if(!($result = $this->mysqli->query($sql))){
             return 'ERROR: Fallo en la consulta sobre la base de datos.';
-        }else return $result;
+        }else return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
+    
+    
 }
 
 ?>

@@ -23,7 +23,11 @@ session_start();
     
     
         //variable para el parámetro
-        if(isset($_GET["param"])){
+       if(isset($_GET["param3"])){
+            $param = $_GET["param"];
+            $param2 = $_GET["param2"];
+            $param3 = $_GET["param3"];
+        } else if(isset($_GET["param"])){
             $param = $_GET["param"];
         }
     
@@ -150,26 +154,7 @@ session_start();
             $Pareja = new Pareja_Model('',$_POST['participante2'],$_POST['participante1']);
             $respPareja=$Pareja->ADD();
             $idPareja=$Pareja->Get_ID();
-            $Participa= new Participa_Model($idPareja,$clave,$_POST['categoria'],$_POST['nivel']);
-            $respParticipa=$Participa->ADD();    
-            
-                include '../Views/MESSAGE.php';
-                new MESSAGE($respParticipa, './Campeonato_Controller.php?accion=VERINSCRIPCIONES');
-            
-        }
-    }
-    function prueba($clave){
-        if(!isset($_POST['submit'])){
-            include '../Views/Campeonato/CampeonatoPareja_View.php';
-            new Campeonato_PAREJA($clave);
-
-        }else{
-            include '../Models/Pareja_Model.php';
-            include '../Models/Participa_Model.php';
-            $Pareja = new Pareja_Model('',$_POST['participante2'],$_POST['participante1']);
-            $respPareja=$Pareja->ADD();
-            $idPareja=$Pareja->Get_ID();
-            $Participa= new Participa_Model($idPareja,$clave);
+            $Participa= new Participa_Model($idPareja,$clave,$_POST['categoria'],$_POST['nivel'],'');
             $respParticipa=$Participa->ADD();    
             
                 include '../Views/MESSAGE.php';
@@ -216,13 +201,13 @@ function Seleccionar($clave){
         new Campeonato_Seleccionar($clave);
 
     }else{
-        include '../Models/Participa_Model.php';
+        include '../Models/Grupo_Model.php';
 
-        $Participa= new Participa_Model('','',$_POST['categoria'],$_POST['nivel']);
-        $respParticipa=$Participa->MostrarGrupos();    
-        if(sizeof($respParticipa) != 0){
-            include '../Views/Campeonato/CampeonatoGrupos_View.php';
-            new  Campeonato_GRUPOS($respParticipa);
+        $Grupos= new Grupo_Model('',$_POST['categoria'],$clave,$_POST['nivel']);
+        $respGrupos=$Grupos->getGruposByNivel();    
+        if(sizeof($respGrupos) != 0){
+            include '../Views/Campeonato/CampeonatoGruposSHOW_View.php';
+            new  Campeonato_GRUPOSSHOW($respGrupos);
         }else{
             $mens = "No hay grupos en esa categoria y nivel";
             include '../Views/MESSAGE.php';
@@ -230,9 +215,76 @@ function Seleccionar($clave){
         }        
     }
 }
+function Clasificacion($nivel,$idCampeonato,$grupo,$categoria){
+    
+    include '../Models/Participa_Model.php';
+    $participantes=new Participa_Model('',$idCampeonato,$categoria,$nivel,'',$grupo);
+
+        $Grupos= $participantes->Clasificacion();
+        if(sizeof($Grupos) != 0){
+            include '../Views/Campeonato/CampeonatoGrupos_View.php';
+            new  Campeonato_GRUPOS($Grupos);
+        }else{
+            $mens = "No hay grupos en esa categoria y nivel";
+            include '../Views/MESSAGE.php';
+            new MESSAGE($mens, '../Controllers/Index_Controller.php');
+               
+    }
+}
+function Enfrentamientos($nivel,$idCampeonato,$grupo,$categoria){
+    
+    include '../Views/Campeonato/CampeonatoEnfrentamientos_View.php';
+         
+        include '../Models/Enfrentamiento_Model.php';
+        include '../Models/Pareja_Model.php';
+        $pareja= new Pareja_Model('','','');
+        $enfrentamiento = new Enfrentamiento_Model('',$idCampeonato,'','','',$grupo,'','','',$categoria,$nivel);
+        $estanCreados= $enfrentamiento->EstanCreados();
+        if($estanCreados){
+            $enfrentamientos=$enfrentamiento->getEnfrentamientos();
+            $i=0;
+            $parejas[]=array();
+            foreach($enfrentamientos as $enfren){
+                $temp = $pareja->GET_PAREJA($enfren['idPareja1']);
+                $parejas[$i] = $temp[0];
+               $t =$enfren['idPareja1'];
+               $t2 = $enfren['idPareja2'];
+                $i++;
+                 $temp = $pareja->GET_PAREJA($enfren['idPareja2']);
+                 $parejas[$i] = $temp[0];
+                 $i++;
+            }
+            
+            new Campeonato_Enfrentamientos($enfrentamientos,$parejas);
+            echo $estanCreados;
+
+        }else{
+            $crearEnfrentamientos= $enfrentamiento->CrearEnfrentamientos();
+            echo "no $estanCreados";
+        }
+        /* $Grupos= new Grupo_Model('',$_POST['categoria'],$clave,$_POST['nivel']);
+        $respGrupos=$Grupos->getGruposByNivel();    
+        print_r($respGrupos);
+        if(sizeof($respGrupos) != 0){
+            include '../Views/Campeonato/CampeonatoGruposSHOW_View.php';
+            new  Campeonato_GRUPOSSHOW($respGrupos);
+        }else{
+            $mens = "No hay grupos en esa categoria y nivel";
+            include '../Views/MESSAGE.php';
+            new MESSAGE($mens, '../Controllers/Index_Controller.php');
+        }         */
+   
+}
 
        if(!isset($param)){
             $accion();
+        }else if(isset($param3)){
+            $nivel=substr($param,0,1);
+            $idCampeonato=substr($param,1);
+            $grupo=$param3;
+            $categoria=$param2;
+
+        $accion($nivel,$idCampeonato,$grupo,$categoria);
         }else{
             $accion($param);
         }

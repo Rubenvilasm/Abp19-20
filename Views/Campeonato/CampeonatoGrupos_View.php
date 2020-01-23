@@ -18,39 +18,38 @@
 <div class="col-md-2"></div>
 <div class=" table-responsive contenido">
     <fieldset id="showall">
-        <legend><?php echo $strings['Campeonatos'];?></legend>
+        <legend><?php echo $strings['Clasificacion'];?></legend>
 
         <!--Contenedor con botones de adición y búsqueda  -->
         <div class="container-showall-btn">
-            <button class="form-btn" role="link" onclick="window.location='../Controllers/Campeonato_Controller.php?accion=SEARCH'"><i class="fas fa-search"></i>
-            <button class="form-btn" role="link" onclick="window.location='../Controllers/Campeonato_Controller.php?accion=ADD'"><i class="fas fa-plus"></i>
         </div>
         <table>
             <thead>
                 <tr>
                 <!-- Títulos de tabla -->
-                <th><?php echo $strings['Miembro 1 pareja'];?></th>
-                <th><?php echo $strings['Miembro 2 pareja'];?></th>
-                <th><?php echo $strings['idPareja'];?></th>
-                <th><?php echo $strings['grupo'];?></th>
+                <th class="text-center"><?php echo $strings['Posicion'];?></th>
+                <th class="text-center"><?php echo $strings['Miembro 1 pareja'];?></th>
+                <th class="text-center"><?php echo $strings['Miembro 2 pareja'];?></th>
+                <th class="text-center"><?php echo $strings['Puntos'];?></th>
 
             </thead>
             
             <tr>
             <?php 
                     foreach($datos as $datos) :
+                        $i =1;
                     ?>
-                                <td><?php echo $datos['idDeportista1']."\n"; ?></td>
-                                <td><?php echo $datos['idDeportista2']."\n"; ?></td>
-                                <td><?php echo $datos['idPareja']."\n"; ?></td>
-                                <td><?php echo $datos['Grupo']."\n"; ?></td>
+                                <td class="text-center"><?php echo $i."\n"; ?></td>
+                                <td class="text-center"><?php echo $datos['idDeportista1']."\n"; ?></td>
+                                <td class="text-center"><?php echo $datos['idDeportista2']."\n"; ?></td>
+                                <td class="text-center"><?php echo $datos['puntuacion']."\n"; ?></td>
             </tr>
-            <?php endforeach;?>
+            <?php $i++; endforeach;?>
             </table>
 
         <!-- Contenedor de los iconos: aceptar, voler y vaciar-->
         <div class="container-btn">
-            <button class="form-btn" role="link" onclick="window.location='../../Controllers/Campeonato_Controller.php?accion=SHOWALL';"><i class="fas fa-arrow-left"></i>
+            <button class="form-btn" role="link" onclick="window.location='../Controllers/Campeonato_Controller.php?accion=SHOWALL';"><i class="fas fa-arrow-left"></i>
         </div>
     </fieldset>
 
