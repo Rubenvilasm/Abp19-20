@@ -304,6 +304,36 @@ function Enfrentamientos($nivel,$idCampeonato,$grupo,$categoria){
         new Campeonato_Enfrentamientos($enfrentamientos,$parejas);
    
 }
+function PLAYOFF($nivel,$idCampeonato,$grupo,$categoria){
+    
+    include '../Views/Campeonato/CampeonatoEnfrentamientos_View.php';
+         
+        include '../Models/Enfrentamiento_Model.php';
+        include '../Models/Pareja_Model.php';
+        $pareja= new Pareja_Model('','','');
+        $enfrentamiento = new Enfrentamiento_Model('',$idCampeonato,'','','',$grupo,'','','',$categoria,$nivel);
+        $estanCreados= $enfrentamiento->EstanCreados();
+        if($estanCreados){
+            $crearEnfrentamientos= $enfrentamiento->CrearPlayOFFS();
+
+        }
+       /*  $enfrentamientos=$enfrentamiento->getEnfrentamientosPlayOFF();
+        $i=0;
+        $parejas[]=array();
+        foreach($enfrentamientos as $enfren){
+            $temp = $pareja->GET_PAREJA($enfren['idPareja1']);
+            $parejas[$i] = $temp[0];
+           $t =$enfren['idPareja1'];
+           $t2 = $enfren['idPareja2'];
+            $i++;
+             $temp = $pareja->GET_PAREJA($enfren['idPareja2']);
+             $parejas[$i] = $temp[0];
+             $i++;
+        } */
+        
+        //new Campeonato_Enfrentamientos($enfrentamientos,$parejas);
+   
+}
 
        if(!isset($param)){
             $accion();

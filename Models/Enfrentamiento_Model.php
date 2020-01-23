@@ -66,7 +66,6 @@ class Enfrentamiento_Model{
     function EstablecerResultado($set1,$set2,$rfinal){
         $sql = "UPDATE enfrentamiento  SET numSetsPareja1 = '$set1' , numSetsPareja2='$set2'
         , resultado='$rfinal' WHERE idEnfrentamiento = '$this->idEnfrentamiento' ";
-        echo $sql;
         if (!($resultado = $this->mysqli->query($sql)))
         return 'No existe en la base de datos';
     else return $resultado;
@@ -87,7 +86,7 @@ class Enfrentamiento_Model{
         $participantes=$temp->getNumParticipantes();
         foreach($this->grupos as $pareja1){
             foreach($this->grupos as $pareja2){
-                    if(!$this->seEnfrentan($pareja1['idPareja'],$pareja2['idPareja']) && $pareja1['idPareja']!=$pareja2['idPareja'] ){
+                    if(!$this->seEnfrentan($pareja1['idPareja'],$pareja2['idPareja'],false) && $pareja1['idPareja']!=$pareja2['idPareja'] ){
                         $sql = "INSERT INTO enfrentamiento(
                             `idCampeonato`,
                             `idPareja1`,
@@ -109,12 +108,60 @@ class Enfrentamiento_Model{
             }
         }
     }
-    function seEnfrentan($idPareja1,$idPareja2){
-        $sql = "SELECT * FROM enfrentamiento  WHERE ((idPareja1 = '$idPareja1' &&  idPareja2 = '$idPareja2') OR (idPareja1 = '$idPareja2' &&  idPareja2 = '$idPareja1') )";
+    function CrearPlayOFFS(){
+        include_once '../Models/Grupo_Model.php';
+        include_once '../Models/Participa_Model.php';
+        $temp= new Grupo_Model($this->idGrupo,$this->categoria,$this->idCampeonato,$this->nivel);
+        $participa= new Participa_Model('',$this->idCampeonato,$this->categoria,$this->nivel,'',$this->idGrupo);
+        $clasificados=$participa->Clasificacion();
+        for($z=0;$z<8;$z++){
+            $this->grupos[$z]=$clasificados[$z];
+            
+        }
+        $reverse = array_reverse($this->grupos,false);
+        $participantes=$temp->getNumParticipantes();
+        $i=0;
+        foreach($this->grupos as $pareja1){
+            $pareja2=$reverse[$i]['idPareja'];
+          
+            if(!$this->seEnfrentan($pareja1['idPareja'],$pareja2,true) && $pareja1['idPareja']!=$pareja2 ){
+
+                        $sql = "INSERT INTO enfrentamiento(
+                            `idCampeonato`,
+                            `idPareja1`,
+                            `idPareja2`,                            
+                            `idGrupo`,
+                            `nivel`,
+                            `idCategoria`
+                            ) VALUES (
+                                '$this->idCampeonato',
+                                '$pareja1[idPareja]',
+                                '$pareja2',
+                                'POFF$this->idGrupo',
+                                '$this->nivel',
+                                '$this->categoria'
+                                )";
+                                $result = $this->mysqli->query($sql);
+                                
+                            }
+            $i++;
+        }
+    }
+  function  getEnfrentamientosPlayOFF(){
+
+    }
+    function seEnfrentan($idPareja1,$idPareja2,$PF){
+        if(!$PF){
+            $sql = "SELECT * FROM enfrentamiento  WHERE ((idPareja1 = '$idPareja1' &&  idPareja2 = '$idPareja2') OR (idPareja1 = '$idPareja2' &&  idPareja2 = '$idPareja1') )";
+
+        }else{
+            $sql = "SELECT * FROM enfrentamiento  WHERE ((idPareja1 = '$idPareja1' &&  idPareja2 = '$idPareja2') OR (idPareja1 = '$idPareja2' &&  idPareja2 = '$idPareja1') )AND idGrupo LIKE 'POFF%'";
+        }
         $result = $this->mysqli->query($sql);
-        if ($result->num_rows == 0)
+        if ($result->num_rows == 0){
+ 
             return false;
-        else return true;
+        }else return true;
     }
 
     function ADD(){

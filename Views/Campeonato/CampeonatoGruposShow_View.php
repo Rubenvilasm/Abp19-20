@@ -20,8 +20,8 @@
 <div class=" table-responsive contenido">
     <fieldset id="showall">
         <legend><?php echo $strings['Campeonatos'];?></legend>
+        <button class="form-btn" role="link" onclick="window.location='../Controllers/Campeonato_Controller.php?accion=PLAYOFF&param=<?php echo $datos[0]['nivel']; echo $datos[0]['idCampeonato'];?>&param2=<?php echo $datos[0]['categoria'];?>&param3=<?php echo $datos[0]['nivel']?> ';"><i class="fas fa-flag-checkered">Comenzar PlayOff</i></button>
 
-        <!--Contenedor con botones de adición y búsqueda  -->
         <div class="container-showall-btn">        
         </div>
         <table>
