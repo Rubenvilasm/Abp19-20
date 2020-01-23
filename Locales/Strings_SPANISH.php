@@ -202,9 +202,11 @@ array(
 	'Numero de sets pareja 1'=>'Numero de sets pareja 1',
 	'Numero de sets pareja 2'=>'Numero de sets pareja 2',
 	'Resultado Final'=>'Resultado Final',
-	'Resultado fijado'=>'Resultado fijado'
-
-
+	'Resultado fijado'=>'Resultado fijado',
+	'Entrenador' => 'Entrenador',
+	'entrenador' => 'entrenador',
+	'nivel' => 'nivel',
+	'hora' => 'hora'
 
  
 

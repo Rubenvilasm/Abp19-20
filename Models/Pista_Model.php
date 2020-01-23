@@ -108,7 +108,7 @@ class Pista_Model{
 
         if(!($result = $this->mysqli->query($sql))){
             return 'ERROR: Fallo en la consulta sobre la base de datos.';
-        }else return $result;
+        }else return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
 }
 ?>
