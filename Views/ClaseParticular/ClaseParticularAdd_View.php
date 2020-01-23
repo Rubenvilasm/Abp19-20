@@ -24,8 +24,8 @@
 						<p class="invalid" id="invalidClaseParticular"><?php echo $strings['Formato no válido']?></p>
 					</div>
 					<div class="campo">
-						<label><?php echo $strings['nombre']?> : </label>
-						<input type = 'text' name = 'nombre' id = 'nombre' size = '25' value = '' onblur="comprobarAlfabetico(this,25)" ><br>
+						<label><?php echo $strings['idPista']?> : </label>
+						<input type = 'text' name = 'idPista' id = 'idPista' size = '25' value = '' onblur="comprobarAlfabetico(this,25)" ><br>
 						<p class="invalid" id="invalidClaseParticular"><?php echo $strings['Formato no válido']?></p>
 					</div>
 					<div class="campo">
@@ -38,6 +38,15 @@
 						<input type = 'text' name = 'idUsuario' id = 'idUsuario' placeholder = '<?php echo $strings['premios']?>' size = '25' value = '' onblur="return comprobarAlfanum(this,25)" ><br>
 						<p class="invalid" id="invalidPremio"><?php echo $strings['Formato no válido'];?></p>
 					</div>
+					<div class="campo">
+					<label><?php echo $strings['Nivel']?> : </label>
+						<select name="nivel">
+							<option value="1"selected>1</option>
+							<option value="2" >2</option>
+							<option value="3">3</option>
+						</select>
+					</div>
+					
 					
 
                     <p class="invalid" id="invalidform"><?php echo $strings['Debe rellenar todos los campos'];?></p>

@@ -51,6 +51,11 @@ class ClaseParticular_Model{
                 '$this->nivel',
                 '$this->hora'
             )";
+
+        
+        if(!($result = $this->mysqli->query($sql))){
+            return 'ERROR: Fallo en la consulta sobre la base de datos.';
+        }else return 'La clase particular ha sido insertada con exito.';
     }
 
     function DELETE(){
@@ -100,6 +105,7 @@ class ClaseParticular_Model{
     function SHOWALL(){
         $sql = "SELECT * FROM claseParticular";
 
+        
         if(!($result = $this->mysqli->query($sql))){
             return 'ERROR: Fallo en la consulta sobre la base de datos.';
         }else return mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -119,6 +125,69 @@ class ClaseParticular_Model{
         if(!($result = $this->mysqli->query($sql)))
             return 'No existe en la base de datos';
         else return $result->fetch_array();
+    }
+
+    function SHOWENTRENADORES(){
+        $sql = "SELECT * FROM entrenadoresParticulares WHERE (disponible = 'Si')";
+
+        if(!($result = $this->mysqli->query($sql))){
+            return 'ERROR: Fallo en la consulta sobre la base de datos.';
+        }else return mysqli_fetch_all($result, MYSQLI_ASSOC);
+    }
+
+    function SHOWCLASES(){
+        $sql = "SELECT * FROM claseParticular WHERE (disponible = 'Si')";
+
+        if(!($result = $this->mysqli->query($sql))){
+            return 'ERROR: Fallo en la consulta sobre la base de datos.';
+        }else return mysqli_fetch_all($result, MYSQLI_ASSOC);
+    }
+
+    function INSCRIBIRSE($login,$idEntrenador){
+
+        $sql = "SELECT * FROM claseParticular WHERE (idClaseParticular= '$this->idClaseParticular' AND disponible='Si')";
+
+        if(!($result = $this->mysqli->query($sql))){
+            return 'ERROR: La clase ya esta ocupada o no existe.';
+        }else{
+            $sql = "INSERT INTO claseParticular(idPista,idEntrenador,idUsuario,nivel,hora 
+            VALUES('$this->idPista','".$idEntrenador."','".$login."','$this->nivel','$this->hora')";
+
+            if(!($result = $this->mysqli->query($sql))){
+                return 'ERROR: Fallo en la consulta sobre la base de datos.';
+            }else return 'Inscrito correctamente.';
+        }
+    }
+
+    function INSCRIBIRSEENTRENADOR(){
+        $sql = "SELECT * FROM entrenadorParticular WHERE (idEntrenador= '$this->idEntrenador' AND activo='Si')";
+
+        if(!($result = $this->mysqli->query($sql))){
+            return 'ERROR: El entrenador no está activo o no esta registrado como entrenador.';
+        }else{
+            $sql = "INSERT INTO entrenadorParticular(idEntrenador,activo,nivelEntrenador,descripcionEntrenador,foto) 
+            VALUES('$this->idEntrenador','Si','$this->nivelEntrenador','$this->descripcionEntrenador','$this->foto')";
+
+            if(!($result = $this->mysqli->query($sql))){
+                return 'ERROR: Fallo en la consulta sobre la base de datos.';
+            }else return 'Inscrito correctamente.';
+        }
+    }
+
+    function BORRARENTRENADOR(){
+
+    }
+
+    function BORRARCLASE(){
+
+    }
+
+    function isDisponible(){
+        $sql = "SELECT * FROM entrenadorParticular WHERE (idEntrenador= '$this->idEntrenador' AND activo='Si')";
+
+        if(!($result = $this->mysqli->query($sql))){
+            return 'ERROR: Fallo en la consulta sobre la base de datos.';
+        }else return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
 }
 ?>

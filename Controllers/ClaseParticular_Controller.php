@@ -37,13 +37,10 @@ session_start();
                             
                 $ClaseParticular = new ClaseParticular_Model($_POST['idClaseParticular'],'','','','','');
         
-                $respuesta = $ClaseParticular->Register();
-                if($respuesta === true)
-                {
-                    $respuesta = $ClaseParticular->ADD();
-                    include '../Views/MESSAGE.php';
-                    new MESSAGE($respuesta, './ClaseParticular_Controller.php?accion=SHOWALL');
-                }
+                $respuesta = $ClaseParticular->ADD();
+                include '../Views/MESSAGE.php';
+                new MESSAGE($respuesta, './ClaseParticular_Controller.php?accion=SHOWALL');
+                
             }
         }
 
@@ -69,11 +66,11 @@ session_start();
 
         function DELETE($clave){
             include '../Models/ClaseParticular_Model.php';
-                    $ClaseParticular = new ClaseParticular_Model($clave,'','','','','');
+            $ClaseParticular = new ClaseParticular_Model($clave,'','','','','');
     
             if(!isset($_POST['submit']))
             {
-                $datos = $ClaseParticular->SEARCH();
+                $datos = $ClaseParticular->DELETE();
                 include '../Views/ClaseParticular/ClaseParticularDelete_View.php';						
                 new ClaseParticular_DELETE($datos);
     
@@ -87,7 +84,7 @@ session_start();
         function SHOWCURRENT($clave){
             include '../Models/ClaseParticular_Model.php';
             $ClaseParticular = new ClaseParticular_Model($clave,'','','','','');
-            $datos = $ClaseParticular->SEARCH();
+            $datos = $ClaseParticular->SHOWCURRENT();
             include '../Views/ClaseParticular/ClaseParticularShowCurrent_View.php';
             new ClaseParticular_SHOWCURRENT($datos);
         }   
@@ -96,14 +93,30 @@ session_start();
             include '../Models/ClaseParticular_Model.php';
             $ClaseParticular = new ClaseParticular_Model('','','','','','');
             $datos = $ClaseParticular->SHOWALL();
-
-            // ERROR EN WEB: Dice que $datos no es un array ni ningun objeto contable. No se arregla con fetch_array
-            
-            include '../Views/ClaseParticular/ClaseParticularShowAll_View.php';
-            new  ClaseParticular_SHOWALL($datos);
-            
-
+            if(sizeof($datos) != 0)
+            {
+                include '../Views/ClaseParticular/ClaseParticularShowAll_View.php';
+                new  ClaseParticular_SHOWALL($datos);
+            }else{
+                $mens = "No hay clases particulares disponibles.";
+                include '../Views/MESSAGE.php';
+                new MESSAGE($mens, '../Controllers/Index_Controller.php');
        }
+    }
+
+       
+
+       function INSCRIBIRSE($idEntrenador){
+        include '../Models/ClaseParticular_Model.php';
+        $ClaseParticular = new ClaseParticular_Model('','','','','','');
+
+        $ClaseParticular = $ClaseParticular->rellenarDatos();
+        
+        $datos = $ClaseParticular->INSCRIBIRSE($_SESSION['login'], $ClaseParticular[2]);
+        include '../Views/MESSAGE.php';
+        new MESSAGE($datos, '../Controllers/Index_Controller.php');
+            
+    }
 
        if(!isset($param)){
             $accion();

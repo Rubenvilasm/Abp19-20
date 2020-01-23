@@ -206,7 +206,8 @@ array(
 	'Entrenador' => 'Entrenador',
 	'entrenador' => 'entrenador',
 	'nivel' => 'nivel',
-	'hora' => 'hora'
+	'hora' => 'hora',
+	'No hay clases particulares disponibles.' => 'No hay clases particulares disponibles.',
 
  
 

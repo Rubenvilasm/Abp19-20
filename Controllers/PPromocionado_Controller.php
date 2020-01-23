@@ -104,7 +104,7 @@ session_start();
                 $mens = "No hay partidos promocionados registrados";
                 include '../Views/MESSAGE.php';
                 new MESSAGE($mens, '../Controllers/Index_Controller.php');
-            }
+            } 
        }
        function INSCRIBIRSE($clave){
            include '../Models/PPromocionado_Model.php';
