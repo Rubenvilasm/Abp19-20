@@ -187,7 +187,11 @@ array(
 	'torneosJugados'=>'torneosJugados',
 	'finalesJugadas'=>'finalesJugadas',
 	'Estadistica' => 'Estadistica',
-	'Clases Particulares' => 'Clases Particulares'
+	'Clases Particulares' => 'Clases Particulares',
+	'Entrenador' => 'Entrenador',
+	'entrenador' => 'entrenador',
+	'nivel' => 'nivel',
+	'hora' => 'hora'
 
  
 

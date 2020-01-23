@@ -366,3 +366,6 @@ INSERT INTO partidoPromocionado (idPartidoPromocionado,nombre,fecha,idParticipan
   ('1','Promocion1','2019-9-9','deportista1','deportista2','deportista3','','3'),
   ('2','Promocion2','2019-9-10','deportista5','deportista6','deportista7','deportista8','4');
 
+
+INSERT INTO `usuario` (`login`, `password`, `nombre`, `apellidos`, `genero`, `dni`, `fechaNacimiento`, `email`, `telefono`, `rol`, `socio`, `foto`, `borrado`) VALUES 
+('entrenador1', 'entrenador', 'ruben', 'Martinez', 'Masculino', '77482984D', '2020-01-16 00:00:00.000000', 'rubenvilasm@gmail.com', '673027066', 'Entrenador', NULL, 'favico.ico', 'NO');

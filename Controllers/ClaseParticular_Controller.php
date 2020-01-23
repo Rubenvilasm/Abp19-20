@@ -98,15 +98,10 @@ session_start();
             $datos = $ClaseParticular->SHOWALL();
 
             // ERROR EN WEB: Dice que $datos no es un array ni ningun objeto contable. No se arregla con fetch_array
-            if(sizeof($datos) != 0)
-            {
-                include '../Views/ClaseParticular/ClaseParticularShowAll_View.php';
-                new  ClaseParticular_SHOWALL($datos);
-            }else{
-                $mens = "No hay ClaseParticulars registradas";
-                include '../Views/MESSAGE.php';
-                new MESSAGE($mens, '../Controllers/Index_Controller.php');
-            }
+            
+            include '../Views/ClaseParticular/ClaseParticularShowAll_View.php';
+            new  ClaseParticular_SHOWALL($datos);
+            
 
        }
 
