@@ -149,7 +149,7 @@ session_start();
             include '../Views/Campeonato/CampeonatoInscribirse_View.php';
             new Campeonato_Inscribirse($clave);
 
-        }else if(){
+        }else{
             include '../Models/Pareja_Model.php';
             include '../Models/Participa_Model.php';
             $Pareja = new Pareja_Model('',$_POST['participante2'],$_POST['participante1']);
@@ -263,7 +263,7 @@ function Fecha($idEnfrentamiento){
             $enfrentamiento->EstablecerFecha($_POST["fechaFinal"],$_POST["horaFinal"]);
             $datos=$enfrentamiento->getEnfrentamiento();
             if($_POST["fechaFinal"]==$_POST["fecha"] && $_POST["horaFinal"]==$_POST["hora"]){
-               
+                $enfrentamiento->FijarFecha($_POST["fechaFinal"],$_POST["horaFinal"]);
                 new MESSAGE("Fecha establecida correctamente", '../Controllers/Campeonato_Controller.php?accion=SHOWALL');
             }else
           

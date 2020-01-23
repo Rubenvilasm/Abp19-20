@@ -58,7 +58,16 @@ class Enfrentamiento_Model{
         return 'No existe en la base de datos';
     else return $resultado;
     }
+    function FijarFecha($fecha,$hora){
+        $idCampeonat=$this->RellenaDatos();
+        $idCampeonat=$idCampeonat[0]['idCampeonato'];
+        $sql = "INSERT INTO calendario (`idReserva`,`idPartido`, `fecha`, `idCampeonato`) VALUES ( '1-1',$this->idEnfrentamiento','$fecha $hora',$idCampeonat  ) ";
+        if (!($resultado = $this->mysqli->query($sql)))
+        return 'No existe en la base de datos';
+    else return $resultado;
+    }
     function getFecha(){
+   
         $sql = "SELECT fecha,idEnfrentamiento FROM enfrentamiento  WHERE idEnfrentamiento = '$this->idEnfrentamiento'";
 
         $result = $this->mysqli->query($sql);
@@ -81,10 +90,10 @@ class Enfrentamiento_Model{
     else return $resultado;
     }
     function RellenaDatos(){
-        $sql = "SELECT * FROM enfrentamiento  WHERE (idEnfrentamiento = '$this->idEnfrentamiento') &&  (id_campeonato = '$this->id_campeonato')";
+        $sql = "SELECT * FROM enfrentamiento  WHERE idEnfrentamiento = '$this->idEnfrentamiento'";
         if (!($resultado = $this->mysqli->query($sql)))
             return 'No existe en la base de datos';
-        else return $result;
+        else return mysqli_fetch_all($resultado, MYSQLI_ASSOC);
     }
 
     function CrearEnfrentamientos(){

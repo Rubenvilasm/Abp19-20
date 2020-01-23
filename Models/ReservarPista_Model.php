@@ -41,7 +41,7 @@ class ReservarPista_Model{
                                     '2',
                                     '$this->idUsuario',
                                     '$this->fecha',
-                                    '10'
+                                    ''
                                     )";
                     if(!($this->mysqli->query($sql))){
                         return 'ERROR: Error en la inserción.';
