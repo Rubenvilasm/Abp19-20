@@ -42,11 +42,11 @@
             <?php if(count($datos, COUNT_RECURSIVE)!= 8){
                     foreach($datos as $datos) :
                     ?>
-                                <td><?php echo $datos['idEntrenador']."\n"; ?></td>
-                                <td><?php echo $datos['activo']."\n"; ?></td>
-                                <td><?php echo $datos['nivelEntrenador']."\n"; ?></td>
-								<td><?php echo $datos['descripcionEntrenador']."\n"; ?></td>
-								<td><?php echo $datos['foto']."\n"; ?></td>
+                    <td><?php echo $datos['idEntrenador']."\n"; ?></td>
+                    <td><?php echo $datos['activo']."\n"; ?></td>
+                    <td><?php echo $datos['nivelEntrenador']."\n"; ?></td>
+                    <td><?php echo $datos['descripcionEntrenador']."\n"; ?></td>
+                    <td><?php echo $datos['foto']."\n"; ?></td>
                     <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/ClaseParticular_Controller.php?accion=DELETE&param=<?php echo $datos['idClaseParticular']?>';"><i class="fas fa-trash-alt"></i></button></td>
                     <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/ClaseParticular_Controller.php?accion=START&param=<?php echo $datos['idClaseParticular']?>';"><i class="fas fa-play"></i></button></td>
 

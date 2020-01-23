@@ -287,14 +287,14 @@ tr:hover td{
     transition-duration: 0.2s;
 }
 
-td{
+ td{
     font-size: 10px;
     font-weight: bold;
     border: 1px solid white;
     padding-left: 10px;
     padding-right:10px;
     background-color: rgb(156, 156, 156);
-}
+} 
 
 
 th{
@@ -338,7 +338,7 @@ table tbody tr:last-child td:last-child {
 }
 
 .editbtn .fas{
-    font-size: 10px;
+    font-size: 20px;
     color: rgb(70, 70, 70);
     text-shadow: 2px 2px rgb(121, 121, 121);
 }

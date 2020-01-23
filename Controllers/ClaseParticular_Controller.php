@@ -115,7 +115,7 @@ session_start();
         $datos = $ClaseParticular->INSCRIBIRSE($_SESSION['login'], $ClaseParticular[2]);
         include '../Views/MESSAGE.php';
         new MESSAGE($datos, '../Controllers/Index_Controller.php');
-        
+            
     }
 
        if(!isset($param)){
