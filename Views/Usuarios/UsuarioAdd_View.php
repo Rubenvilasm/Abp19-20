@@ -30,7 +30,7 @@
 					</div>
 				<div class="campo">
 						<label>E-mail : </label>
-						<input type = 'text' name = 'email' id = 'email' size = '60' value = '' onblur="comprobarCorreo(this,60)" ><br>
+						<input type = 'text' name = 'email' id = 'email' size = '60' value = '' onblur="comprobarEmail(this,50)" ><br>
 						<p class="invalid" id="invalidemail"><?php echo $strings['E-mail incorrecto'];?></p>
 					</div>
 					<div class="campo">

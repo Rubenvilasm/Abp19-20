@@ -151,15 +151,19 @@ class PPromocionado_Model{
             $numPart= $temp['numParticipantes'];
             
             if($numPart==0){
+                $sql2 = "UPDATE estadistica SET partidosJugados = partidosJugados +1 WHERE (idUsuario = '$login')";
                 $sql="UPDATE partidoPromocionado SET
                 `idparticipante1` = '$login' , `numParticipantes` ='1' WHERE (`idPartidoPromocionado` = '$this->idPartidoPromocionado')";
             }else if($numPart==1){
+                $sql2 = "UPDATE estadistica SET partidosJugados = partidosJugados +1 WHERE (idUsuario = '$login')";
                 $sql="UPDATE partidoPromocionado SET
                 `idparticipante2` = '$login' , `numParticipantes` ='2' WHERE (`idPartidoPromocionado` = '$this->idPartidoPromocionado')";
             }else if($numPart==2){
+                $sql2 = "UPDATE estadistica SET partidosJugados = partidosJugados +1 WHERE (idUsuario = '$login')";
                 $sql="UPDATE partidoPromocionado SET
                 `idparticipante3` = '$login' , `numParticipantes` ='3' WHERE (`idPartidoPromocionado` = '$this->idPartidoPromocionado')";
             }else if($numPart==3){
+                $sql2 = "UPDATE estadistica SET partidosJugados = partidosJugados +1 WHERE (idUsuario = '$login')";
                 $sql="UPDATE partidoPromocionado SET
                 `idparticipante4` = '$login', `numParticipantes` ='4' WHERE (`idPartidoPromocionado` = '$this->idPartidoPromocionado')";
                 $temp2=$this->getFecha();
@@ -176,10 +180,14 @@ class PPromocionado_Model{
                                $insercion=$this->mysqli->query($sql2);
                               
             }else return 'Partido lleno';
-    
-            if(!($result = $this->mysqli->query($sql))){
-                return 'ERROR: Fallo en la consulta sobre la base de datos.';
-            }else return 'Inscrito correctamente';
+            if(!($result= $this->mysqli->query($sql2))){
+                return 'ERROR: Error en la insercion de las estadisticas.';
+            }else{
+                if(!($result = $this->mysqli->query($sql))){
+                    return 'ERROR: Fallo en la consulta sobre la base de datos.';
+                }else return 'Inscrito correctamente';
+            }
+            
         }
 
         function RellenaDatos(){	

@@ -17,6 +17,8 @@ class ClaseParticular_Model{
         $this->idEntrenador = $idEntrenador;
         $this->idUsuario = $idUsuario;
         $this->nivel = $nivel;
+        $this->hora = $hora;
+
 
         include_once '../Models/Access_DB.php';
         $this->mysqli = ConnectDB();

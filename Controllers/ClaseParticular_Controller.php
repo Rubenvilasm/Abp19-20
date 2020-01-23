@@ -106,16 +106,16 @@ session_start();
 
        
 
-       function INSCRIBIRSE($idEntrenador){
+       function INSCRIBIRSE(){
         include '../Models/ClaseParticular_Model.php';
         $ClaseParticular = new ClaseParticular_Model('','','','','','');
 
         $ClaseParticular = $ClaseParticular->rellenarDatos();
         
-        $datos = $ClaseParticular->INSCRIBIRSE($_SESSION['login'], $ClaseParticular[2]);
+        $datos = $ClaseParticular->INSCRIBIRSE($_SESSION["login"], $ClaseParticular[2]);
         include '../Views/MESSAGE.php';
-        new MESSAGE($datos, '../Controllers/Index_Controller.php');
-            
+        new MESSAGE($datos, '../Controllers/Index_Controller.php'); 
+
     }
 
        if(!isset($param)){

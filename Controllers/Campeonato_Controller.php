@@ -140,7 +140,7 @@ session_start();
          }else{
              $mens = "Campeonato ya completo";
              include '../Views/MESSAGE.php';
-             new MESSAGE($mens, '../Controllers/Index_Controller.php');
+              new MESSAGE($mens, '../Controllers/Index_Controller.php');
          }
     }
     function PAREJA($clave){
@@ -284,7 +284,6 @@ function Enfrentamientos($nivel,$idCampeonato,$grupo,$categoria){
         $estanCreados= $enfrentamiento->EstanCreados();
         if(!$estanCreados){
             $crearEnfrentamientos= $enfrentamiento->CrearEnfrentamientos();
-
         }
         $enfrentamientos=$enfrentamiento->getEnfrentamientos();
         $i=0;
@@ -303,6 +302,8 @@ function Enfrentamientos($nivel,$idCampeonato,$grupo,$categoria){
         new Campeonato_Enfrentamientos($enfrentamientos,$parejas);
    
 }
+
+
 function PLAYOFF($nivel,$idCampeonato,$grupo,$categoria){
     
     include '../Views/Campeonato/CampeonatoPlayOff_View.php';
