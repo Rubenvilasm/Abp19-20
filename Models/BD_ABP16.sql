@@ -259,14 +259,7 @@ CREATE TABLE `participa` (
     partidosJugados varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     puntos varchar(25) COLLATE latin1_spanish_ci NOT NULL
     )ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
-    INSERT INTO pareja(idDeportista1,idDeportista2,idPareja) VALUES (Deportista178,deportista278,78),
-     (Deportista179,deportista279,79), (Deportista180,deportista280,80), (Deportista181,deportista281,81), 
-     (Deportista182,deportista282,82), (Deportista183,deportista283,83), (Deportista184,deportista284,84),
-     (Deportista185,deportista285,85), (Deportista186,deportista286,86), (Deportista187,deportista287,87),
-     (Deportista188,deportista288,88), (Deportista189,deportista289,89), (Deportista190,deportista290,90),
-     (Deportista191,deportista291,91), (Deportista192,deportista292,92), (Deportista193,deportista293,93),
-     (Deportista194,deportista294,94), (Deportista195,deportista295,95), (Deportista196,deportista296,96),
-     (Deportista197,deportista297,97), (Deportista198,deportista298,98), (Deportista199,deportista299,99); 
+
 
 INSERT INTO usuario (login, password, nombre, apellidos,genero, dni, fechaNacimiento, email, telefono, rol, socio, foto,borrado ) VALUES
 ('admin', 'admin', 'admin', 'el administrador','Masculino', '95875625X', '2019-11-14', 'admin@padel.es', '677777777', 'ADMINISTRADOR', 'SI','../Files/man-1.png','NO'),
