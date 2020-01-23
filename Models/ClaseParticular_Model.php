@@ -119,7 +119,7 @@ class ClaseParticular_Model{
         if(!($result = $this->mysqli->query($sql))){
             return 'ERROR: Fallo en la consulta sobre la base de datos.';
         }else return $result;
-    }
+    } 
 
     function rellenarDatos(){
         $sql = "SELECT * FROM claseParticular WHERE (idClaseParticular = '$this->idClaseParticular')";

@@ -82,7 +82,7 @@ else{
 
         if(!isset($_POST['submit']))
         {
-            $datos = $usuario->SEARCH();
+            $datos = $usuario->rellenarDatos();
             include '../Views/Usuarios/UsuarioDelete_View.php';						
             new Usuario_DELETE($datos);
 
@@ -102,7 +102,7 @@ else{
             include '../Models/USUARIO_Model.php';
             $usuario = new USUARIO_Model($clave,'','','','','','','','','','','','');
             $foto=$usuario->GET_FOTO();
-            $datos = $usuario->SEARCH();
+            $datos = $usuario->rellenarDatos();
             include '../Views/Usuarios/UsuarioEdit_View.php';
             new Usuario_EDIT($datos);
 
@@ -136,7 +136,7 @@ else{
             include '../Models/USUARIO_Model.php';
             $usuario = new USUARIO_Model($clave,'','','','','',
             '','','','','','','','');
-            $datos = $usuario->SEARCH();
+            $datos = $usuario->rellenarDatos();
             include '../Views/Usuarios/UsuarioShowCurrent_View.php';
             new Usuario_SHOWCURRENT($datos);
     }

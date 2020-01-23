@@ -18,13 +18,10 @@
         <div class="col-md-2"></div>
         <div class=" table-responsive contenido">
             <fieldset id="showall">
-                <legend><?php echo $strings['Partidos Promocionados'];?></legend>
+                <legend><?php echo $strings['Estadisticas Personales'];?></legend>
 
                 <!--Contenedor con botones de adición y búsqueda  -->
-                <div class="container-showall-btn">
-                    <button class="form-btn" role="link" onclick="window.location='../Controllers/Estadistica_Controller.php?accion=SEARCH'"><i class="fas fa-search"></i>
-                    <button class="form-btn" role="link" onclick="window.location='../Controllers/Estadistica_Controller.php?accion=ADD'"><i class="fas fa-plus"></i>
-                </div>
+                
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -38,8 +35,6 @@
                         <th><?php echo $strings['mejorRanking'];?></th>
                         <th><?php echo $strings['torneosJugados'];?></th>
                         <th><?php echo $strings['finalesJugadas'];?></th>
-
-                        <th colspan="3"><?php echo $strings['Acción'];?></th>
                     </thead>
                     
                     <tr>
@@ -55,10 +50,7 @@
                         <td><?php echo $datos['mejorRanking']."\n"; ?></td>
                         <td><?php echo $datos['torneosJugados']."\n"; ?></td>
                         <td><?php echo $datos['finalesJugadas']."\n"; ?></td>
-                        <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/Estadistica_Controller.php?accion=DELETE&param=<?php echo $datos['idUsuario']?>';"><i class="fas fa-trash-alt"></i></button></td>
-                    
-                        <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/Estadistica_Controller.php?accion=SHOWCURRENT&param=<?php echo $datos['idUsuario']?>';"><i class="fas fa-eye"></i></button></td>
-                    </tr>
+                        </tr>
                     <?php endforeach;}else{?>
                                     
                         <td><?php echo $datos['idUsuario']."\n"; ?></td>
@@ -70,13 +62,7 @@
                         <td><?php echo $datos['mejorRanking']."\n"; ?></td>
                         <td><?php echo $datos['torneosJugados']."\n"; ?></td>
                         <td><?php echo $datos['finalesJugadas']."\n"; ?></td>
-
-                        <td class="tb-btn disable"><button class="editbtn disable" role="link" onclick="window.location='../Controllers/Estadistica_Controller.php?accion=DELETE&param=<?php echo $datos['idUsuario']?>';"><i class="fas fa-trash-alt"></i></button></td>
-                        
-                        <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/Estadistica_Controller.php?accion=DELETE&param=<?php echo $datos['idUsuario']?>';"><i class="fas fa-trash-alt"></i></button></td>
-                    
-                        <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/Estadistica_Controller.php?accion=SHOWCURRENT&param=<?php echo $datos['idUsuario']?>';"><i class="fas fa-eye"></i></button></td>
-                    <?php };?>
+<?php };?>
                     </table>
 
                     <!-- Contenedor de los iconos: aceptar, voler y vaciar-->

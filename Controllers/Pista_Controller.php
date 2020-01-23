@@ -73,7 +73,7 @@ session_start();
     
             if(!isset($_POST['submit']))
             {
-                $datos = $Pista->SEARCH();
+                $datos = $Pista->rellenarDatos();
                 include '../Views/Pista/PistaDelete_View.php';						
                 new Pista_DELETE($datos);
     
@@ -87,7 +87,7 @@ session_start();
         function SHOWCURRENT($clave){
             include '../Models/Pista_Model.php';
             $Pista = new Pista_Model($clave,'','','','');
-            $datos = $Pista->SEARCH();
+            $datos = $Pista->rellenarDatos();
             include '../Views/Pista/PistaShowCurrent_View.php';
             new Pista_SHOWCURRENT($datos);
         }   
