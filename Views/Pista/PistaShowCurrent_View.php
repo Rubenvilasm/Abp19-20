@@ -28,19 +28,19 @@
                     </thead>
                     <tr>
                         <th><?php echo $strings['Pista'];?>: </th>
-                        <td><?php echo $datos['idPista']; ?></td>
+                        <td><?php echo $datos[0]['idPista']; ?></td>
                     </tr>
                     <tr>
                         <th><?php echo $strings['Nombre'];?>: </th>
-                        <td><?php echo $datos['nombre']; ?></td>
+                        <td><?php echo $datos[0]['nombre']; ?></td>
                     </tr>
                     <tr>
                         <th><?php echo $strings['especificaciones'];?>: </th>
-                        <td><?php echo $datos['especificaciones']; ?></td>
+                        <td><?php echo $datos[0]['especificaciones']; ?></td>
                     </tr>
                     <tr>
                         <th><?php echo $strings['ubicacion'];?> 1: </th>
-                        <td><?php echo $datos['ubicacion']; ?></td>
+                        <td><?php echo $datos[0]['ubicacion']; ?></td>
                     </tr>
 										
                 </table>

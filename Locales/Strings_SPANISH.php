@@ -209,7 +209,10 @@ array(
 	'hora' => 'hora',
 	'No hay clases particulares disponibles.' => 'No hay clases particulares disponibles.',
 	'Ronda'=>'Ronda',
-	'PlayOff'=>'PlayOff'
+	'PlayOff'=>'PlayOff',
+	'¿Confirma el borrado de esta Pista?'=>'¿Confirma el borrado de esta Pista?',
+	'ERROR: No existe la pista que desea borrar.'=>'ERROR: No existe la pista que desea borrar.',
+	'La pista ha sido eliminada con exito.'=>'La pista ha sido eliminada con exito.'
 
  
 

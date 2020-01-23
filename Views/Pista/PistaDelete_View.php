@@ -30,25 +30,25 @@
                     
                     <tr>
                         <th><?php echo $strings['Pista'];?>: </th>
-                        <td><?php echo $datos['idPista']; ?></td>
+                        <td><?php echo $datos[0]['idPista']; ?></td>
                     </tr>
                     <tr>
                         <th><?php echo $strings['Nombre'];?>: </th>
-                        <td><?php echo $datos['nombre']; ?></td>
+                        <td><?php echo $datos[0]['nombre']; ?></td>
                     </tr>
                     <tr>
                         <th><?php echo $strings['especificaciones'];?>: </th>
-                        <td><?php echo $datos['especificaciones']; ?></td>
+                        <td><?php echo $datos[0]['especificaciones']; ?></td>
                     </tr>
                     <tr>
                         <th><?php echo $strings['ubicacion'];?> 1: </th>
-                        <td><?php echo $datos['ubicacion']; ?></td>
+                        <td><?php echo $datos[0]['ubicacion']; ?></td>
                     </tr>
                 </table>
 
                 <div class="container-showall-btn">
                     <p><?php echo $strings['¿Confirma el borrado de esta Pista?'];?><p>
-                    <form id="delete" action='./Pista_Controller.php?accion=delete&param=<?php echo $datos['idPista'];?>' method='post'>
+                    <form id="delete" action='./Pista_Controller.php?accion=delete&param=<?php echo $datos[0]['idPista'];?>' method='post'>
                         <button name="submit" class="form-btn" type="submit"><i class="fas fa-check"></i></button>
                         <button class="form-btn" type="button" role="link" onclick="window.location='./Pista_Controller.php?accion=SHOWALL'"><i class="fas fa-times"></i></button>
                     </form>
