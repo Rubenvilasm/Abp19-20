@@ -125,7 +125,7 @@ class Pareja_Model{
 
         if(!($result = $this->mysqli->query($sql))){
             return 'ERROR: No existe esa pareja en la base de datos.';
-        }else return $result;
+        }else return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
 }
 

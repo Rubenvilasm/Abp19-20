@@ -119,9 +119,8 @@ session_start();
            
             include '../Views/Estadistica/EstadisticaShowAll_View.php';
             new  Estadistica_SHOWALL($datos);
-            
-
        }
+
 
        if(!isset($param)){
             $accion();

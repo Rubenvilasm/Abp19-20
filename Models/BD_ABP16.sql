@@ -264,7 +264,7 @@ CREATE TABLE `participa` (
     CREATE TABLE IF NOT EXISTS entrenadorParticular(
       idEntrenador varchar(25) COLLATE latin1_spanish_ci NOT NULL,
       activo enum('Si','No') DEFAULT 'Si',
-      nivel entrenador varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+      nivelEntrenador varchar(25) COLLATE latin1_spanish_ci NOT NULL,
       descripcionEntrenador varchar(100) COLLATE latin1_spanish_ci NOT NULL,
       foto varchar(500),
 

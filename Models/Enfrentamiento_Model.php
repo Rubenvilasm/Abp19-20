@@ -82,6 +82,14 @@ class Enfrentamiento_Model{
         include_once '../Models/Participa_Model.php';
         $temp= new Grupo_Model($this->idGrupo,$this->categoria,$this->idCampeonato,$this->nivel);
         $participa= new Participa_Model('',$this->idCampeonato,$this->categoria,$this->nivel,'',$this->idGrupo);
+
+        $estadistica1 = new Pareja_Model($pareja1['idPareja'],'','');
+        $datosEstadistica = $estadistica1->rellenarDatos();
+        
+        print_r($datosEstadistica);
+
+
+
         $this->grupos=$participa->Clasificacion();
         $participantes=$temp->getNumParticipantes();
         foreach($this->grupos as $pareja1){
