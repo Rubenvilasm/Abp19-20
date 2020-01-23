@@ -195,6 +195,7 @@ CREATE TABLE `participa` (
     numSetsPareja2 varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     idPista varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     nivel INT NOT NULL,
+    ronda INT(3),
     resultado varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     idCategoria enum('mixta','masculina','femenina','') COLLATE latin1_spanish_ci NOT NULL,
     
@@ -350,8 +351,7 @@ INSERT INTO partido(idPartido,idPista,idPareja1,idPareja2,fecha,resultado) VALUE
   ('2','1','1','2','2018-12-13 18:00:00','2-3'),
   ('3','1','1','2','2018-12-14 18:00:00','3-1');
 
-INSERT INTO grupo(idGrupo,idGanador,idPareja,idCampeonato,categoria,nivel) VALUES
-('1','1','1','1','1','1');
+
 
 INSERT INTO categoria(idCategoria,idCampeonato) VALUES
   ('1','1');

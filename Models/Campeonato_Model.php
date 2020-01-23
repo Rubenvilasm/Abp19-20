@@ -222,7 +222,7 @@ class Campeonato_Model{
 
            $categoria = 0;
             while($categoria < 3){
-                $temp = $this->categorias[$categoria];                             
+                $temp = $this->categorias[$categoria];
                 $participantes=$categorias[$temp];
                 if($participantes >= 8){
                     $sql = "SELECT * FROM participa WHERE  `idCampeonato`='$this->idCampeonato' AND `nivel`='$lvl' AND `categoria` ='$temp'";
@@ -240,7 +240,7 @@ class Campeonato_Model{
        
         
     }
-    $sql = "UPDATE `campeonato`SET `empezado` ='SI'";
+    $sql = "UPDATE `campeonato`SET `empezado` ='SI' WHERE idCampeonato ='$this->idCampeonato'";
                     if(!($result = $this->mysqli->query($sql))){
                         return 'ERROR: Fallo en la consulta sobre la base de datos.'; 
                     }else  return "Se han creado los grupos correctamente";
@@ -269,9 +269,8 @@ function dividirEnGrupos($participantes,$parejas,$nivel,$categoria){
     
         $x=0;
             $grupo = 1;
-  
             foreach($parejas as $pareja){
-                
+
            if($x==$gruposDe){
             $sql = "INSERT INTO grupo (
                 categoria,
@@ -290,6 +289,7 @@ function dividirEnGrupos($participantes,$parejas,$nivel,$categoria){
                             '',
                             '$nivel',
                             '$gruposDe')";
+                            echo $sql;
             if(!($result = $this->mysqli->query($sql))){
                 return 'ERROR: Fallo en la consulta sobre la base de datos.'; 
             }else 
@@ -329,6 +329,9 @@ function dividirEnGrupos($participantes,$parejas,$nivel,$categoria){
          $this->mysqli->query("UPDATE participa SET `grupo`='$grupo' WHERE (`idCampeonato`= '$this->idCampeonato'
          AND `categoria` = '$categoria' AND `nivel` = '$nivel' AND `idPareja`='$pareja[idPareja]')");
          $participantes--;
+         echo $participantes;
+         echo $gruposDe;
+         echo $x;
          $x++;
         }
          

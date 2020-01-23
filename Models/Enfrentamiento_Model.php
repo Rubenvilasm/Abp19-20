@@ -12,6 +12,7 @@ class Enfrentamiento_Model{
     var $idPista;
     var $categoria;
     var $nivel;
+    var $participantes;
 
     
     var $mysqli;
@@ -148,20 +149,119 @@ class Enfrentamiento_Model{
                             `idPareja2`,                            
                             `idGrupo`,
                             `nivel`,
-                            `idCategoria`
+                            `idCategoria`,
+                            `ronda`
                             ) VALUES (
                                 '$this->idCampeonato',
                                 '$pareja1[idPareja]',
                                 '$pareja2',
                                 'POFF$this->idGrupo',
                                 '$this->nivel',
-                                '$this->categoria'
+                                '$this->categoria',
+                                '1'
                                 )";
                                 $result = $this->mysqli->query($sql);
                                 
                             }
             $i++;
         }
+    }
+    function CrearEnfrentamientoRonda($ronda){
+        include_once '../Models/Grupo_Model.php';
+        include_once '../Models/Participa_Model.php';
+        $r=$ronda-1;
+        $participa= $this->getEnfrentamientosRonda($r);
+        //print_r($participa);
+        $i=0;
+        foreach($participa as $clasificado){
+            if($clasificado['numSetsPareja1']>$clasificado['numSetsPareja2']){
+                $this->participantes[$i]=$clasificado['idPareja1'];
+                $i++;
+            }else if($clasificado['numSetsPareja1']<$clasificado['numSetsPareja2']){
+                $this->participantes[$i]=$clasificado['idPareja2'];
+                $i++;
+            }else{
+                $i=$i;
+            }
+        }
+        //print_r($participantes);
+        $reverse = array_reverse($this->participantes,false);
+       // print_r($reverse);
+        $i=0;
+        $pareja1=$this->participantes[0];
+        $pareja2=$this->participantes[1];
+        if($ronda==3 && !$this->seEnfrentan($pareja1,$pareja2,true)){
+     
+            $sql = "INSERT INTO enfrentamiento(
+                `idCampeonato`,
+                `idPareja1`,
+                `idPareja2`,                            
+                `idGrupo`,
+                `nivel`,
+                `ronda`,
+                `idCategoria`
+                ) VALUES (
+                    '$this->idCampeonato',
+                    '$pareja1',
+                    '$pareja2',
+                    'POFF$this->idGrupo',
+                    '$this->nivel',
+                    '$ronda',
+                    '$this->categoria'
+                    )";
+                    $result = $this->mysqli->query($sql);
+        }else{
+        foreach($this->participantes as $pareja1){
+           
+            $pareja2=$reverse[$i];
+            // echo "pareja1: $pareja1[0]  ";
+            // echo "pareja2: $pareja2[0]  ";
+            // echo $i;
+            $emparejados[0]=0;
+            if(!$this->seEnfrentan($pareja1,$pareja2,true) && $pareja1!=$pareja2 && !in_array($pareja1,$emparejados) &&
+            !in_array($pareja2,$emparejados)){
+                $emparejados[$i]=$pareja1;
+                $emparejados[$i+1]=$pareja2;
+                $r=$ronda+1;
+                        $sql = "INSERT INTO enfrentamiento(
+                            `idCampeonato`,
+                            `idPareja1`,
+                            `idPareja2`,                            
+                            `idGrupo`,
+                            `nivel`,
+                            `ronda`,
+                            `idCategoria`
+                            ) VALUES (
+                                '$this->idCampeonato',
+                                '$pareja1',
+                                '$pareja2',
+                                'POFF$this->idGrupo',
+                                '$this->nivel',
+                                '$r',
+                                '$this->categoria'
+                                )";
+                                $result = $this->mysqli->query($sql);
+                                //echo $sql;
+                            }
+            $i++;
+        }}
+      
+        
+    }
+    function getEnfrentamientosRonda($ronda){
+        $sql  = "SELECT * FROM enfrentamiento WHERE (
+            `idCampeonato` = '$this->idCampeonato'AND
+            `idGrupo` LIKE 'POFF%' AND 
+            `nivel` ='$this->nivel' AND 
+            `ronda` ='$ronda' AND
+            `idCategoria` ='$this->categoria')";
+            //echo $sql;
+        if(!($result = $this->mysqli->query($sql)))
+            return 'ERROR: Fallo en la consulta sobre la base de datos.';
+        else   $result=  mysqli_fetch_all($result, MYSQLI_ASSOC);
+          
+    
+        return $result;
     }
   function  getEnfrentamientosPlayOFF(){
     $sql  = "SELECT * FROM enfrentamiento WHERE (

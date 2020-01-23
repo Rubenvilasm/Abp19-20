@@ -20,8 +20,9 @@
 <div class=" table-responsive contenido">
     <fieldset id="showall">
         <legend><?php echo $strings['Campeonatos'];?></legend>
+        <?php if($_SESSION['rol']=='Administrador'){?>
         <button class="form-btn" role="link" onclick="window.location='../Controllers/Campeonato_Controller.php?accion=PLAYOFF&param=<?php echo $datos[0]['nivel']; echo $datos[0]['idCampeonato'];?>&param2=<?php echo $datos[0]['categoria'];?>&param3=<?php echo $datos[0]['nivel']?> ';"><i class="fas fa-flag-checkered">Comenzar PlayOff</i></button>
-
+        <?php } ?>
         <div class="container-showall-btn">        
         </div>
         <table>

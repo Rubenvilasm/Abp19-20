@@ -208,7 +208,8 @@ array(
 	'nivel' => 'nivel',
 	'hora' => 'hora',
 	'No hay clases particulares disponibles.' => 'No hay clases particulares disponibles.',
-	'Ronda'=>'Ronda'
+	'Ronda'=>'Ronda',
+	'PlayOff'=>'PlayOff'
 
  
 
