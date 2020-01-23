@@ -261,6 +261,15 @@ CREATE TABLE `participa` (
     )ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 
+    CREATE TABLE IF NOT EXISTS entrenadorParticular(
+      idEntrenador varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+      activo enum('Si','No') DEFAULT 'Si',
+      nivel entrenador varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+      descripcionEntrenador varchar(100) COLLATE latin1_spanish_ci NOT NULL,
+      foto varchar(500),
+
+      PRIMARY KEY (idEntrenador)
+    )ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 INSERT INTO usuario (login, password, nombre, apellidos,genero, dni, fechaNacimiento, email, telefono, rol, socio, foto,borrado ) VALUES
 ('admin', 'admin', 'admin', 'el administrador','Masculino', '95875625X', '2019-11-14', 'admin@padel.es', '677777777', 'ADMINISTRADOR', 'SI','../Files/man-1.png','NO'),
 ('entrenador', 'entrenador', 'Pepe', 'el entrenador', 'Masculino','59117771C', '2019-11-15', 'entrenador@padel.es', '657555555', 'ENTRENADOR', 'SI','../Files/default.png','NO'),

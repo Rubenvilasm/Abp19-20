@@ -17,7 +17,7 @@
             <div class="col-md-3"></div>
             <div class="col-md-6 table-responsive contenido">
             <fieldset class="sc">
-            <legend><?php echo $strings['Confirmación de borrado'];?></legend>
+            <legend><?php echo $strings['Confirmación de borrado']; print_r($datos);?></legend>
             <!--Contenedor con botones de adición y búsqueda  -->
 
 			<table class="tab-twocol shadow showtable">
@@ -41,7 +41,7 @@
                         <td><?php echo $datos['idEntrenador']; ?></td>
                     </tr>
                     <tr>
-                        <th><?php echo $strings['idUsuario'];?> 1: </th>
+                        <th><?php echo $strings['idUsuario'];?>: </th>
                         <td><?php echo $datos['idUsuario']; ?></td>
                     </tr>
                 </table>

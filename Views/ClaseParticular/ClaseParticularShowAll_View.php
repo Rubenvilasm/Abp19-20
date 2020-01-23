@@ -50,9 +50,9 @@
                         <td><?php echo $datos['idUsuario']."\n"; ?></td>
                         <td><?php echo $datos['nivel']."\n"; ?></td>
                         <td><?php echo $datos['hora']."\n"; ?></td>
-                        <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/ClaseParticular_Controller.php?accion=DELETE&param=<?php echo $datos['idUsuario']?>';"><i class="fas fa-trash-alt"></i></button></td>
-                        <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/ClaseParticular_Controller.php?accion=INSCRIBIRSE&param=<?php echo $datos['idEntrenador']?>';"><i class="fas fa-trash-alt"></i></button></td>
-                        <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/ClaseParticular_Controller.php?accion=SHOWCURRENT&param=<?php echo $datos['idUsuario']?>';"><i class="fas fa-eye"></i></button></td>
+                        <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/ClaseParticular_Controller.php?accion=DELETE&param=<?php echo $datos['idClaseParticular']?>';"><i class="fas fa-trash-alt"></i></button></td>
+                        <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/ClaseParticular_Controller.php?accion=INSCRIBIRSE&param=<?php echo $datos['idClaseParticular']?>';"><i class="fas fa-trash-alt"></i></button></td>
+                        <td class="tb-btn"><button class="editbtn" role="link" onclick="window.location='../Controllers/ClaseParticular_Controller.php?accion=SHOWCURRENT&param=<?php echo $datos['idClaseParticular']?>';"><i class="fas fa-eye"></i></button></td>
                         
                     </tr>
                     <?php endforeach;}?>
