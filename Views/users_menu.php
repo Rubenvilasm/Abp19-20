@@ -38,65 +38,52 @@ $accion='';*/
 				<li class="<?php echo $usuario ;?> " ><a href="../Controllers/ReservarPista_Controller.php?accion=SHOWALL"><?php echo $strings['Reservar Pista']; ?><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-floppy-saved"></span></a></li>
 				<?php
 		
-		if( ($_SESSION['rol'] == "Administrador") ||  ($_SESSION['rol'] == "Entrenador") ){
-		?>
-				<li class="<?php echo $accion ;?> " ><a href="../Controllers/ClasesParticulares_Controller.php?accion=SHOWALL"><?php echo $strings['Gestionar Clases']; ?><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-list-alt"></span></a></li>
-	<?php
-		}
-	?>
-				<?php
-		
 		if ($_SESSION['rol']== 'Administrador') {
 		?>
 				<li class="<?php echo $accion ;?> " ><a href="../Controllers/Usuarios_Controller.php?accion=SHOWALL"><?php echo $strings['Gestionar Usuarios']; ?><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a></li>
-	<?php
-		}
-	?>
-				<?php
-		
-		if( $_SESSION['rol'] == "Administrador") {
-		?>
-				<li class="<?php echo $accion ;?> " ><a href="../Controllers/Campeonato_Controller.php?accion=SHOWALL"><?php echo $strings['Gestionar Campeonatos']; ?><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-tower"></span></a></li>
-	<?php
-		}
-	?>
-				<?php
-		
-		if( $_SESSION['rol'] == "Administrador" ){
-		?>
-				<li class="<?php echo $accion ;?> " ><a href="../Controllers/Pista_Controller.php?accion=SHOWALL"><?php echo $strings['Gestionar Pistas']; ?><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-indent-left"></span></a></li>
-	<?php
-		}
-	?>
 		<?php
-		
-		if( $_SESSION['rol'] == "Administrador" ){
+			}
 		?>
-				<li class="<?php echo $accion ;?> " ><a href="../Controllers/PPromocionado_Controller.php?accion=SHOWALL"><?php echo $strings['Promocionar Partidos']; ?><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-bullhorn"></span></a></li>
-	<?php
-		}
-	?>
-
+					<?php
+			
+			if( $_SESSION['rol'] == "Administrador") {
+			?>
+					<li class="<?php echo $accion ;?> " ><a href="../Controllers/Campeonato_Controller.php?accion=SHOWALL"><?php echo $strings['Gestionar Campeonatos']; ?><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-tower"></span></a></li>
 		<?php
-		if( $_SESSION['rol'] == "Administrador" || $_SESSION['rol'] == "Deportista"){
+			}
 		?>
-				<li class="<?php echo $accion ;?> " ><a href="../Controllers/Estadistica_Controller.php?accion=SHOWALL"><?php echo $strings['Estadistica']; ?><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-bullhorn"></span></a></li>
+					<?php
+			
+			if( $_SESSION['rol'] == "Administrador" ){
+			?>
+					<li class="<?php echo $accion ;?> " ><a href="../Controllers/Pista_Controller.php?accion=SHOWALL"><?php echo $strings['Gestionar Pistas']; ?><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-indent-left"></span></a></li>
+		<?php
+			}
+		?>
+			<?php
+			
+			if( $_SESSION['rol'] == "Administrador" ){
+			?>
+					<li class="<?php echo $accion ;?> " ><a href="../Controllers/PPromocionado_Controller.php?accion=SHOWALL"><?php echo $strings['Promocionar Partidos']; ?><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-bullhorn"></span></a></li>
 		<?php
 			}
 		?>
 
-		<?php
-		if( $_SESSION['rol'] == "Administrador" || $_SESSION['rol'] == "Deportista" || $_SESSION['rol'] == "Entrenador"){
-		?>
-				<li class="<?php echo $accion ;?> " ><a href="../Controllers/ClaseParticular_Controller.php?accion=SHOWALL"><?php echo $strings['Clases Particulares']; ?><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-bullhorn"></span></a></li>
-		<?php
-			}
-		?>
-	
-	
+			<?php
+			if( $_SESSION['rol'] == "Administrador" || $_SESSION['rol'] == "Deportista"){
+			?>
+					<li class="<?php echo $accion ;?> " ><a href="../Controllers/Estadistica_Controller.php?accion=SHOWALL"><?php echo $strings['Estadistica']; ?><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-bullhorn"></span></a></li>
+			<?php
+				}
+			?>
 
-
-				<li class="<?php echo $accion ;?> " ><a href="../Controllers/Rol_Controller.php?accion=SHOWALL"><?php echo $strings['Calendario']; ?><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-calendar "></span></a></li>
+			<?php
+			if( $_SESSION['rol'] == "Administrador" || $_SESSION['rol'] == "Deportista" || $_SESSION['rol'] == "Entrenador"){
+			?>
+					<li class="<?php echo $accion ;?> " ><a href="../Controllers/ClaseParticular_Controller.php?accion=SHOWALL"><?php echo $strings['Clases Particulares']; ?><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-bullhorn"></span></a></li>
+			<?php
+				}
+			?>
 				<li class="<?php echo $rolusuario ;?> " ><a href="../Controllers/PPromocionado_Controller.php?accion=VERINSCRIPCIONES"><?php echo $strings['Partidos Promocionados']; ?><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-sort"></span></a></li>
 				<li class="<?php echo $accion ;?> " ><a href="../Controllers/Campeonato_Controller.php?accion=VERINSCRIPCIONES"><?php echo $strings['Campeonatos']; ?><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-play-circle"></span></a></li>
 				

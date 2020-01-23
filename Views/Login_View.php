@@ -33,12 +33,12 @@ Vista para que el usuario se loguee en el sistema
 					
 					
 					 	<label for="login"><?= $strings['Login']?>: </label>
-						<input type="text" id="login" name="login" maxlength="15" size="15"  onblur="validarLogin(this,15)" > 
+						<input type="text" id="login" required="required" name="login" maxlength="15" size="15"  onblur="validarLogin(this,15)" > 
 						<span class="ocultoOK" id="loginOk" style="display:none" ></span>
 						<BR><div class="oculto" id="loginVal" style="display:none" ></div>
 					 	<BR>
 						<label for="password"><?= $strings['Contraseña']?>: </label>
-						<input type="password" id="password" name="password" maxlength="20" size="20" required="required">  
+						<input type="password" id="password" required="required" name="password" maxlength="20" size="20" required="required">  
 						<span class="ocultoOK" id="passwordOk" style="display:none" ></span>
 						<BR><div class="oculto" id="passwordVal" style="display:none" ></div>
 						<div class="secIconos Login">

@@ -65,25 +65,25 @@
   <div class="col-lg-4">
     <img class="rounded-circle" src="../Views/img/intro/img1.jpg" alt="Generic placeholder image" width="130" height="130">
     <h2>Clases particulares</h2>
-    <p><ul>loren ipsu</ul>
-       </p>
-    <p><a class="btn btn-secondary" href="../Controllers/ReservarPista_Controller.php?accion=SHOWALL" role="button">View details &raquo;</a></p>
+    <ul>Reserva clase con tu entrenador favorito.</ul>
+   
+    <ul><p><a class="btn btn-secondary" href="../Controllers/ClaseParticular_Controller.php?accion=SHOWALL" role="button">Clases Particulares &raquo;</a></p></ul>
   </div><!-- /.col-lg-4 -->
   <div class="col-lg-4">
     <img class="rounded-circle" src="../Views/img/intro/img2.jpg" alt="Generic placeholder image" width="130" height="130">
-    <h2>Campeonatos</h2>
-    <p>Niveles
+    <ul>Campeonatos</ul>
+    <p>Niveles</p>
     <ul>Categorias</ul>
     <ul>Premios metalicos</ul>
-    <ul>Competitiividad aseguradas</ul></p>
-    <p><a class="btn btn-secondary" href="../Controllers/Campeonato_Controller.php?accion=SHOWALL" role="button">View details &raquo;</a></p>
+    <ul>Competitividad asegurada</ul></p>
+    <ul><p><a class="btn btn-secondary" href="../Controllers/Campeonato_Controller.php?accion=SHOWALL" role="button">Campeonatos &raquo;</a></p></ul>
   </div><!-- /.col-lg-4 -->
   <div class="col-lg-4">
     <img class="rounded-circle" src="../Views/img/intro/img3.jpg" alt="Generic placeholder image" width="130" height="130">
     <h2>Partidos promocionados</h2>
     <p><ul>Inscribite</ul>
    <ul>Conoce gente</ul> </p>
-    <p><a class="btn btn-secondary" href="../Controllers/PPromocionado_Controller.php?accion=SHOWALL" role="button">View details &raquo;</a></p>
+    <ul><p><a class="btn btn-secondary" href="../Controllers/PPromocionado_Controller.php?accion=SHOWALL" role="button">Partidos Promocionados &raquo;</a></p></ul>
   </div><!-- /.col-lg-4 -->
 </div><!-- /.row -->
 
@@ -94,8 +94,8 @@
 
 <div class="row featurette">
   <div class="col-md-7">
-    <h2 class="featurette-heading">Padel por aqui <span class="text-muted">Padel por alla</span></h2>
-    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nisi lorem, iaculis sit amet magna et, finibus tempor neque. Suspendisse gravida, lacus nec viverra mattis, leo sapien molestie nunc, auctor dapibus sapien metus eu elit. Quisque at aliquam massa. Aliquam bibendum lorem lorem, eu tempus ex sollicitudin ut. In semper nulla ut odio posuere, quis elementum eros condimentum. Nullam cursus massa ac maximus malesuada. Praesent sodales at orci nec lobortis. Donec pharetra arcu at dignissim semper. Ut mattis sodales pretium. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam nunc lorem, fringilla et lorem eu, facilisis iaculis turpis. Pellentesque at elit vitae ipsum suscipit luctus. Etiam tempus felis vitae turpis sodales, ac viverra felis ultrices. Curabitur condimentum euismod rutrum. Duis pulvinar turpis a tortor tristique, non ultrices sem auctor. </p>
+    <h2 class="featurette-heading">El padel<span class="text-muted"> ¿Por qué está tan de moda?</span></h2>
+    <p class="lead">El padel es el segundo deporte con más jugadores federados del mundo, solo por detrás del fútbol.Cada vez se juega más al pádel, pero tambien que cada vez se lee más pádel. También, utilizamos la frase “el pádel está de moda” en este artículo ¿Por qué el Padel está de Moda? . <strong>¡Ven a probarlo y descubrelo!</strong></p>
   </div>
   <div class="col-md-5">
     <img class="featurette-image img-fluid mx-auto" src="../Views/img/intro/imgGrande2.jpg" alt="Generic placeholder image">
@@ -107,7 +107,7 @@
 <div  class="row featurette">
   <div class="col-md-7 push-md-5">
     <h2 class="featurette-heading">Tienes dudas? <span class="text-muted">Contáctanos!</span></h2>
-    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nisi lorem, iaculis  <a href="#dnde">venir a vernos</a>. Preguntenos sin compromiso.</p>
+    <p class="lead">Puedes contactarnos por Facebook e Instagram en : @TopPadelOurense o en el teléfono +34 677333222. O puedes <a href="https://goo.gl/maps/1vpTU6gy9pYQmiq86">venir a vernos</a>. Preguntanos sin compromiso.</p>
   </div>
   <div class="col-md-5 pull-md-7">
     <img class="featurette-image img-fluid mx-auto" src="../Views/img/intro/imgGrande3.jpg" alt="Generic placeholder image">
