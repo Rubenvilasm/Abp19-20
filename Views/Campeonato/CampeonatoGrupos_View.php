@@ -35,16 +35,16 @@
             </thead>
             
             <tr>
-            <?php 
+            <?php $i =1;
                     foreach($datos as $datos) :
-                        $i =1;
+                        
                     ?>
-                                <td class="text-center"><?php echo $i."\n"; ?></td>
+                                <td class="text-center"><?php echo $i."\n"; $i++; ?></td>
                                 <td class="text-center"><?php echo $datos['idDeportista1']."\n"; ?></td>
                                 <td class="text-center"><?php echo $datos['idDeportista2']."\n"; ?></td>
                                 <td class="text-center"><?php echo $datos['puntuacion']."\n"; ?></td>
             </tr>
-            <?php $i++; endforeach;?>
+            <?php  endforeach;?>
             </table>
 
         <!-- Contenedor de los iconos: aceptar, voler y vaciar-->

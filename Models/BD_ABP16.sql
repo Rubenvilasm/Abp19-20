@@ -195,6 +195,7 @@ CREATE TABLE `participa` (
     numSetsPareja2 varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     idPista varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     nivel INT NOT NULL,
+    resultado varchar(25) COLLATE latin1_spanish_ci NOT NULL,
     idCategoria enum('mixta','masculina','femenina','') COLLATE latin1_spanish_ci NOT NULL,
     
 

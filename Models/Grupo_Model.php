@@ -54,7 +54,6 @@ class Grupo_Model{
     }
     function getNumParticipantes(){
         $sql = "SELECT numParticipantes FROM grupo WHERE (`idGrupo` = '$this->idGrupo' AND `categoria` = '$this->idCategoria' AND `nivel` = '$this->idNivel' AND `idCampeonato` = '$this->idCampeonato')";
-        echo $sql;
         $resultado= $this->mysqli->query($sql);
         $resultado = mysqli_fetch_all($resultado,MYSQLI_NUM);
         $resultado = $resultado[0][0];

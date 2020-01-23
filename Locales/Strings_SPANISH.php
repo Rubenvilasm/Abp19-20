@@ -182,7 +182,7 @@ array(
 	'Enfrentamientos'=>'Enfrentamientos',
 	'Posicion'=>'Posicion',
 	'Puntos'=>'Puntos',
-	'Resultado'=>'Resultado'
+	'Resultado'=>'Resultado',
 	'partidosGanados'=>'partidosGanados',
 	'partidosJugados'=>'partidosJugados',
 	'puntos'=>'puntos',
@@ -192,7 +192,19 @@ array(
 	'torneosJugados'=>'torneosJugados',
 	'finalesJugadas'=>'finalesJugadas',
 	'Estadistica' => 'Estadistica',
-	'Clases Particulares' => 'Clases Particulares'
+	'Clases Particulares' => 'Clases Particulares',
+	'Selecciona o acepta la fecha del enfrentamiento'=>'Selecciona o acepta la fecha del enfrentamiento',
+	'Fecha establecida actualmente'=>'Fecha establecida actualmente',
+	'Fecha en la que desea jugar'=>'Fecha en la que desea jugar',
+	'Fecha enviada para confirmar'=>'Fecha enviada para confirmar',
+	'Fecha establecida correctamente'=>'Fecha establecida correctamente',
+	'Introduzca los resultados del enfrentamiento'=>'Introduzca los resultados del enfrentamiento',
+	'Numero de sets pareja 1'=>'Numero de sets pareja 1',
+	'Numero de sets pareja 2'=>'Numero de sets pareja 2',
+	'Resultado Final'=>'Resultado Final',
+	'Resultado fijado'=>'Resultado fijado'
+
+
 
  
 

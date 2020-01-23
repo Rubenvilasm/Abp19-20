@@ -47,7 +47,10 @@
                                 <td class="text-center"><h6><?php echo $enfrentamiento['resultado']."\n"; ?></h6></td>
                                 <td class="text-center"><h6><?php  echo $parejas[$i]['idDeportista1']."\n"; ?></h6></td>
                                 <td class="text-center"><h6><?php echo $parejas[$i]['idDeportista2']."\n"; $i++;?></h6></td>
-                                <td class="text-center"><h6><?php echo $enfrentamiento['resultado']."\n"; ?></h6></td>
+
+                                <td class="text-center"><button class="editbtn disable" role="link" onclick="window.location='../Controllers/Campeonato_Controller.php?accion=Fecha&param=<?php echo $enfrentamiento['idEnfrentamiento']?>';"><i class="far fa-calendar-alt"></i></button>
+                
+                <button class="editbtn" role="link" onclick="window.location='../Controllers/Campeonato_Controller.php?accion=Resultado&param=<?php echo $enfrentamiento['idEnfrentamiento']?>';"><i class="far fa-check-square"></i></button></td>
             </tr>
             <?php endforeach;?>
             </table>

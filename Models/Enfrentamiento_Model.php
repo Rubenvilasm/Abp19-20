@@ -42,7 +42,35 @@ class Enfrentamiento_Model{
             return false;
         else return true;
     }
+    function EstablecerFecha($fecha,$hora){
+        $sql = "UPDATE enfrentamiento  SET fecha = '$fecha $hora' WHERE idEnfrentamiento = '$this->idEnfrentamiento' ";
+        if (!($resultado = $this->mysqli->query($sql)))
+        return 'No existe en la base de datos';
+    else return $resultado;
+    }
+    function getFecha(){
+        $sql = "SELECT fecha,idEnfrentamiento FROM enfrentamiento  WHERE idEnfrentamiento = '$this->idEnfrentamiento'";
 
+        $result = $this->mysqli->query($sql);
+        if ($result->num_rows == 0)
+            return false;
+        else{
+            $result=mysqli_fetch_all($result, MYSQLI_ASSOC);            
+            $fecha[0]=substr($result[0]['fecha'],0,10);       
+            $fecha[1]=substr($result[0]['fecha'],11,15);
+            $fecha[1]=substr($fecha[1],0,5);
+            $fecha[3]=$this->idEnfrentamiento;
+        }   
+         return $fecha;
+    }
+    function EstablecerResultado($set1,$set2,$rfinal){
+        $sql = "UPDATE enfrentamiento  SET numSetsPareja1 = '$set1' , numSetsPareja2='$set2'
+        , resultado='$rfinal' WHERE idEnfrentamiento = '$this->idEnfrentamiento' ";
+        echo $sql;
+        if (!($resultado = $this->mysqli->query($sql)))
+        return 'No existe en la base de datos';
+    else return $resultado;
+    }
     function RellenaDatos(){
         $sql = "SELECT * FROM enfrentamiento  WHERE (idEnfrentamiento = '$this->idEnfrentamiento') &&  (id_campeonato = '$this->id_campeonato')";
         if (!($resultado = $this->mysqli->query($sql)))
@@ -141,6 +169,18 @@ class Enfrentamiento_Model{
         if(!($result = $this->mysqli->query($sql)))
             return 'ERROR: Fallo en la consulta sobre la base de datos.';
         else   $result=  mysqli_fetch_all($result, MYSQLI_ASSOC);
+          
+
+        return $result;
+    }
+    function getEnfrentamiento(){
+        $sql  = "SELECT * FROM enfrentamiento WHERE 
+            `idEnfrentamiento` = '$this->idEnfrentamiento'
+            ";
+
+        if(!($result = $this->mysqli->query($sql)))
+            return 'ERROR: Fallo en la consulta sobre la base de datos.';
+        else   $result=  mysqli_fetch_all($result, MYSQLI_ASSOC);
         return $result;
     }
     function SEARCH(){
@@ -152,7 +192,6 @@ class Enfrentamiento_Model{
             `fecha` LIKE '%$this->fecha%'AND
             `idPista` LIKE '%$this->idPista%'AND
             `idGrupo` LIKE '%$this->idGrupo%')";
-            echo $sql;
 
         if(!($result = $this->mysqli->query($sql)))
             return 'ERROR: Fallo en la consulta sobre la base de datos.';

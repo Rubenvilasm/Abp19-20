@@ -231,6 +231,49 @@ function Clasificacion($nivel,$idCampeonato,$grupo,$categoria){
                
     }
 }
+function Resultado($idEnfrentamiento){
+    
+    include '../Models/Enfrentamiento_Model.php';
+    $participantes=new Enfrentamiento_Model($idEnfrentamiento,'','','','','','','','','','');
+    if(!isset($_POST['submit'])){
+        include '../Views/Campeonato/CampeonatoResultados_View.php';
+        new Campeonato_Resultados($idEnfrentamiento);
+
+    }else{
+        $resultado=$participantes->EstablecerResultado($_POST["numSetsPareja1"],$_POST["numSetsPareja2"],$_POST["rFinal"]);
+        include '../Views/MESSAGE.php';
+        new MESSAGE("Resultado fijado", '../Controllers/Index_Controller.php');
+
+    }
+               
+    
+}
+function Fecha($idEnfrentamiento){
+    
+    include '../Models/Enfrentamiento_Model.php';
+    $enfrentamiento=new Enfrentamiento_Model($idEnfrentamiento,'','','','','','','','','','');
+    if(!isset($_POST['submit'])){
+        $enfrentamientos= $enfrentamiento->getFecha();
+        include '../Views/Campeonato/CampeonatoFecha_View.php';
+        print_r($enfrentamientos);
+        new Campeonato_Fecha($enfrentamientos);
+    }else{
+        include '../Views/MESSAGE.php';
+
+            $enfrentamiento->EstablecerFecha($_POST["fechaFinal"],$_POST["horaFinal"]);
+            $datos=$enfrentamiento->getEnfrentamiento();
+            if($_POST["fechaFinal"]==$_POST["fecha"] && $_POST["horaFinal"]==$_POST["hora"]){
+               
+                new MESSAGE("Fecha establecida correctamente", '../Controllers/Campeonato_Controller.php?accion=SHOWALL');
+            }else
+          
+            new MESSAGE("Fecha enviada para confirmar", '../Controllers/Campeonato_Controller.php?accion=SHOWALL');
+            
+            
+    }
+               
+    
+}
 function Enfrentamientos($nivel,$idCampeonato,$grupo,$categoria){
     
     include '../Views/Campeonato/CampeonatoEnfrentamientos_View.php';
@@ -240,39 +283,25 @@ function Enfrentamientos($nivel,$idCampeonato,$grupo,$categoria){
         $pareja= new Pareja_Model('','','');
         $enfrentamiento = new Enfrentamiento_Model('',$idCampeonato,'','','',$grupo,'','','',$categoria,$nivel);
         $estanCreados= $enfrentamiento->EstanCreados();
-        if($estanCreados){
-            $enfrentamientos=$enfrentamiento->getEnfrentamientos();
-            $i=0;
-            $parejas[]=array();
-            foreach($enfrentamientos as $enfren){
-                $temp = $pareja->GET_PAREJA($enfren['idPareja1']);
-                $parejas[$i] = $temp[0];
-               $t =$enfren['idPareja1'];
-               $t2 = $enfren['idPareja2'];
-                $i++;
-                 $temp = $pareja->GET_PAREJA($enfren['idPareja2']);
-                 $parejas[$i] = $temp[0];
-                 $i++;
-            }
-            
-            new Campeonato_Enfrentamientos($enfrentamientos,$parejas);
-            echo $estanCreados;
-
-        }else{
+        if(!$estanCreados){
             $crearEnfrentamientos= $enfrentamiento->CrearEnfrentamientos();
-            echo "no $estanCreados";
+
         }
-        /* $Grupos= new Grupo_Model('',$_POST['categoria'],$clave,$_POST['nivel']);
-        $respGrupos=$Grupos->getGruposByNivel();    
-        print_r($respGrupos);
-        if(sizeof($respGrupos) != 0){
-            include '../Views/Campeonato/CampeonatoGruposSHOW_View.php';
-            new  Campeonato_GRUPOSSHOW($respGrupos);
-        }else{
-            $mens = "No hay grupos en esa categoria y nivel";
-            include '../Views/MESSAGE.php';
-            new MESSAGE($mens, '../Controllers/Index_Controller.php');
-        }         */
+        $enfrentamientos=$enfrentamiento->getEnfrentamientos();
+        $i=0;
+        $parejas[]=array();
+        foreach($enfrentamientos as $enfren){
+            $temp = $pareja->GET_PAREJA($enfren['idPareja1']);
+            $parejas[$i] = $temp[0];
+           $t =$enfren['idPareja1'];
+           $t2 = $enfren['idPareja2'];
+            $i++;
+             $temp = $pareja->GET_PAREJA($enfren['idPareja2']);
+             $parejas[$i] = $temp[0];
+             $i++;
+        }
+        
+        new Campeonato_Enfrentamientos($enfrentamientos,$parejas);
    
 }
 
