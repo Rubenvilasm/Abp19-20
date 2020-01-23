@@ -42,6 +42,15 @@ class Enfrentamiento_Model{
             return false;
         else return true;
     }
+    function EstanCreadosPlayOffs(){
+        $sql = "SELECT * FROM enfrentamiento  WHERE (idGrupo = 'POFF$this->idGrupo') AND (idCampeonato = '$this->idCampeonato') AND idCategoria ='$this->categoria' AND nivel='$this->nivel'";
+        $result = $this->mysqli->query($sql);
+        if ($result->num_rows == 0){
+            return false;
+
+        }
+        else return true;
+    }
     function EstablecerFecha($fecha,$hora){
         $sql = "UPDATE enfrentamiento  SET fecha = '$fecha $hora' WHERE idEnfrentamiento = '$this->idEnfrentamiento' ";
         if (!($resultado = $this->mysqli->query($sql)))
@@ -117,18 +126,17 @@ class Enfrentamiento_Model{
             }
         }
     }
-    function CrearPlayOFFS(){
+    function CrearPlayOFFS($grupo){
         include_once '../Models/Grupo_Model.php';
         include_once '../Models/Participa_Model.php';
-        $temp= new Grupo_Model($this->idGrupo,$this->categoria,$this->idCampeonato,$this->nivel);
-        $participa= new Participa_Model('',$this->idCampeonato,$this->categoria,$this->nivel,'',$this->idGrupo);
+        $temp= new Grupo_Model($grupo,$this->categoria,$this->idCampeonato,$this->nivel);
+        $participa= new Participa_Model('',$this->idCampeonato,$this->categoria,$this->nivel,'',$grupo);
         $clasificados=$participa->Clasificacion();
         for($z=0;$z<8;$z++){
             $this->grupos[$z]=$clasificados[$z];
             
         }
         $reverse = array_reverse($this->grupos,false);
-        $participantes=$temp->getNumParticipantes();
         $i=0;
         foreach($this->grupos as $pareja1){
             $pareja2=$reverse[$i]['idPareja'];
@@ -157,7 +165,17 @@ class Enfrentamiento_Model{
         }
     }
   function  getEnfrentamientosPlayOFF(){
+    $sql  = "SELECT * FROM enfrentamiento WHERE (
+        `idCampeonato` = '$this->idCampeonato'AND
+        `idGrupo` LIKE 'POFF%' AND 
+        `nivel` ='$this->nivel' AND 
+        `idCategoria` ='$this->categoria')";
+    if(!($result = $this->mysqli->query($sql)))
+        return 'ERROR: Fallo en la consulta sobre la base de datos.';
+    else   $result=  mysqli_fetch_all($result, MYSQLI_ASSOC);
+      
 
+    return $result;
     }
     function seEnfrentan($idPareja1,$idPareja2,$PF){
         if(!$PF){
