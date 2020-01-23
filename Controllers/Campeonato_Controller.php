@@ -144,11 +144,12 @@ session_start();
          }
     }
     function PAREJA($clave){
+        
         if(!isset($_POST['submit'])){
             include '../Views/Campeonato/CampeonatoInscribirse_View.php';
             new Campeonato_Inscribirse($clave);
 
-        }else{
+        }else if(){
             include '../Models/Pareja_Model.php';
             include '../Models/Participa_Model.php';
             $Pareja = new Pareja_Model('',$_POST['participante2'],$_POST['participante1']);
@@ -321,7 +322,32 @@ function PLAYOFF($nivel,$idCampeonato,$grupo,$categoria){
                 $crearEnfrentamientos= $enfrentamiento->CrearPlayOFFS($gr['idGrupo']);
             }
             
-        }
+        }$enfrentamiento->crearEnfrentamientoRonda(2);
+        $enfrentamiento->crearEnfrentamientoRonda(3);
+            $enfrentamientos2=$enfrentamiento->getEnfrentamientosRonda(2);
+            $enfrentamientos3=$enfrentamiento->getEnfrentamientosRonda(3);
+            $i=0;
+            $parejas2[]=array();
+            $parejas3[]=array();
+            foreach($enfrentamientos2 as $enfren){
+                $temp = $pareja->GET_PAREJA($enfren['idPareja1']);
+                $parejas2[$i] = $temp[0];
+               $t =$enfren['idPareja1'];
+               $t2 = $enfren['idPareja2'];
+                $i++;
+                 $temp = $pareja->GET_PAREJA($enfren['idPareja2']);
+                 $parejas2[$i] = $temp[0];
+                 $i++;
+            } 
+
+       
+                $temp = $pareja->GET_PAREJA($enfrentamientos3[0]['idPareja1']);
+                $parejas3[0] = $temp[0];              
+                 $temp = $pareja->GET_PAREJA($enfrentamientos3[0]['idPareja2']);
+                 $parejas3[1] = $temp[0];
+               
+            
+        
         $enfrentamientos=$enfrentamiento->getEnfrentamientosPlayOFF();
         $i=0;
         $parejas[]=array();
@@ -336,7 +362,7 @@ function PLAYOFF($nivel,$idCampeonato,$grupo,$categoria){
              $i++;
         } 
         
-        new Campeonato_PlayOff($enfrentamientos,$parejas);
+        new Campeonato_PlayOff($enfrentamientos,$parejas,$enfrentamientos2,$parejas2,$enfrentamientos3,$parejas3);
    
 }
 

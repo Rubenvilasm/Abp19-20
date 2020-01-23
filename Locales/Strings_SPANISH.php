@@ -209,6 +209,7 @@ array(
 	'hora' => 'hora',
 	'No hay clases particulares disponibles.' => 'No hay clases particulares disponibles.',
 	'Ronda'=>'Ronda',
+<<<<<<< HEAD
 	'Masculino' => 'Masculino',
 	'Femenino' => 'Femenino',
 	'¿Confirma el borrado de este Usuario?' => '¿Confirma el borrado de este Usuario?',
@@ -220,6 +221,9 @@ array(
 	'Estadisticas Personales' => 'Estadisticas Personales',
 	'¿Confirma el borrado de la clase?' => '¿Confirma el borrado de la clase?',
 	'Datos de la Clase Particular' => 'Datos de la Clase Particular'
+=======
+	'PlayOff'=>'PlayOff'
+>>>>>>> b15c531ef28ba89a5f68092cbc8ba9502c4cd66f
 
  
 

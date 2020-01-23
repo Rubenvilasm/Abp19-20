@@ -32,7 +32,7 @@
             </div>
             <div class="campo">
             <label><?php echo $strings['Resultado Final']?> : </label>
-            <input  type = 'number' name = 'rFinal' id = 'rFinal' size = '25' value = ''  ><br>
+            <input  type = 'text' name = 'rFinal' id = 'rFinal' size = '25' value = ''  ><br>
             </div>
          
 
